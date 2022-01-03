@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Repo;
+package unisa.is.helpseller.Repo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import unisa.is.helpseller.Model.Azienda;
+import unisa.is.helpseller.Model.OrdineProdotto;
 
 /**
  *
  * @author UTENTE
  */
-public interface AziendaRepo extends JpaRepository<Azienda, Long> {
+public interface OrdineProdottoRepo extends JpaRepository<OrdineProdotto, Long> {
     
 }
