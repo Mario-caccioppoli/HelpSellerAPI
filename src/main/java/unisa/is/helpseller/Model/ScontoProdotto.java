@@ -1,32 +1,43 @@
 package unisa.is.helpseller.Model;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Table;
-import javax.persistence.Id;
-
+import java.io.Serializable;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "sconto_prodotto")
-public class ScontoProdotto {
+public class ScontoProdotto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     
-    @Column
     private int idSconto;
-    
-    @Column
     private int idProdotto;
-    
 
     public ScontoProdotto() {}
 
     public ScontoProdotto(int idSconto, int idProdotto) {
         this.idSconto = idSconto;
+        this.idProdotto = idProdotto;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public int getIdSconto() {
+        return idSconto;
+    }
+
+    public void setIdSconto(int idSconto) {
+        this.idSconto = idSconto;
+    }
+
+    public int getIdProdotto() {
+        return idProdotto;
+    }
+
+    public void setIdProdotto(int idProdotto) {
         this.idProdotto = idProdotto;
     }
     

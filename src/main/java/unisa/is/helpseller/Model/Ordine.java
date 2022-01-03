@@ -2,40 +2,23 @@ package unisa.is.helpseller.Model;
 
 
 import java.sql.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Table;
-import javax.persistence.Id;
+import java.io.Serializable;
+import javax.persistence.*;
 
 
 @Entity
 @Table(name = "ordine")
-public class Ordine {
+public class Ordine implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     
-    @Column
     private int idOrdine;
-    
-    @Column
     private Date dataOrdinazione;
-    
-    @Column
     private Date dataConsegna;
-    
-    @Column
     private String commento;
-    
-    @Column
     private String stato;
-    
-    @Column
     private int idDistributore;
-    
-    @Column
     private int idOrdineProva;
  
     public Ordine() {}
@@ -48,5 +31,62 @@ public class Ordine {
         this.idOrdineProva = idOrdineProva;
         this.stato = "Generated";
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public int getIdOrdine() {
+        return idOrdine;
+    }
+
+    public Date getDataOrdinazione() {
+        return dataOrdinazione;
+    }
+
+    public void setDataOrdinazione(Date dataOrdinazione) {
+        this.dataOrdinazione = dataOrdinazione;
+    }
+
+    public Date getDataConsegna() {
+        return dataConsegna;
+    }
+
+    public void setDataConsegna(Date dataConsegna) {
+        this.dataConsegna = dataConsegna;
+    }
+
+    public String getCommento() {
+        return commento;
+    }
+
+    public void setCommento(String commento) {
+        this.commento = commento;
+    }
+
+    public String getStato() {
+        return stato;
+    }
+
+    public void setStato(String stato) {
+        this.stato = stato;
+    }
+
+    public int getIdDistributore() {
+        return idDistributore;
+    }
+
+    public void setIdDistributore(int idDistributore) {
+        this.idDistributore = idDistributore;
+    }
+
+    public int getIdOrdineProva() {
+        return idOrdineProva;
+    }
+
+    public void setIdOrdineProva(int idOrdineProva) {
+        this.idOrdineProva = idOrdineProva;
+    }
+    
     
 }

@@ -17,28 +17,58 @@ public class Trasporto {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     
-    @Column
     private int idTrasporto;
-    
-    @Column
     private String indirizzoConsegna;
-    
-    @Column
     private int quantitaMinima;
-    
-    @Column
     private Date dataConsegna;
-    
-    @Column
     private int idOrdine;
 
- 
     public Trasporto() {}
 
     public Trasporto(String indirizzoConsegna, int quantitaMinima, Date dataConsegna, int idOrdine) {
         this.indirizzoConsegna = indirizzoConsegna;
         this.quantitaMinima = quantitaMinima;
         this.dataConsegna = dataConsegna;
+        this.idOrdine = idOrdine;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public int getIdTrasporto() {
+        return idTrasporto;
+    }
+
+    public String getIndirizzoConsegna() {
+        return indirizzoConsegna;
+    }
+
+    public void setIndirizzoConsegna(String indirizzoConsegna) {
+        this.indirizzoConsegna = indirizzoConsegna;
+    }
+
+    public int getQuantitaMinima() {
+        return quantitaMinima;
+    }
+
+    public void setQuantitaMinima(int quantitaMinima) {
+        this.quantitaMinima = quantitaMinima;
+    }
+
+    public Date getDataConsegna() {
+        return dataConsegna;
+    }
+
+    public void setDataConsegna(Date dataConsegna) {
+        this.dataConsegna = dataConsegna;
+    }
+
+    public int getIdOrdine() {
+        return idOrdine;
+    }
+
+    public void setIdOrdine(int idOrdine) {
         this.idOrdine = idOrdine;
     }
     

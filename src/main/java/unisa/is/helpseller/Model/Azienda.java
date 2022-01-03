@@ -1,43 +1,24 @@
 package unisa.is.helpseller.Model;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Table;
-import javax.persistence.Id;
+import java.io.Serializable;
+import javax.persistence.*;
 
 
 @Entity
 @Table(name = "azienda")
-public class Azienda {
+public class Azienda implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     
-    @Column
     private int idAzienda;
-    
-    @Column
     private String email;
-    
-    @Column
     private String password;
-    
-    @Column
     private String nomeAzienda;
-    
-    @Column
     private String VAT;
-    
-    @Column
     private String indirizzo;
-    
-    @Column
     private String descrizione;
-    
-    @Column
     private String logo;
     
     public Azienda() {}
@@ -53,5 +34,71 @@ public class Azienda {
         this.descrizione = descrizione;
         this.logo = logo;
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public int getIdAzienda() {
+        return idAzienda;
+    }
+
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getNomeAzienda() {
+        return nomeAzienda;
+    }
+
+    public void setNomeAzienda(String nomeAzienda) {
+        this.nomeAzienda = nomeAzienda;
+    }
+
+    public String getVAT() {
+        return VAT;
+    }
+
+    public void setVAT(String VAT) {
+        this.VAT = VAT;
+    }
+
+    public String getIndirizzo() {
+        return indirizzo;
+    }
+
+    public void setIndirizzo(String indirizzo) {
+        this.indirizzo = indirizzo;
+    }
+
+    public String getDescrizione() {
+        return descrizione;
+    }
+
+    public void setDescrizione(String descrizione) {
+        this.descrizione = descrizione;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
         
+    
 }

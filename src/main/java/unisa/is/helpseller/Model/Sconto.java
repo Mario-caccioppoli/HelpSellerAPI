@@ -2,43 +2,25 @@ package unisa.is.helpseller.Model;
 
 
 import java.sql.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Table;
-import javax.persistence.Id;
+import java.io.Serializable;
+import javax.persistence.*;
 
 
 @Entity
 @Table(name = "sconto")
-public class Sconto {
+public class Sconto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    
-    @Column
+
     private int idSconto;
-    
-    @Column
     private int percentuale;
-    
-    @Column
     private Date dataInizio;
-    
-    @Column
     private Date dataFine;
-    
-    @Column
     private String tipo;
-    
-    @Column
     private int quantita;
-    
-    @Column
     private int idAzienda;
 
- 
     public Sconto() {}
 
     public Sconto(int percentuale, Date dataInizio, Date dataFine, String tipo, int quantita, int idAzienda) {
@@ -47,6 +29,62 @@ public class Sconto {
         this.dataFine = dataFine;
         this.tipo = tipo;
         this.quantita = quantita;
+        this.idAzienda = idAzienda;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public int getIdSconto() {
+        return idSconto;
+    }
+
+    public int getPercentuale() {
+        return percentuale;
+    }
+
+    public void setPercentuale(int percentuale) {
+        this.percentuale = percentuale;
+    }
+
+    public Date getDataInizio() {
+        return dataInizio;
+    }
+
+    public void setDataInizio(Date dataInizio) {
+        this.dataInizio = dataInizio;
+    }
+
+    public Date getDataFine() {
+        return dataFine;
+    }
+
+    public void setDataFine(Date dataFine) {
+        this.dataFine = dataFine;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public int getQuantita() {
+        return quantita;
+    }
+
+    public void setQuantita(int quantita) {
+        this.quantita = quantita;
+    }
+
+    public int getIdAzienda() {
+        return idAzienda;
+    }
+
+    public void setIdAzienda(int idAzienda) {
         this.idAzienda = idAzienda;
     }
 

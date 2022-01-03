@@ -12,6 +12,7 @@ public class Amministratore implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     
+    private int idAmministratore;
     private String username;
     private String email;
     private String password;
@@ -26,6 +27,10 @@ public class Amministratore implements Serializable{
 
     public long getId() {
         return id;
+    }
+
+    public int getIdAmministratore() {
+        return idAmministratore;
     }
 
     public String getUsername() {

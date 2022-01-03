@@ -1,31 +1,20 @@
 package unisa.is.helpseller.Model;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Table;
-import javax.persistence.Id;
+import java.io.Serializable;
+import javax.persistence.*;
 
 
 @Entity
 @Table(name = "ordine_prodotto")
-public class OrdineProdotto {
+public class OrdineProdotto implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     
-    @Column
     private int idOrdine;
-    
-    @Column
     private int idProdotto;
-    
-    @Column
     private int quantita;
-    
-    @Column
     private double prezzoUnitario;
  
     public OrdineProdotto() {}
@@ -37,4 +26,41 @@ public class OrdineProdotto {
         this.prezzoUnitario = prezzoUnitario;
     }
 
+    public long getId() {
+        return id;
+    }
+    
+    public int getIdOrdine() {
+        return idOrdine;
+    }
+
+    public void setIdOrdine(int idOrdine) {
+        this.idOrdine = idOrdine;
+    }
+
+    public int getIdProdotto() {
+        return idProdotto;
+    }
+
+    public void setIdProdotto(int idProdotto) {
+        this.idProdotto = idProdotto;
+    }
+
+    public int getQuantita() {
+        return quantita;
+    }
+
+    public void setQuantita(int quantita) {
+        this.quantita = quantita;
+    }
+
+    public double getPrezzoUnitario() {
+        return prezzoUnitario;
+    }
+
+    public void setPrezzoUnitario(double prezzoUnitario) {
+        this.prezzoUnitario = prezzoUnitario;
+    }
+
+    
 }

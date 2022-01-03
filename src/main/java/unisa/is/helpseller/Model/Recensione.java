@@ -2,37 +2,23 @@ package unisa.is.helpseller.Model;
 
 
 import java.sql.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Table;
-import javax.persistence.Id;
+import java.io.Serializable;
+import javax.persistence.*;
 
 
 @Entity
 @Table(name = "recensione")
-public class Recensione {
+public class Recensione implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     
-    @Column
+  
     private int idRecensione;
-    
-    @Column
     private String testo;
-    
-    @Column
     private int voto;
-    
-    @Column
     private Date data;
-    
-    @Column
     private int idProdotto;
-    
-    @Column
     private int idDistributore;
 
    
@@ -45,6 +31,53 @@ public class Recensione {
         this.idProdotto = idProdotto;
         this.idDistributore = idDistributore;
     }
-    
-    
+
+    public long getId() {
+        return id;
+    }
+
+    public int getIdRecensione() {
+        return idRecensione;
+    }
+
+    public String getTesto() {
+        return testo;
+    }
+
+    public void setTesto(String testo) {
+        this.testo = testo;
+    }
+
+    public int getVoto() {
+        return voto;
+    }
+
+    public void setVoto(int voto) {
+        this.voto = voto;
+    }
+
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
+    }
+
+    public int getIdProdotto() {
+        return idProdotto;
+    }
+
+    public void setIdProdotto(int idProdotto) {
+        this.idProdotto = idProdotto;
+    }
+
+    public int getIdDistributore() {
+        return idDistributore;
+    }
+
+    public void setIdDistributore(int idDistributore) {
+        this.idDistributore = idDistributore;
+    }
+      
 }

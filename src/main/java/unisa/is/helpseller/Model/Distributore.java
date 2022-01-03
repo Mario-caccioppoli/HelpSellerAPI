@@ -1,52 +1,27 @@
 package unisa.is.helpseller.Model;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Table;
-import javax.persistence.Id;
-
+import java.io.Serializable;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "distributore")
-public class Distributore {
+public class Distributore implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     
-    @Column
     private int idDistributore;
-    
-    @Column
-    private String username;
-    
-    @Column
+    private String username;    
     private String email;
-    
-    @Column
     private String password;
-    
-    @Column
     private String nome;
-    
-    @Column
     private String cognome;
-    
-    @Column
     private String VAT;
-    
-    @Column
     private String telefono;
-    
-    @Column
     private String indirizzoSede;
-    
-    @Column
     private int idOrdineProva;
     
- 
     public Distributore() {}
 
     public Distributore(String username, String email, String password, 
@@ -60,6 +35,88 @@ public class Distributore {
         this.VAT = VAT;
         this.telefono = telefono;
         this.indirizzoSede = indirizzoSede;
+        this.idOrdineProva = idOrdineProva;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public int getIdDistributore() {
+        return idDistributore;
+    }
+
+    
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCognome() {
+        return cognome;
+    }
+
+    public void setCognome(String cognome) {
+        this.cognome = cognome;
+    }
+
+    public String getVAT() {
+        return VAT;
+    }
+
+    public void setVAT(String VAT) {
+        this.VAT = VAT;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getIndirizzoSede() {
+        return indirizzoSede;
+    }
+
+    public void setIndirizzoSede(String indirizzoSede) {
+        this.indirizzoSede = indirizzoSede;
+    }
+
+    public int getIdOrdineProva() {
+        return idOrdineProva;
+    }
+
+    public void setIdOrdineProva(int idOrdineProva) {
         this.idOrdineProva = idOrdineProva;
     }
     
