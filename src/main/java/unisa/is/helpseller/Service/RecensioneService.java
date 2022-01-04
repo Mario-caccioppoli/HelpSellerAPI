@@ -32,8 +32,8 @@ public class RecensioneService {
         return recensioneRepo.getById(id);
     }
     
-    public void deleteRecensione(Recensione a) {
-        recensioneRepo.delete(a);
+    public void deleteRecensione(Long id) {
+        recensioneRepo.deleteById(id);
     }
     
 }

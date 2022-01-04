@@ -32,8 +32,8 @@ public class OrdineProdottoService {
         return ordineProdottoRepo.getById(id);
     }
     
-    public void deleteOrdineProdotto(OrdineProdotto a) {
-        ordineProdottoRepo.delete(a);
+    public void deleteOrdineProdotto(Long id) {
+        ordineProdottoRepo.deleteById(id);
     }
     
 }

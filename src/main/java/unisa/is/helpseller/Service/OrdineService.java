@@ -32,8 +32,8 @@ public class OrdineService {
         return ordineRepo.getById(id);
     }
     
-    public void deleteOrdine(Ordine a) {
-        ordineRepo.delete(a);
+    public void deleteOrdine(Long id) {
+        ordineRepo.deleteById(id);
     }
     
 }

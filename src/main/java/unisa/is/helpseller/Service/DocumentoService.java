@@ -32,8 +32,8 @@ public class DocumentoService {
         return documentoRepo.getById(id);
     }
     
-    public void deleteDocumento(Documento a) {
-        documentoRepo.delete(a);
+    public void deleteDocumento(Long id) {
+        documentoRepo.deleteById(id);
     }
     
 }

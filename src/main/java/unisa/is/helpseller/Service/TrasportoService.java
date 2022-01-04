@@ -32,8 +32,8 @@ public class TrasportoService {
         return trasportoRepo.getById(id);
     }
     
-    public void deleteTrasporto(Trasporto a) {
-        trasportoRepo.delete(a);
+    public void deleteTrasporto(Long id) {
+        trasportoRepo.deleteById(id);
     }
     
 }

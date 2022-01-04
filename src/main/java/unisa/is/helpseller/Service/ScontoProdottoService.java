@@ -32,8 +32,8 @@ public class ScontoProdottoService {
         return scontoProdottoRepo.getById(id);
     }
     
-    public void deleteScontoProdotto(ScontoProdotto a) {
-        scontoProdottoRepo.delete(a);
+    public void deleteScontoProdotto(Long id) {
+        scontoProdottoRepo.deleteById(id);
     }
     
 }

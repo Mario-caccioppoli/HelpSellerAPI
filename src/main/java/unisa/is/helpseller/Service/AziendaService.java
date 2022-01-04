@@ -32,8 +32,8 @@ public class AziendaService {
         return aziendaRepo.getById(id);
     }
     
-    public void deleteAzienda(Azienda a) {
-        aziendaRepo.delete(a);
+    public void deleteAzienda(Long id) {
+        aziendaRepo.deleteById(id);
     }
     
 }

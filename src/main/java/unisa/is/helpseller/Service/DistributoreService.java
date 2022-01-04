@@ -32,8 +32,8 @@ public class DistributoreService {
         return distributoreRepo.getById(id);
     }
     
-    public void deleteDistributore(Distributore a) {
-        distributoreRepo.delete(a);
+    public void deleteDistributore(Long id) {
+        distributoreRepo.deleteById(id);
     }
     
 }
