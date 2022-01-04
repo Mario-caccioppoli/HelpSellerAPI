@@ -7,7 +7,7 @@ import unisa.is.helpseller.Service.ScontoService;
 import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import unisa.is.helpseller.Model.Sconto;
+import unisa.is.helpseller.Entity.Sconto;
 
 @RestController
 @RequestMapping("/sconto")

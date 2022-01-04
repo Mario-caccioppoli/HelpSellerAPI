@@ -7,7 +7,7 @@ import unisa.is.helpseller.Service.OrdineService;
 import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import unisa.is.helpseller.Model.Ordine;
+import unisa.is.helpseller.Entity.Ordine;
 
 @RestController
 @RequestMapping("/ordine")

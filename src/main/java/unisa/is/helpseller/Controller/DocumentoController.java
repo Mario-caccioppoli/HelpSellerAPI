@@ -7,7 +7,7 @@ import unisa.is.helpseller.Service.DocumentoService;
 import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import unisa.is.helpseller.Model.Documento;
+import unisa.is.helpseller.Entity.Documento;
 
 @RestController
 @RequestMapping("/documento")

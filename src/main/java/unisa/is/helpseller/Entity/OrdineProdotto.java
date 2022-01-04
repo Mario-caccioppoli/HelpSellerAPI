@@ -1,4 +1,4 @@
-package unisa.is.helpseller.Model;
+package unisa.is.helpseller.Entity;
 
 
 import java.io.Serializable;

@@ -6,7 +6,7 @@
 package unisa.is.helpseller.Repo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import unisa.is.helpseller.Model.Recensione;
+import unisa.is.helpseller.Entity.Recensione;
 
 /**
  *

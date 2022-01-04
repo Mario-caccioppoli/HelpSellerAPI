@@ -7,7 +7,7 @@ import unisa.is.helpseller.Service.AmministratoreService;
 import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import unisa.is.helpseller.Model.Amministratore;
+import unisa.is.helpseller.Entity.Amministratore;
 
 @RestController
 @RequestMapping("/admin")

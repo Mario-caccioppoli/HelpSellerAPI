@@ -7,7 +7,7 @@ import unisa.is.helpseller.Service.ProdottoService;
 import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import unisa.is.helpseller.Model.Prodotto;
+import unisa.is.helpseller.Entity.Prodotto;
 
 @RestController
 @RequestMapping("/prodotto")

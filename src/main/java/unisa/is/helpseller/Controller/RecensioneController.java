@@ -7,7 +7,7 @@ import unisa.is.helpseller.Service.RecensioneService;
 import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import unisa.is.helpseller.Model.Recensione;
+import unisa.is.helpseller.Entity.Recensione;
 
 @RestController
 @RequestMapping("/recensione")

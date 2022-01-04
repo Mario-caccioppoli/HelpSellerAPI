@@ -5,7 +5,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import unisa.is.helpseller.Model.Distributore;
+import unisa.is.helpseller.Entity.Distributore;
 import unisa.is.helpseller.Repo.DistributoreRepo;
 
 @Service
