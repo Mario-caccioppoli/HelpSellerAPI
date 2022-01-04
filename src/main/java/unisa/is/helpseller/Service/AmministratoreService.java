@@ -28,12 +28,12 @@ public class AmministratoreService {
         return amministratoreRepo.save(a);
     }
     
-    public Amministratore findAmministratoreById(long id) {
+    public Amministratore findAmministratoreById(Long id) {
         return amministratoreRepo.getById(id);
     }
     
-    public void deleteAmministratore(Amministratore a) {
-        amministratoreRepo.delete(a);
+    public void deleteAmministratore(Long id) {
+        amministratoreRepo.deleteById(id);
     }
     
 }
