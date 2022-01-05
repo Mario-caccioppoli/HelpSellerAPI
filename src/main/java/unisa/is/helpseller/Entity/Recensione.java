@@ -11,10 +11,8 @@ import javax.persistence.*;
 public class Recensione implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private int id;
     
-  
-    private int idRecensione;
     private String testo;
     private int voto;
     private Date data;
