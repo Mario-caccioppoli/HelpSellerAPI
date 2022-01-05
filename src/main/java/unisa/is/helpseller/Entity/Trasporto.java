@@ -11,9 +11,8 @@ import javax.persistence.*;
 public class Trasporto implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-    
-    private int idTrasporto;
+    private int id;
+
     private String indirizzoConsegna;
     private int quantitaMinima;
     private Date dataConsegna;
