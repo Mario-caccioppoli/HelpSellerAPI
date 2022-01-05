@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class OrdineProdotto implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private int id;
     
     private int idOrdine;
     private int idProdotto;
