@@ -10,9 +10,8 @@ import javax.persistence.*;
 public class Amministratore implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private int id;
     
-    private int idAmministratore;
     private String username;
     private String email;
     private String password;
