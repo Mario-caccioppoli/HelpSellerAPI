@@ -9,9 +9,8 @@ import javax.persistence.*;
 public class Distributore implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private int id;
     
-    private int idDistributore;
     private String username;    
     private String email;
     private String password;
