@@ -10,9 +10,8 @@ import javax.persistence.*;
 public class Azienda implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private int id;
     
-    private int idAzienda;
     private String email;
     private String password;
     private String nomeAzienda;
