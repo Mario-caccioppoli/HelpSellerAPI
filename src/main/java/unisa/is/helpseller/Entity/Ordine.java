@@ -11,9 +11,8 @@ import javax.persistence.*;
 public class Ordine implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private int id;
     
-    private int idOrdine;
     private Date dataOrdinazione;
     private Date dataConsegna;
     private String commento;
