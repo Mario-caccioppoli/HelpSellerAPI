@@ -11,9 +11,8 @@ import javax.persistence.*;
 public class Documento implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-    
-    private int idDocumento;
+    private int id;
+
     private String titolo;
     private String autore;
     private Date data;
