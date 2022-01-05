@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class ScontoProdotto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private int id;
     
     private int idSconto;
     private int idProdotto;
