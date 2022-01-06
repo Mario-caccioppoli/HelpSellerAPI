@@ -18,33 +18,21 @@ public class DocumentoController {
     @Autowired
     public DocumentoController(DocumentoService documentoService) {this.documentoService = documentoService;}
     
-    @GetMapping("/getall")
-    public ResponseEntity<List<Documento>> getAllDocumento() {
-        List<Documento> documenti = documentoService.findAllDocumento();
+    @GetMapping("/findAll")
+    public ResponseEntity<List<Documento>> findAll() {
+        List<Documento> documenti = documentoService.findAll();
         return new ResponseEntity<>(documenti, HttpStatus.OK);
     }
     
-    @GetMapping("/find/{id}")
-    public ResponseEntity<Documento> findDocumentoById(@PathVariable("id") Long id) {
-        Documento documento = documentoService.findDocumentoById(id);
+    @GetMapping("/findId/{id}")
+    public ResponseEntity<Documento> findId(@PathVariable("id") int id) {
+        Documento documento = documentoService.findId(id);
         return new ResponseEntity<>(documento, HttpStatus.OK);
     }
     
-    @PostMapping("/add")
-    public ResponseEntity<Documento> addDocumento(@RequestBody Documento documento) {
-        Documento newDocumento = documentoService.addDocumento(documento);
-        return new ResponseEntity<>(newDocumento, HttpStatus.CREATED);
-    }
-    
-    @PutMapping("/update")
-    public ResponseEntity<Documento> updateDocumento(@RequestBody Documento documento) {
-        Documento updated = documentoService.updateDocumento(documento);
-        return new ResponseEntity<>(updated, HttpStatus.OK);
-    }
-    
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Documento> deleteDocumento(@PathVariable("id") Long id) {
-        documentoService.deleteDocumento(id);
+    @DeleteMapping("/deleteId/{id}")
+    public ResponseEntity<Documento> deleteId(@PathVariable("id") int id) {
+        documentoService.deleteId(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

@@ -18,33 +18,21 @@ public class ScontoProdottoController {
     @Autowired
     public ScontoProdottoController(ScontoProdottoService scontoProdottoService) {this.scontoProdottoService = scontoProdottoService;}
     
-    @GetMapping("/getall")
-    public ResponseEntity<List<ScontoProdotto>> getAllScontoProdotto() {
-        List<ScontoProdotto> scontiProdotti = scontoProdottoService.findAllScontoProdotto();
-        return new ResponseEntity<>(scontiProdotti, HttpStatus.OK);
+      @GetMapping("/findAll")
+    public ResponseEntity<List<ScontoProdotto>> findAll() {
+        List<ScontoProdotto> scontoProdotti = scontoProdottoService.findAll();
+        return new ResponseEntity<>(scontoProdotti, HttpStatus.OK);
     }
     
-    @GetMapping("/find/{id}")
-    public ResponseEntity<ScontoProdotto> findScontoProdottoById(@PathVariable("id") Long id) {
-        ScontoProdotto scontoProdotto = scontoProdottoService.findScontoProdottoById(id);
+    @GetMapping("/findId/{id}")
+    public ResponseEntity<ScontoProdotto> findId(@PathVariable("id") int id) {
+        ScontoProdotto scontoProdotto = scontoProdottoService.findId(id);
         return new ResponseEntity<>(scontoProdotto, HttpStatus.OK);
     }
     
-    @PostMapping("/add")
-    public ResponseEntity<ScontoProdotto> addScontoProdotto(@RequestBody ScontoProdotto scontoProdotto) {
-        ScontoProdotto newScontoProdotto = scontoProdottoService.addScontoProdotto(scontoProdotto);
-        return new ResponseEntity<>(newScontoProdotto, HttpStatus.CREATED);
-    }
-    
-    @PutMapping("/update")
-    public ResponseEntity<ScontoProdotto> updateScontoProdotto(@RequestBody ScontoProdotto scontoProdotto) {
-        ScontoProdotto updated = scontoProdottoService.updateScontoProdotto(scontoProdotto);
-        return new ResponseEntity<>(updated, HttpStatus.OK);
-    }
-    
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<ScontoProdotto> deleteScontoProdotto(@PathVariable("id") Long id) {
-        scontoProdottoService.deleteScontoProdotto(id);
+    @DeleteMapping("/deleteId/{id}")
+    public ResponseEntity<ScontoProdotto> deleteId(@PathVariable("id") int id) {
+        scontoProdottoService.deleteId(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

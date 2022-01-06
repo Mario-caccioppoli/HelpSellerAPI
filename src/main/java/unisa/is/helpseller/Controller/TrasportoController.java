@@ -18,33 +18,21 @@ public class TrasportoController {
     @Autowired
     public TrasportoController(TrasportoService trasportoService) {this.trasportoService = trasportoService;}
     
-    @GetMapping("/getall")
-    public ResponseEntity<List<Trasporto>> getAllTrasporto() {
-        List<Trasporto> trasporti = trasportoService.findAllTrasporto();
+      @GetMapping("/findAll")
+    public ResponseEntity<List<Trasporto>> findAll() {
+        List<Trasporto> trasporti = trasportoService.findAll();
         return new ResponseEntity<>(trasporti, HttpStatus.OK);
     }
     
-    @GetMapping("/find/{id}")
-    public ResponseEntity<Trasporto> findTrasportoById(@PathVariable("id") Long id) {
-        Trasporto trasporto = trasportoService.findTrasportoById(id);
+    @GetMapping("/findId/{id}")
+    public ResponseEntity<Trasporto> findId(@PathVariable("id") int id) {
+        Trasporto trasporto = trasportoService.findId(id);
         return new ResponseEntity<>(trasporto, HttpStatus.OK);
     }
     
-    @PostMapping("/add")
-    public ResponseEntity<Trasporto> addTrasporto(@RequestBody Trasporto trasporto) {
-        Trasporto newTrasporto = trasportoService.addTrasporto(trasporto);
-        return new ResponseEntity<>(newTrasporto, HttpStatus.CREATED);
-    }
-    
-    @PutMapping("/update")
-    public ResponseEntity<Trasporto> updateTrasporto(@RequestBody Trasporto trasporto) {
-        Trasporto updated = trasportoService.updateTrasporto(trasporto);
-        return new ResponseEntity<>(updated, HttpStatus.OK);
-    }
-    
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Trasporto> deleteTrasporto(@PathVariable("id") Long id) {
-        trasportoService.deleteTrasporto(id);
+    @DeleteMapping("/deleteId/{id}")
+    public ResponseEntity<Trasporto> deleteId(@PathVariable("id") int id) {
+        trasportoService.deleteId(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

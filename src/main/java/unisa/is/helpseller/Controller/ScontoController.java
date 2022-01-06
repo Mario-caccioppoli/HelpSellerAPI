@@ -18,33 +18,21 @@ public class ScontoController {
     @Autowired
     public ScontoController(ScontoService scontoService) {this.scontoService = scontoService;}
     
-    @GetMapping("/getall")
-    public ResponseEntity<List<Sconto>> getAllSconto() {
-        List<Sconto> sconti = scontoService.findAllSconto();
+      @GetMapping("/findAll")
+    public ResponseEntity<List<Sconto>> findAll() {
+        List<Sconto> sconti = scontoService.findAll();
         return new ResponseEntity<>(sconti, HttpStatus.OK);
     }
     
-    @GetMapping("/find/{id}")
-    public ResponseEntity<Sconto> findScontoById(@PathVariable("id") Long id) {
-        Sconto sconto = scontoService.findScontoById(id);
+    @GetMapping("/findId/{id}")
+    public ResponseEntity<Sconto> findId(@PathVariable("id") int id) {
+        Sconto sconto = scontoService.findId(id);
         return new ResponseEntity<>(sconto, HttpStatus.OK);
     }
     
-    @PostMapping("/add")
-    public ResponseEntity<Sconto> addSconto(@RequestBody Sconto sconto) {
-        Sconto newSconto = scontoService.addSconto(sconto);
-        return new ResponseEntity<>(newSconto, HttpStatus.CREATED);
-    }
-    
-    @PutMapping("/update")
-    public ResponseEntity<Sconto> updateSconto(@RequestBody Sconto sconto) {
-        Sconto updated = scontoService.updateSconto(sconto);
-        return new ResponseEntity<>(updated, HttpStatus.OK);
-    }
-    
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Sconto> deleteSconto(@PathVariable("id") Long id) {
-        scontoService.deleteSconto(id);
+    @DeleteMapping("/deleteId/{id}")
+    public ResponseEntity<Sconto> deleteId(@PathVariable("id") int id) {
+        scontoService.deleteId(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

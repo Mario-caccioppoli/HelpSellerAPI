@@ -18,33 +18,21 @@ public class OrdineController {
     @Autowired
     public OrdineController(OrdineService ordineService) {this.ordineService = ordineService;}
     
-    @GetMapping("/getall")
-    public ResponseEntity<List<Ordine>> getAllOrdine() {
-        List<Ordine> ordini = ordineService.findAllOrdine();
+      @GetMapping("/findAll")
+    public ResponseEntity<List<Ordine>> findAll() {
+        List<Ordine> ordini = ordineService.findAll();
         return new ResponseEntity<>(ordini, HttpStatus.OK);
     }
     
-    @GetMapping("/find/{id}")
-    public ResponseEntity<Ordine> findOrdineById(@PathVariable("id") Long id) {
-        Ordine ordine = ordineService.findOrdineById(id);
+    @GetMapping("/findId/{id}")
+    public ResponseEntity<Ordine> findId(@PathVariable("id") int id) {
+        Ordine ordine = ordineService.findId(id);
         return new ResponseEntity<>(ordine, HttpStatus.OK);
     }
     
-    @PostMapping("/add")
-    public ResponseEntity<Ordine> addOrdine(@RequestBody Ordine ordine) {
-        Ordine newOrdine = ordineService.addOrdine(ordine);
-        return new ResponseEntity<>(newOrdine, HttpStatus.CREATED);
-    }
-    
-    @PutMapping("/update")
-    public ResponseEntity<Ordine> updateOrdine(@RequestBody Ordine ordine) {
-        Ordine updated = ordineService.updateOrdine(ordine);
-        return new ResponseEntity<>(updated, HttpStatus.OK);
-    }
-    
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Ordine> deleteOrdine(@PathVariable("id") Long id) {
-        ordineService.deleteOrdine(id);
+    @DeleteMapping("/deleteId/{id}")
+    public ResponseEntity<Ordine> deleteId(@PathVariable("id") int id) {
+        ordineService.deleteId(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
