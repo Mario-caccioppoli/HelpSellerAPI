@@ -34,9 +34,6 @@ public class Recensione implements Serializable{
         return id;
     }
 
-    public int getIdRecensione() {
-        return idRecensione;
-    }
 
     public String getTesto() {
         return testo;

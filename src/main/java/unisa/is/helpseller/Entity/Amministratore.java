@@ -28,10 +28,6 @@ public class Amministratore implements Serializable{
         return id;
     }
 
-    public int getIdAmministratore() {
-        return idAmministratore;
-    }
-
     public String getUsername() {
         return username;
     }

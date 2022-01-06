@@ -41,9 +41,6 @@ public class Prodotto implements Serializable {
         return id;
     }
 
-    public int getIdProdotto() {
-        return idProdotto;
-    }
 
     public String getNomeProdotto() {
         return nomeProdotto;

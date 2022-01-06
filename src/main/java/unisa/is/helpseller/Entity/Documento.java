@@ -31,11 +31,6 @@ public class Documento implements Serializable{
         return id;
     }
 
-    public int getIdDocumento() {
-        return idDocumento;
-    }
-    
-
     public String getTitolo() {
         return titolo;
     }

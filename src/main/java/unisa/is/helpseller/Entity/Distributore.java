@@ -41,11 +41,7 @@ public class Distributore implements Serializable{
         return id;
     }
 
-    public int getIdDistributore() {
-        return idDistributore;
-    }
 
-    
     public String getPassword() {
         return password;
     }

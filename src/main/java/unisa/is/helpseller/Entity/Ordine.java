@@ -35,10 +35,6 @@ public class Ordine implements Serializable{
         return id;
     }
 
-    public int getIdOrdine() {
-        return idOrdine;
-    }
-
     public Date getDataOrdinazione() {
         return dataOrdinazione;
     }

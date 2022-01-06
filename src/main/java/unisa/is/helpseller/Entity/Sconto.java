@@ -35,10 +35,6 @@ public class Sconto implements Serializable {
         return id;
     }
 
-    public int getIdSconto() {
-        return idSconto;
-    }
-
     public int getPercentuale() {
         return percentuale;
     }

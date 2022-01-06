@@ -38,10 +38,6 @@ public class Azienda implements Serializable {
         return id;
     }
 
-    public int getIdAzienda() {
-        return idAzienda;
-    }
-
 
     public String getEmail() {
         return email;

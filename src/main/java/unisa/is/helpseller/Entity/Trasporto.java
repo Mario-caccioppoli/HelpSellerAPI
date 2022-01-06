@@ -31,10 +31,6 @@ public class Trasporto implements Serializable{
         return id;
     }
 
-    public int getIdTrasporto() {
-        return idTrasporto;
-    }
-
     public String getIndirizzoConsegna() {
         return indirizzoConsegna;
     }
