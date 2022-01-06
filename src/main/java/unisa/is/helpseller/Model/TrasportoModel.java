@@ -1,7 +1,6 @@
 package unisa.is.helpseller.Model;
 
 
-
 import java.sql.Date;
 import javax.persistence.*;
 import java.io.Serializable;
