@@ -18,33 +18,22 @@ public class AmministratoreController {
     @Autowired
     public AmministratoreController(AmministratoreService amministratoreService) {this.amministratoreService = amministratoreService;}
     
-    @GetMapping("/getall")
+    @GetMapping("/getAllAdmin")
     public ResponseEntity<List<Amministratore>> getAllAdmin() {
         List<Amministratore> amministratori = amministratoreService.findAllAmministratore();
         return new ResponseEntity<>(amministratori, HttpStatus.OK);
     }
     
-    @GetMapping("/find/{id}")
-    public ResponseEntity<Amministratore> findAdminById(@PathVariable("id") Long id) {
-        Amministratore amministratore = amministratoreService.findAmministratoreById(id);
+    @GetMapping("/findId/{id}")
+    public ResponseEntity<Amministratore> findAmministratore(@PathVariable("id") int id) {
+        Amministratore amministratore = amministratoreService.findAmministratore(id);
         return new ResponseEntity<>(amministratore, HttpStatus.OK);
     }
     
-    @PostMapping("/add")
-    public ResponseEntity<Amministratore> addAdmin(@RequestBody Amministratore amministratore) {
-        Amministratore newAmministratore = amministratoreService.addAmministratore(amministratore);
-        return new ResponseEntity<>(newAmministratore, HttpStatus.CREATED);
-    }
-    
-    @PutMapping("/update")
-    public ResponseEntity<Amministratore> updateAdmin(@RequestBody Amministratore amministratore) {
-        Amministratore updated = amministratoreService.updateAmministratore(amministratore);
-        return new ResponseEntity<>(updated, HttpStatus.OK);
-    }
-    
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Amministratore> deleteAdmin(@PathVariable("id") Long id) {
+    @DeleteMapping("/deleteId/{id}")
+    public ResponseEntity<Amministratore> deleteAmministratore(@PathVariable("id") int id) {
         amministratoreService.deleteAmministratore(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    
 }
