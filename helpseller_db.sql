@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `helpseller` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `helpseller`;
--- MySQL dump 10.13  Distrib 8.0.27, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.27, for Linux (x86_64)
 --
 -- Host: localhost    Database: helpseller
 -- ------------------------------------------------------
--- Server version	8.0.27
+-- Server version	8.0.27-0ubuntu0.20.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -25,14 +25,14 @@ DROP TABLE IF EXISTS `amministratore`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `amministratore` (
-  `idAmministratore` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(45) DEFAULT NULL,
   `email` varchar(45) DEFAULT NULL,
   `password` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`idAmministratore`),
+  PRIMARY KEY (`id`),
   UNIQUE KEY `username_UNIQUE` (`username`),
   UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,6 +41,7 @@ CREATE TABLE `amministratore` (
 
 LOCK TABLES `amministratore` WRITE;
 /*!40000 ALTER TABLE `amministratore` DISABLE KEYS */;
+INSERT INTO `amministratore` VALUES (1,'aldo123','aldo@libeo.it','password'),(2,'bruno','bruno@gmail.it','passwword'),(3,'saverio','aldo@aonnazudunna.it','passwword'),(4,'giesuelo','giangian@outlook.it','password');
 /*!40000 ALTER TABLE `amministratore` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -52,18 +53,19 @@ DROP TABLE IF EXISTS `azienda`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `azienda` (
-  `idAzienda` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `email` varchar(45) DEFAULT NULL,
   `password` varchar(45) DEFAULT NULL,
-  `nomeAzienda` varchar(45) DEFAULT NULL,
+  `nome_azienda` varchar(45) DEFAULT NULL,
   `VATNumber` varchar(12) DEFAULT NULL,
   `indirizzo` varchar(45) DEFAULT NULL,
   `descrizione` varchar(45) DEFAULT NULL,
   `logo` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`idAzienda`),
+  `vat` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
   UNIQUE KEY `VATNumber_UNIQUE` (`VATNumber`),
   UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,6 +74,7 @@ CREATE TABLE `azienda` (
 
 LOCK TABLES `azienda` WRITE;
 /*!40000 ALTER TABLE `azienda` DISABLE KEYS */;
+INSERT INTO `azienda` VALUES (1,'bevande@gmail.com','123','bevande SPA','111111','via piedi','vendiamo bevande',NULL,NULL),(2,'surgelati@gmail.com','234','surgelati','222222','via vai','vendiamo surgelati',NULL,NULL),(3,'messico@gmail.com','345','mexican foods','333333','corso veloce','vendiamo cibo etnico',NULL,NULL);
 /*!40000 ALTER TABLE `azienda` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -83,7 +86,7 @@ DROP TABLE IF EXISTS `distributore`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `distributore` (
-  `idDistributore` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(45) DEFAULT NULL,
   `email` varchar(45) DEFAULT NULL,
   `password` varchar(45) DEFAULT NULL,
@@ -91,15 +94,15 @@ CREATE TABLE `distributore` (
   `cognome` varchar(45) DEFAULT NULL,
   `VATNumber` varchar(12) DEFAULT NULL,
   `telefono` varchar(10) DEFAULT NULL,
-  `indirizzoSede` varchar(45) DEFAULT NULL,
-  `idOrdineProva` int DEFAULT NULL,
-  PRIMARY KEY (`idDistributore`),
+  `indirizzo_sede` varchar(45) DEFAULT NULL,
+  `id_ordine_prova` int DEFAULT NULL,
+  `vat` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
   UNIQUE KEY `VATNumber_UNIQUE` (`VATNumber`),
   UNIQUE KEY `email_UNIQUE` (`email`),
   UNIQUE KEY `username_UNIQUE` (`username`),
-  KEY `ordineprova_idx` (`idOrdineProva`),
-  CONSTRAINT `ordineprv` FOREIGN KEY (`idOrdineProva`) REFERENCES `ordine` (`idOrdineProva`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `ordineprova_idx` (`id_ordine_prova`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -108,6 +111,7 @@ CREATE TABLE `distributore` (
 
 LOCK TABLES `distributore` WRITE;
 /*!40000 ALTER TABLE `distributore` DISABLE KEYS */;
+INSERT INTO `distributore` VALUES (1,'aldo123','aldo123@123.it','123','aldo','romulov','111110','1234','via sede',0,NULL),(2,'manfredi','manfr@hotmail.it','123','giacobbe','stianz','111112','1234','via tenente rossi',0,NULL),(3,'anselmo','ansia@gmail.com','123','stuart','bababa','111113','1234','corso rupestre',0,NULL),(4,'aldoo','4ld0@gmail.com','123','rosangelo','chiaro','111114','1234','piazza diego',0,NULL),(5,'menfranco','frank@libero.it','123','malbalbo','rossi','111115','1234','stretto delle meraviglie',0,NULL),(6,'alsazio','lorena@libero.it','123','pistrenco','verdi','111116','1234','corso lungo',0,NULL);
 /*!40000 ALTER TABLE `distributore` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -119,15 +123,16 @@ DROP TABLE IF EXISTS `documento`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `documento` (
-  `idDocumento` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `titolo` varchar(45) DEFAULT NULL,
   `autore` varchar(45) DEFAULT NULL,
   `dataUpload` date DEFAULT NULL,
-  `idOrdine` int DEFAULT NULL,
-  PRIMARY KEY (`idDocumento`),
-  KEY `ordinedoc_idx` (`idOrdine`),
-  CONSTRAINT `ordinedoc` FOREIGN KEY (`idOrdine`) REFERENCES `ordine` (`idOrdine`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `id_ordine` int DEFAULT NULL,
+  `data` date DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `ordinedoc_idx` (`id_ordine`),
+  CONSTRAINT `ordinedoc` FOREIGN KEY (`id_ordine`) REFERENCES `ordine` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -136,6 +141,7 @@ CREATE TABLE `documento` (
 
 LOCK TABLES `documento` WRITE;
 /*!40000 ALTER TABLE `documento` DISABLE KEYS */;
+INSERT INTO `documento` VALUES (1,'diritti','1',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `documento` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -147,18 +153,20 @@ DROP TABLE IF EXISTS `ordine`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ordine` (
-  `idOrdine` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `dataOrdinazione` date DEFAULT NULL,
   `dataConsegna` date DEFAULT NULL,
   `commento` varchar(45) DEFAULT NULL,
   `stato` varchar(45) DEFAULT NULL,
-  `idDistributore` int DEFAULT NULL,
-  `idOrdineProva` int DEFAULT NULL,
-  PRIMARY KEY (`idOrdine`),
-  KEY `distributore_idx` (`idDistributore`),
-  KEY `ordineProva_idx` (`idOrdineProva`),
-  CONSTRAINT `distrib` FOREIGN KEY (`idDistributore`) REFERENCES `distributore` (`idDistributore`),
-  CONSTRAINT `ordineP` FOREIGN KEY (`idOrdineProva`) REFERENCES `distributore` (`idOrdineProva`)
+  `id_distributore` int DEFAULT NULL,
+  `id_ordine_prova` int DEFAULT NULL,
+  `data_consegna` date DEFAULT NULL,
+  `data_ordinazione` date DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `distributore_idx` (`id_distributore`),
+  KEY `ordineProva_idx` (`id_ordine_prova`),
+  CONSTRAINT `distrib` FOREIGN KEY (`id_distributore`) REFERENCES `distributore` (`id`),
+  CONSTRAINT `ordineP` FOREIGN KEY (`id_ordine_prova`) REFERENCES `distributore` (`id_ordine_prova`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -179,15 +187,16 @@ DROP TABLE IF EXISTS `ordine_prodotto`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ordine_prodotto` (
-  `idOrdine` int NOT NULL,
-  `idProdotto` int NOT NULL,
+  `id_ordine` int NOT NULL,
+  `id_prodotto` int NOT NULL,
   `quantita` int DEFAULT NULL,
-  `prezzoUnitario` double DEFAULT NULL,
-  PRIMARY KEY (`idOrdine`,`idProdotto`),
-  KEY `ordine_idx` (`idOrdine`),
-  KEY `prodnn_idx` (`idProdotto`),
-  CONSTRAINT `ordinn` FOREIGN KEY (`idOrdine`) REFERENCES `ordine` (`idOrdine`),
-  CONSTRAINT `prodnn` FOREIGN KEY (`idProdotto`) REFERENCES `prodotto` (`idProdotto`)
+  `prezzo` double DEFAULT NULL,
+  `id` int NOT NULL,
+  `prezzo_unitario` double NOT NULL,
+  PRIMARY KEY (`id_ordine`,`id_prodotto`),
+  KEY `prodottofk_idx` (`id_prodotto`),
+  CONSTRAINT `ordinefk` FOREIGN KEY (`id_ordine`) REFERENCES `ordine` (`id`),
+  CONSTRAINT `prodottofk` FOREIGN KEY (`id_prodotto`) REFERENCES `prodotto` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -208,8 +217,8 @@ DROP TABLE IF EXISTS `prodotto`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `prodotto` (
-  `idProdotto` int NOT NULL,
-  `nomeProdotto` varchar(45) DEFAULT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome_prodotto` varchar(45) DEFAULT NULL,
   `prezzo` double DEFAULT NULL,
   `descrizione` varchar(2000) DEFAULT NULL,
   `quantita` int DEFAULT NULL,
@@ -217,12 +226,13 @@ CREATE TABLE `prodotto` (
   `quantitaMinima` int DEFAULT NULL,
   `peso` int DEFAULT NULL,
   `volume` int DEFAULT NULL,
-  `idAzienda` int DEFAULT NULL,
-  PRIMARY KEY (`idProdotto`),
-  UNIQUE KEY `nomeProdotto_UNIQUE` (`nomeProdotto`),
-  KEY `Azienda_idx` (`idAzienda`),
-  CONSTRAINT `Azienda` FOREIGN KEY (`idAzienda`) REFERENCES `azienda` (`idAzienda`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `id_azienda` int DEFAULT NULL,
+  `quantita_minima` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `nomeProdotto_UNIQUE` (`nome_prodotto`),
+  KEY `Azienda_idx` (`id_azienda`),
+  CONSTRAINT `Azienda` FOREIGN KEY (`id_azienda`) REFERENCES `azienda` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -231,6 +241,7 @@ CREATE TABLE `prodotto` (
 
 LOCK TABLES `prodotto` WRITE;
 /*!40000 ALTER TABLE `prodotto` DISABLE KEYS */;
+INSERT INTO `prodotto` VALUES (1,'cola',1,'bevanda gusto cola generica',50,NULL,1,1,1,1,0),(2,'cherry cola',1.15,'bevanda gusto cola alla ciliegia',55,NULL,1,2,1,1,0),(3,'cola zero',1,'bevanda gusto cola zero calorie',40,NULL,1,3,1,1,0),(4,'sofficini',2,'sofficini generici surgelati',60,NULL,1,1,2,2,0),(5,'bastoncini',2,'bastoncini di merluzzo surgelati',50,NULL,1,2,2,2,0),(6,'kebab',3,'kebab surgelato',40,NULL,1,3,2,2,0),(7,'tacos',1.5,'tacos surgelati',20,NULL,1,1,3,3,0),(8,'chili sauce',1,'salsa chili piccante',10,NULL,1,2,3,3,0),(9,'kebab piccante',3,'kebab piccante surgelato',5,NULL,1,3,3,2,0),(10,'spicy doritos',1.5,'tortillas chips piccanti',1,NULL,1,4,3,3,0);
 /*!40000 ALTER TABLE `prodotto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -242,17 +253,17 @@ DROP TABLE IF EXISTS `recensione`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `recensione` (
-  `idrecensione` int NOT NULL,
+  `id` int NOT NULL,
   `testo` varchar(255) DEFAULT NULL,
   `voto` int DEFAULT NULL,
   `data` date DEFAULT NULL,
-  `idProdotto` int DEFAULT NULL,
-  `idDistributore` int DEFAULT NULL,
-  PRIMARY KEY (`idrecensione`),
-  KEY `Distributore_idx` (`idDistributore`),
-  KEY `Prodotto` (`idProdotto`),
-  CONSTRAINT `Distributore` FOREIGN KEY (`idDistributore`) REFERENCES `distributore` (`idDistributore`),
-  CONSTRAINT `Prodotto` FOREIGN KEY (`idProdotto`) REFERENCES `prodotto` (`idProdotto`)
+  `id_prodotto` int DEFAULT NULL,
+  `id_distributore` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `Distributore_idx` (`id_distributore`),
+  KEY `Prodotto` (`id_prodotto`),
+  CONSTRAINT `Distributore` FOREIGN KEY (`id_distributore`) REFERENCES `distributore` (`id`),
+  CONSTRAINT `Prodotto` FOREIGN KEY (`id_prodotto`) REFERENCES `prodotto` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -262,6 +273,7 @@ CREATE TABLE `recensione` (
 
 LOCK TABLES `recensione` WRITE;
 /*!40000 ALTER TABLE `recensione` DISABLE KEYS */;
+INSERT INTO `recensione` VALUES (1,'adoro il piccante',5,NULL,9,1),(2,'adoro il piccante',5,NULL,8,1),(3,'adoro il piccante',5,NULL,10,1),(4,'buona la cola',5,NULL,1,2),(5,'buona la cola',5,NULL,2,2),(6,'buona la cola',5,NULL,3,2),(7,'ottimo surgelato',5,NULL,4,3),(8,'ottimo surgelato',5,NULL,5,3),(9,'ottimo surgelato',5,NULL,6,3),(10,'anche a me piace il piccante',5,NULL,9,4),(11,'sono un patito della cola',5,NULL,1,5),(12,'molto comodi da cucinare ',5,NULL,4,6),(13,'pessimo sapore',1,NULL,3,4),(14,'troppo piccante',1,NULL,10,5);
 /*!40000 ALTER TABLE `recensione` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -273,16 +285,18 @@ DROP TABLE IF EXISTS `sconto`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sconto` (
-  `idSconto` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `percentuale` int DEFAULT NULL,
   `dataInizio` date DEFAULT NULL,
   `dataFine` date DEFAULT NULL,
   `tipo` varchar(45) DEFAULT NULL,
   `quantita` int DEFAULT NULL,
-  `idAzienda` int DEFAULT NULL,
-  PRIMARY KEY (`idSconto`),
-  KEY `azienda_idx` (`idAzienda`),
-  CONSTRAINT `aziend` FOREIGN KEY (`idAzienda`) REFERENCES `azienda` (`idAzienda`)
+  `id_azienda` int DEFAULT NULL,
+  `data_fine` date DEFAULT NULL,
+  `data_inizio` date DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `azienda_idx` (`id_azienda`),
+  CONSTRAINT `aziend` FOREIGN KEY (`id_azienda`) REFERENCES `azienda` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -303,12 +317,13 @@ DROP TABLE IF EXISTS `sconto_prodotto`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sconto_prodotto` (
-  `idSconto` int NOT NULL,
-  `idProdotto` int NOT NULL,
-  PRIMARY KEY (`idSconto`,`idProdotto`),
-  KEY `productNN_idx` (`idProdotto`),
-  CONSTRAINT `productNN` FOREIGN KEY (`idProdotto`) REFERENCES `prodotto` (`idProdotto`),
-  CONSTRAINT `scontoNN` FOREIGN KEY (`idSconto`) REFERENCES `sconto` (`idSconto`)
+  `id_sconto` int NOT NULL,
+  `id_prodotto` int NOT NULL,
+  `id` int NOT NULL,
+  PRIMARY KEY (`id_sconto`,`id_prodotto`),
+  KEY `productNN_idx` (`id_prodotto`),
+  CONSTRAINT `productNN` FOREIGN KEY (`id_prodotto`) REFERENCES `prodotto` (`id`),
+  CONSTRAINT `scontoNN` FOREIGN KEY (`id_sconto`) REFERENCES `sconto` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -329,14 +344,17 @@ DROP TABLE IF EXISTS `trasporto`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `trasporto` (
-  `idTrasporto` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `indirizzoConsegna` varchar(45) DEFAULT NULL,
   `quantitaMinima` int DEFAULT NULL,
   `dataConsegna` date DEFAULT NULL,
-  `idOrdine` int DEFAULT NULL,
-  PRIMARY KEY (`idTrasporto`),
-  KEY `ordine_idx` (`idOrdine`),
-  CONSTRAINT `ordine` FOREIGN KEY (`idOrdine`) REFERENCES `ordine` (`idOrdine`)
+  `id_ordine` int DEFAULT NULL,
+  `data_consegna` date DEFAULT NULL,
+  `indirizzo_consegna` varchar(255) DEFAULT NULL,
+  `quantita_minima` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `ordine_idx` (`id_ordine`),
+  CONSTRAINT `ordine` FOREIGN KEY (`id_ordine`) REFERENCES `ordine` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -358,4 +376,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-28 20:44:53
+-- Dump completed on 2022-01-06 13:08:10
