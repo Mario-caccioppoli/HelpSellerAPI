@@ -18,33 +18,22 @@ public class RecensioneController {
     @Autowired
     public RecensioneController(RecensioneService recensioneService) {this.recensioneService = recensioneService;}
     
-    @GetMapping("/getall")
-    public ResponseEntity<List<Recensione>> getAllRecensione() {
-        List<Recensione> recensioni = recensioneService.findAllRecensione();
+    @GetMapping("/findAll")
+    public ResponseEntity<List<Recensione>> findAll() {
+        List<Recensione> recensioni = recensioneService.findAll();
         return new ResponseEntity<>(recensioni, HttpStatus.OK);
     }
     
-    @GetMapping("/find/{id}")
-    public ResponseEntity<Recensione> findRecensioneById(@PathVariable("id") Long id) {
-        Recensione recensione = recensioneService.findRecensioneById(id);
+    @GetMapping("/findId/{id}")
+    public ResponseEntity<Recensione> findId(@PathVariable("id") int id) {
+        Recensione recensione = recensioneService.findId(id);
         return new ResponseEntity<>(recensione, HttpStatus.OK);
     }
     
-    @PostMapping("/add")
-    public ResponseEntity<Recensione> addRecensione(@RequestBody Recensione recensione) {
-        Recensione newRecensione = recensioneService.addRecensione(recensione);
-        return new ResponseEntity<>(newRecensione, HttpStatus.CREATED);
-    }
     
-    @PutMapping("/update")
-    public ResponseEntity<Recensione> updateRecensione(@RequestBody Recensione recensione) {
-        Recensione updated = recensioneService.updateRecensione(recensione);
-        return new ResponseEntity<>(updated, HttpStatus.OK);
-    }
-    
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Recensione> deleteRecensione(@PathVariable("id") Long id) {
-        recensioneService.deleteRecensione(id);
+    @DeleteMapping("/deleteId/{id}")
+    public ResponseEntity<Recensione> deleteId(@PathVariable("id") int id) {
+        recensioneService.deleteId(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

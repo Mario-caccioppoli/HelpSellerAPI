@@ -18,33 +18,21 @@ public class DistributoreController {
     @Autowired
     public DistributoreController(DistributoreService distributoreService) {this.distributoreService = distributoreService;}
     
-    @GetMapping("/getall")
-    public ResponseEntity<List<Distributore>> getAllDistributore() {
-        List<Distributore> distributori = distributoreService.findAllDistributore();
+    @GetMapping("/findAll")
+    public ResponseEntity<List<Distributore>> findAll() {
+        List<Distributore> distributori = distributoreService.findAll();
         return new ResponseEntity<>(distributori, HttpStatus.OK);
     }
     
-    @GetMapping("/find/{id}")
-    public ResponseEntity<Distributore> findDistributoreById(@PathVariable("id") Long id) {
-        Distributore distributore = distributoreService.findDistributoreById(id);
+    @GetMapping("/findId/{id}")
+    public ResponseEntity<Distributore> findId(@PathVariable("id") int id) {
+        Distributore distributore = distributoreService.findId(id);
         return new ResponseEntity<>(distributore, HttpStatus.OK);
     }
     
-    @PostMapping("/add")
-    public ResponseEntity<Distributore> addDistributore(@RequestBody Distributore distributore) {
-        Distributore newDistributore = distributoreService.addDistributore(distributore);
-        return new ResponseEntity<>(newDistributore, HttpStatus.CREATED);
-    }
-    
-    @PutMapping("/update")
-    public ResponseEntity<Distributore> updateDistributore(@RequestBody Distributore distributore) {
-        Distributore updated = distributoreService.updateDistributore(distributore);
-        return new ResponseEntity<>(updated, HttpStatus.OK);
-    }
-    
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Distributore> deleteDistributore(@PathVariable("id") Long id) {
-        distributoreService.deleteDistributore(id);
+    @DeleteMapping("/deleteId/{id}")
+    public ResponseEntity<Distributore> deleteId(@PathVariable("id") int id) {
+        distributoreService.deleteId(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

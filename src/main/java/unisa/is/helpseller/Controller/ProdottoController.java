@@ -18,33 +18,22 @@ public class ProdottoController {
     @Autowired
     public ProdottoController(ProdottoService prodottoService) {this.prodottoService = prodottoService;}
     
-    @GetMapping("/getall")
-    public ResponseEntity<List<Prodotto>> getAllProdotto() {
-        List<Prodotto> prodotti = prodottoService.findAllProdotto();
+    @GetMapping("/findAll")
+    public ResponseEntity<List<Prodotto>> findAll() {
+        List<Prodotto> prodotti = prodottoService.findAll();
         return new ResponseEntity<>(prodotti, HttpStatus.OK);
     }
     
-    @GetMapping("/find/{id}")
-    public ResponseEntity<Prodotto> findProdottoById(@PathVariable("id") Long id) {
-        Prodotto prodotto = prodottoService.findProdottoById(id);
+    @GetMapping("/findId/{id}")
+    public ResponseEntity<Prodotto> findId(@PathVariable("id") int id) {
+        Prodotto prodotto = prodottoService.findId(id);
         return new ResponseEntity<>(prodotto, HttpStatus.OK);
     }
+
     
-    @PostMapping("/add")
-    public ResponseEntity<Prodotto> addProdotto(@RequestBody Prodotto prodotto) {
-        Prodotto newProdotto = prodottoService.addProdotto(prodotto);
-        return new ResponseEntity<>(newProdotto, HttpStatus.CREATED);
-    }
-    
-    @PutMapping("/update")
-    public ResponseEntity<Prodotto> updateProdotto(@RequestBody Prodotto prodotto) {
-        Prodotto updated = prodottoService.updateProdotto(prodotto);
-        return new ResponseEntity<>(updated, HttpStatus.OK);
-    }
-    
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Prodotto> deleteProdotto(@PathVariable("id") Long id) {
-        prodottoService.deleteProdotto(id);
+    @DeleteMapping("/deleteId/{id}")
+    public ResponseEntity<Prodotto> deleteId(@PathVariable("id") int id) {
+        prodottoService.deleteId(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
