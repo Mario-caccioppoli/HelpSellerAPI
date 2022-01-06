@@ -15,25 +15,17 @@ public class DistributoreService {
     
     @Autowired
     public DistributoreService(DistributoreRepo distributoreRepo) {this.distributoreRepo = distributoreRepo;}
-    
-    public Distributore addDistributore(Distributore a) {
-        return distributoreRepo.save(a);
-    }
-    
-    public List<Distributore> findAllDistributore() {
+
+    public List<Distributore> findAll() {
         return distributoreRepo.findAll();
     }
-    
-    public Distributore updateDistributore(Distributore a) {
-        return distributoreRepo.save(a);
+
+    public Distributore findId(int id) {
+        return distributoreRepo.findId(id);
     }
     
-    public Distributore findDistributoreById(long id) {
-        return distributoreRepo.getById(id);
-    }
-    
-    public void deleteDistributore(Long id) {
-        distributoreRepo.deleteById(id);
+    public void deleteId(int id) {
+        distributoreRepo.deleteId(id);
     }
     
 }

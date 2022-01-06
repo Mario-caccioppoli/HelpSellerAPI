@@ -16,24 +16,16 @@ public class RecensioneService {
     @Autowired
     public RecensioneService(RecensioneRepo recensioneRepo) {this.recensioneRepo = recensioneRepo;}
     
-    public Recensione addRecensione(Recensione a) {
-        return recensioneRepo.save(a);
-    }
-    
-    public List<Recensione> findAllRecensione() {
+    public List<Recensione> findAll() {
         return recensioneRepo.findAll();
     }
-    
-    public Recensione updateRecensione(Recensione a) {
-        return recensioneRepo.save(a);
+
+    public Recensione findId(int id) {
+        return recensioneRepo.findId(id);
     }
     
-    public Recensione findRecensioneById(long id) {
-        return recensioneRepo.getById(id);
-    }
-    
-    public void deleteRecensione(Long id) {
-        recensioneRepo.deleteById(id);
+    public void deleteId(int id) {
+        recensioneRepo.deleteId(id);
     }
     
 }

@@ -16,24 +16,16 @@ public class ProdottoService {
     @Autowired
     public ProdottoService(ProdottoRepo prodottoRepo) {this.prodottoRepo = prodottoRepo;}
     
-    public Prodotto addProdotto(Prodotto a) {
-        return prodottoRepo.save(a);
-    }
-    
-    public List<Prodotto> findAllProdotto() {
+    public List<Prodotto> findAll() {
         return prodottoRepo.findAll();
     }
-    
-    public Prodotto updateProdotto(Prodotto a) {
-        return prodottoRepo.save(a);
+
+    public Prodotto findId(int id) {
+        return prodottoRepo.findId(id);
     }
     
-    public Prodotto findProdottoById(long id) {
-        return prodottoRepo.getById(id);
-    }
-    
-    public void deleteProdotto(Long id) {
-        prodottoRepo.deleteById(id);
+    public void deleteId(int id) {
+        prodottoRepo.deleteId(id);
     }
     
 }
