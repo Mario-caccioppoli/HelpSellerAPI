@@ -16,15 +16,15 @@ public class AmministratoreService {
     @Autowired
     public AmministratoreService(AmministratoreRepo amministratoreRepo) {this.amministratoreRepo = amministratoreRepo;}
     
-    public List<Amministratore> findAllAmministratore() {
+    public List<Amministratore> findAll() {
         return amministratoreRepo.findAll();
     }
     
-    public Amministratore findAmministratore(int id) {
+    public Amministratore findId(int id) {
         return amministratoreRepo.findId(id);
     }
     
-    public void deleteAmministratore(int id) {
+    public void deleteId(int id) {
         amministratoreRepo.deleteId(id);
     }
     

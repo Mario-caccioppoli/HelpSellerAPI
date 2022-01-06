@@ -16,24 +16,17 @@ public class AziendaService {
     @Autowired
     public AziendaService(AziendaRepo aziendaRepo) {this.aziendaRepo = aziendaRepo;}
     
-    public Azienda addAzienda(Azienda a) {
-        return aziendaRepo.save(a);
-    }
-    
-    public List<Azienda> findAllAzienda() {
+    public List<Azienda> findAll() {
         return aziendaRepo.findAll();
     }
     
-    public Azienda updateAzienda(Azienda a) {
-        return aziendaRepo.save(a);
+    public Azienda findId(int id) {
+        return aziendaRepo.findId(id);
     }
     
-    public Azienda findAziendaById(long id) {
-        return aziendaRepo.getById(id);
+    public void deleteId(int id) {
+        aziendaRepo.deleteId(id);
     }
     
-    public void deleteAzienda(Long id) {
-        aziendaRepo.deleteById(id);
-    }
     
 }

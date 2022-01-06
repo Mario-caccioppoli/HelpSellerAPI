@@ -18,21 +18,21 @@ public class AmministratoreController {
     @Autowired
     public AmministratoreController(AmministratoreService amministratoreService) {this.amministratoreService = amministratoreService;}
     
-    @GetMapping("/getAllAdmin")
-    public ResponseEntity<List<Amministratore>> getAllAdmin() {
-        List<Amministratore> amministratori = amministratoreService.findAllAmministratore();
+    @GetMapping("/findAll")
+    public ResponseEntity<List<Amministratore>> findAll() {
+        List<Amministratore> amministratori = amministratoreService.findAll();
         return new ResponseEntity<>(amministratori, HttpStatus.OK);
     }
     
     @GetMapping("/findId/{id}")
-    public ResponseEntity<Amministratore> findAmministratore(@PathVariable("id") int id) {
-        Amministratore amministratore = amministratoreService.findAmministratore(id);
+    public ResponseEntity<Amministratore> findId(@PathVariable("id") int id) {
+        Amministratore amministratore = amministratoreService.findId(id);
         return new ResponseEntity<>(amministratore, HttpStatus.OK);
     }
     
     @DeleteMapping("/deleteId/{id}")
-    public ResponseEntity<Amministratore> deleteAmministratore(@PathVariable("id") int id) {
-        amministratoreService.deleteAmministratore(id);
+    public ResponseEntity<Amministratore> deleteId(@PathVariable("id") int id) {
+        amministratoreService.deleteId(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
     

@@ -18,33 +18,21 @@ public class AziendaController {
     @Autowired
     public AziendaController(AziendaService aziendaService) {this.aziendaService = aziendaService;}
     
-    @GetMapping("/getall")
-    public ResponseEntity<List<Azienda>> getAllAzienda() {
-        List<Azienda> aziende = aziendaService.findAllAzienda();
+    @GetMapping("/findAll")
+    public ResponseEntity<List<Azienda>> findAll() {
+        List<Azienda> aziende = aziendaService.findAll();
         return new ResponseEntity<>(aziende, HttpStatus.OK);
     }
     
-    @GetMapping("/find/{id}")
-    public ResponseEntity<Azienda> findAziendaById(@PathVariable("id") Long id) {
-        Azienda azienda = aziendaService.findAziendaById(id);
+    @GetMapping("/findId/{id}")
+    public ResponseEntity<Azienda> findId(@PathVariable("id") int id) {
+        Azienda azienda = aziendaService.findId(id);
         return new ResponseEntity<>(azienda, HttpStatus.OK);
     }
     
-    @PostMapping("/add")
-    public ResponseEntity<Azienda> addAzienda(@RequestBody Azienda azienda) {
-        Azienda newAzienda = aziendaService.addAzienda(azienda);
-        return new ResponseEntity<>(newAzienda, HttpStatus.CREATED);
-    }
-    
-    @PutMapping("/update")
-    public ResponseEntity<Azienda> updateAzienda(@RequestBody Azienda azienda) {
-        Azienda updated = aziendaService.updateAzienda(azienda);
-        return new ResponseEntity<>(updated, HttpStatus.OK);
-    }
-    
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Azienda> deleteAzienda(@PathVariable("id") Long id) {
-        aziendaService.deleteAzienda(id);
+    @DeleteMapping("/deleteId/{id}")
+    public ResponseEntity<Azienda> deleteId(@PathVariable("id") int id) {
+        aziendaService.deleteId(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
