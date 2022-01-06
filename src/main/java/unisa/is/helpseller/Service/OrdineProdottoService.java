@@ -15,25 +15,17 @@ public class OrdineProdottoService {
     
     @Autowired
     public OrdineProdottoService(OrdineProdottoRepo ordineProdottoRepo) {this.ordineProdottoRepo = ordineProdottoRepo;}
-    
-    public OrdineProdotto addOrdineProdotto(OrdineProdotto a) {
-        return ordineProdottoRepo.save(a);
-    }
-    
-    public List<OrdineProdotto> findAllOrdineProdotto() {
+
+    public List<OrdineProdotto> findAll() {
         return ordineProdottoRepo.findAll();
     }
-    
-    public OrdineProdotto updateOrdineProdotto(OrdineProdotto a) {
-        return ordineProdottoRepo.save(a);
+
+    public OrdineProdotto findId(int id) {
+        return ordineProdottoRepo.findId(id);
     }
     
-    public OrdineProdotto findOrdineProdottoById(long id) {
-        return ordineProdottoRepo.getById(id);
-    }
-    
-    public void deleteOrdineProdotto(Long id) {
-        ordineProdottoRepo.deleteById(id);
+    public void deleteId(int id) {
+        ordineProdottoRepo.deleteId(id);
     }
     
 }

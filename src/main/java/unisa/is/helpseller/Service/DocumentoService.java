@@ -16,24 +16,16 @@ public class DocumentoService {
     @Autowired
     public DocumentoService(DocumentoRepo documentoRepo) {this.documentoRepo = documentoRepo;}
     
-    public Documento addDocumento(Documento a) {
-        return documentoRepo.save(a);
-    }
-    
-    public List<Documento> findAllDocumento() {
+    public List<Documento> findAll() {
         return documentoRepo.findAll();
     }
     
-    public Documento updateDocumento(Documento a) {
-        return documentoRepo.save(a);
+    public Documento findId(int id) {
+        return documentoRepo.findId(id);
     }
     
-    public Documento findDocumentoById(long id) {
-        return documentoRepo.getById(id);
-    }
-    
-    public void deleteDocumento(Long id) {
-        documentoRepo.deleteById(id);
+    public void deleteId(int id) {
+        documentoRepo.deleteId(id);
     }
     
 }

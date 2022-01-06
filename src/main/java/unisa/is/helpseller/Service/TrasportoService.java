@@ -15,25 +15,17 @@ public class TrasportoService {
     
     @Autowired
     public TrasportoService(TrasportoRepo trasportoRepo) {this.trasportoRepo = trasportoRepo;}
-    
-    public Trasporto addTrasporto(Trasporto a) {
-        return trasportoRepo.save(a);
-    }
-    
-    public List<Trasporto> findAllTrasporto() {
+
+    public List<Trasporto> findAll() {
         return trasportoRepo.findAll();
     }
-    
-    public Trasporto updateTrasporto(Trasporto a) {
-        return trasportoRepo.save(a);
+
+    public Trasporto findId(int id) {
+        return trasportoRepo.findId(id);
     }
     
-    public Trasporto findTrasportoById(long id) {
-        return trasportoRepo.getById(id);
-    }
-    
-    public void deleteTrasporto(Long id) {
-        trasportoRepo.deleteById(id);
+    public void deleteId(int id) {
+        trasportoRepo.deleteId(id);
     }
     
 }

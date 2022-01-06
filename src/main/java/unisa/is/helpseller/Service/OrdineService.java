@@ -16,24 +16,16 @@ public class OrdineService {
     @Autowired
     public OrdineService(OrdineRepo ordineRepo) {this.ordineRepo = ordineRepo;}
     
-    public Ordine addOrdine(Ordine a) {
-        return ordineRepo.save(a);
-    }
-    
-    public List<Ordine> findAllOrdine() {
+    public List<Ordine> findAll() {
         return ordineRepo.findAll();
     }
     
-    public Ordine updateOrdine(Ordine a) {
-        return ordineRepo.save(a);
+    public Ordine findId(int id) {
+        return ordineRepo.findId(id);
     }
     
-    public Ordine findOrdineById(long id) {
-        return ordineRepo.getById(id);
-    }
-    
-    public void deleteOrdine(Long id) {
-        ordineRepo.deleteById(id);
+    public void deleteId(int id) {
+        ordineRepo.deleteId(id);
     }
     
 }

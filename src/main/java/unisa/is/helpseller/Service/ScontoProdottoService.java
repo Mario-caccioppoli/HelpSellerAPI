@@ -15,25 +15,17 @@ public class ScontoProdottoService {
     
     @Autowired
     public ScontoProdottoService(ScontoProdottoRepo scontoProdottoRepo) {this.scontoProdottoRepo = scontoProdottoRepo;}
-    
-    public ScontoProdotto addScontoProdotto(ScontoProdotto a) {
-        return scontoProdottoRepo.save(a);
-    }
-    
-    public List<ScontoProdotto> findAllScontoProdotto() {
+
+    public List<ScontoProdotto> findAll() {
         return scontoProdottoRepo.findAll();
     }
     
-    public ScontoProdotto updateScontoProdotto(ScontoProdotto a) {
-        return scontoProdottoRepo.save(a);
+    public ScontoProdotto findId(int id) {
+        return scontoProdottoRepo.findId(id);
     }
     
-    public ScontoProdotto findScontoProdottoById(long id) {
-        return scontoProdottoRepo.getById(id);
-    }
-    
-    public void deleteScontoProdotto(Long id) {
-        scontoProdottoRepo.deleteById(id);
+    public void deleteId(int id) {
+        scontoProdottoRepo.deleteId(id);
     }
     
 }
