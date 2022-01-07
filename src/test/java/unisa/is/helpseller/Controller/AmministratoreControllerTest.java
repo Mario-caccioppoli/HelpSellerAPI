@@ -17,5 +17,7 @@ public class AmministratoreControllerTest {
     @Test
     public void contextLoads() throws Exception {
     assertThat(controller.findAll().getBody().isEmpty()).isFalse();
+    assertThat(controller.findId(1).getBody());
+    assertThat(controller.deleteId(50).getStatusCode().equals(500));
     }
 }
