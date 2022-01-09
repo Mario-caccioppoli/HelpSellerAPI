@@ -18,8 +18,9 @@ public class AziendaControllerTest {
     @Test
     public void contextLoads() throws Exception {
     assertThat(controller.findAll().getBody().isEmpty()).isFalse();
-    assertThat(controller.findId(1).getStatusCode().equals(HttpStatus.OK));
-    assertThat(controller.findId(1000).getStatusCode().equals(HttpStatus.INTERNAL_SERVER_ERROR));
-    assertThat(controller.deleteId(500).getStatusCode().equals(HttpStatus.INTERNAL_SERVER_ERROR));
+    assertThat(controller.findId(1).getBody().getClass().equals("Azienda"));
+    assertThat(controller.findId(1).getBody().getEmail().equals(null)).isFalse();
+    assertThat(controller.findId(1).getBody().getId()>0);
+    assertThat(controller.findId(1).getBody().getPassword()!= null);
     }
 }
