@@ -28,4 +28,13 @@ public class DistributoreService {
         distributoreRepo.deleteId(id);
     }
     
+      public void insert(String username, String email, String password, 
+              String nome, String cognome, String telefono, 
+              String indirizzo_sede, int id_ordine_prova, String vat) {
+        distributoreRepo.insert(username, email, password, nome, cognome, telefono, indirizzo_sede, id_ordine_prova, vat);
+    }
+    
+      public void updatePassword(String value, int id) {
+        distributoreRepo.updatePassword(value, id);
+    }
 }

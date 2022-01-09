@@ -22,4 +22,6 @@ public interface OrdineRepo extends JpaRepository<Ordine, Integer> {
    @Modifying
    @Query("DELETE FROM Ordine o WHERE o.id = ?1")
    void deleteId(int id);
+   
+  
 }
