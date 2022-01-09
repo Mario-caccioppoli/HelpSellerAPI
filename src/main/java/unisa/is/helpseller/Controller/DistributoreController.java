@@ -35,4 +35,18 @@ public class DistributoreController {
         distributoreService.deleteId(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    
+    @PostMapping("/insert")
+    public ResponseEntity<Distributore> insert(String username, String email, String password, 
+              String nome, String cognome, String telefono, 
+              String indirizzo_sede, int id_ordine_prova, String vat) {
+        distributoreService.insert(username, email, password, nome, cognome, telefono, indirizzo_sede, id_ordine_prova, vat);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    
+    @PostMapping("/updatePassword/{id}")
+    public ResponseEntity<Distributore> updatePassword(String value, @PathVariable("id") int id) {
+        distributoreService.updatePassword(value, id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

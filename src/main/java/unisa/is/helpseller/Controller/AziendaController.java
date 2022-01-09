@@ -35,4 +35,17 @@ public class AziendaController {
         aziendaService.deleteId(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    
+    @PostMapping("/insert")
+    public ResponseEntity<Azienda> insert(String email, String password, String nome_azienda, 
+           String indirizzo,  String vat, String descrizione, String logo) {
+        aziendaService.insert(email, password, nome_azienda, indirizzo, vat, descrizione, logo);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    
+    @PostMapping("/updatePassword/{id}")
+    public ResponseEntity<Azienda> updatePassword(String value, @PathVariable("id") int id) {
+        aziendaService.updatePassword(value, id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

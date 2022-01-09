@@ -36,4 +36,16 @@ public class AmministratoreController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
     
+    @PostMapping("/insert")
+    public ResponseEntity<Amministratore> insert(String username, String email, String password) {
+        amministratoreService.insert(username, email, password);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    
+    @PostMapping("/updatePassword/{id}")
+    public ResponseEntity<Amministratore> updatePassword(String value, @PathVariable("id") int id) {
+        amministratoreService.updatePassword(value, id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    
 }

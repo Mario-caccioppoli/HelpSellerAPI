@@ -28,5 +28,12 @@ public class AziendaService {
         aziendaRepo.deleteId(id);
     }
     
+    public void insert(String email, String password, String nome_azienda, 
+           String indirizzo,  String vat, String descrizione, String logo) {
+        aziendaRepo.insert(email, password, nome_azienda, indirizzo, vat, descrizione, logo);
+    }
     
+      public void updatePassword(String value, int id) {
+        aziendaRepo.updatePassword(value, id);
+    }
 }
