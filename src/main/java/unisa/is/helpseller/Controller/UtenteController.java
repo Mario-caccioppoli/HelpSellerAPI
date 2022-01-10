@@ -38,11 +38,43 @@ public class UtenteController {
     
     
     @PostMapping("/login")
-    public UtenteModel auth(String username, String password){
-        List<Amministratore> admin = adminService.findAll();
-        List<Distributore> dist = distService.findAll();
-        List<Azienda> azienda = aziendaService.findAll();
-        return utenteService.auth(username, password, admin, dist, azienda);
+    public UtenteModel auth(String email, String password, String tipo){
+        if(tipo.equals("Amministratore")){
+            List<Amministratore> admin = adminService.findAll();
+            return utenteService.authAdmin(email, password, admin);
+        }
+        
+        if(tipo.equals("Distributore")){
+            List<Distributore> dist = distService.findAll();
+            return utenteService.authDist(email, password, dist);
+        }
+        
+        if(tipo.equals("Azienda")){
+            List<Azienda> azienda = aziendaService.findAll();
+            return utenteService.authAzienda(email, password, azienda);
+        }
+        
+        return null;
+    }
+    
+    @PostMapping("/regAdmin")
+    public void regAdmin(String username, String password, String email){
+        adminService.insert(username, email, password);
+    }
+    
+    @PostMapping("/regAzienda")
+    public void registrazione(String email, String password, String nome_azienda, 
+           String indirizzo,  String vat, String descrizione, String logo){
+        
+        aziendaService.insert(email, password, nome_azienda, indirizzo, vat, descrizione, logo);
+    }
+    
+    @PostMapping("/regDistributore")
+    public void registrazione(String username, String email, String password, 
+              String nome, String cognome, String telefono, 
+              String indirizzo_sede, int id_ordine_prova, String vat){
+
+        distService.insert(username, email, password, nome, cognome, telefono, indirizzo_sede, id_ordine_prova, vat);
     }
     
     @GetMapping("/")
