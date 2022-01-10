@@ -23,10 +23,12 @@ public class UtenteModel implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     
-    private String username;
-    private String email;
-    private String password;
-    private String tipo;
+    //attributi in comune per tutte le tipologie di utente, azienda NON ha username
+    private String username, email, password, tipo;
+
+
+    //attributi specifici 
+    private String vat, indirizzo, descrizione, nome, cognome, telefono, logo;    
     
     public UtenteModel() {}
     
@@ -44,18 +46,28 @@ public class UtenteModel implements Serializable{
         this.tipo = "Amministratore";
     }
     
+    //costruttore di un utente dato un distributore
     public UtenteModel(Distributore dist){
         this.email = dist.getEmail();
         this.username = dist.getUsername();
         this.password = dist.getPassword();
         this.tipo = "Distributore";
+        this.nome = dist.getNome();
+        this.cognome = dist.getCognome();
+        this.vat = dist.getVAT();
+        this.telefono = dist.getTelefono();
+        this.indirizzo = dist.getIndirizzoSede();
     }
     
+    //costruttore di un utente data un'azienda
     public UtenteModel(Azienda az){
         this.email = az.getEmail();
-        this.username = az.getNomeAzienda();
+        this.nome = az.getNomeAzienda();
         this.password = az.getPassword();
         this.tipo = "Azienda";
+        this.vat = az.getVAT();
+        this.indirizzo = az.getIndirizzo();
+        this.descrizione = az.getDescrizione();
     }
 
     public long getId() {
@@ -84,5 +96,65 @@ public class UtenteModel implements Serializable{
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    
+        public String getVat() {
+        return vat;
+    }
+
+    public void setVat(String vat) {
+        this.vat = vat;
+    }
+
+    public String getIndirizzo() {
+        return indirizzo;
+    }
+
+    public void setIndirizzo(String indirizzo) {
+        this.indirizzo = indirizzo;
+    }
+
+    public String getDescrizione() {
+        return descrizione;
+    }
+
+    public void setDescrizione(String descrizione) {
+        this.descrizione = descrizione;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCognome() {
+        return cognome;
+    }
+
+    public void setCognome(String cognome) {
+        this.cognome = cognome;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
+    
+    public String getTipo() {
+        return tipo;
     }
 }

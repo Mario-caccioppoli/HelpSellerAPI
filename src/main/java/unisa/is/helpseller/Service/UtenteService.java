@@ -25,7 +25,7 @@ public class UtenteService {
         Iterator<Amministratore> iterator = admin.iterator();
         while(iterator.hasNext()){
             Amministratore a = iterator.next();
-            if(a.getUsername().equals(username)){
+            if(a.getEmail().equals(username)){
                 if(a.getPassword().equals(password)){
                     user = new UtenteModel(a);
                     return user;
@@ -35,7 +35,7 @@ public class UtenteService {
         Iterator<Distributore> it = dist.iterator();
         while(it.hasNext()){
             Distributore d = it.next();
-            if(d.getUsername().equals(username)){
+            if(d.getEmail().equals(username)){
                 if(d.getPassword().equals(password)){
                     user = new UtenteModel(d);
                     return user;
