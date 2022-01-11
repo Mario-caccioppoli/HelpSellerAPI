@@ -28,4 +28,13 @@ public class ScontoService {
         scontoRepo.deleteId(id);
     }
     
+    public void insert(Sconto sc) {
+        scontoRepo.insert(sc.getPercentuale(), sc.getTipo(), sc.getQuantita(), sc.getIdAzienda(), sc.getDataFine(), sc.getDataInizio());
+    }
+    
+    public void udpate(Sconto sc) {
+        scontoRepo.update(sc.getPercentuale(), sc.getTipo(), sc.getQuantita(), sc.getIdAzienda(), sc.getDataFine(), sc.getDataInizio(), sc.getId());
+    }
+    
+    
 }

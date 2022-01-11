@@ -28,13 +28,13 @@ public class DistributoreService {
         distributoreRepo.deleteId(id);
     }
     
-      public void insert(String username, String email, String password, 
-              String nome, String cognome, String telefono, 
-              String indirizzo_sede, int id_ordine_prova, String vat) {
-        distributoreRepo.insert(username, email, password, nome, cognome, telefono, indirizzo_sede, id_ordine_prova, vat);
+      public void insert(Distributore d) {
+        distributoreRepo.insert(d.getUsername(), d.getEmail(), d.getPassword(), d.getNome(), d.getCognome(), 
+                d.getTelefono(), d.getIndirizzoSede(), d.getIdOrdineProva(), d.getvat());
     }
     
-      public void updatePassword(String value, int id) {
-        distributoreRepo.updatePassword(value, id);
+      public void update(Distributore d) {
+        distributoreRepo.update(d.getUsername(), d.getEmail(), d.getPassword(), d.getNome(), d.getCognome(), 
+                d.getTelefono(), d.getIndirizzoSede(), d.getIdOrdineProva(), d.getvat(), d.getId());
     }
 }

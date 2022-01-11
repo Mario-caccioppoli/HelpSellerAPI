@@ -28,4 +28,11 @@ public class OrdineProdottoService {
         ordineProdottoRepo.deleteId(id);
     }
     
+    public void insert(OrdineProdotto ordProd) {
+        ordineProdottoRepo.insert(ordProd.getIdOrdine(), ordProd.getIdProdotto(), ordProd.getQuantita(), ordProd.getPrezzo(), ordProd.getPrezzoUnitario());
+    }
+    
+    public void udpate(OrdineProdotto ordProd) {
+        ordineProdottoRepo.update(ordProd.getIdOrdine(), ordProd.getIdProdotto(), ordProd.getQuantita(), ordProd.getPrezzo(), ordProd.getPrezzoUnitario());
+    }
 }

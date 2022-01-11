@@ -28,12 +28,11 @@ public class AziendaService {
         aziendaRepo.deleteId(id);
     }
     
-    public void insert(String email, String password, String nome_azienda, 
-           String indirizzo,  String vat, String descrizione, String logo) {
-        aziendaRepo.insert(email, password, nome_azienda, indirizzo, vat, descrizione, logo);
+    public void insert(Azienda a) {
+        aziendaRepo.insert(a.getEmail(), a.getPassword(), a.getNomeAzienda(), a.getIndirizzo(), a.getvat(), a.getDescrizione(), a.getLogo());
     }
     
-      public void updatePassword(String value, int id) {
-        aziendaRepo.updatePassword(value, id);
+      public void update(Azienda a) {
+        aziendaRepo.update(a.getEmail(), a.getPassword(), a.getNomeAzienda(), a.getIndirizzo(), a.getvat(), a.getDescrizione(), a.getLogo(), a.getId());
     }
 }

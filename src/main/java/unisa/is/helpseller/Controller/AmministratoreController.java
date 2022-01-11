@@ -37,14 +37,14 @@ public class AmministratoreController {
     }
     
     @PostMapping("/insert")
-    public ResponseEntity<Amministratore> insert(String username, String email, String password) {
-        amministratoreService.insert(username, email, password);
+    public ResponseEntity<Amministratore> insert(Amministratore a) {
+        amministratoreService.insert(a);
         return new ResponseEntity<>(HttpStatus.OK);
     }
     
-    @PostMapping("/updatePassword/{id}")
-    public ResponseEntity<Amministratore> updatePassword(String value, @PathVariable("id") int id) {
-        amministratoreService.updatePassword(value, id);
+    @PostMapping("/update")
+    public ResponseEntity<Amministratore> update(Amministratore a) {
+        amministratoreService.udpate(a);
         return new ResponseEntity<>(HttpStatus.OK);
     }
     

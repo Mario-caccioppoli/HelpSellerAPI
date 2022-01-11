@@ -28,4 +28,12 @@ public class RecensioneService {
         recensioneRepo.deleteId(id);
     }
     
+    public void insert(Recensione rec) {
+        recensioneRepo.insert(rec.getTesto(), rec.getVoto(), rec.getData(), rec.getIdProdotto(), rec.getIdDistributore());
+    }
+    
+    public void udpate(Recensione rec) {
+        recensioneRepo.update(rec.getTesto(), rec.getVoto(), rec.getData(), rec.getIdProdotto(), rec.getIdDistributore(), rec.getId());
+    }
+    
 }

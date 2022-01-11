@@ -37,15 +37,14 @@ public class AziendaController {
     }
     
     @PostMapping("/insert")
-    public ResponseEntity<Azienda> insert(String email, String password, String nome_azienda, 
-           String indirizzo,  String vat, String descrizione, String logo) {
-        aziendaService.insert(email, password, nome_azienda, indirizzo, vat, descrizione, logo);
+    public ResponseEntity<Azienda> insert(Azienda  a) {
+        aziendaService.insert(a);
         return new ResponseEntity<>(HttpStatus.OK);
     }
     
-    @PostMapping("/updatePassword/{id}")
-    public ResponseEntity<Azienda> updatePassword(String value, @PathVariable("id") int id) {
-        aziendaService.updatePassword(value, id);
+    @PostMapping("/update")
+    public ResponseEntity<Azienda> update(Azienda a) {
+        aziendaService.update(a);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

@@ -1,5 +1,6 @@
 package unisa.is.helpseller.Repo;
 
+import java.sql.Date;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -29,6 +30,12 @@ public interface DistributoreRepo extends JpaRepository<Distributore, Integer>{
    
    //JPQL
    @Modifying
-   @Query("UPDATE Distributore d SET password = :value WHERE d.id = :id")
-   void updatePassword (@Param("value") String value, @Param("id") int id);
+   @Query("UPDATE Distributore d SET username = :username, email = :email, password = :password, "
+           + "nome = :nome, cognome = :cognome, telefono = :telefono, indirizzo_sede = :indirizzo_sede, "
+           + "id_ordine_prova = :id_ordine_prova, vat = :vat WHERE d.id = :id")
+   void update(@Param("username") String username, @Param("email") String email, 
+           @Param("password") String password, @Param("nome") String nome, 
+           @Param("cognome") String cognome, @Param("telefono") String telefono, 
+           @Param("indirizzo_sede") String indirizzo_sede, 
+           @Param("id_ordine_prova") int id_ordine_prova, @Param("vat") String vat, @Param("id") int id);
 }

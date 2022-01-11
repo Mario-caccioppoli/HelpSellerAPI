@@ -28,4 +28,11 @@ public class ScontoProdottoService {
         scontoProdottoRepo.deleteId(id);
     }
     
+    public void insert(ScontoProdotto scontoProd) {
+        scontoProdottoRepo.insert(scontoProd.getIdSconto(), scontoProd.getIdProdotto());
+    }
+    
+    public void udpate(ScontoProdotto updated, ScontoProdotto old) {
+        scontoProdottoRepo.update(updated.getIdSconto(), updated.getIdProdotto(), old.getIdSconto(), old.getIdProdotto());
+    }
 }

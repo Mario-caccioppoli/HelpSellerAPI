@@ -28,4 +28,14 @@ public class ProdottoService {
         prodottoRepo.deleteId(id);
     }
     
+    public void insert(Prodotto prod) {
+        prodottoRepo.insert(prod.getNomeProdotto(), prod.getPrezzo(), prod.getDescrizione(), 
+                prod.getQuantita(), prod.getImmagine(), prod.getPeso(), prod.getVolume(), prod.getIdAzienda(), prod.getQuantitaMinima());
+    }
+    
+    public void udpate(Prodotto prod) {
+        prodottoRepo.update(prod.getNomeProdotto(), prod.getPrezzo(), prod.getDescrizione(), 
+                prod.getQuantita(), prod.getImmagine(), prod.getPeso(), prod.getVolume(), prod.getIdAzienda(), prod.getQuantitaMinima(), prod.getId());
+    }
+    
 }
