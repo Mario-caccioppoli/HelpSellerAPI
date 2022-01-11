@@ -6,44 +6,43 @@ import javax.persistence.*;
 
 
 @Entity
+@IdClass(OrdineProdottoId.class)
 @Table(name = "ordine_prodotto")
 public class OrdineProdotto implements Serializable{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private int id_ordine;
     
-    private int idOrdine;
-    private int idProdotto;
+    @Id
+    private int id_prodotto;
+    
     private int quantita;
-    private double prezzoUnitario;
+    private double prezzo_unitario;
+    private double prezzo;
  
     public OrdineProdotto() {}
 
-    public OrdineProdotto(int idOrdine, int idProdotto, int quantita, double prezzoUnitario) {
-        this.idOrdine = idOrdine;
-        this.idProdotto = idProdotto;
+    public OrdineProdotto(int id_ordine, int id_prodotto, int quantita, double prezzo_unitario, double prezzo) {
+        this.id_ordine = id_ordine;
+        this.id_prodotto = id_prodotto;
         this.quantita = quantita;
-        this.prezzoUnitario = prezzoUnitario;
+        this.prezzo_unitario = prezzo_unitario;
+        this.prezzo = prezzo;
     }
 
-    public long getId() {
-        return id;
-    }
-    
     public int getIdOrdine() {
-        return idOrdine;
+        return id_ordine;
     }
 
-    public void setIdOrdine(int idOrdine) {
-        this.idOrdine = idOrdine;
+    public void setIdOrdine(int id_ordine) {
+        this.id_ordine = id_ordine;
     }
 
     public int getIdProdotto() {
-        return idProdotto;
+        return id_prodotto;
     }
 
-    public void setIdProdotto(int idProdotto) {
-        this.idProdotto = idProdotto;
+    public void setIdProdotto(int id_prodotto) {
+        this.id_prodotto = id_prodotto;
     }
 
     public int getQuantita() {
@@ -55,12 +54,19 @@ public class OrdineProdotto implements Serializable{
     }
 
     public double getPrezzoUnitario() {
-        return prezzoUnitario;
+        return prezzo_unitario;
     }
 
-    public void setPrezzoUnitario(double prezzoUnitario) {
-        this.prezzoUnitario = prezzoUnitario;
+    public void setPrezzoUnitario(double prezzo_unitario) {
+        this.prezzo_unitario = prezzo_unitario;
     }
 
-    
+    public double getPrezzo() {
+        return prezzo;
+    }
+
+    public void setPrezzo(double prezzo) {
+        this.prezzo = prezzo;
+    }
+
 }

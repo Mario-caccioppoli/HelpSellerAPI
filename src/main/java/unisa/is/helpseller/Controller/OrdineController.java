@@ -35,4 +35,16 @@ public class OrdineController {
         ordineService.deleteId(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    
+    @PostMapping("/insert")
+    public ResponseEntity<Ordine> insert(Ordine ord) {
+        ordineService.insert(ord);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    
+    @PostMapping("/update")
+    public ResponseEntity<Ordine> update(Ordine ord) {
+        ordineService.update(ord);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

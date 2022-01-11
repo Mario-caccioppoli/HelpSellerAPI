@@ -16,28 +16,28 @@ public class Distributore implements Serializable{
     private String password;
     private String nome;
     private String cognome;
-    private String VAT;
+    private String vat;
     private String telefono;
-    private String indirizzoSede;
-    private int idOrdineProva;
+    private String indirizzo_sede;
+    private int id_ordine_prova;
     
     public Distributore() {}
 
     public Distributore(String username, String email, String password, 
-            String nome, String cognome, String VAT, String telefono, 
-            String indirizzoSede, int idOrdineProva) {
+            String nome, String cognome, String vat, String telefono, 
+            String indirizzo_sede, int id_ordine_prova) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.nome = nome;
         this.cognome = cognome;
-        this.VAT = VAT;
+        this.vat = vat;
         this.telefono = telefono;
-        this.indirizzoSede = indirizzoSede;
-        this.idOrdineProva = idOrdineProva;
+        this.indirizzo_sede = indirizzo_sede;
+        this.id_ordine_prova = id_ordine_prova;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
@@ -83,12 +83,12 @@ public class Distributore implements Serializable{
         this.cognome = cognome;
     }
 
-    public String getVAT() {
-        return VAT;
+    public String getvat() {
+        return vat;
     }
 
-    public void setVAT(String VAT) {
-        this.VAT = VAT;
+    public void setvat(String vat) {
+        this.vat = vat;
     }
 
     public String getTelefono() {
@@ -100,19 +100,19 @@ public class Distributore implements Serializable{
     }
 
     public String getIndirizzoSede() {
-        return indirizzoSede;
+        return indirizzo_sede;
     }
 
-    public void setIndirizzoSede(String indirizzoSede) {
-        this.indirizzoSede = indirizzoSede;
+    public void setIndirizzoSede(String indirizzo_sede) {
+        this.indirizzo_sede = indirizzo_sede;
     }
 
     public int getIdOrdineProva() {
-        return idOrdineProva;
+        return id_ordine_prova;
     }
 
-    public void setIdOrdineProva(int idOrdineProva) {
-        this.idOrdineProva = idOrdineProva;
+    public void setIdOrdineProva(int id_ordine_prova) {
+        this.id_ordine_prova = id_ordine_prova;
     }
     
     

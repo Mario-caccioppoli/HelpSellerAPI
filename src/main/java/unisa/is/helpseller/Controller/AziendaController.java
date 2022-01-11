@@ -35,4 +35,16 @@ public class AziendaController {
         aziendaService.deleteId(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    
+    @PostMapping("/insert")
+    public ResponseEntity<Azienda> insert(Azienda  a) {
+        aziendaService.insert(a);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    
+    @PostMapping("/update")
+    public ResponseEntity<Azienda> update(Azienda a) {
+        aziendaService.update(a);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

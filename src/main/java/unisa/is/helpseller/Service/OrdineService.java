@@ -28,4 +28,12 @@ public class OrdineService {
         ordineRepo.deleteId(id);
     }
     
+    public void insert(Ordine ord) {
+        ordineRepo.insert(ord.getCommento(), ord.getStato(), ord.getIdDistributore(), ord.getIdOrdineProva(), ord.getDataConsegna(), ord.getDataOrdinazione());
+    }
+    
+    public void update(Ordine ord) {
+        ordineRepo.update(ord.getCommento(), ord.getStato(), ord.getIdDistributore(), ord.getIdOrdineProva(), ord.getDataConsegna(), ord.getDataOrdinazione(), ord.getId());
+    }
+    
 }

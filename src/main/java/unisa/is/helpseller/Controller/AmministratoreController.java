@@ -36,4 +36,16 @@ public class AmministratoreController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
     
+    @PostMapping("/insert")
+    public ResponseEntity<Amministratore> insert(Amministratore a) {
+        amministratoreService.insert(a);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    
+    @PostMapping("/update")
+    public ResponseEntity<Amministratore> update(Amministratore a) {
+        amministratoreService.udpate(a);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    
 }

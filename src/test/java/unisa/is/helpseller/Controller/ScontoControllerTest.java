@@ -45,6 +45,7 @@ public class ScontoControllerTest {
     for( i=0; i<=m;i++){
         Date dataInizio=s.get(i).getDataInizio();
         assertThat(s.get(i).getDataFine().after(dataInizio));
-    }
+ 
+                        }
     }
 }

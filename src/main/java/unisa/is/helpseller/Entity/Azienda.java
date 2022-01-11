@@ -14,27 +14,27 @@ public class Azienda implements Serializable {
     
     private String email;
     private String password;
-    private String nomeAzienda;
-    private String VAT;
+    private String nome_azienda;
+    private String vat;
     private String indirizzo;
     private String descrizione;
     private String logo;
     
     public Azienda() {}
     
-    public Azienda(String email, String password, String nomeAzienda, String VAT,
+    public Azienda(String email, String password, String nome_azienda, String vat,
             String indirizzo, String descrizione, String logo) {
         
         this.email = email;
         this.password = password;
-        this.nomeAzienda = nomeAzienda;
-        this.VAT = VAT;
+        this.nome_azienda = nome_azienda;
+        this.vat = vat;
         this.indirizzo = indirizzo;
         this.descrizione = descrizione;
         this.logo = logo;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
@@ -56,19 +56,19 @@ public class Azienda implements Serializable {
     }
 
     public String getNomeAzienda() {
-        return nomeAzienda;
+        return nome_azienda;
     }
 
-    public void setNomeAzienda(String nomeAzienda) {
-        this.nomeAzienda = nomeAzienda;
+    public void setNomeAzienda(String nome_azienda) {
+        this.nome_azienda = nome_azienda;
     }
 
-    public String getVAT() {
-        return VAT;
+    public String getvat() {
+        return vat;
     }
 
-    public void setVAT(String VAT) {
-        this.VAT = VAT;
+    public void setvat(String vat) {
+        this.vat = vat;
     }
 
     public String getIndirizzo() {

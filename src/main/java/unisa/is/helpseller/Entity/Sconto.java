@@ -14,24 +14,24 @@ public class Sconto implements Serializable {
     private int id;
 
     private int percentuale;
-    private Date dataInizio;
-    private Date dataFine;
+    private Date data_inizio;
+    private Date data_fine;
     private String tipo;
     private int quantita;
-    private int idAzienda;
+    private int id_azienda;
 
     public Sconto() {}
 
-    public Sconto(int percentuale, Date dataInizio, Date dataFine, String tipo, int quantita, int idAzienda) {
+    public Sconto(int percentuale, Date data_inizio, Date data_fine, String tipo, int quantita, int id_azienda) {
         this.percentuale = percentuale;
-        this.dataInizio = dataInizio;
-        this.dataFine = dataFine;
+        this.data_inizio = data_inizio;
+        this.data_fine = data_fine;
         this.tipo = tipo;
         this.quantita = quantita;
-        this.idAzienda = idAzienda;
+        this.id_azienda = id_azienda;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
@@ -44,19 +44,19 @@ public class Sconto implements Serializable {
     }
 
     public Date getDataInizio() {
-        return dataInizio;
+        return data_inizio;
     }
 
-    public void setDataInizio(Date dataInizio) {
-        this.dataInizio = dataInizio;
+    public void setDataInizio(Date data_inizio) {
+        this.data_inizio = data_inizio;
     }
 
     public Date getDataFine() {
-        return dataFine;
+        return data_fine;
     }
 
-    public void setDataFine(Date dataFine) {
-        this.dataFine = dataFine;
+    public void setDataFine(Date data_fine) {
+        this.data_fine = data_fine;
     }
 
     public String getTipo() {
@@ -76,11 +76,11 @@ public class Sconto implements Serializable {
     }
 
     public int getIdAzienda() {
-        return idAzienda;
+        return id_azienda;
     }
 
-    public void setIdAzienda(int idAzienda) {
-        this.idAzienda = idAzienda;
+    public void setIdAzienda(int id_azienda) {
+        this.id_azienda = id_azienda;
     }
 
 }

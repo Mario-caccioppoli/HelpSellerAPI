@@ -28,4 +28,13 @@ public class DistributoreService {
         distributoreRepo.deleteId(id);
     }
     
+      public void insert(Distributore d) {
+        distributoreRepo.insert(d.getUsername(), d.getEmail(), d.getPassword(), d.getNome(), d.getCognome(), 
+                d.getTelefono(), d.getIndirizzoSede(), d.getIdOrdineProva(), d.getvat());
+    }
+    
+      public void update(Distributore d) {
+        distributoreRepo.update(d.getUsername(), d.getEmail(), d.getPassword(), d.getNome(), d.getCognome(), 
+                d.getTelefono(), d.getIndirizzoSede(), d.getIdOrdineProva(), d.getvat(), d.getId());
+    }
 }

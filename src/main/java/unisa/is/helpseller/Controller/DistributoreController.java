@@ -35,4 +35,16 @@ public class DistributoreController {
         distributoreService.deleteId(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    
+    @PostMapping("/insert")
+    public ResponseEntity<Distributore> insert(Distributore d) {
+        distributoreService.insert(d);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    
+    @PostMapping("/update")
+    public ResponseEntity<Distributore> update(Distributore d) {
+        distributoreService.update(d);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

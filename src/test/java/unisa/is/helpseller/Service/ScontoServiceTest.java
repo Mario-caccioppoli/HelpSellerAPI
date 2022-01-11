@@ -30,10 +30,9 @@ public class ScontoServiceTest {
     assertThat(service.findId(1).getPercentuale()>0);
     assertThat(service.findId(1).getQuantita()>0);
     assertThat(service.findId(1).getTipo()!= null);
-    int i;
-    for( i=0; i<=service.findAll().size();i++){
+    for(int i=0; i<=service.findAll().size();i++){
         Date dataInizio=service.findId(i).getDataInizio();
         assertThat(service.findId(i).getDataFine().after(dataInizio));
     }
-    }
+}
 }

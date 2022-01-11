@@ -35,4 +35,17 @@ public class TrasportoController {
         trasportoService.deleteId(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    
+    @PostMapping("/insert")
+    public ResponseEntity<Trasporto> insert(Trasporto tr) {
+        trasportoService.insert(tr);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    
+    @PostMapping("/update")
+    public ResponseEntity<Trasporto> update(Trasporto tr) {
+        trasportoService.udpate(tr);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    
 }

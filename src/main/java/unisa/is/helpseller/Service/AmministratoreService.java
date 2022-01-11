@@ -28,4 +28,12 @@ public class AmministratoreService {
         amministratoreRepo.deleteId(id);
     }
     
+    public void insert(Amministratore a) {
+        amministratoreRepo.insert(a.getUsername(), a.getEmail(), a.getPassword());
+    }
+    
+    public void udpate(Amministratore a) {
+        amministratoreRepo.update(a.getUsername(), a.getEmail(), a.getPassword(), a.getId());
+    }
+    
 }

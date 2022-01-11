@@ -36,4 +36,16 @@ public class RecensioneController {
         recensioneService.deleteId(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    
+    @PostMapping("/insert")
+    public ResponseEntity<Recensione> insert(Recensione rec) {
+        recensioneService.insert(rec);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    
+    @PostMapping("/update")
+    public ResponseEntity<Recensione> update(Recensione rec) {
+        recensioneService.udpate(rec);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

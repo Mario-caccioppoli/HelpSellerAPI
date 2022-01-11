@@ -28,4 +28,11 @@ public class TrasportoService {
         trasportoRepo.deleteId(id);
     }
     
+    public void insert(Trasporto tr) {
+        trasportoRepo.insert(tr.getIdOrdine(), tr.getDataConsegna(), tr.getIndirizzoConsegna(), tr.getQuantitaMinima());
+    }
+    
+    public void udpate(Trasporto tr) {
+        trasportoRepo.update(tr.getIdOrdine(), tr.getDataConsegna(), tr.getIndirizzoConsegna(), tr.getQuantitaMinima(), tr.getId());
+    }
 }

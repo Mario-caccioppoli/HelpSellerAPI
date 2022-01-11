@@ -21,11 +21,16 @@ public class OrdineProdottoServiceTest {
     @Test
     public void contextLoads() throws Exception {
     assertThat(service.findAll().isEmpty()).isFalse();
+
     assertThat(service.findId(1).getClass().equals("OrdineProdotto"));
     assertThat(service.findId(1).getIdOrdine()>0);
-    assertThat(service.findId(1).getId()>0);
+    assertThat(service.findId(1).getPrezzo()>0);
     assertThat(service.findId(1).getIdProdotto()>0);
     assertThat(service.findId(1).getPrezzoUnitario()>0);
     assertThat(service.findId(1).getQuantita()>0);
+
+
+    
+
     }
 }

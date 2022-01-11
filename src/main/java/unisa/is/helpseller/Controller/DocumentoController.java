@@ -1,10 +1,12 @@
 
 package unisa.is.helpseller.Controller;
 
+import java.sql.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import unisa.is.helpseller.Service.DocumentoService;
 import java.util.List;
+import static org.apache.tomcat.jni.User.username;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import unisa.is.helpseller.Entity.Documento;
@@ -33,6 +35,18 @@ public class DocumentoController {
     @DeleteMapping("/deleteId/{id}")
     public ResponseEntity<Documento> deleteId(@PathVariable("id") int id) {
         documentoService.deleteId(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    
+    @PostMapping("/insert")
+    public ResponseEntity<Documento> insert(Documento doc) {
+        documentoService.insert(doc);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    
+    @PostMapping("/update")
+    public ResponseEntity<Documento> update(Documento doc) {
+        documentoService.udpate(doc);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

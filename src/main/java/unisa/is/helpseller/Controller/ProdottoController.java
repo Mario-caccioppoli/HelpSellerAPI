@@ -36,4 +36,16 @@ public class ProdottoController {
         prodottoService.deleteId(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    
+    @PostMapping("/insert")
+    public ResponseEntity<Prodotto> insert(Prodotto prod) {
+        prodottoService.insert(prod);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    
+    @PostMapping("/update")
+    public ResponseEntity<Prodotto> update(Prodotto prod) {
+        prodottoService.udpate(prod);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

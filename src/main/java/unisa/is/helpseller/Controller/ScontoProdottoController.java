@@ -35,4 +35,16 @@ public class ScontoProdottoController {
         scontoProdottoService.deleteId(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    
+    @PostMapping("/insert")
+    public ResponseEntity<ScontoProdotto> insert(ScontoProdotto scontoProd) {
+        scontoProdottoService.insert(scontoProd);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    
+    @PostMapping("/update")
+    public ResponseEntity<ScontoProdotto> update(ScontoProdotto updated, ScontoProdotto old) {
+        scontoProdottoService.udpate(updated, old);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

@@ -35,4 +35,17 @@ public class OrdineProdottoController {
         ordineprodottoService.deleteId(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    
+    @PostMapping("/insert")
+    public ResponseEntity<OrdineProdotto> insert(OrdineProdotto ordProd) {
+        ordineprodottoService.insert(ordProd);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    
+    @PostMapping("/update")
+    public ResponseEntity<OrdineProdotto> update(OrdineProdotto ordProd) {
+        ordineprodottoService.udpate(ordProd);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    
 }

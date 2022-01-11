@@ -13,54 +13,54 @@ public class Trasporto implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    private String indirizzoConsegna;
-    private int quantitaMinima;
-    private Date dataConsegna;
-    private int idOrdine;
+    private String indirizzo_consegna;
+    private int quantita_minima;
+    private Date data_consegna;
+    private int id_ordine;
 
     public Trasporto() {}
 
-    public Trasporto(String indirizzoConsegna, int quantitaMinima, Date dataConsegna, int idOrdine) {
-        this.indirizzoConsegna = indirizzoConsegna;
-        this.quantitaMinima = quantitaMinima;
-        this.dataConsegna = dataConsegna;
-        this.idOrdine = idOrdine;
+    public Trasporto(String indirizzo_consegna, int quantita_minima, Date data_consegna, int id_ordine) {
+        this.indirizzo_consegna = indirizzo_consegna;
+        this.quantita_minima = quantita_minima;
+        this.data_consegna = data_consegna;
+        this.id_ordine = id_ordine;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
     public String getIndirizzoConsegna() {
-        return indirizzoConsegna;
+        return indirizzo_consegna;
     }
 
-    public void setIndirizzoConsegna(String indirizzoConsegna) {
-        this.indirizzoConsegna = indirizzoConsegna;
+    public void setIndirizzoConsegna(String indirizzo_consegna) {
+        this.indirizzo_consegna = indirizzo_consegna;
     }
 
     public int getQuantitaMinima() {
-        return quantitaMinima;
+        return quantita_minima;
     }
 
-    public void setQuantitaMinima(int quantitaMinima) {
-        this.quantitaMinima = quantitaMinima;
+    public void setQuantitaMinima(int quantita_minima) {
+        this.quantita_minima = quantita_minima;
     }
 
     public Date getDataConsegna() {
-        return dataConsegna;
+        return data_consegna;
     }
 
-    public void setDataConsegna(Date dataConsegna) {
-        this.dataConsegna = dataConsegna;
+    public void setDataConsegna(Date data_consegna) {
+        this.data_consegna = data_consegna;
     }
 
     public int getIdOrdine() {
-        return idOrdine;
+        return id_ordine;
     }
 
-    public void setIdOrdine(int idOrdine) {
-        this.idOrdine = idOrdine;
+    public void setIdOrdine(int id_ordine) {
+        this.id_ordine = id_ordine;
     }
     
     
