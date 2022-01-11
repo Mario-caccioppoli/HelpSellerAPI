@@ -12,42 +12,42 @@ public class Prodotto implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     
-    private String nomeProdotto;
+    private String nome_prodotto;
     private double prezzo;
     private String descrizione;
     private int quantita;
     private String immagine;
-    private int quantitaMinima;
+    private int quantita_minima;
     private int peso;
     private int volume;
-    private int idAzienda;
+    private int id_azienda;
     
  
     public Prodotto() {}
 
-    public Prodotto(String nomeProdotto, double prezzo, String descrizione, int quantita, String immagine, int quantitaMinima, int peso, int volume, int idAzienda) {
-        this.nomeProdotto = nomeProdotto;
+    public Prodotto(String nome_prodotto, double prezzo, String descrizione, int quantita, String immagine, int quantita_minima, int peso, int volume, int id_azienda) {
+        this.nome_prodotto = nome_prodotto;
         this.prezzo = prezzo;
         this.descrizione = descrizione;
         this.quantita = quantita;
         this.immagine = immagine;
-        this.quantitaMinima = quantitaMinima;
+        this.quantita_minima = quantita_minima;
         this.peso = peso;
         this.volume = volume;
-        this.idAzienda = idAzienda;
+        this.id_azienda = id_azienda;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
 
     public String getNomeProdotto() {
-        return nomeProdotto;
+        return nome_prodotto;
     }
 
-    public void setNomeProdotto(String nomeProdotto) {
-        this.nomeProdotto = nomeProdotto;
+    public void setNomeProdotto(String nome_prodotto) {
+        this.nome_prodotto = nome_prodotto;
     }
 
     public double getPrezzo() {
@@ -83,11 +83,11 @@ public class Prodotto implements Serializable {
     }
 
     public int getQuantitaMinima() {
-        return quantitaMinima;
+        return quantita_minima;
     }
 
-    public void setQuantitaMinima(int quantitaMinima) {
-        this.quantitaMinima = quantitaMinima;
+    public void setQuantitaMinima(int quantita_minima) {
+        this.quantita_minima = quantita_minima;
     }
 
     public int getPeso() {
@@ -107,11 +107,11 @@ public class Prodotto implements Serializable {
     }
 
     public int getIdAzienda() {
-        return idAzienda;
+        return id_azienda;
     }
 
-    public void setIdAzienda(int idAzienda) {
-        this.idAzienda = idAzienda;
+    public void setIdAzienda(int id_azienda) {
+        this.id_azienda = id_azienda;
     }
     
     

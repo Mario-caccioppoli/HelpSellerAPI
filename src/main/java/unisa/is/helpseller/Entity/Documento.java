@@ -16,18 +16,18 @@ public class Documento implements Serializable{
     private String titolo;
     private String autore;
     private Date data;
-    private int idOrdine;
+    private int id_ordine;
     
     public Documento() {}
 
-    public Documento(String titolo, String autore, Date data, int idOrdine) {
+    public Documento(String titolo, String autore, Date data, int id_ordine) {
         this.titolo = titolo;
         this.autore = autore;
         this.data = data;
-        this.idOrdine = idOrdine;
+        this.id_ordine = id_ordine;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
@@ -56,11 +56,11 @@ public class Documento implements Serializable{
     }
 
     public int getIdOrdine() {
-        return idOrdine;
+        return id_ordine;
     }
 
-    public void setIdOrdine(int idOrdine) {
-        this.idOrdine = idOrdine;
+    public void setIdOrdine(int id_ordine) {
+        this.id_ordine = id_ordine;
     }
     
     

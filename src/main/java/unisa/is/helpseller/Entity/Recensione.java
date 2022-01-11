@@ -16,21 +16,21 @@ public class Recensione implements Serializable{
     private String testo;
     private int voto;
     private Date data;
-    private int idProdotto;
-    private int idDistributore;
+    private int id_prodotto;
+    private int id_distributore;
 
    
     public Recensione() {}
 
-    public Recensione(String testo, int voto, Date data, int idProdotto, int idDistributore) {
+    public Recensione(String testo, int voto, Date data, int id_prodotto, int id_distributore) {
         this.testo = testo;
         this.voto = voto;
         this.data = data;
-        this.idProdotto = idProdotto;
-        this.idDistributore = idDistributore;
+        this.id_prodotto = id_prodotto;
+        this.id_distributore = id_distributore;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
@@ -60,19 +60,19 @@ public class Recensione implements Serializable{
     }
 
     public int getIdProdotto() {
-        return idProdotto;
+        return id_prodotto;
     }
 
-    public void setIdProdotto(int idProdotto) {
-        this.idProdotto = idProdotto;
+    public void setIdProdotto(int id_prodotto) {
+        this.id_prodotto = id_prodotto;
     }
 
     public int getIdDistributore() {
-        return idDistributore;
+        return id_distributore;
     }
 
-    public void setIdDistributore(int idDistributore) {
-        this.idDistributore = idDistributore;
+    public void setIdDistributore(int id_distributore) {
+        this.id_distributore = id_distributore;
     }
       
 }

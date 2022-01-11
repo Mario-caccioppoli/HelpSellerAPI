@@ -13,42 +13,42 @@ public class Ordine implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     
-    private Date dataOrdinazione;
-    private Date dataConsegna;
+    private Date data_ordinazione;
+    private Date data_consegna;
     private String commento;
     private String stato;
-    private int idDistributore;
-    private int idOrdineProva;
+    private int id_distributore;
+    private int id_ordine_prova;
  
     public Ordine() {}
 
-    public Ordine(Date dataOrdinazione, Date dataConsegna, String commento, int idDistributore, int idOrdineProva) {
-        this.dataOrdinazione = dataOrdinazione;
-        this.dataConsegna = dataConsegna;
+    public Ordine(Date data_ordinazione, Date data_consegna, String commento, int id_distributore, int id_ordine_prova) {
+        this.data_ordinazione = data_ordinazione;
+        this.data_consegna = data_consegna;
         this.commento = commento;
-        this.idDistributore = idDistributore;
-        this.idOrdineProva = idOrdineProva;
+        this.id_distributore = id_distributore;
+        this.id_ordine_prova = id_ordine_prova;
         this.stato = "Generated";
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
     public Date getDataOrdinazione() {
-        return dataOrdinazione;
+        return data_ordinazione;
     }
 
-    public void setDataOrdinazione(Date dataOrdinazione) {
-        this.dataOrdinazione = dataOrdinazione;
+    public void setDataOrdinazione(Date data_ordinazione) {
+        this.data_ordinazione = data_ordinazione;
     }
 
     public Date getDataConsegna() {
-        return dataConsegna;
+        return data_consegna;
     }
 
-    public void setDataConsegna(Date dataConsegna) {
-        this.dataConsegna = dataConsegna;
+    public void setDataConsegna(Date data_consegna) {
+        this.data_consegna = data_consegna;
     }
 
     public String getCommento() {
@@ -68,19 +68,19 @@ public class Ordine implements Serializable{
     }
 
     public int getIdDistributore() {
-        return idDistributore;
+        return id_distributore;
     }
 
-    public void setIdDistributore(int idDistributore) {
-        this.idDistributore = idDistributore;
+    public void setIdDistributore(int id_distributore) {
+        this.id_distributore = id_distributore;
     }
 
     public int getIdOrdineProva() {
-        return idOrdineProva;
+        return id_ordine_prova;
     }
 
-    public void setIdOrdineProva(int idOrdineProva) {
-        this.idOrdineProva = idOrdineProva;
+    public void setIdOrdineProva(int id_ordine_prova) {
+        this.id_ordine_prova = id_ordine_prova;
     }
     
     

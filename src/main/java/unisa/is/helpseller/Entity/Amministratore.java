@@ -24,7 +24,7 @@ public class Amministratore implements Serializable{
         this.password = password;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 

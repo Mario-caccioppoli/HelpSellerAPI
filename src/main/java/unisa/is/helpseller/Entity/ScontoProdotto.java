@@ -5,40 +5,37 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
+@IdClass(ScontoProdottoId.class)
 @Table(name = "sconto_prodotto")
 public class ScontoProdotto implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private int id_sconto;
     
-    private int idSconto;
-    private int idProdotto;
+    @Id
+    private int id_prodotto;
 
     public ScontoProdotto() {}
 
-    public ScontoProdotto(int idSconto, int idProdotto) {
-        this.idSconto = idSconto;
-        this.idProdotto = idProdotto;
+    public ScontoProdotto(int id_sconto, int id_prodotto) {
+        this.id_sconto = id_sconto;
+        this.id_prodotto = id_prodotto;
     }
 
-    public long getId() {
-        return id;
-    }
 
     public int getIdSconto() {
-        return idSconto;
+        return id_sconto;
     }
 
-    public void setIdSconto(int idSconto) {
-        this.idSconto = idSconto;
+    public void setIdSconto(int id_sconto) {
+        this.id_sconto = id_sconto;
     }
 
     public int getIdProdotto() {
-        return idProdotto;
+        return id_prodotto;
     }
 
-    public void setIdProdotto(int idProdotto) {
-        this.idProdotto = idProdotto;
+    public void setIdProdotto(int id_prodotto) {
+        this.id_prodotto = id_prodotto;
     }
     
     
