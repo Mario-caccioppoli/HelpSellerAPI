@@ -47,4 +47,10 @@ public class ScontoController {
         scontoService.udpate(sc);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    
+    @GetMapping("/findScontiByAzienda/{id}") 
+    public ResponseEntity<List<Sconto>> findScontiByAzienda(@PathVariable("id") int id) {
+        List<Sconto> sconti = scontoService.findScontiByAzienda(id);
+        return new ResponseEntity<>(sconti, HttpStatus.OK);
+    }
 }

@@ -17,7 +17,7 @@ public class Sconto implements Serializable {
     private Date data_inizio;
     private Date data_fine;
     private String tipo;
-    private int quantita;
+    private Integer quantita;
     private int id_azienda;
 
     public Sconto() {}
@@ -67,11 +67,11 @@ public class Sconto implements Serializable {
         this.tipo = tipo;
     }
 
-    public int getQuantita() {
+    public Integer getQuantita() {
         return quantita;
     }
 
-    public void setQuantita(int quantita) {
+    public void setQuantita(Integer quantita) {
         this.quantita = quantita;
     }
 

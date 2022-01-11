@@ -1,6 +1,7 @@
 package unisa.is.helpseller.Repo;
 
 import java.sql.Date;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -29,4 +30,8 @@ public interface ScontoRepo extends JpaRepository<Sconto, Integer> {
            + "id_azienda = :id_azienda, data_fine = :data_fine, data_inizio = :data_inizio WHERE s.id = :id")
    void update(@Param("percentuale") int percentuale, @Param("tipo") String tipo, @Param("quantita") int quantita, 
            @Param("id_azienda") int id_azienda, @Param("data_fine") Date data_fine, @Param("data_inizio") Date data_inizio, @Param("id") int id);
+   
+    //JPQL
+   @Query("SELECT s FROM Sconto s WHERE s.id_azienda = :id_azienda")
+   List<Sconto> findScontiByAzienda(@Param("id_azienda") int id_azienda);
 }

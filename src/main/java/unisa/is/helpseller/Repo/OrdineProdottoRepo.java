@@ -9,12 +9,12 @@ import unisa.is.helpseller.Entity.OrdineProdotto;
 
 
 public interface OrdineProdottoRepo extends JpaRepository<OrdineProdotto, Integer> {
-   @Query("SELECT o FROM OrdineProdotto o WHERE o.id = ?1")
-   OrdineProdotto findId(int id);
+   @Query("SELECT o FROM OrdineProdotto o WHERE o.id_ordine = ?1 AND o.id_prodotto = ?2")
+   OrdineProdotto findId(int id_ordine, int id_prodotto);
    
    @Modifying
-   @Query("DELETE FROM OrdineProdotto o WHERE o.id = ?1")
-   void deleteId(int id);
+   @Query("DELETE FROM OrdineProdotto o WHERE o.id_ordine = ?1 AND o.id_prodotto = ?2")
+   void deleteId(int id_ordine, int id_prodotto);
    
    //SQL
    @Modifying

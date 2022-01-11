@@ -24,11 +24,18 @@ public class ScontoProdottoController {
         return new ResponseEntity<>(scontoProdotti, HttpStatus.OK);
     }
     
-    @GetMapping("/findId/{id}")
-    public ResponseEntity<ScontoProdotto> findId(@PathVariable("id") int id) {
-        ScontoProdotto scontoProdotto = scontoProdottoService.findId(id);
+    @GetMapping("/findBySconto/{id}")
+    public ResponseEntity<ScontoProdotto> findBySconto(@PathVariable("id") int id) {
+        ScontoProdotto scontoProdotto = scontoProdottoService.findBySconto(id);
         return new ResponseEntity<>(scontoProdotto, HttpStatus.OK);
     }
+    
+    @GetMapping("/findByProdotto/{id}")
+    public ResponseEntity<ScontoProdotto> findByProdotto(@PathVariable("id") int id) {
+        ScontoProdotto scontoProdotto = scontoProdottoService.findByProdotto(id);
+        return new ResponseEntity<>(scontoProdotto, HttpStatus.OK);
+    }
+    
     
     @DeleteMapping("/deleteId/{id}")
     public ResponseEntity<ScontoProdotto> deleteId(@PathVariable("id") int id) {

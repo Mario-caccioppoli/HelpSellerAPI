@@ -38,4 +38,7 @@ public class ProdottoService {
                 prod.getQuantita(), prod.getImmagine(), prod.getPeso(), prod.getVolume(), prod.getIdAzienda(), prod.getQuantitaMinima(), prod.getId());
     }
     
+    public List<Prodotto> findProdottiByAzienda(int id_azienda) {
+       return prodottoRepo.findProdottiByAzienda(id_azienda);
+    }
 }

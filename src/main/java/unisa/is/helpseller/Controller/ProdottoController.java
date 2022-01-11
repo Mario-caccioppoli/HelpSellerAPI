@@ -48,4 +48,11 @@ public class ProdottoController {
         prodottoService.udpate(prod);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    
+    @GetMapping("/findProdottiByAzienda/{id}") 
+    public ResponseEntity<List<Prodotto>> findProdottiByAzienda(@PathVariable("id") int id) {
+        List<Prodotto> prodotti = prodottoService.findProdottiByAzienda(id);
+        return new ResponseEntity<>(prodotti, HttpStatus.OK);
+    }
 }
+

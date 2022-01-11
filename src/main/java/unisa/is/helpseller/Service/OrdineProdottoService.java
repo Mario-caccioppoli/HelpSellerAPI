@@ -20,12 +20,12 @@ public class OrdineProdottoService {
         return ordineProdottoRepo.findAll();
     }
 
-    public OrdineProdotto findId(int id) {
-        return ordineProdottoRepo.findId(id);
+    public OrdineProdotto findId(OrdineProdotto ordProd) {
+        return ordineProdottoRepo.findId(ordProd.getIdOrdine(), ordProd.getIdProdotto());
     }
     
-    public void deleteId(int id) {
-        ordineProdottoRepo.deleteId(id);
+    public void deleteId(OrdineProdotto ordProd) {
+        ordineProdottoRepo.deleteId(ordProd.getIdOrdine(), ordProd.getIdProdotto());
     }
     
     public void insert(OrdineProdotto ordProd) {

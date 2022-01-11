@@ -24,15 +24,15 @@ public class OrdineProdottoController {
         return new ResponseEntity<>(ordineProdotti, HttpStatus.OK);
     }
     
-    @GetMapping("/findId/{id}")
-    public ResponseEntity<OrdineProdotto> findId(@PathVariable("id") int id) {
-        OrdineProdotto ordineProdotto = ordineprodottoService.findId(id);
+    @GetMapping("/findId/")
+    public ResponseEntity<OrdineProdotto> findId(OrdineProdotto ordProd) {
+        OrdineProdotto ordineProdotto = ordineprodottoService.findId(ordProd);
         return new ResponseEntity<>(ordineProdotto, HttpStatus.OK);
     }
     
-    @DeleteMapping("/deleteId/{id}")
-    public ResponseEntity<OrdineProdotto> deleteId(@PathVariable("id") int id) {
-        ordineprodottoService.deleteId(id);
+    @DeleteMapping("/deleteId/")
+    public ResponseEntity<OrdineProdotto> deleteId(OrdineProdotto ordProd) {
+        ordineprodottoService.deleteId(ordProd);
         return new ResponseEntity<>(HttpStatus.OK);
     }
     

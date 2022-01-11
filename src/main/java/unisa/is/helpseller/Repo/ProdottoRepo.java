@@ -1,18 +1,20 @@
 package unisa.is.helpseller.Repo;
 
-import java.sql.Date;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import unisa.is.helpseller.Entity.Amministratore;
 import unisa.is.helpseller.Entity.Prodotto;
 
 
 public interface ProdottoRepo extends JpaRepository<Prodotto, Integer>{
-   @Query("SELECT p FROM Prodotto p WHERE p.id = ?1")
+  
+    //JPQL
+    @Query("SELECT p FROM Prodotto p WHERE p.id = ?1")
    Prodotto findId(int id);
    
+   //JPQL
    @Modifying
    @Query("DELETE FROM Prodotto p WHERE p.id = ?1")
    void deleteId(int id);
@@ -36,5 +38,9 @@ public interface ProdottoRepo extends JpaRepository<Prodotto, Integer>{
            @Param("descrizione") String desccrizione, @Param("quantita") int quantita,
            @Param("immagine") String immagine, @Param("peso") int peso, @Param("volume") int volume,
            @Param("id_azienda") int id_azienda, @Param("quantita_minima") int quantita_minima, @Param("id") int id);
+   
+   //JPQL
+   @Query("SELECT p FROM Prodotto p WHERE p.id_azienda = :id_azienda")
+   List<Prodotto> findProdottiByAzienda(@Param("id_azienda") int id_azienda);
    
 }

@@ -20,8 +20,12 @@ public class ScontoProdottoService {
         return scontoProdottoRepo.findAll();
     }
     
-    public ScontoProdotto findId(int id) {
-        return scontoProdottoRepo.findId(id);
+    public ScontoProdotto findBySconto(int id) {
+        return scontoProdottoRepo.findBySconto(id);
+    }
+    
+    public ScontoProdotto findByProdotto(int id) {
+        return scontoProdottoRepo.findByProdotto(id);
     }
     
     public void deleteId(int id) {
