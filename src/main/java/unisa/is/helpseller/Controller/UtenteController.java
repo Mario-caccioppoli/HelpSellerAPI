@@ -58,23 +58,20 @@ public class UtenteController {
     }
     
     @PostMapping("/regAdmin")
-    public void regAdmin(String username, String password, String email){
-        adminService.insert(username, email, password);
+    public void regAdmin(Amministratore a){
+        adminService.insert(a);
     }
     
     @PostMapping("/regAzienda")
-    public void registrazione(String email, String password, String nome_azienda, 
-           String indirizzo,  String vat, String descrizione, String logo){
+    public void registrazione(Azienda a){
         
-        aziendaService.insert(email, password, nome_azienda, indirizzo, vat, descrizione, logo);
+        aziendaService.insert(a);
     }
     
     @PostMapping("/regDistributore")
-    public void registrazione(String username, String email, String password, 
-              String nome, String cognome, String telefono, 
-              String indirizzo_sede, int id_ordine_prova, String vat){
+    public void registrazione(Distributore d){
 
-        distService.insert(username, email, password, nome, cognome, telefono, indirizzo_sede, id_ordine_prova, vat);
+        distService.insert(d);
     }
     
     @GetMapping("/")

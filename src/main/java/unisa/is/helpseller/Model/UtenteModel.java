@@ -54,7 +54,7 @@ public class UtenteModel implements Serializable{
         this.tipo = "Distributore";
         this.nome = dist.getNome();
         this.cognome = dist.getCognome();
-        this.vat = dist.getVAT();
+        this.vat = dist.getvat();
         this.telefono = dist.getTelefono();
         this.indirizzo = dist.getIndirizzoSede();
     }
@@ -65,7 +65,7 @@ public class UtenteModel implements Serializable{
         this.nome = az.getNomeAzienda();
         this.password = az.getPassword();
         this.tipo = "Azienda";
-        this.vat = az.getVAT();
+        this.vat = az.getvat();
         this.indirizzo = az.getIndirizzo();
         this.descrizione = az.getDescrizione();
     }
