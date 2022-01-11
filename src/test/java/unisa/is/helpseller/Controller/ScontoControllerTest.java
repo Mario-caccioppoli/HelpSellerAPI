@@ -11,12 +11,14 @@ package unisa.is.helpseller.Controller;
  */
 
 import java.sql.Date;
+import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
+import unisa.is.helpseller.Entity.Sconto;
 
 
 @SpringBootTest
@@ -28,13 +30,22 @@ public class ScontoControllerTest {
     @Test
     public void contextLoads() throws Exception {
     assertThat(controller.findAll().getBody().isEmpty()).isFalse();
-    assertThat(controller.findId(1).getStatusCode().equals(HttpStatus.OK));
-    assertThat(controller.findId(1000).getStatusCode().equals(HttpStatus.INTERNAL_SERVER_ERROR));
-    assertThat(controller.deleteId(500).getStatusCode().equals(HttpStatus.INTERNAL_SERVER_ERROR));
-    
-    for(int i=0; i<=controller.findAll().getBody().size();i++){
-        Date dataInizio=controller.findId(i).getBody().getDataInizio();
-        assertThat(controller.findId(i).getBody().getDataFine().after(dataInizio));
-    }
+    assertThat(controller.findId(1).getBody().getClass().equals("Sconto"));
+    assertThat(controller.findId(1).getBody().getTipo()== null).isFalse();
+    assertThat(controller.findId(1).getBody().getId()>0);
+    assertThat(controller.findId(1).getBody().getDataFine()!= null);
+    assertThat(controller.findId(1).getBody().getIdAzienda()>0);
+    assertThat(controller.findId(1).getBody().getDataInizio()!= null);
+    assertThat(controller.findId(1).getBody().getPercentuale()>0);
+    assertThat(controller.findId(1).getBody().getTipo()!= null);
+    assertThat(controller.findId(1).getBody().getQuantita()>0);
+        int i,m;
+        List<Sconto> s=controller.findAll().getBody();
+        m=s.size();
+    for( i=0; i<=m;i++){
+        Date dataInizio=s.get(i).getDataInizio();
+        assertThat(s.get(i).getDataFine().after(dataInizio));
+ 
+                        }
     }
 }

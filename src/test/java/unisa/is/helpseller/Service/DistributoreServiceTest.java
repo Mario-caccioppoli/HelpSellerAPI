@@ -21,8 +21,9 @@ public class DistributoreServiceTest {
     @Test
     public void contextLoads() throws Exception {
     assertThat(service.findAll().isEmpty()).isFalse();
-    assertThat(service.findId(1).getId()).isEqualTo(1);
-    assertThat(service.findId(1000).getId()).isEqualTo(null);
-    
+    assertThat(service.findId(1).getClass().equals("Distributore"));
+    assertThat(service.findId(1).getEmail().equals(null)).isFalse();
+    assertThat(service.findId(1).getId()>0);
+    assertThat(service.findId(1).getPassword()!= null);
     }
 }

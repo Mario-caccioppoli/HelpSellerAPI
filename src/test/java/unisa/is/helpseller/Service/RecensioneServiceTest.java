@@ -21,8 +21,13 @@ public class RecensioneServiceTest {
     @Test
     public void contextLoads() throws Exception {
     assertThat(service.findAll().isEmpty()).isFalse();
-    assertThat(service.findId(1).getId()).isEqualTo(1);
-    assertThat(service.findId(1000).getId()).isEqualTo(null);
-    
+    assertThat(service.findId(1).getClass().equals("Recensione"));
+    assertThat(service.findId(1).getData().equals(null)).isFalse();
+    assertThat(service.findId(1).getId()>0);
+    assertThat(service.findId(1).getTesto()!= null);
+    assertThat(service.findId(1).getIdDistributore()>0);
+    assertThat(service.findId(1).getIdProdotto()>0);
+    assertThat(service.findId(1).getVoto()>0);
+    assertThat(service.findId(1).getVoto()<=10);
     }
 }

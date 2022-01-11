@@ -21,8 +21,15 @@ public class ProdottoServiceTest {
     @Test
     public void contextLoads() throws Exception {
     assertThat(service.findAll().isEmpty()).isFalse();
-    assertThat(service.findId(1).getId()).isEqualTo(1);
-    assertThat(service.findId(1000).getId()).isEqualTo(null);
-    
+    assertThat(service.findId(1).getClass().equals("Prodotto"));
+    assertThat(service.findId(1).getDescrizione().equals(null)).isFalse();
+    assertThat(service.findId(1).getId()>0);
+    assertThat(service.findId(1).getImmagine()!= null);
+    assertThat(service.findId(1).getNomeProdotto().equals(null)).isFalse();
+    assertThat(service.findId(1).getIdAzienda()>0);
+    assertThat(service.findId(1).getPeso()>0);
+    assertThat(service.findId(1).getQuantita()>0);
+    assertThat(service.findId(1).getQuantitaMinima()>0);
+    assertThat(service.findId(1).getVolume()>0);
     }
 }

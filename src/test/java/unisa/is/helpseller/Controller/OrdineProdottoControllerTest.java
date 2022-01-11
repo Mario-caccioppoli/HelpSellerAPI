@@ -26,8 +26,9 @@ public class OrdineProdottoControllerTest {
     @Test
     public void contextLoads() throws Exception {
     assertThat(controller.findAll().getBody().isEmpty()).isFalse();
-    assertThat(controller.findId(1).getStatusCode().equals(HttpStatus.OK));
-    assertThat(controller.findId(1000).getStatusCode().equals(HttpStatus.INTERNAL_SERVER_ERROR));
-    assertThat(controller.deleteId(50).getStatusCode().equals(HttpStatus.INTERNAL_SERVER_ERROR));
+    assertThat(controller.findId(1).getBody().getClass().equals("OrdineProdotto"));
+    assertThat(controller.findId(1).getBody().getQuantita()>0);
+    assertThat(controller.findId(1).getBody().getIdProdotto()>0);
+    assertThat(controller.findId(1).getBody().getPrezzoUnitario()>0);
     }
 }

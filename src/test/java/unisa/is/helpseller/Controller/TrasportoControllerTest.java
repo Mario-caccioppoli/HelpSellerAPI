@@ -26,8 +26,11 @@ public class TrasportoControllerTest {
     @Test
     public void contextLoads() throws Exception {
     assertThat(controller.findAll().getBody().isEmpty()).isFalse();
-    assertThat(controller.findId(1).getStatusCode().equals(HttpStatus.OK));
-    assertThat(controller.findId(1000).getStatusCode().equals(HttpStatus.INTERNAL_SERVER_ERROR));
-    assertThat(controller.deleteId(500).getStatusCode().equals(HttpStatus.INTERNAL_SERVER_ERROR));
+    assertThat(controller.findId(1).getBody().getId()>0);
+    assertThat(controller.findId(1).getBody().getClass().equals("Trasporto"));
+    assertThat(controller.findId(1).getBody().getIdOrdine()>0);
+    assertThat(controller.findId(1).getBody().getDataConsegna()!= null);
+    assertThat(controller.findId(1).getBody().getQuantitaMinima()>0);
+    assertThat(controller.findId(1).getBody().getIndirizzoConsegna()!= null);
     }
 }
