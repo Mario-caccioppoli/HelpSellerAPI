@@ -21,8 +21,7 @@ public class OrdineProdottoServiceTest {
     @Test
     public void contextLoads() throws Exception {
     assertThat(service.findAll().isEmpty()).isFalse();
-    assertThat(service.findId(1).getId()).isEqualTo(1);
-    assertThat(service.findId(1000).getId()).isEqualTo(null);
+
     
     }
 }

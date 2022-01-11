@@ -31,8 +31,8 @@ public class ScontoControllerTest {
     assertThat(controller.findId(1).getStatusCode().equals(HttpStatus.OK));
     assertThat(controller.findId(1000).getStatusCode().equals(HttpStatus.INTERNAL_SERVER_ERROR));
     assertThat(controller.deleteId(500).getStatusCode().equals(HttpStatus.INTERNAL_SERVER_ERROR));
-        int i;
-    for( i=0; i<=controller.findAll().getBody().size();i++){
+    
+    for(int i=0; i<=controller.findAll().getBody().size();i++){
         Date dataInizio=controller.findId(i).getBody().getDataInizio();
         assertThat(controller.findId(i).getBody().getDataFine().after(dataInizio));
     }

@@ -24,8 +24,8 @@ public class ScontoServiceTest {
     assertThat(service.findAll().isEmpty()).isFalse();
     assertThat(service.findId(1).getId()).isEqualTo(1);
     assertThat(service.findId(1000).getId()).isEqualTo(null);
-    int i;
-    for( i=0; i<=service.findAll().size();i++){
+    
+    for(int i=0; i<=service.findAll().size();i++){
         Date dataInizio=service.findId(i).getDataInizio();
         assertThat(service.findId(i).getDataFine().after(dataInizio));
     }
