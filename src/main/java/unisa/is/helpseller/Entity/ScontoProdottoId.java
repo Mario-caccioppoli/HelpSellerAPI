@@ -37,6 +37,22 @@ public class ScontoProdottoId implements Serializable {
         }
         return this.id_prodotto == other.id_prodotto;
     }
+
+    public int getId_sconto() {
+        return id_sconto;
+    }
+
+    public void setId_sconto(int id_sconto) {
+        this.id_sconto = id_sconto;
+    }
+
+    public int getId_prodotto() {
+        return id_prodotto;
+    }
+
+    public void setId_prodotto(int id_prodotto) {
+        this.id_prodotto = id_prodotto;
+    }
     
     
 }
