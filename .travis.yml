@@ -1,8 +1,7 @@
 language: java
-install:
-- mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+
 services:
   - mysql
 before_script:
 - mysql -u root -e 'CREATE DATABASE helpseller;'
-- mysql -u root helpseller < db.sql
+- mysql -u root helpseller < ./db.sql
