@@ -5,4 +5,4 @@ services:
   - mysql
 before_script:
 - mysql -u root -e 'CREATE DATABASE helpseller;'
-- mysql -u root --default-character-set=utf8 helpseller < ./db.sql
+- mysql -u root --default-character-set=utf8mb4 helpseller < ./db.sql
