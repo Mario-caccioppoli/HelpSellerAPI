@@ -19,6 +19,7 @@ public class DistributoreModel implements Serializable{
     private String telefono;
     private String indirizzoSede;
     private int idOrdineProva;
+    private OrdineModel ordini;
     
     public DistributoreModel() {}
 

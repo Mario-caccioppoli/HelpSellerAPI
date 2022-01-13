@@ -18,6 +18,8 @@ public class OrdineModel implements Serializable{
     private String stato;
     private int idDistributore;
     private int idOrdineProva;
+    private DocumentoModel documento;
+    private int prezzoTotale;
  
     public OrdineModel() {}
 

@@ -17,6 +17,7 @@ public class AziendaModel implements Serializable {
     private String indirizzo;
     private String descrizione;
     private String logo;
+    private ProdottoModel prodotti;
     
     public AziendaModel() {}
     

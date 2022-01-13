@@ -13,7 +13,7 @@ public class DocumentoModel implements Serializable{
     private int idDocumento;
     private String titolo;
     private String autore;
-    private Date data;
+    private Date dataUpload;
     private int idOrdine;
     
     public DocumentoModel() {}
@@ -21,7 +21,7 @@ public class DocumentoModel implements Serializable{
     public DocumentoModel(String titolo, String autore, Date data, int idOrdine) {
         this.titolo = titolo;
         this.autore = autore;
-        this.data = data;
+        this.dataUpload = data;
         this.idOrdine = idOrdine;
     }
 
@@ -51,11 +51,11 @@ public class DocumentoModel implements Serializable{
     }
 
     public Date getData() {
-        return data;
+        return dataUpload;
     }
 
     public void setData(Date data) {
-        this.data = data;
+        this.dataUpload = data;
     }
 
     public int getIdOrdine() {

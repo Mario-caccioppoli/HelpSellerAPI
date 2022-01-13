@@ -2,6 +2,8 @@ package unisa.is.helpseller.Model;
 
 
 import java.sql.Date;
+import java.util.List;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -15,6 +17,7 @@ public class TrasportoModel implements Serializable {
     private int quantitaMinima;
     private Date dataConsegna;
     private int idOrdine;
+    private List<OrdineModel> ordine;
 
     public TrasportoModel() {}
 

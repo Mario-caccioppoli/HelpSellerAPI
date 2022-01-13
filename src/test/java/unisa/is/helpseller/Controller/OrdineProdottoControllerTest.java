@@ -16,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 
+import unisa.is.helpseller.Entity.OrdineProdotto;
+
 
 @SpringBootTest
 public class OrdineProdottoControllerTest {
@@ -26,9 +28,10 @@ public class OrdineProdottoControllerTest {
     @Test
     public void contextLoads() throws Exception {
     assertThat(controller.findAll().getBody().isEmpty()).isFalse();
-    assertThat(controller.findId(1).getBody().getClass().equals("OrdineProdotto"));
-    assertThat(controller.findId(1).getBody().getQuantita()>0);
-    assertThat(controller.findId(1).getBody().getIdProdotto()>0);
-    assertThat(controller.findId(1).getBody().getPrezzoUnitario()>0);
+    OrdineProdotto OrdineProdotto = new OrdineProdotto();
+    assertThat(controller.findId(OrdineProdotto).getBody().getClass().equals("OrdineProdotto"));
+    assertThat(controller.findId(OrdineProdotto).getBody().getQuantita()>0);
+    assertThat(controller.findId(OrdineProdotto).getBody().getIdProdotto()>0);
+    assertThat(controller.findId(OrdineProdotto).getBody().getPrezzoUnitario()>0);
     }
 }

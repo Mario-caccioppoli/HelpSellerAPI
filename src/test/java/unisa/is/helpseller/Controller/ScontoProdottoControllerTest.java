@@ -28,8 +28,7 @@ public class ScontoProdottoControllerTest {
     @Test
     public void contextLoads() throws Exception {
     assertThat(controller.findAll().getBody().isEmpty()).isFalse();
-    assertThat(controller.findId(1).getBody().getClass().equals("ScontoProdotto"));
-    assertThat(controller.findId(1).getBody().getIdProdotto()>0);
-    assertThat(controller.findId(1).getBody().getIdSconto()>0);
+    assertThat(controller.findBySconto(1).getBody().getClass().equals("ScontoProdotto"));
+    assertThat(controller.findByProdotto(1).getBody().getIdProdotto()>0);
     }
 }

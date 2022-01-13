@@ -2,6 +2,8 @@ package unisa.is.helpseller.Model;
 
 
 import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.*;
 
 
@@ -20,6 +22,7 @@ public class ProdottoModel implements Serializable {
     private int peso;
     private int volume;
     private int idAzienda;
+    private List<RecensioneModel> recensioni;
     
  
     public ProdottoModel() {}
