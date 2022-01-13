@@ -43,4 +43,20 @@ public interface ProdottoRepo extends JpaRepository<Prodotto, Integer>{
    @Query("SELECT p FROM Prodotto p WHERE p.id_azienda = :id_azienda")
    List<Prodotto> findProdottiByAzienda(@Param("id_azienda") int id_azienda);
    
+   //JPQL
+   @Query("SELECT p FROM Prodotto p WHERE p.nome_prodotto LIKE %:nome_prodotto%")
+   List<Prodotto> findProdottiByNome(@Param("nome_prodotto") String nome_prodotto);
+   
+   //JPQL
+   @Query("SELECT p FROM Prodotto p WHERE p.nome_prodotto LIKE %:nome_prodotto% AND p.id_azienda = :id_azienda")
+   List<Prodotto> findProdottiByNomeInAzienda(@Param("nome_prodotto") String nome_prodotto, @Param("id_azienda") int id_azienda);
+   
+   //SQL
+   @Query(value = "SELECT * " +
+        "FROM prodotto " +
+        "INNER JOIN ordine_prodotto AS ordprd " +
+        "ON prodotto.id = ordprd.id_prodotto " +
+        "WHERE ordprd.id_ordine = :id_ordine", nativeQuery = true)
+   List<Prodotto> findProdottiInOrdine(@Param("id_ordine") int id_ordine);
+   
 }

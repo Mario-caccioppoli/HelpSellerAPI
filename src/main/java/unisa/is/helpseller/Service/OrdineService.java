@@ -36,4 +36,11 @@ public class OrdineService {
         ordineRepo.update(ord.getCommento(), ord.getStato(), ord.getIdDistributore(), ord.getIdOrdineProva(), ord.getDataConsegna(), ord.getDataOrdinazione(), ord.getId());
     }
     
+    public List<Ordine> findOrdiniByDistributore(int id_distributore) {
+        return ordineRepo.findOrdiniByDistributore(id_distributore);
+    }
+    
+    public List<Ordine> findOrdiniByAzienda(int id_azienda) {
+        return ordineRepo.findOrdiniByAzienda(id_azienda);
+    }
 }

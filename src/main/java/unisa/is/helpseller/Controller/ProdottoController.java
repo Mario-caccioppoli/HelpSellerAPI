@@ -54,5 +54,23 @@ public class ProdottoController {
         List<Prodotto> prodotti = prodottoService.findProdottiByAzienda(id);
         return new ResponseEntity<>(prodotti, HttpStatus.OK);
     }
+    
+    @GetMapping("/findProdottiByNome/{name}")
+    public ResponseEntity<List<Prodotto>> findProdottiByNome(@PathVariable("name") String name) {
+        List<Prodotto> prodotti = prodottoService.findProdottiByNome(name);
+        return new ResponseEntity<>(prodotti, HttpStatus.OK);
+    }
+    
+    @GetMapping("/findProdottiByNomeInAzienda/{name}/{id}")
+    public ResponseEntity<List<Prodotto>> findProdottiByNomeInAzienda(@PathVariable("name") String name, @PathVariable("id") int id) {
+        List<Prodotto> prodotti = prodottoService.findProdottiByNomeInAzienda(name, id);
+        return new ResponseEntity<>(prodotti, HttpStatus.OK);
+    }
+    
+    @GetMapping("findProdottiInOrdine/{id}")
+    public ResponseEntity<List<Prodotto>> findProdottiInOrdine(@PathVariable("id") int id) {
+        List<Prodotto> prodotti = prodottoService.findProdottiInOrdine(id);
+        return new ResponseEntity<>(prodotti, HttpStatus.OK);
+    }
 }
 

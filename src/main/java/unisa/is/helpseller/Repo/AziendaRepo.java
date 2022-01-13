@@ -1,6 +1,6 @@
 package unisa.is.helpseller.Repo;
 
-import java.sql.Date;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -35,4 +35,9 @@ public interface AziendaRepo extends JpaRepository<Azienda, Integer> {
            @Param("nome_azienda") String nome_azienda, 
            @Param("indirizzo") String indirizzo, @Param("vat") String vat,
            @Param("descrizione") String descrizione, @Param("logo") String logo, @Param("id") int id);
+   
+   //JPQL
+   @Query("SELECT a FROM Azienda a WHERE a.nome_azienda = :nome_azienda")
+   Azienda findAziendaByNome(@Param("nome_azienda") String nome_azienda);
+   
 }

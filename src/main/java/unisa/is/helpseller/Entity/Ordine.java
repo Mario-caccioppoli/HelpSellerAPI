@@ -18,7 +18,7 @@ public class Ordine implements Serializable{
     private String commento;
     private String stato;
     private int id_distributore;
-    private int id_ordine_prova;
+    private Integer id_ordine_prova;
  
     public Ordine() {}
 
@@ -75,11 +75,11 @@ public class Ordine implements Serializable{
         this.id_distributore = id_distributore;
     }
 
-    public int getIdOrdineProva() {
+    public Integer getIdOrdineProva() {
         return id_ordine_prova;
     }
 
-    public void setIdOrdineProva(int id_ordine_prova) {
+    public void setIdOrdineProva(Integer id_ordine_prova) {
         this.id_ordine_prova = id_ordine_prova;
     }
     

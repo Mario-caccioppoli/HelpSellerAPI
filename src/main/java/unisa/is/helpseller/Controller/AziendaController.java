@@ -47,4 +47,10 @@ public class AziendaController {
         aziendaService.update(a);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    
+    @GetMapping("/findAziendaByName/{name}")
+    public ResponseEntity<Azienda> findAziendaByNome(@PathVariable("name") String name) {
+        Azienda azienda = aziendaService.findAziendaByNome(name);
+        return new ResponseEntity<>(azienda, HttpStatus.OK);
+    }
 }

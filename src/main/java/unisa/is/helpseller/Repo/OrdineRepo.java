@@ -1,12 +1,14 @@
 package unisa.is.helpseller.Repo;
 
 import java.sql.Date;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import unisa.is.helpseller.Entity.Ordine;
+
 
 public interface OrdineRepo extends JpaRepository<Ordine, Integer> {
    @Query("SELECT o FROM Ordine o WHERE o.id = ?1")
@@ -34,5 +36,19 @@ public interface OrdineRepo extends JpaRepository<Ordine, Integer> {
            @Param("id_ordine_prova") int id_ordine_prova, @Param("data_consegna") Date data_consegna, 
            @Param("data_ordinazione") Date data_ordinazione, @Param("id") int id);
    
-  
+     
+   //JPQL
+   @Query("SELECT o FROM Ordine o WHERE o.id_distributore = :id_distributore")
+   List<Ordine> findOrdiniByDistributore(@Param("id_distributore") int id_distributore);
+   
+   //SQL
+   @Query(value = "SELECT DISTINCT ordine.id, ordine.commento, ordine.stato, ordine.id_distributore, ordine.id_ordine_prova, ordine.data_consegna, ordine.data_ordinazione " +
+        "FROM prodotto " +
+        "INNER JOIN ordine_prodotto AS ordprd " +
+        "ON prodotto.id = ordprd.id_prodotto " +
+        "INNER JOIN ordine ON ordine.id = ordprd.id_ordine " +
+        "WHERE prodotto.id_azienda = :id_azienda", nativeQuery = true)
+   List<Ordine> findOrdiniByAzienda(@Param("id_azienda") int id_azienda);
+   
+   
 }

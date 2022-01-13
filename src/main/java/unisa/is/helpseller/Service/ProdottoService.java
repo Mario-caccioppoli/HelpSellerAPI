@@ -41,4 +41,16 @@ public class ProdottoService {
     public List<Prodotto> findProdottiByAzienda(int id_azienda) {
        return prodottoRepo.findProdottiByAzienda(id_azienda);
     }
+    
+    public List<Prodotto> findProdottiByNome(String nome) {
+        return prodottoRepo.findProdottiByNome(nome);
+    }
+    
+    public List<Prodotto> findProdottiByNomeInAzienda(String nome, int id_azienda) {
+        return prodottoRepo.findProdottiByNomeInAzienda(nome, id_azienda);
+    } 
+    
+    public List<Prodotto> findProdottiInOrdine(int id_ordine) {
+        return prodottoRepo.findProdottiInOrdine(id_ordine);
+    }
 }

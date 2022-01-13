@@ -32,7 +32,11 @@ public class AziendaService {
         aziendaRepo.insert(a.getEmail(), a.getPassword(), a.getNomeAzienda(), a.getIndirizzo(), a.getvat(), a.getDescrizione(), a.getLogo());
     }
     
-      public void update(Azienda a) {
+    public void update(Azienda a) {
         aziendaRepo.update(a.getEmail(), a.getPassword(), a.getNomeAzienda(), a.getIndirizzo(), a.getvat(), a.getDescrizione(), a.getLogo(), a.getId());
+    }
+    
+    public Azienda findAziendaByNome(String nome) {
+        return aziendaRepo.findAziendaByNome(nome);
     }
 }

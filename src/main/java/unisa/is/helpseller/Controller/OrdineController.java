@@ -18,7 +18,7 @@ public class OrdineController {
     @Autowired
     public OrdineController(OrdineService ordineService) {this.ordineService = ordineService;}
     
-      @GetMapping("/findAll")
+    @GetMapping("/findAll")
     public ResponseEntity<List<Ordine>> findAll() {
         List<Ordine> ordini = ordineService.findAll();
         return new ResponseEntity<>(ordini, HttpStatus.OK);
@@ -46,5 +46,17 @@ public class OrdineController {
     public ResponseEntity<Ordine> update(Ordine ord) {
         ordineService.update(ord);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+    
+    @GetMapping("/findOrdiniByDistributore/{id}") 
+    public ResponseEntity<List<Ordine>> findOrdiniByDistributore(@PathVariable("id") int id) {
+        List<Ordine> ordini = ordineService.findOrdiniByDistributore(id);
+        return new ResponseEntity<>(ordini, HttpStatus.OK);
+    }
+    
+    @GetMapping("/findOrdiniByAzienda/{id}")
+    public ResponseEntity<List<Ordine>> findOrdiniByAzienda(@PathVariable("id") int id) {
+        List<Ordine> ordini = ordineService.findOrdiniByAzienda(id);
+        return new ResponseEntity<>(ordini, HttpStatus.OK);
     }
 }
