@@ -22,9 +22,8 @@ public class ScontoProdottoServiceTest {
     public void contextLoads() throws Exception {
     assertThat(service.findAll().isEmpty()).isFalse();
 
-    assertThat(service.findId(1).getClass().equals("ScontoProdotto"));
-    assertThat(service.findId(1).getIdSconto()>0);
-    assertThat(service.findId(1).getIdProdotto()>0);
+    assertThat(service.findBySconto(1).getClass().equals("ScontoProdotto"));
+    assertThat(service.findByProdotto(1).getClass().equals("ScontoProdotto"));
 
     
     }

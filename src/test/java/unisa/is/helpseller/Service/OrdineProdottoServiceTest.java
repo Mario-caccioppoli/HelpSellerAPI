@@ -9,6 +9,10 @@ import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import unisa.is.helpseller.Entity.OrdineProdotto;
+import unisa.is.helpseller.Model.OrdineModel;
+import unisa.is.helpseller.Model.OrdineProdottoModel;
 /**
  *
  * @author UTENTE
@@ -21,16 +25,14 @@ public class OrdineProdottoServiceTest {
     @Test
     public void contextLoads() throws Exception {
     assertThat(service.findAll().isEmpty()).isFalse();
-
-    assertThat(service.findId(1).getClass().equals("OrdineProdotto"));
-    assertThat(service.findId(1).getIdOrdine()>0);
-    assertThat(service.findId(1).getPrezzo()>0);
-    assertThat(service.findId(1).getIdProdotto()>0);
-    assertThat(service.findId(1).getPrezzoUnitario()>0);
-    assertThat(service.findId(1).getQuantita()>0);
-
-
-    
-
+    OrdineProdotto ordine = new OrdineProdotto();
+    ordine.setIdOrdine(1);
+    ordine.setIdProdotto(1);
+    assertThat(service.findId(ordine).getClass().equals("OrdineProdotto"));
+    assertThat(service.findId(ordine).getIdOrdine()>0);
+    assertThat(service.findId(ordine).getPrezzo()>0);
+    assertThat(service.findId(ordine).getIdProdotto()>0);
+    assertThat(service.findId(ordine).getPrezzoUnitario()>0);
+    assertThat(service.findId(ordine).getQuantita()>0);
     }
 }

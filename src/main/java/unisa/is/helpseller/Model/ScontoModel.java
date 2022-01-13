@@ -2,6 +2,7 @@ package unisa.is.helpseller.Model;
 
 
 import java.sql.Date;
+import java.util.List;
 import java.io.Serializable;
 import javax.persistence.*;
 
@@ -18,6 +19,7 @@ public class ScontoModel implements Serializable {
     private String tipo;
     private int quantita;
     private int idAzienda;
+    private List<ProdottoModel> prodotti;
 
     public ScontoModel() {}
 
