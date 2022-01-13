@@ -40,4 +40,13 @@ public interface AziendaRepo extends JpaRepository<Azienda, Integer> {
    @Query("SELECT a FROM Azienda a WHERE a.nome_azienda = :nome_azienda")
    Azienda findAziendaByNome(@Param("nome_azienda") String nome_azienda);
    
+   //SQL
+   @Query(
+   value ="SELECT azienda.id, azienda.email, azienda.password, azienda.nome_azienda, azienda.vat, azienda.indirizzo, azienda.descrizione, azienda.logo " +
+    "FROM azienda " +
+    "INNER JOIN prodotto " +
+    "ON prodotto.id_azienda = azienda.id " +
+    "WHERE prodotto.id = :id_prodotto;", nativeQuery = true)
+   Azienda findAziendaByProdotto(@Param("id_prodotto") int id_prodotto);
+   
 }

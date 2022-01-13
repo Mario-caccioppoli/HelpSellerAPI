@@ -39,4 +39,8 @@ public class AziendaService {
     public Azienda findAziendaByNome(String nome) {
         return aziendaRepo.findAziendaByNome(nome);
     }
+    
+    public Azienda findAziendaByProdotto(int id_prodotto) {
+        return aziendaRepo.findAziendaByProdotto(id_prodotto);
+    }
 }

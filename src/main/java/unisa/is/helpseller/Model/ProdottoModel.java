@@ -23,6 +23,7 @@ public class ProdottoModel implements Serializable {
     private int volume;
     private int idAzienda;
     private List<RecensioneModel> recensioni;
+    private int quantita_ordine;
     
  
     public ProdottoModel() {}
