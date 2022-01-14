@@ -4,7 +4,5 @@ install:
 services:
   - mysql
 before_script:
-- sed -i 's/utf8mb4_0900_ai_ci/utf8_general_ci/g'./db.sql 
-- sed -i 's/CHARSET=utf8mb4/CHARSET=utf8/g' ./db.sql 
 - mysql -u root -e 'CREATE DATABASE helpseller;'
-- mysql -u root --default-character-set=utf8mb4 helpseller < ./db.sql
+- mysql -u root --default-character-set=utf8 helpseller < ./db.sql
