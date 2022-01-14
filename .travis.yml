@@ -5,7 +5,7 @@ install:
 services:
   - mysql
 script: 
--mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+- mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 before_install:
 - mysql -u root -e 'CREATE DATABASE helpseller;'
 - mysql -u root --default-character-set=utf8 helpseller < ./db.sql
