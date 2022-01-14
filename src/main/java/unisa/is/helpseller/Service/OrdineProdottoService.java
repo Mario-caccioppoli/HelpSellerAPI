@@ -4,8 +4,10 @@ package unisa.is.helpseller.Service;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 import unisa.is.helpseller.Entity.OrdineProdotto;
+import unisa.is.helpseller.Entity.Prodotto;
 import unisa.is.helpseller.Repo.OrdineProdottoRepo;
 
 @Service
@@ -29,10 +31,14 @@ public class OrdineProdottoService {
     }
     
     public void insert(OrdineProdotto ordProd) {
-        ordineProdottoRepo.insert(ordProd.getIdOrdine(), ordProd.getIdProdotto(), ordProd.getQuantita(), ordProd.getPrezzo(), ordProd.getPrezzoUnitario());
+        ordineProdottoRepo.insert(ordProd.getIdOrdine(), ordProd.getIdProdotto(), ordProd.getQuantitaOrdine(), ordProd.getPrezzo(), ordProd.getPrezzoUnitario());
     }
     
     public void udpate(OrdineProdotto ordProd) {
-        ordineProdottoRepo.update(ordProd.getIdOrdine(), ordProd.getIdProdotto(), ordProd.getQuantita(), ordProd.getPrezzo(), ordProd.getPrezzoUnitario());
+        ordineProdottoRepo.update(ordProd.getIdOrdine(), ordProd.getIdProdotto(), ordProd.getQuantitaOrdine(), ordProd.getPrezzo(), ordProd.getPrezzoUnitario());
+    }
+    
+    public List<Pair<OrdineProdotto, Prodotto>> findDettagliOrdine(int id_ordine) {
+       return ordineProdottoRepo.findDettagliOrdine(id_ordine);
     }
 }

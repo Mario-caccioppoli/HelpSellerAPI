@@ -1,33 +1,25 @@
 package unisa.is.helpseller.Model;
 
-
 import java.io.Serializable;
-import javax.persistence.*;
+import unisa.is.helpseller.Entity.Prodotto;
 
+public class OrdineProdottoModel implements Serializable {
 
-public class OrdineProdottoModel implements Serializable{
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-    
     private int idOrdine;
-    private int idProdotto;
-    private int quantita;
+    private int quantitaOrdine;
     private double prezzoUnitario;
- 
-    public OrdineProdottoModel() {}
+    private Prodotto prodotto;
 
-    public OrdineProdottoModel(int idOrdine, int idProdotto, int quantita, double prezzoUnitario) {
+    public OrdineProdottoModel() {
+    }
+
+    public OrdineProdottoModel(int idOrdine, int quantitaOrdine, double prezzoUnitario, Prodotto prodotto) {
         this.idOrdine = idOrdine;
-        this.idProdotto = idProdotto;
-        this.quantita = quantita;
+        this.quantitaOrdine = quantitaOrdine;
         this.prezzoUnitario = prezzoUnitario;
+        this.prodotto = prodotto;
     }
 
-    public long getId() {
-        return id;
-    }
-    
     public int getIdOrdine() {
         return idOrdine;
     }
@@ -36,20 +28,12 @@ public class OrdineProdottoModel implements Serializable{
         this.idOrdine = idOrdine;
     }
 
-    public int getIdProdotto() {
-        return idProdotto;
+    public int getQuantitaOrdine() {
+        return quantitaOrdine;
     }
 
-    public void setIdProdotto(int idProdotto) {
-        this.idProdotto = idProdotto;
-    }
-
-    public int getQuantita() {
-        return quantita;
-    }
-
-    public void setQuantita(int quantita) {
-        this.quantita = quantita;
+    public void setQuantitaOrdine(int quantitaOrdine) {
+        this.quantitaOrdine = quantitaOrdine;
     }
 
     public double getPrezzoUnitario() {
@@ -60,5 +44,12 @@ public class OrdineProdottoModel implements Serializable{
         this.prezzoUnitario = prezzoUnitario;
     }
 
-    
+    public Prodotto getProdotto() {
+        return prodotto;
+    }
+
+    public void setProdotto(Prodotto prodotto) {
+        this.prodotto = prodotto;
+    }
+
 }

@@ -40,4 +40,8 @@ public class ScontoService {
        return scontoRepo.findScontiByAzienda(id_azienda);
     }
     
+    public List<Sconto> findScontiByTipo(String tipo) {
+        return scontoRepo.findScontiByTipo(tipo);
+    }
+    
 }

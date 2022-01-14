@@ -1,11 +1,13 @@
 package unisa.is.helpseller.Repo;
 
-import java.sql.Date;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.data.util.Pair;
 import unisa.is.helpseller.Entity.OrdineProdotto;
+import unisa.is.helpseller.Entity.Prodotto;
 
 
 public interface OrdineProdottoRepo extends JpaRepository<OrdineProdotto, Integer> {
@@ -31,5 +33,14 @@ public interface OrdineProdottoRepo extends JpaRepository<OrdineProdotto, Intege
    void update(@Param("id_ordine") int id_ordine, @Param("id_prodotto") int id_prodotto, 
            @Param("quantita") int quantita, @Param("prezzo") double prezzo, 
            @Param("prezzo_unitario") double prezzo_unitario);
+   
+   //SQL
+   @Query(
+   value = "SELECT * " +
+    "FROM ordine_prodotto " +
+    "INNER JOIN prodotto " +
+    "ON ordine_prodotto.id_prodotto = prodotto.id " +
+    "WHERE ordine_prodotto.id_ordine = :id_ordine", nativeQuery = true)
+   List<Pair<OrdineProdotto, Prodotto>> findDettagliOrdine(@Param("id_ordine") int id_ordine);
    
 }

@@ -15,18 +15,18 @@ public class OrdineProdotto implements Serializable{
     @Id
     private int id_prodotto;
     
-    private int quantita;
+    private int quantita_ordine;
     private double prezzo_unitario;
-    private double prezzo;
+    private double prezzo_ordine;
  
     public OrdineProdotto() {}
 
-    public OrdineProdotto(int id_ordine, int id_prodotto, int quantita, double prezzo_unitario, double prezzo) {
+    public OrdineProdotto(int id_ordine, int id_prodotto, int quantita_ordine, double prezzo_unitario, double prezzo_ordine) {
         this.id_ordine = id_ordine;
         this.id_prodotto = id_prodotto;
-        this.quantita = quantita;
+        this.quantita_ordine = quantita_ordine;
         this.prezzo_unitario = prezzo_unitario;
-        this.prezzo = prezzo;
+        this.prezzo_ordine = prezzo_ordine;
     }
 
     public int getIdOrdine() {
@@ -45,12 +45,12 @@ public class OrdineProdotto implements Serializable{
         this.id_prodotto = id_prodotto;
     }
 
-    public int getQuantita() {
-        return quantita;
+    public int getQuantitaOrdine() {
+        return quantita_ordine;
     }
 
-    public void setQuantita(int quantita) {
-        this.quantita = quantita;
+    public void setQuantitaOrdine(int quantita_ordine) {
+        this.quantita_ordine = quantita_ordine;
     }
 
     public double getPrezzoUnitario() {
@@ -62,11 +62,11 @@ public class OrdineProdotto implements Serializable{
     }
 
     public double getPrezzo() {
-        return prezzo;
+        return prezzo_ordine;
     }
 
-    public void setPrezzo(double prezzo) {
-        this.prezzo = prezzo;
+    public void setPrezzo(double prezzo_ordine) {
+        this.prezzo_ordine = prezzo_ordine;
     }
 
 }

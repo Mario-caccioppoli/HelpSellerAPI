@@ -34,4 +34,8 @@ public interface ScontoRepo extends JpaRepository<Sconto, Integer> {
     //JPQL
    @Query("SELECT s FROM Sconto s WHERE s.id_azienda = :id_azienda")
    List<Sconto> findScontiByAzienda(@Param("id_azienda") int id_azienda);
+   
+   //JPQL
+   @Query("SELECT s FROM Sconto s WHERE s.tipo = :tipo")
+   List<Sconto> findScontiByTipo(@Param("tipo") String tipo);
 }
