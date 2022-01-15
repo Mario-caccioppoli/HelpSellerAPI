@@ -13,6 +13,7 @@ import unisa.is.helpseller.Entity.Ordine;
 @RequestMapping("/ordine")
 @CrossOrigin("http://localhost:4200")
 public class OrdineController {
+	@Autowired
     private final OrdineService ordineService;
     
     @Autowired

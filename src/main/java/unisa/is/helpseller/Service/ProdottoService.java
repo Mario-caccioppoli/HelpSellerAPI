@@ -11,6 +11,7 @@ import unisa.is.helpseller.Repo.ProdottoRepo;
 @Service
 @Transactional
 public class ProdottoService {
+	@Autowired
     private final ProdottoRepo prodottoRepo;
     
     @Autowired

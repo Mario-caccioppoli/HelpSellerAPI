@@ -13,6 +13,7 @@ import unisa.is.helpseller.Entity.Trasporto;
 @RequestMapping("/trasporto")
 @CrossOrigin("http://localhost:4200")
 public class TrasportoController {
+	@Autowired
     private final TrasportoService trasportoService;
     
     @Autowired

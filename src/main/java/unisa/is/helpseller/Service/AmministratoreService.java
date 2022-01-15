@@ -11,6 +11,7 @@ import unisa.is.helpseller.Repo.AmministratoreRepo;
 @Service
 @Transactional
 public class AmministratoreService {
+	@Autowired
     private final AmministratoreRepo amministratoreRepo;
     
     @Autowired

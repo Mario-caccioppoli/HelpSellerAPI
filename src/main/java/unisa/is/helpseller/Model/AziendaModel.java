@@ -2,6 +2,8 @@ package unisa.is.helpseller.Model;
 
 
 import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.*;
 
 public class AziendaModel implements Serializable {
@@ -17,7 +19,8 @@ public class AziendaModel implements Serializable {
     private String indirizzo;
     private String descrizione;
     private String logo;
-    private ProdottoModel prodotti;
+    private List<ProdottoModel> prodotti;
+    private List<OrdineModel> ordini;
     
     public AziendaModel() {}
     

@@ -24,6 +24,7 @@ import unisa.is.helpseller.Service.UtenteService;
 @RequestMapping("/user")
 @CrossOrigin("http://localhost:4200")
 public class UtenteController {
+	@Autowired
     private final UtenteService utenteService;
     
     @Autowired

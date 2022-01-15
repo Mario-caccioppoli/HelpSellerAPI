@@ -11,6 +11,7 @@ import unisa.is.helpseller.Repo.RecensioneRepo;
 @Service
 @Transactional
 public class RecensioneService {
+	@Autowired
     private final RecensioneRepo recensioneRepo;
     
     @Autowired

@@ -17,6 +17,7 @@ import unisa.is.helpseller.Model.OrdineProdottoModel;
 @RequestMapping("/ordineprodotto")
 @CrossOrigin("http://localhost:4200")
 public class OrdineProdottoController {
+	@Autowired
     private final OrdineProdottoService ordineprodottoService;
     
     @Autowired

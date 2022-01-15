@@ -33,6 +33,5 @@ public class OrdineProdottoServiceTest {
     assertThat(service.findId(ordine).getPrezzo()>0);
     assertThat(service.findId(ordine).getIdProdotto()>0);
     assertThat(service.findId(ordine).getPrezzoUnitario()>0);
-    assertThat(service.findId(ordine).getQuantita()>0);
     }
 }

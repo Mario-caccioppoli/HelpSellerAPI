@@ -17,6 +17,8 @@ import unisa.is.helpseller.Model.AmministratoreModel;
 @RequestMapping("/admin")
 @CrossOrigin("http://localhost:4200")
 public class AmministratoreController {
+	
+	@Autowired
 	private final AmministratoreService amministratoreService;
 
 	@Autowired

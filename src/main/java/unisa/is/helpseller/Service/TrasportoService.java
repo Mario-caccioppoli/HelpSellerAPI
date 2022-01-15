@@ -11,6 +11,7 @@ import unisa.is.helpseller.Repo.TrasportoRepo;
 @Service
 @Transactional
 public class TrasportoService {
+	@Autowired
     private final TrasportoRepo trasportoRepo;
     
     @Autowired

@@ -11,6 +11,7 @@ import unisa.is.helpseller.Repo.ScontoRepo;
 @Service
 @Transactional
 public class ScontoService {
+	@Autowired
     private final ScontoRepo scontoRepo;
     
     @Autowired

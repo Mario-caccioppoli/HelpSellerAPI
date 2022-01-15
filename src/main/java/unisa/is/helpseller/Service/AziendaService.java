@@ -11,6 +11,7 @@ import unisa.is.helpseller.Repo.AziendaRepo;
 @Service
 @Transactional
 public class AziendaService {
+	@Autowired
     private final AziendaRepo aziendaRepo;
     
     @Autowired

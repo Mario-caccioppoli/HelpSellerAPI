@@ -2,6 +2,8 @@ package unisa.is.helpseller.Model;
 
 
 import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.*;
 
 public class DistributoreModel implements Serializable{
@@ -18,7 +20,7 @@ public class DistributoreModel implements Serializable{
     private String telefono;
     private String indirizzoSede;
     private int idOrdineProva;
-    private OrdineModel ordini;
+    private List<OrdineModel> ordini;
     
     public DistributoreModel() {}
 

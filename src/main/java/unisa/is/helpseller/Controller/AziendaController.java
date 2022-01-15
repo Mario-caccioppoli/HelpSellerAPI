@@ -13,6 +13,8 @@ import unisa.is.helpseller.Entity.Azienda;
 @RequestMapping("/azienda")
 @CrossOrigin("http://localhost:4200")
 public class AziendaController {
+	
+	@Autowired
     private final AziendaService aziendaService;
     
     @Autowired

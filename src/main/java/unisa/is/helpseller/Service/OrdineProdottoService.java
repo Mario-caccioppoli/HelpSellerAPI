@@ -13,6 +13,7 @@ import unisa.is.helpseller.Repo.OrdineProdottoRepo;
 @Service
 @Transactional
 public class OrdineProdottoService {
+	@Autowired
     private final OrdineProdottoRepo ordineProdottoRepo;
     
     @Autowired

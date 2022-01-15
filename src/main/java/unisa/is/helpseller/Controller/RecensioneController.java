@@ -13,6 +13,7 @@ import unisa.is.helpseller.Entity.Recensione;
 @RequestMapping("/recensione")
 @CrossOrigin("http://localhost:4200")
 public class RecensioneController {
+	@Autowired
     private final RecensioneService recensioneService;
     
     @Autowired

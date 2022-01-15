@@ -13,6 +13,7 @@ import unisa.is.helpseller.Entity.Sconto;
 @RequestMapping("/sconto")
 @CrossOrigin("http://localhost:4200")
 public class ScontoController {
+	@Autowired
     private final ScontoService scontoService;
     
     @Autowired

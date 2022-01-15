@@ -15,6 +15,7 @@ import unisa.is.helpseller.Entity.Documento;
 @RequestMapping("/documento")
 @CrossOrigin("http://localhost:4200")
 public class DocumentoController {
+	@Autowired
     private final DocumentoService documentoService;
     
     @Autowired

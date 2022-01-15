@@ -10,11 +10,15 @@ package unisa.is.helpseller.Controller;
  * @author UTENTE
  */
 import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import unisa.is.helpseller.Entity.OrdineProdotto;
 
@@ -26,12 +30,16 @@ public class OrdineProdottoControllerTest {
     private OrdineProdottoController controller;
 
     @Test
-    public void contextLoads() throws Exception {
-    assertThat(controller.findAll().getBody().isEmpty()).isFalse();
-    OrdineProdotto OrdineProdotto = new OrdineProdotto();
-    assertThat(controller.findId(OrdineProdotto).getBody().getClass().equals("OrdineProdotto"));
-    assertThat(controller.findId(OrdineProdotto).getBody().getQuantita()>0);
-    assertThat(controller.findId(OrdineProdotto).getBody().getIdProdotto()>0);
-    assertThat(controller.findId(OrdineProdotto).getBody().getPrezzoUnitario()>0);
-    }
+    public void findAll() throws Exception {
+    	ResponseEntity<List<OrdineProdotto>> response = controller.findAll();
+    	List<OrdineProdotto> allOrdineProdotto = response.getBody();
+    	if(allOrdineProdotto.size() > 0)
+    	{
+    		assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+    	}
+    	else
+    	{
+    		assertThat(response.getStatusCode().compareTo(HttpStatus.NOT_FOUND));
+    	}
+   }
 }

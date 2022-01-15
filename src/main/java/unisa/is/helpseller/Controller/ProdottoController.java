@@ -13,6 +13,7 @@ import unisa.is.helpseller.Entity.Prodotto;
 @RequestMapping("/prodotto")
 @CrossOrigin("http://localhost:4200")
 public class ProdottoController {
+	@Autowired
     private final ProdottoService prodottoService;
     
     @Autowired

@@ -11,6 +11,7 @@ import unisa.is.helpseller.Repo.DistributoreRepo;
 @Service
 @Transactional
 public class DistributoreService {
+	@Autowired
     private final DistributoreRepo distributoreRepo;
     
     @Autowired

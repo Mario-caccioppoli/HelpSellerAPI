@@ -13,6 +13,7 @@ import unisa.is.helpseller.Repo.DocumentoRepo;
 @Service
 @Transactional
 public class DocumentoService {
+	@Autowired
     private final DocumentoRepo documentoRepo;
     
     @Autowired

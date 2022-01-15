@@ -13,6 +13,7 @@ import unisa.is.helpseller.Entity.Distributore;
 @RequestMapping("/distributore")
 @CrossOrigin("http://localhost:4200")
 public class DistributoreController {
+	@Autowired
     private final DistributoreService distributoreService;
     
     @Autowired
