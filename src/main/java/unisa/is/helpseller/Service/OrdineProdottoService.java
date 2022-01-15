@@ -46,7 +46,7 @@ public class OrdineProdottoService {
        return ordineProdottoRepo.findDettagliProdotto(id_ordine);
     }
     
-    List<Object[]> findDettagliOrdineProdotto(int id_ordine) {
+    public List<Object[]> findDettagliOrdineProdotto(int id_ordine) {
         return ordineProdottoRepo.findDettagliOrdineProdotto(id_ordine);
     }
 }

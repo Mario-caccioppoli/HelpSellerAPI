@@ -1,6 +1,7 @@
 
 package unisa.is.helpseller.Repo;
 
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -29,4 +30,9 @@ public interface ScontoProdottoRepo extends JpaRepository<ScontoProdotto, Intege
    @Modifying
    @Query("UPDATE ScontoProdotto s SET id_sconto = :id_sconto, id_prodotto = :id_prodotto WHERE s.id_sconto = :id_sconto_old AND s.id_prodotto = :id_prodotto_old")
    void update(@Param("id_sconto") int id_sconto, @Param("id_prodotto") int id_prodotto, @Param("id_sconto_old") int id_sconto_old, @Param("id_prodotto_old") int id_prodotto_old);
+   
+   //JPQL
+   @Query("SELECT p, s FROM Prodotto p, ScontoProdotto sp, Sconto s"
+           + "WHERE sp.id_prodotto = p.id AND sp.id_sconto = s.id AND p.nome_prodotto LIKE %:nome_prodotto% AND p.id_azienda = :id_azienda")
+   List<Object[]> findProdottiScontatiAzienda(@Param("nome_prodotto") String nome_prodotto, @Param("id_azienda") int id_azienda);
 }

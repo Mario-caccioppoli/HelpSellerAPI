@@ -30,7 +30,6 @@ public class OrdineProdottoControllerTest {
     assertThat(controller.findAll().getBody().isEmpty()).isFalse();
     OrdineProdotto OrdineProdotto = new OrdineProdotto();
     assertThat(controller.findId(OrdineProdotto).getBody().getClass().equals("OrdineProdotto"));
-    assertThat(controller.findId(OrdineProdotto).getBody().getQuantita()>0);
     assertThat(controller.findId(OrdineProdotto).getBody().getIdProdotto()>0);
     assertThat(controller.findId(OrdineProdotto).getBody().getPrezzoUnitario()>0);
     }

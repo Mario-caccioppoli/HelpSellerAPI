@@ -39,4 +39,8 @@ public class ScontoProdottoService {
     public void udpate(ScontoProdotto updated, ScontoProdotto old) {
         scontoProdottoRepo.update(updated.getIdSconto(), updated.getIdProdotto(), old.getIdSconto(), old.getIdProdotto());
     }
+    
+    public List<Object[]> findProdottiScontatiAzienda(String nome, int id_azienda) {
+        return scontoProdottoRepo.findProdottiScontatiAzienda(nome, id_azienda);
+    }
 }

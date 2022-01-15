@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import unisa.is.helpseller.Entity.ScontoProdotto;
+import unisa.is.helpseller.Model.ScontoProdottoModel;
 
 @RestController
 @RequestMapping("/scontoprodotto")
@@ -54,4 +55,10 @@ public class ScontoProdottoController {
         scontoProdottoService.udpate(updated, old);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    
+    /*@GetMapping("/findProdottiScontatiAzienda/{name}/{id}")
+    public ResponseEntity<List<ScontoProdottoModel>> findProdottiScontatiAzienda(@PathVariable("name") String name, @PathVariable("id") int id) {
+        List<Object[]> obj = scontoProdottoService.findProdottiScontatiAzienda(name, id);
+        
+    }*/
 }

@@ -19,13 +19,13 @@ public class Distributore implements Serializable{
     private String vat;
     private String telefono;
     private String indirizzo_sede;
-    private int id_ordine_prova;
+    private Integer id_ordine_prova;
     
     public Distributore() {}
 
     public Distributore(String username, String email, String password, 
             String nome, String cognome, String vat, String telefono, 
-            String indirizzo_sede, int id_ordine_prova) {
+            String indirizzo_sede, Integer id_ordine_prova) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -107,11 +107,11 @@ public class Distributore implements Serializable{
         this.indirizzo_sede = indirizzo_sede;
     }
 
-    public int getIdOrdineProva() {
+    public Integer getIdOrdineProva() {
         return id_ordine_prova;
     }
 
-    public void setIdOrdineProva(int id_ordine_prova) {
+    public void setIdOrdineProva(Integer id_ordine_prova) {
         this.id_ordine_prova = id_ordine_prova;
     }
     

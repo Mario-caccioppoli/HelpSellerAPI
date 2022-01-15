@@ -2,42 +2,34 @@ package unisa.is.helpseller.Model;
 
 
 import java.io.Serializable;
-import javax.persistence.*;
+import unisa.is.helpseller.Entity.Prodotto;
+import unisa.is.helpseller.Entity.Sconto;
 
 public class ScontoProdottoModel implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-    
-    private int idSconto;
-    private int idProdotto;
+    private Prodotto prodotto;
+    private Sconto sconto;
 
     public ScontoProdottoModel() {}
 
-    public ScontoProdottoModel(int idSconto, int idProdotto) {
-        this.idSconto = idSconto;
-        this.idProdotto = idProdotto;
+    public ScontoProdottoModel(Prodotto prodotto, Sconto sconto) {
+        this.prodotto = prodotto;
+        this.sconto = sconto;
     }
 
-    public long getId() {
-        return id;
+    public Prodotto getProdotto() {
+        return prodotto;
     }
 
-    public int getIdSconto() {
-        return idSconto;
+    public void setProdotto(Prodotto prodotto) {
+        this.prodotto = prodotto;
     }
 
-    public void setIdSconto(int idSconto) {
-        this.idSconto = idSconto;
+    public Sconto getSconto() {
+        return sconto;
     }
 
-    public int getIdProdotto() {
-        return idProdotto;
+    public void setSconto(Sconto sconto) {
+        this.sconto = sconto;
     }
-
-    public void setIdProdotto(int idProdotto) {
-        this.idProdotto = idProdotto;
-    }
-    
     
 }

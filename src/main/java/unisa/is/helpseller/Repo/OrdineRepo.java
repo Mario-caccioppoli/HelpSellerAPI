@@ -25,7 +25,7 @@ public interface OrdineRepo extends JpaRepository<Ordine, Integer> {
            + "VALUES (:commento, :stato, :id_distributore, :id_ordine_prova, :data_consegna, :data_ordinazione)",
            nativeQuery = true)
    void insert(@Param("commento") String commento, @Param("stato") String stato, 
-           @Param("id_distributore") int id_distributore, @Param("id_ordine_prova") int id_ordine_prova, 
+           @Param("id_distributore") int id_distributore, 
            @Param("data_consegna") Date data_consegna, @Param("data_ordinazione") Date data_ordinazione);
    
    //JPQL
@@ -33,7 +33,7 @@ public interface OrdineRepo extends JpaRepository<Ordine, Integer> {
    @Query("UPDATE Ordine o SET commento = :commento, stato = :stato, id_distributore = :id_distributore, id_ordine_prova = :id_ordine_prova,"
            + " data_consegna = :data_consegna, data_ordinazione = :data_ordinazione WHERE o.id = :id")
    void update(@Param("commento") String commento, @Param("stato") String stato, @Param("id_distributore") int id_distributore, 
-           @Param("id_ordine_prova") int id_ordine_prova, @Param("data_consegna") Date data_consegna, 
+           @Param("data_consegna") Date data_consegna, 
            @Param("data_ordinazione") Date data_ordinazione, @Param("id") int id);
    
      
