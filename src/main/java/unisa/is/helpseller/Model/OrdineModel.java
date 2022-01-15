@@ -10,8 +10,7 @@ public class OrdineModel implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    
-    private int idOrdine;
+
     private Date dataOrdinazione;
     private Date dataConsegna;
     private String commento;
@@ -34,10 +33,6 @@ public class OrdineModel implements Serializable{
 
     public long getId() {
         return id;
-    }
-
-    public int getIdOrdine() {
-        return idOrdine;
     }
 
     public Date getDataOrdinazione() {

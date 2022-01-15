@@ -60,8 +60,8 @@ public interface ProdottoRepo extends JpaRepository<Prodotto, Integer>{
    List<Prodotto> findProdottiInOrdine(@Param("id_ordine") int id_ordine);
    
    //JPQL
-   @Query("SELECT p FROM Prodotto p, ScontoProdotto sp "
-            + "WHERE sp.id_prodotto = p.id AND sp.id_sconto = :id_sconto")
-   List<Prodotto> findProdottiBySconto(@Param("id_ordine") int id_sconto);
+   //@Query("SELECT p FROM Prodotto p, ScontoProdotto sp "
+            //+ "WHERE sp.id_prodotto = p.id AND sp.id_sconto = :id_sconto")
+   //List<Prodotto> findProdottiBySconto(@Param("id_ordine") int id_sconto);
    
 }

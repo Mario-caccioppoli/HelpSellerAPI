@@ -13,7 +13,7 @@ public class AziendaModel implements Serializable {
     private String email;
     private String password;
     private String nomeAzienda;
-    private String VAT;
+    private String vat;
     private String indirizzo;
     private String descrizione;
     private String logo;
@@ -27,7 +27,7 @@ public class AziendaModel implements Serializable {
         this.email = email;
         this.password = password;
         this.nomeAzienda = nomeAzienda;
-        this.VAT = VAT;
+        this.vat = VAT;
         this.indirizzo = indirizzo;
         this.descrizione = descrizione;
         this.logo = logo;
@@ -67,11 +67,11 @@ public class AziendaModel implements Serializable {
     }
 
     public String getVAT() {
-        return VAT;
+        return vat;
     }
 
     public void setVAT(String VAT) {
-        this.VAT = VAT;
+        this.vat = VAT;
     }
 
     public String getIndirizzo() {
