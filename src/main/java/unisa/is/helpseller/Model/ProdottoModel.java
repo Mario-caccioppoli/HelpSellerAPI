@@ -11,8 +11,7 @@ public class ProdottoModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    
-    private int idProdotto;
+
     private String nomeProdotto;
     private double prezzo;
     private String descrizione;
@@ -42,10 +41,6 @@ public class ProdottoModel implements Serializable {
 
     public long getId() {
         return id;
-    }
-
-    public int getIdProdotto() {
-        return idProdotto;
     }
 
     public String getNomeProdotto() {

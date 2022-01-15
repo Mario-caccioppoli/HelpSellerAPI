@@ -9,9 +9,7 @@ public class RecensioneModel implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    
-  
-    private int idRecensione;
+
     private String testo;
     private int voto;
     private Date data;
@@ -31,10 +29,6 @@ public class RecensioneModel implements Serializable{
 
     public long getId() {
         return id;
-    }
-
-    public int getIdRecensione() {
-        return idRecensione;
     }
 
     public String getTesto() {

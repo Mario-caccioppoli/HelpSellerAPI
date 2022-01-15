@@ -12,7 +12,6 @@ public class ScontoModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private int idSconto;
     private int percentuale;
     private Date dataInizio;
     private Date dataFine;
@@ -34,10 +33,6 @@ public class ScontoModel implements Serializable {
 
     public long getId() {
         return id;
-    }
-
-    public int getIdSconto() {
-        return idSconto;
     }
 
     public int getPercentuale() {

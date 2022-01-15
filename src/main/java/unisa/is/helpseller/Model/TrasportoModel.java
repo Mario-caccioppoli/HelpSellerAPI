@@ -11,8 +11,7 @@ public class TrasportoModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    
-    private int idTrasporto;
+
     private String indirizzoConsegna;
     private int quantitaMinima;
     private Date dataConsegna;
@@ -30,10 +29,6 @@ public class TrasportoModel implements Serializable {
 
     public long getId() {
         return id;
-    }
-
-    public int getIdTrasporto() {
-        return idTrasporto;
     }
 
     public String getIndirizzoConsegna() {

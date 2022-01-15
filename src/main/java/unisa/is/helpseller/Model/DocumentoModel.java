@@ -9,11 +9,10 @@ public class DocumentoModel implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    
-    private int idDocumento;
+
     private String titolo;
     private String autore;
-    private Date dataUpload;
+    private Date data;
     private int idOrdine;
     
     public DocumentoModel() {}
@@ -21,18 +20,13 @@ public class DocumentoModel implements Serializable{
     public DocumentoModel(String titolo, String autore, Date data, int idOrdine) {
         this.titolo = titolo;
         this.autore = autore;
-        this.dataUpload = data;
+        this.data = data;
         this.idOrdine = idOrdine;
     }
 
     public long getId() {
         return id;
     }
-
-    public int getIdDocumento() {
-        return idDocumento;
-    }
-    
 
     public String getTitolo() {
         return titolo;
@@ -51,11 +45,11 @@ public class DocumentoModel implements Serializable{
     }
 
     public Date getData() {
-        return dataUpload;
+        return data;
     }
 
     public void setData(Date data) {
-        this.dataUpload = data;
+        this.data = data;
     }
 
     public int getIdOrdine() {
