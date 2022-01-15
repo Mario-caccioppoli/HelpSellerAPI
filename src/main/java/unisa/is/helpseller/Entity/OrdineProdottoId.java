@@ -6,6 +6,8 @@ public class OrdineProdottoId implements Serializable {
     private int id_ordine;
     private int id_prodotto;
     
+    public OrdineProdottoId() {}
+    
     public OrdineProdottoId(int id_ordine, int id_prodotto) {
         this.id_ordine = id_ordine;
         this.id_prodotto = id_prodotto;

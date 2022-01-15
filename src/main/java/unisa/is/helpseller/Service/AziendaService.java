@@ -36,8 +36,8 @@ public class AziendaService {
         aziendaRepo.update(a.getEmail(), a.getPassword(), a.getNomeAzienda(), a.getIndirizzo(), a.getvat(), a.getDescrizione(), a.getLogo(), a.getId());
     }
     
-    public Azienda findAziendaByNome(String nome) {
-        return aziendaRepo.findAziendaByNome(nome);
+    public List<Azienda> findAziendeByNome(String nome) {
+        return aziendaRepo.findAziendeByNome(nome);
     }
     
     public Azienda findAziendaByProdotto(int id_prodotto) {

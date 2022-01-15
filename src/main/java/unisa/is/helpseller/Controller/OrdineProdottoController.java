@@ -52,19 +52,31 @@ public class OrdineProdottoController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
     
-    @GetMapping("findDettagliOrdine/{id}")
+    @GetMapping("/findDettagliOrdine/{id}")
     public ResponseEntity<List<OrdineProdottoModel>> findDettagliOrdine(@PathVariable("id") int id) {
-        List<Pair<OrdineProdotto, Prodotto>> pairList = ordineprodottoService.findDettagliOrdine(id);
+        List<OrdineProdotto> opList = ordineprodottoService.findDettagliOrdine(id);
+        List<Prodotto> pList = ordineprodottoService.findDettagliProdotto(id);
         List<OrdineProdottoModel> opmList = new ArrayList<OrdineProdottoModel>();
         
-        for (Pair<OrdineProdotto, Prodotto> pair : pairList) {
-            OrdineProdotto opBuf = pair.getFirst();
-            Prodotto pBuf = pair.getSecond();
-            OrdineProdottoModel opmBuf = new OrdineProdottoModel(opBuf.getIdOrdine(), opBuf.getQuantitaOrdine(), opBuf.getPrezzoUnitario(), pBuf);
-            opmList.add(opmBuf);
+        if(opList.size() == pList.size()) {
+           for(int i = 0; i < opList.size(); i++) {
+               OrdineProdottoModel opmBuf = new OrdineProdottoModel (
+                       opList.get(i).getIdOrdine(), opList.get(i).getQuantitaOrdine(), 
+                       opList.get(i).getPrezzoUnitario(), pList.get(i));
+               
+               opmList.add(opmBuf);
+           }
+       } else {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
-        
+
         return new ResponseEntity<>(opmList, HttpStatus.OK);
     }
     
+    /*
+    @GetMapping("/findDettagliOrdineProdotto/{id}")
+    public ResponseEntity<List<Object[]>> findDettagliOrdineProdotto(@PathVariable("id") int id) {
+        List<Object[]>
+        
+    }*/
 }

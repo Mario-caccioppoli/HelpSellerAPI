@@ -49,9 +49,9 @@ public class AziendaController {
     }
     
     @GetMapping("/findAziendaByNome/{name}")
-    public ResponseEntity<Azienda> findAziendaByNome(@PathVariable("name") String name) {
-        Azienda azienda = aziendaService.findAziendaByNome(name);
-        return new ResponseEntity<>(azienda, HttpStatus.OK);
+    public ResponseEntity<List<Azienda>> findAziendeByNome(@PathVariable("name") String name) {
+        List<Azienda> aziende = aziendaService.findAziendeByNome(name);
+        return new ResponseEntity<>(aziende, HttpStatus.OK);
     }
     
     @GetMapping("/findAziendaByProdotto/{id}")

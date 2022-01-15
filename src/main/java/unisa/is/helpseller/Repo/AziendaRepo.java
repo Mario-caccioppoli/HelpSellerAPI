@@ -38,7 +38,7 @@ public interface AziendaRepo extends JpaRepository<Azienda, Integer> {
    
    //JPQL
    @Query("SELECT a FROM Azienda a WHERE a.nome_azienda LIKE %:nome_azienda%")
-   Azienda findAziendaByNome(@Param("nome_azienda") String nome_azienda);
+   List<Azienda> findAziendeByNome(@Param("nome_azienda") String nome_azienda);
    
    //SQL
    @Query(

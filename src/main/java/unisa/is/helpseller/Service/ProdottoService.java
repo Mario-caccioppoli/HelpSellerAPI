@@ -53,4 +53,8 @@ public class ProdottoService {
     public List<Prodotto> findProdottiInOrdine(int id_ordine) {
         return prodottoRepo.findProdottiInOrdine(id_ordine);
     }
+    
+    public List<Prodotto> findProdottiBySconto(int id_sconto) {
+        return prodottoRepo.findProdottiBySconto(id_sconto);
+    }
 }

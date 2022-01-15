@@ -38,7 +38,15 @@ public class OrdineProdottoService {
         ordineProdottoRepo.update(ordProd.getIdOrdine(), ordProd.getIdProdotto(), ordProd.getQuantitaOrdine(), ordProd.getPrezzo(), ordProd.getPrezzoUnitario());
     }
     
-    public List<Pair<OrdineProdotto, Prodotto>> findDettagliOrdine(int id_ordine) {
+    public List<OrdineProdotto> findDettagliOrdine(int id_ordine) {
        return ordineProdottoRepo.findDettagliOrdine(id_ordine);
+    }
+    
+    public List<Prodotto> findDettagliProdotto(int id_ordine) {
+       return ordineProdottoRepo.findDettagliProdotto(id_ordine);
+    }
+    
+    List<Object[]> findDettagliOrdineProdotto(int id_ordine) {
+        return ordineProdottoRepo.findDettagliOrdineProdotto(id_ordine);
     }
 }

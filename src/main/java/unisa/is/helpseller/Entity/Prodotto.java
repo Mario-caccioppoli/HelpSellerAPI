@@ -22,9 +22,11 @@ public class Prodotto implements Serializable {
     private int volume;
     private int id_azienda;
     
- 
+    
     public Prodotto() {}
-
+    
+    public Prodotto(Prodotto p) {}
+    
     public Prodotto(String nome_prodotto, double prezzo, String descrizione, int quantita, String immagine, int quantita_minima, int peso, int volume, int id_azienda) {
         this.nome_prodotto = nome_prodotto;
         this.prezzo = prezzo;
