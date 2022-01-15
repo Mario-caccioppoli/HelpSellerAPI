@@ -25,7 +25,7 @@ public class ProdottoControllerTest {
 
     @Test
     public void contextLoads() throws Exception {
-    /*assertThat(controller.findAll().getBody().isEmpty()).isFalse();
+    assertThat(controller.findAll().getBody().isEmpty()).isFalse();
     assertThat(controller.findId(1).getBody().getClass().equals("Prodotto"));
     assertThat(controller.findId(1).getBody().getQuantita()>0);
     assertThat(controller.findId(1).getBody().getId()>0);
@@ -36,6 +36,6 @@ public class ProdottoControllerTest {
     assertThat(controller.findId(1).getBody().getNomeProdotto()!=null);
     assertThat(controller.findId(1).getBody().getQuantitaMinima()>0);
     assertThat(controller.findId(1).getBody().getPrezzo()>0);
-    assertThat(controller.findId(1).getBody().getVolume()>0);*/
+    assertThat(controller.findId(1).getBody().getVolume()>0);
     }
 }
