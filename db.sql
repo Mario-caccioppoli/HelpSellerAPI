@@ -178,8 +178,8 @@ DROP TABLE IF EXISTS `ordine_prodotto`;
 CREATE TABLE `ordine_prodotto` (
   `id_ordine` int NOT NULL,
   `id_prodotto` int NOT NULL,
-  `quantita` int NOT NULL,
-  `prezzo` double NOT NULL,
+  `quantita_ordine` int NOT NULL,
+  `prezzo_ordine` double NOT NULL,
   `prezzo_unitario` double NOT NULL,
   PRIMARY KEY (`id_ordine`,`id_prodotto`),
   KEY `prodottofk_idx` (`id_prodotto`),
@@ -356,4 +356,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-01-15 23:41:29
+-- Dump completed on 2022-01-16  0:49:24
