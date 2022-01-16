@@ -58,4 +58,6 @@ public class ProdottoService {
     public List<Prodotto> findProdottiBySconto(int id_sconto) {
         return prodottoRepo.findProdottiBySconto(id_sconto);
     }
+    
+
 }

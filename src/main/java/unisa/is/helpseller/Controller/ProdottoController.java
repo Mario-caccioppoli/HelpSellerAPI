@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import unisa.is.helpseller.Entity.Prodotto;
+import unisa.is.helpseller.Model.ScontoProdottoModel;
 
 @RestController
 @RequestMapping("/prodotto")
@@ -79,5 +80,7 @@ public class ProdottoController {
         List<Prodotto> prodotti = prodottoService.findProdottiBySconto(id);
         return new ResponseEntity<>(prodotti, HttpStatus.OK);
     }
+    
+
 }
 

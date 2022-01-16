@@ -1,4 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `helpseller` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE  IF NOT EXISTS `helpseller` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `helpseller`;
 -- MySQL dump 10.13  Distrib 8.0.27, for Win64 (x86_64)
 --
@@ -152,10 +152,12 @@ CREATE TABLE `ordine` (
   `commento` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `stato` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `id_distributore` int NOT NULL,
+  `id_ordine_prova` int NOT NULL,
   `data_consegna` date NOT NULL,
   `data_ordinazione` date NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `distributore_idx` (`id_distributore`)
+  KEY `distributore_idx` (`id_distributore`),
+  KEY `ordineProva_idx` (`id_ordine_prova`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -178,8 +180,8 @@ DROP TABLE IF EXISTS `ordine_prodotto`;
 CREATE TABLE `ordine_prodotto` (
   `id_ordine` int NOT NULL,
   `id_prodotto` int NOT NULL,
-  `quantita_ordine` int NOT NULL,
-  `prezzo_ordine` double NOT NULL,
+  `quantita` int NOT NULL,
+  `prezzo` double NOT NULL,
   `prezzo_unitario` double NOT NULL,
   PRIMARY KEY (`id_ordine`,`id_prodotto`),
   KEY `prodottofk_idx` (`id_prodotto`),
@@ -356,4 +358,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-01-16  0:49:24
+-- Dump completed on 2022-01-14  1:06:43

@@ -1,13 +1,17 @@
 
 package unisa.is.helpseller.Controller;
 
+import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import unisa.is.helpseller.Service.ScontoProdottoService;
 import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import unisa.is.helpseller.Entity.Prodotto;
+import unisa.is.helpseller.Entity.Sconto;
 import unisa.is.helpseller.Entity.ScontoProdotto;
+import unisa.is.helpseller.Model.ScontoProdottoModel;
 
 @RestController
 @RequestMapping("/scontoprodotto")
@@ -54,5 +58,24 @@ public class ScontoProdottoController {
     public ResponseEntity<ScontoProdotto> update(ScontoProdotto updated, ScontoProdotto old) {
         scontoProdottoService.udpate(updated, old);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+    
+    @GetMapping("/findProdottiScontatiAzienda/{name}/{id}")
+    public ResponseEntity<List<ScontoProdottoModel>> findProdottiScontatiAzienda
+        (@PathVariable("name") String name, @PathVariable("id") int id) {
+            
+        List<Object[]> objList = scontoProdottoService.findProdottiScontatiAzienda(name, id);
+        List<ScontoProdottoModel> listModel = new ArrayList<ScontoProdottoModel>();
+        
+        System.out.println("INIZIO FOR");
+        
+        for (Object[] obj : objList) {
+            Prodotto prodBuf = (Prodotto) obj[0];
+            Sconto scontoBuf = (Sconto) obj[1];
+            ScontoProdottoModel model = new ScontoProdottoModel(prodBuf, scontoBuf);
+            listModel.add(model);
+        }
+        
+        return new ResponseEntity<>(listModel, HttpStatus.OK);
     }
 }
