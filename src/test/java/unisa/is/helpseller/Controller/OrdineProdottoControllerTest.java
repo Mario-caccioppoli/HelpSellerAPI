@@ -32,8 +32,8 @@ public class OrdineProdottoControllerTest {
     @Test
     public void findAll() throws Exception {
     	ResponseEntity<List<OrdineProdotto>> response = controller.findAll();
-    	List<OrdineProdotto> allOrdineProdotto = response.getBody();
-    	if(allOrdineProdotto.size() > 0)
+    	List<OrdineProdotto> all = response.getBody();
+    	if(all.size() > 0)
     	{
     		assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
     	}
@@ -42,4 +42,18 @@ public class OrdineProdottoControllerTest {
     		assertThat(response.getStatusCode().compareTo(HttpStatus.NOT_FOUND));
     	}
    }
+    
+    @Test
+    public void findId() throws Exception {
+    	ResponseEntity<OrdineProdotto> response = controller.findId(1,1);
+    	/*if(all.size() > 0)
+    	{
+    		assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+    	}
+    	else
+    	{
+    		assertThat(response.getStatusCode().compareTo(HttpStatus.NOT_FOUND));
+    	}*/
+   }
+    
 }

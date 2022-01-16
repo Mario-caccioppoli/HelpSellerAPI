@@ -35,10 +35,14 @@ public class OrdineProdottoController {
  		}
     }
     
-    @GetMapping("/findId/")
-    public ResponseEntity<OrdineProdotto> findId(OrdineProdotto ordProd) {
+    @GetMapping("/findId/{idOrdine}/{idProdotto}")
+    public ResponseEntity<OrdineProdotto> findId(@PathVariable("idOrdine") int idOrdine,@PathVariable("idProdotto") int idProdotto) {
     	try
 		{
+    		OrdineProdotto ordProd = new OrdineProdotto();
+    		ordProd.setIdOrdine(idOrdine);
+    		ordProd.setIdProdotto(idProdotto);
+    		System.out.println(ordProd);
             OrdineProdotto ordineProdotto = ordineprodottoService.findId(ordProd);
             return new ResponseEntity<>(ordineProdotto, HttpStatus.OK);
 		}catch (Exception ex)
@@ -47,10 +51,13 @@ public class OrdineProdottoController {
 		}
     }
     
-    @DeleteMapping("/deleteId/")
-    public ResponseEntity<OrdineProdotto> deleteId(OrdineProdotto ordProd) {
+    @DeleteMapping("/deleteId/{idOrdine}/{idProdotto}")
+    public ResponseEntity<OrdineProdotto> deleteId(@PathVariable("idOrdine") int idOrdine,@PathVariable("idProdotto") int idProdotto) {
     	try
 		{
+    		OrdineProdotto ordProd = new OrdineProdotto();
+    		ordProd.setIdOrdine(idOrdine);
+    		ordProd.setIdProdotto(idProdotto);
             ordineprodottoService.deleteId(ordProd);
             return new ResponseEntity<>(HttpStatus.OK);
 		}catch (Exception ex)

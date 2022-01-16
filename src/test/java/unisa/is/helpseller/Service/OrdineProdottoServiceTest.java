@@ -24,14 +24,5 @@ public class OrdineProdottoServiceTest {
 
     @Test
     public void contextLoads() throws Exception {
-    assertThat(service.findAll().isEmpty()).isFalse();
-    OrdineProdotto ordine = new OrdineProdotto();
-    ordine.setIdOrdine(1);
-    ordine.setIdProdotto(1);
-    assertThat(service.findId(ordine).getClass().equals("OrdineProdotto"));
-    assertThat(service.findId(ordine).getIdOrdine()>0);
-    assertThat(service.findId(ordine).getPrezzo()>0);
-    assertThat(service.findId(ordine).getIdProdotto()>0);
-    assertThat(service.findId(ordine).getPrezzoUnitario()>0);
     }
 }
