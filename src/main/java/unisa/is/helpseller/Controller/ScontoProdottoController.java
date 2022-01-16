@@ -25,57 +25,100 @@ public class ScontoProdottoController {
     
       @GetMapping("/findAll")
     public ResponseEntity<List<ScontoProdotto>> findAll() {
-        List<ScontoProdotto> scontoProdotti = scontoProdottoService.findAll();
-        return new ResponseEntity<>(scontoProdotti, HttpStatus.OK);
+    	  try
+  		{
+    	        List<ScontoProdotto> scontoProdotti = scontoProdottoService.findAll();
+    	        return new ResponseEntity<>(scontoProdotti, HttpStatus.OK);
+  		}catch (Exception ex)
+  		{
+  			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+  		}
     }
     
     @GetMapping("/findBySconto/{id}")
     public ResponseEntity<ScontoProdotto> findBySconto(@PathVariable("id") int id) {
-        ScontoProdotto scontoProdotto = scontoProdottoService.findBySconto(id);
-        return new ResponseEntity<>(scontoProdotto, HttpStatus.OK);
+    	try
+		{
+            ScontoProdotto scontoProdotto = scontoProdottoService.findBySconto(id);
+            return new ResponseEntity<>(scontoProdotto, HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @GetMapping("/findByProdotto/{id}")
     public ResponseEntity<ScontoProdotto> findByProdotto(@PathVariable("id") int id) {
-        ScontoProdotto scontoProdotto = scontoProdottoService.findByProdotto(id);
-        return new ResponseEntity<>(scontoProdotto, HttpStatus.OK);
+    	try
+		{
+            ScontoProdotto scontoProdotto = scontoProdottoService.findByProdotto(id);
+            return new ResponseEntity<>(scontoProdotto, HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     
     @DeleteMapping("/deleteId/{id}")
     public ResponseEntity<ScontoProdotto> deleteId(@PathVariable("id") int id) {
-        scontoProdottoService.deleteId(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+    	try
+		{
+            scontoProdottoService.deleteId(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @PostMapping("/insert")
     public ResponseEntity<ScontoProdotto> insert(ScontoProdotto scontoProd) {
-        scontoProdottoService.insert(scontoProd);
-        return new ResponseEntity<>(HttpStatus.OK);
+    	try
+		{
+            scontoProdottoService.insert(scontoProd);
+            return new ResponseEntity<>(HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @PostMapping("/update")
     public ResponseEntity<ScontoProdotto> update(ScontoProdotto updated, ScontoProdotto old) {
-        scontoProdottoService.udpate(updated, old);
-        return new ResponseEntity<>(HttpStatus.OK);
+    	try
+		{
+            scontoProdottoService.udpate(updated, old);
+            return new ResponseEntity<>(HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @GetMapping("/findProdottiScontatiAzienda/{name}/{id}")
     public ResponseEntity<List<ScontoProdottoModel>> findProdottiScontatiAzienda
         (@PathVariable("name") String name, @PathVariable("id") int id) {
+    	try
+		{
+            List<Object[]> objList = scontoProdottoService.findProdottiScontatiAzienda(name, id);
+            List<ScontoProdottoModel> listModel = new ArrayList<ScontoProdottoModel>();
             
-        List<Object[]> objList = scontoProdottoService.findProdottiScontatiAzienda(name, id);
-        List<ScontoProdottoModel> listModel = new ArrayList<ScontoProdottoModel>();
-        
-        System.out.println("INIZIO FOR");
-        
-        for (Object[] obj : objList) {
-            Prodotto prodBuf = (Prodotto) obj[0];
-            Sconto scontoBuf = (Sconto) obj[1];
-            ScontoProdottoModel model = new ScontoProdottoModel(prodBuf, scontoBuf);
-            listModel.add(model);
-        }
-        
-        return new ResponseEntity<>(listModel, HttpStatus.OK);
+            System.out.println("INIZIO FOR");
+            
+            for (Object[] obj : objList) {
+                Prodotto prodBuf = (Prodotto) obj[0];
+                Sconto scontoBuf = (Sconto) obj[1];
+                ScontoProdottoModel model = new ScontoProdottoModel(prodBuf, scontoBuf);
+                listModel.add(model);
+            }
+            
+            return new ResponseEntity<>(listModel, HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+            
+
     }
 }

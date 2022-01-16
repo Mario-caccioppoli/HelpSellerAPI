@@ -2,6 +2,8 @@ package unisa.is.helpseller.Controller;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import unisa.is.helpseller.Entity.Amministratore;
 import unisa.is.helpseller.Entity.Azienda;
 import unisa.is.helpseller.Entity.Distributore;
+import unisa.is.helpseller.Entity.Trasporto;
 import unisa.is.helpseller.Model.UtenteModel;
 import unisa.is.helpseller.Service.AmministratoreService;
 import unisa.is.helpseller.Service.AziendaService;
@@ -39,47 +42,77 @@ public class UtenteController {
     
     
     @PostMapping("/login")
-    public UtenteModel auth(String email, String password, String tipo){
-        if(tipo.equals("Amministratore")){
-            List<Amministratore> admin = adminService.findAll();
-            return utenteService.authAdmin(email, password, admin);
-        }
-        
-        if(tipo.equals("Distributore")){
-            List<Distributore> dist = distService.findAll();
-            return utenteService.authDist(email, password, dist);
-        }
-        
-        if(tipo.equals("Azienda")){
-            List<Azienda> azienda = aziendaService.findAll();
-            return utenteService.authAzienda(email, password, azienda);
-        }
-        
-        return null;
+    public ResponseEntity<UtenteModel> auth(String email, String password, String tipo){
+    	UtenteModel utente = null;
+    	try
+		{
+    		  if(tipo.equals("Amministratore")){
+    	            List<Amministratore> admin = adminService.findAll();
+    	            utente = utenteService.authAdmin(email, password, admin);
+    	        }
+    	        else if(tipo.equals("Distributore")){
+    	            List<Distributore> dist = distService.findAll();
+    	            utente = utenteService.authDist(email, password, dist);
+    	        }
+    	        
+    	        else if(tipo.equals("Azienda")){
+    	            List<Azienda> azienda = aziendaService.findAll();
+    	            utente = utenteService.authAzienda(email, password, azienda);
+    	        }
+    	        
+    	        if(utente != null)
+    	        {
+    	        	 return new ResponseEntity<UtenteModel>(utente,HttpStatus.OK);
+    	        }
+    	        else {
+    	        	 return new ResponseEntity<UtenteModel>(HttpStatus.UNAUTHORIZED);
+    	        }
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @PostMapping("/regAdmin")
-    public void regAdmin(Amministratore a){
-        adminService.insert(a);
+    public  ResponseEntity<UtenteModel> regAdmin(Amministratore a){
+    	try
+		{
+    		 adminService.insert(a);
+    		 return new ResponseEntity<>(HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @PostMapping("/regAzienda")
-    public void registrazione(Azienda a){
-        
-        aziendaService.insert(a);
+    public  ResponseEntity<UtenteModel> registrazione(Azienda a){
+    	try
+		{
+    		aziendaService.insert(a);
+    		 return new ResponseEntity<>(HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @PostMapping("/regDistributore")
-    public void registrazione(Distributore d){
-
-        distService.insert(d);
+    public  ResponseEntity<UtenteModel> registrazione(Distributore d){
+    	try
+		{
+    		distService.insert(d);
+    		 return new ResponseEntity<>(HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @GetMapping("/")
     public String index() {
         return "index";
     }
-
 }
 
 

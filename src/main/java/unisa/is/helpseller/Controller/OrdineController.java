@@ -21,43 +21,85 @@ public class OrdineController {
     
     @GetMapping("/findAll")
     public ResponseEntity<List<Ordine>> findAll() {
-        List<Ordine> ordini = ordineService.findAll();
-        return new ResponseEntity<>(ordini, HttpStatus.OK);
+    	try
+		{
+            List<Ordine> ordini = ordineService.findAll();
+            return new ResponseEntity<>(ordini, HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @GetMapping("/findId/{id}")
     public ResponseEntity<Ordine> findId(@PathVariable("id") int id) {
-        Ordine ordine = ordineService.findId(id);
-        return new ResponseEntity<>(ordine, HttpStatus.OK);
+    	try
+		{
+            Ordine ordine = ordineService.findId(id);
+            return new ResponseEntity<>(ordine, HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @DeleteMapping("/deleteId/{id}")
     public ResponseEntity<Ordine> deleteId(@PathVariable("id") int id) {
-        ordineService.deleteId(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+    	try
+		{
+            ordineService.deleteId(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @PostMapping("/insert")
     public ResponseEntity<Ordine> insert(Ordine ord) {
-        ordineService.insert(ord);
-        return new ResponseEntity<>(HttpStatus.OK);
+    	try
+		{
+            ordineService.insert(ord);
+            return new ResponseEntity<>(HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @PostMapping("/update")
     public ResponseEntity<Ordine> update(Ordine ord) {
-        ordineService.update(ord);
-        return new ResponseEntity<>(HttpStatus.OK);
+    	try
+		{
+            ordineService.update(ord);
+            return new ResponseEntity<>(HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @GetMapping("/findOrdiniByDistributore/{id}") 
     public ResponseEntity<List<Ordine>> findOrdiniByDistributore(@PathVariable("id") int id) {
-        List<Ordine> ordini = ordineService.findOrdiniByDistributore(id);
-        return new ResponseEntity<>(ordini, HttpStatus.OK);
+    	try
+		{
+            List<Ordine> ordini = ordineService.findOrdiniByDistributore(id);
+            return new ResponseEntity<>(ordini, HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @GetMapping("/findOrdiniByAzienda/{id}")
     public ResponseEntity<List<Ordine>> findOrdiniByAzienda(@PathVariable("id") int id) {
-        List<Ordine> ordini = ordineService.findOrdiniByAzienda(id);
-        return new ResponseEntity<>(ordini, HttpStatus.OK);
+    	try
+		{
+            List<Ordine> ordini = ordineService.findOrdiniByAzienda(id);
+            return new ResponseEntity<>(ordini, HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
 }

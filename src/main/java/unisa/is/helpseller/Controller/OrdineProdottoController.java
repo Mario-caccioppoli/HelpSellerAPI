@@ -25,53 +25,89 @@ public class OrdineProdottoController {
     
      @GetMapping("/findAll")
     public ResponseEntity<List<OrdineProdotto>> findAll() {
-        List<OrdineProdotto> ordineProdotti = ordineprodottoService.findAll();
-        return new ResponseEntity<>(ordineProdotti, HttpStatus.OK);
+    	 try
+ 		{
+    	        List<OrdineProdotto> ordineProdotti = ordineprodottoService.findAll();
+    	        return new ResponseEntity<>(ordineProdotti, HttpStatus.OK);
+ 		}catch (Exception ex)
+ 		{
+ 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+ 		}
     }
     
     @GetMapping("/findId/")
     public ResponseEntity<OrdineProdotto> findId(OrdineProdotto ordProd) {
-        OrdineProdotto ordineProdotto = ordineprodottoService.findId(ordProd);
-        return new ResponseEntity<>(ordineProdotto, HttpStatus.OK);
+    	try
+		{
+            OrdineProdotto ordineProdotto = ordineprodottoService.findId(ordProd);
+            return new ResponseEntity<>(ordineProdotto, HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @DeleteMapping("/deleteId/")
     public ResponseEntity<OrdineProdotto> deleteId(OrdineProdotto ordProd) {
-        ordineprodottoService.deleteId(ordProd);
-        return new ResponseEntity<>(HttpStatus.OK);
+    	try
+		{
+            ordineprodottoService.deleteId(ordProd);
+            return new ResponseEntity<>(HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @PostMapping("/insert")
     public ResponseEntity<OrdineProdotto> insert(OrdineProdotto ordProd) {
-        ordineprodottoService.insert(ordProd);
-        return new ResponseEntity<>(HttpStatus.OK);
+    	try
+		{
+            ordineprodottoService.insert(ordProd);
+            return new ResponseEntity<>(HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @PostMapping("/update")
     public ResponseEntity<OrdineProdotto> update(OrdineProdotto ordProd) {
-        ordineprodottoService.udpate(ordProd);
-        return new ResponseEntity<>(HttpStatus.OK);
+    	try
+		{
+            ordineprodottoService.udpate(ordProd);
+            return new ResponseEntity<>(HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @GetMapping("/findDettagliOrdine/{id}")
     public ResponseEntity<List<OrdineProdottoModel>> findDettagliOrdine(@PathVariable("id") int id) {
-        List<OrdineProdotto> opList = ordineprodottoService.findDettagliOrdine(id);
-        List<Prodotto> pList = ordineprodottoService.findDettagliProdotto(id);
-        List<OrdineProdottoModel> opmList = new ArrayList<OrdineProdottoModel>();
-        
-        if(opList.size() == pList.size()) {
-           for(int i = 0; i < opList.size(); i++) {
-               OrdineProdottoModel opmBuf = new OrdineProdottoModel (
-                       opList.get(i).getIdOrdine(), opList.get(i).getQuantitaOrdine(), 
-                       opList.get(i).getPrezzoUnitario(), pList.get(i));
-               
-               opmList.add(opmBuf);
-           }
-       } else {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        }
+    	try
+		{
+            List<OrdineProdotto> opList = ordineprodottoService.findDettagliOrdine(id);
+            List<Prodotto> pList = ordineprodottoService.findDettagliProdotto(id);
+            List<OrdineProdottoModel> opmList = new ArrayList<OrdineProdottoModel>();
+            
+            if(opList.size() == pList.size()) {
+               for(int i = 0; i < opList.size(); i++) {
+                   OrdineProdottoModel opmBuf = new OrdineProdottoModel (
+                           opList.get(i).getIdOrdine(), opList.get(i).getQuantitaOrdine(), 
+                           opList.get(i).getPrezzoUnitario(), pList.get(i));
+                   
+                   opmList.add(opmBuf);
+               }
+           } else {
+                return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            }
 
-        return new ResponseEntity<>(opmList, HttpStatus.OK);
+            return new ResponseEntity<>(opmList, HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     /*

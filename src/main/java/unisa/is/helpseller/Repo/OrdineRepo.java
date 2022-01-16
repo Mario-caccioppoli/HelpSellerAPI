@@ -16,7 +16,7 @@ public interface OrdineRepo extends JpaRepository<Ordine, Integer> {
    
    @Modifying
    @Query("DELETE FROM Ordine o WHERE o.id = ?1")
-   void deleteId(int id);
+   int deleteId(int id);
    
    //SQL
    @Modifying
@@ -24,7 +24,7 @@ public interface OrdineRepo extends JpaRepository<Ordine, Integer> {
    value = "INSERT INTO ordine (commento, stato, id_distributore, id_ordine_prova, data_consegna, data_ordinazione) "
            + "VALUES (:commento, :stato, :id_distributore, :id_ordine_prova, :data_consegna, :data_ordinazione)",
            nativeQuery = true)
-   void insert(@Param("commento") String commento, @Param("stato") String stato, 
+   int insert(@Param("commento") String commento, @Param("stato") String stato, 
            @Param("id_distributore") int id_distributore, 
            @Param("data_consegna") Date data_consegna, @Param("data_ordinazione") Date data_ordinazione);
    
@@ -32,7 +32,7 @@ public interface OrdineRepo extends JpaRepository<Ordine, Integer> {
    @Modifying
    @Query("UPDATE Ordine o SET commento = :commento, stato = :stato, id_distributore = :id_distributore, id_ordine_prova = :id_ordine_prova,"
            + " data_consegna = :data_consegna, data_ordinazione = :data_ordinazione WHERE o.id = :id")
-   void update(@Param("commento") String commento, @Param("stato") String stato, @Param("id_distributore") int id_distributore, 
+   int update(@Param("commento") String commento, @Param("stato") String stato, @Param("id_distributore") int id_distributore, 
            @Param("data_consegna") Date data_consegna, 
            @Param("data_ordinazione") Date data_ordinazione, @Param("id") int id);
    

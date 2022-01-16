@@ -21,31 +21,61 @@ public class DistributoreController {
     
     @GetMapping("/findAll")
     public ResponseEntity<List<Distributore>> findAll() {
-        List<Distributore> distributori = distributoreService.findAll();
-        return new ResponseEntity<>(distributori, HttpStatus.OK);
+    	try
+		{
+            List<Distributore> distributori = distributoreService.findAll();
+            return new ResponseEntity<>(distributori, HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @GetMapping("/findId/{id}")
     public ResponseEntity<Distributore> findId(@PathVariable("id") int id) {
-        Distributore distributore = distributoreService.findId(id);
-        return new ResponseEntity<>(distributore, HttpStatus.OK);
+    	try
+		{
+            Distributore distributore = distributoreService.findId(id);
+            return new ResponseEntity<>(distributore, HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @DeleteMapping("/deleteId/{id}")
     public ResponseEntity<Distributore> deleteId(@PathVariable("id") int id) {
-        distributoreService.deleteId(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+    	try
+		{
+            distributoreService.deleteId(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @PostMapping("/insert")
     public ResponseEntity<Distributore> insert(Distributore d) {
-        distributoreService.insert(d);
-        return new ResponseEntity<>(HttpStatus.OK);
+    	try
+		{
+    		 distributoreService.insert(d);
+    	        return new ResponseEntity<>(HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @PostMapping("/update")
     public ResponseEntity<Distributore> update(Distributore d) {
-        distributoreService.update(d);
-        return new ResponseEntity<>(HttpStatus.OK);
+    	try
+		{
+    		distributoreService.update(d);
+            return new ResponseEntity<>(HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
 }

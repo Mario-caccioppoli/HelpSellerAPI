@@ -28,31 +28,48 @@ public class AmministratoreController {
 
 	@GetMapping("/findAll")
 	public ResponseEntity<List<AmministratoreModel>> findAll() {
-
-		List<Amministratore> amministratori = amministratoreService.findAll();
-
-		List<AmministratoreModel> amministratoriModel = new ArrayList<AmministratoreModel>();
-		if (amministratori.size() > 0) {
-			amministratoriModel = amministratori.stream().map(p -> {
-				return new AmministratoreModel(p.getId(), p.getEmail(), p.getUsername(), p.getPassword());
-			}).collect(Collectors.toList());
-			return new ResponseEntity<>(amministratoriModel, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(amministratoriModel, HttpStatus.NOT_FOUND);
+		try
+		{
+			List<Amministratore> amministratori = amministratoreService.findAll();
+			List<AmministratoreModel> amministratoriModel = new ArrayList<AmministratoreModel>();
+			if (amministratori.size() > 0) {
+				amministratoriModel = amministratori.stream().map(p -> {
+					return new AmministratoreModel(p.getId(), p.getEmail(), p.getUsername(), p.getPassword());
+				}).collect(Collectors.toList());
+				return new ResponseEntity<>(amministratoriModel, HttpStatus.OK);
+			} else {
+				return new ResponseEntity<>(amministratoriModel, HttpStatus.NOT_FOUND);
+			}
+		}catch(Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
 	@GetMapping("/findId/{id}")
 	public ResponseEntity<AmministratoreModel> findId(@PathVariable("id") int id) {
-		Amministratore amministratore = amministratoreService.findId(id);
-		AmministratoreModel amministratoreModel = new AmministratoreModel(amministratore.getId(), amministratore.getEmail(), amministratore.getUsername(), amministratore.getPassword());
-		return new ResponseEntity<>(amministratoreModel, HttpStatus.OK);
+		try
+		{
+			Amministratore amministratore = amministratoreService.findId(id);
+			AmministratoreModel amministratoreModel = new AmministratoreModel(amministratore.getId(), amministratore.getEmail(), amministratore.getUsername(), amministratore.getPassword());
+			return new ResponseEntity<>(amministratoreModel, HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
-	@PostMapping("/update")
-	public ResponseEntity<Amministratore> update(Amministratore a) {
-		amministratoreService.udpate(a);
-		return new ResponseEntity<>(HttpStatus.OK);
+	@GetMapping("/update")
+	public ResponseEntity<Amministratore> update(Amministratore amministratore) {
+		try
+		{
+			amministratoreService.udpate(amministratore);
+			return new ResponseEntity<>(HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
 	}
 
 }

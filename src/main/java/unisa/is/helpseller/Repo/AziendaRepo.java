@@ -13,7 +13,7 @@ public interface AziendaRepo extends JpaRepository<Azienda, Integer> {
    
    @Modifying
    @Query("DELETE FROM Azienda a WHERE a.id = ?1")
-   void deleteId(int id);
+   int deleteId(int id);
    
    //SQL
    @Modifying
@@ -22,7 +22,7 @@ public interface AziendaRepo extends JpaRepository<Azienda, Integer> {
            + "descrizione, logo) VALUES (:email, :password, "
            + ":nome_azienda, :indirizzo, :vat, :descrizione, :logo)",
            nativeQuery = true)
-   void insert(@Param("email") String email, @Param("password") String password, 
+   int insert(@Param("email") String email, @Param("password") String password, 
            @Param("nome_azienda") String nome_azienda, 
            @Param("indirizzo") String indirizzo, @Param("vat") String vat,
            @Param("descrizione") String descrizione, @Param("logo") String logo);
@@ -31,7 +31,7 @@ public interface AziendaRepo extends JpaRepository<Azienda, Integer> {
    @Modifying
    @Query("UPDATE Azienda a SET email = :email, password = :password, nome_azienda = :nome_azienda, indirizzo = :indirizzo, "
            + "vat = :vat, descrizione = :descrizione, logo = :logo WHERE a.id = :id")
-   void update(@Param("email") String email, @Param("password") String password, 
+   int update(@Param("email") String email, @Param("password") String password, 
            @Param("nome_azienda") String nome_azienda, 
            @Param("indirizzo") String indirizzo, @Param("vat") String vat,
            @Param("descrizione") String descrizione, @Param("logo") String logo, @Param("id") int id);

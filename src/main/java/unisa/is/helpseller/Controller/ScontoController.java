@@ -21,43 +21,85 @@ public class ScontoController {
     
       @GetMapping("/findAll")
     public ResponseEntity<List<Sconto>> findAll() {
-        List<Sconto> sconti = scontoService.findAll();
-        return new ResponseEntity<>(sconti, HttpStatus.OK);
+    	  try
+  		{
+    	        List<Sconto> sconti = scontoService.findAll();
+    	        return new ResponseEntity<>(sconti, HttpStatus.OK);
+  		}catch (Exception ex)
+  		{
+  			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+  		}
     }
     
     @GetMapping("/findId/{id}")
     public ResponseEntity<Sconto> findId(@PathVariable("id") int id) {
-        Sconto sconto = scontoService.findId(id);
-        return new ResponseEntity<>(sconto, HttpStatus.OK);
+    	try
+		{
+            Sconto sconto = scontoService.findId(id);
+            return new ResponseEntity<>(sconto, HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @DeleteMapping("/deleteId/{id}")
     public ResponseEntity<Sconto> deleteId(@PathVariable("id") int id) {
-        scontoService.deleteId(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+    	try
+		{
+            scontoService.deleteId(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @PostMapping("/insert")
     public ResponseEntity<Sconto> insert(Sconto sc) {
-        scontoService.insert(sc);
-        return new ResponseEntity<>(HttpStatus.OK);
+    	try
+		{
+            scontoService.insert(sc);
+            return new ResponseEntity<>(HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @PostMapping("/update")
     public ResponseEntity<Sconto> update(Sconto sc) {
-        scontoService.udpate(sc);
-        return new ResponseEntity<>(HttpStatus.OK);
+    	try
+		{
+            scontoService.udpate(sc);
+            return new ResponseEntity<>(HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @GetMapping("/findScontiByAzienda/{id}") 
     public ResponseEntity<List<Sconto>> findScontiByAzienda(@PathVariable("id") int id) {
-        List<Sconto> sconti = scontoService.findScontiByAzienda(id);
-        return new ResponseEntity<>(sconti, HttpStatus.OK);
+    	try
+		{
+            List<Sconto> sconti = scontoService.findScontiByAzienda(id);
+            return new ResponseEntity<>(sconti, HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @GetMapping("/findScontiByTipo/{tipo}")
     public ResponseEntity<List<Sconto>> findScontiByTipo(@PathVariable("tipo") String tipo) {
-        List<Sconto> sconti = scontoService.findScontiByTipo(tipo);
-        return new ResponseEntity<>(sconti, HttpStatus.OK);
+    	try
+		{
+            List<Sconto> sconti = scontoService.findScontiByTipo(tipo);
+            return new ResponseEntity<>(sconti, HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
 }

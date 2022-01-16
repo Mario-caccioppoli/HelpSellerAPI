@@ -22,63 +22,123 @@ public class ProdottoController {
     
     @GetMapping("/findAll")
     public ResponseEntity<List<Prodotto>> findAll() {
-        List<Prodotto> prodotti = prodottoService.findAll();
-        return new ResponseEntity<>(prodotti, HttpStatus.OK);
+    	try
+		{
+            List<Prodotto> prodotti = prodottoService.findAll();
+            return new ResponseEntity<>(prodotti, HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @GetMapping("/findId/{id}")
     public ResponseEntity<Prodotto> findId(@PathVariable("id") int id) {
-        Prodotto prodotto = prodottoService.findId(id);
-        return new ResponseEntity<>(prodotto, HttpStatus.OK);
+    	try
+		{
+            Prodotto prodotto = prodottoService.findId(id);
+            return new ResponseEntity<>(prodotto, HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
 
     
     @DeleteMapping("/deleteId/{id}")
     public ResponseEntity<Prodotto> deleteId(@PathVariable("id") int id) {
-        prodottoService.deleteId(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+    	try
+		{
+            prodottoService.deleteId(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @PostMapping("/insert")
     public ResponseEntity<Prodotto> insert(Prodotto prod) {
-        prodottoService.insert(prod);
-        return new ResponseEntity<>(HttpStatus.OK);
+    	try
+		{
+            prodottoService.insert(prod);
+            return new ResponseEntity<>(HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @PostMapping("/update")
     public ResponseEntity<Prodotto> update(Prodotto prod) {
-        prodottoService.udpate(prod);
-        return new ResponseEntity<>(HttpStatus.OK);
+    	try
+		{
+            prodottoService.udpate(prod);
+            return new ResponseEntity<>(HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @GetMapping("/findProdottiByAzienda/{id}") 
     public ResponseEntity<List<Prodotto>> findProdottiByAzienda(@PathVariable("id") int id) {
-        List<Prodotto> prodotti = prodottoService.findProdottiByAzienda(id);
-        return new ResponseEntity<>(prodotti, HttpStatus.OK);
+    	try
+		{
+            List<Prodotto> prodotti = prodottoService.findProdottiByAzienda(id);
+            return new ResponseEntity<>(prodotti, HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @GetMapping("/findProdottiByNome/{name}")
     public ResponseEntity<List<Prodotto>> findProdottiByNome(@PathVariable("name") String name) {
-        List<Prodotto> prodotti = prodottoService.findProdottiByNome(name);
-        return new ResponseEntity<>(prodotti, HttpStatus.OK);
+    	try
+		{
+            List<Prodotto> prodotti = prodottoService.findProdottiByNome(name);
+            return new ResponseEntity<>(prodotti, HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @GetMapping("/findProdottiByNomeInAzienda/{name}/{id}")
     public ResponseEntity<List<Prodotto>> findProdottiByNomeInAzienda(@PathVariable("name") String name, @PathVariable("id") int id) {
-        List<Prodotto> prodotti = prodottoService.findProdottiByNomeInAzienda(name, id);
-        return new ResponseEntity<>(prodotti, HttpStatus.OK);
+    	try
+		{
+            List<Prodotto> prodotti = prodottoService.findProdottiByNomeInAzienda(name, id);
+            return new ResponseEntity<>(prodotti, HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @GetMapping("/findProdottiInOrdine/{id}")
     public ResponseEntity<List<Prodotto>> findProdottiInOrdine(@PathVariable("id") int id) {
-        List<Prodotto> prodotti = prodottoService.findProdottiInOrdine(id);
-        return new ResponseEntity<>(prodotti, HttpStatus.OK);
+    	try
+		{
+            List<Prodotto> prodotti = prodottoService.findProdottiInOrdine(id);
+            return new ResponseEntity<>(prodotti, HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @GetMapping("/findProdottiBySconto/{id}")
     public ResponseEntity<List<Prodotto>> findProdottiInSconto(@PathVariable("id") int id) {
-        List<Prodotto> prodotti = prodottoService.findProdottiBySconto(id);
-        return new ResponseEntity<>(prodotti, HttpStatus.OK);
+    	try
+		{
+            List<Prodotto> prodotti = prodottoService.findProdottiBySconto(id);
+            return new ResponseEntity<>(prodotti, HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
 

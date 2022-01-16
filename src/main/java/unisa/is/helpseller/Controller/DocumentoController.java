@@ -23,31 +23,61 @@ public class DocumentoController {
     
     @GetMapping("/findAll")
     public ResponseEntity<List<Documento>> findAll() {
-        List<Documento> documenti = documentoService.findAll();
-        return new ResponseEntity<>(documenti, HttpStatus.OK);
+    	try
+		{
+    		 List<Documento> documenti = documentoService.findAll();
+    	        return new ResponseEntity<>(documenti, HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @GetMapping("/findId/{id}")
     public ResponseEntity<Documento> findId(@PathVariable("id") int id) {
-        Documento documento = documentoService.findId(id);
-        return new ResponseEntity<>(documento, HttpStatus.OK);
+    	try
+		{
+            Documento documento = documentoService.findId(id);
+            return new ResponseEntity<>(documento, HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @DeleteMapping("/deleteId/{id}")
     public ResponseEntity<Documento> deleteId(@PathVariable("id") int id) {
-        documentoService.deleteId(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+    	try
+		{
+            documentoService.deleteId(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @PostMapping("/insert")
     public ResponseEntity<Documento> insert(Documento doc) {
-        documentoService.insert(doc);
-        return new ResponseEntity<>(HttpStatus.OK);
+    	try
+		{
+            documentoService.insert(doc);
+            return new ResponseEntity<>(HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @PostMapping("/update")
     public ResponseEntity<Documento> update(Documento doc) {
-        documentoService.udpate(doc);
-        return new ResponseEntity<>(HttpStatus.OK);
+    	try
+		{
+            documentoService.udpate(doc);
+            return new ResponseEntity<>(HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
 }

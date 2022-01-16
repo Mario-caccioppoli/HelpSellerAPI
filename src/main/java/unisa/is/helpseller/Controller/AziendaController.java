@@ -22,43 +22,85 @@ public class AziendaController {
     
     @GetMapping("/findAll")
     public ResponseEntity<List<Azienda>> findAll() {
-        List<Azienda> aziende = aziendaService.findAll();
-        return new ResponseEntity<>(aziende, HttpStatus.OK);
+    	try
+		{
+    		List<Azienda> aziende = aziendaService.findAll();
+            return new ResponseEntity<>(aziende, HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @GetMapping("/findId/{id}")
     public ResponseEntity<Azienda> findId(@PathVariable("id") int id) {
-        Azienda azienda = aziendaService.findId(id);
-        return new ResponseEntity<>(azienda, HttpStatus.OK);
+    	try
+		{
+    		Azienda azienda = aziendaService.findId(id);
+            return new ResponseEntity<>(azienda, HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @DeleteMapping("/deleteId/{id}")
     public ResponseEntity<Azienda> deleteId(@PathVariable("id") int id) {
-        aziendaService.deleteId(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+    	try
+		{
+    		 aziendaService.deleteId(id);
+    	        return new ResponseEntity<>(HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @PostMapping("/insert")
     public ResponseEntity<Azienda> insert(Azienda  a) {
-        aziendaService.insert(a);
-        return new ResponseEntity<>(HttpStatus.OK);
+    	try
+		{
+    		aziendaService.insert(a);
+            return new ResponseEntity<>(HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		} 
     }
     
     @PostMapping("/update")
     public ResponseEntity<Azienda> update(Azienda a) {
-        aziendaService.update(a);
-        return new ResponseEntity<>(HttpStatus.OK);
+    	try
+		{
+    		aziendaService.update(a);
+    		return new ResponseEntity<>(HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @GetMapping("/findAziendaByNome/{name}")
     public ResponseEntity<List<Azienda>> findAziendeByNome(@PathVariable("name") String name) {
-        List<Azienda> aziende = aziendaService.findAziendeByNome(name);
-        return new ResponseEntity<>(aziende, HttpStatus.OK);
+    	try
+		{
+    		 List<Azienda> aziende = aziendaService.findAziendeByNome(name);
+    	     return new ResponseEntity<>(aziende, HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @GetMapping("/findAziendaByProdotto/{id}")
     public ResponseEntity<Azienda> findAziendaByProdotto(@PathVariable("id") int id) {
-        Azienda azienda = aziendaService.findAziendaByProdotto(id);
-        return new ResponseEntity<>(azienda, HttpStatus.OK);
+    	try
+		{
+    		 Azienda azienda = aziendaService.findAziendaByProdotto(id);
+    	        return new ResponseEntity<>(azienda, HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
 }

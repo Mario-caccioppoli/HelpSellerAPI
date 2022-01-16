@@ -16,18 +16,18 @@ public interface DocumentoRepo extends JpaRepository<Documento, Integer>{
    //JPQL
    @Modifying
    @Query("DELETE FROM Documento d WHERE d.id = ?1")
-   void deleteId(int id);
+   int deleteId(int id);
    
    //SQL
    @Modifying
    @Query(
    value = "INSERT INTO documento (titolo, autore, id_ordine, data) VALUES (:titolo, :autore, :id_ordine, :data)",
            nativeQuery = true)
-   void insert(@Param("titolo") String titolo, @Param("autore") String autore, @Param("id_ordine") int idOrdine, @Param("data") Date data);
+   int insert(@Param("titolo") String titolo, @Param("autore") String autore, @Param("id_ordine") int idOrdine, @Param("data") Date data);
    
    //JPQL
    @Modifying
    @Query("UPDATE Documento d SET titolo = :titolo, autore = :autore, id_ordine = :id_ordine, data = :data WHERE d.id = :id")
-   void update(@Param("titolo") String titolo, @Param("autore") String autore, @Param("id_ordine") int id_ordine, @Param("data") Date data, @Param("id") int id);
+   int update(@Param("titolo") String titolo, @Param("autore") String autore, @Param("id_ordine") int id_ordine, @Param("data") Date data, @Param("id") int id);
    
 }

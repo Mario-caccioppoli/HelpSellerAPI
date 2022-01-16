@@ -17,17 +17,17 @@ public interface AmministratoreRepo extends JpaRepository<Amministratore, Intege
    //JPQL
    @Modifying
    @Query("DELETE FROM Amministratore a WHERE a.id = ?1")
-   void deleteId(int id);
+   int deleteId(int id);
    
    //SQL
    @Modifying
    @Query(
    value = "INSERT INTO amministratore (username, email, password) VALUES (:username, :email, :password)",
            nativeQuery = true)
-   void insert(@Param("username") String username, @Param("email") String email, @Param("password") String password);
+   int insert(@Param("username") String username, @Param("email") String email, @Param("password") String password);
    
    //JPQL
    @Modifying
    @Query("UPDATE Amministratore a SET username = :username, email = :email, password = :password WHERE a.id = :id")
-   void update(@Param("username") String username, @Param("email") String email, @Param("password") String password, @Param("id") int id);
+   int update(@Param("username") String username, @Param("email") String email, @Param("password") String password, @Param("id") int id);
 }

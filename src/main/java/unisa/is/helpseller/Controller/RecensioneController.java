@@ -21,32 +21,62 @@ public class RecensioneController {
     
     @GetMapping("/findAll")
     public ResponseEntity<List<Recensione>> findAll() {
-        List<Recensione> recensioni = recensioneService.findAll();
-        return new ResponseEntity<>(recensioni, HttpStatus.OK);
+    	try
+		{
+            List<Recensione> recensioni = recensioneService.findAll();
+            return new ResponseEntity<>(recensioni, HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @GetMapping("/findId/{id}")
     public ResponseEntity<Recensione> findId(@PathVariable("id") int id) {
-        Recensione recensione = recensioneService.findId(id);
-        return new ResponseEntity<>(recensione, HttpStatus.OK);
+    	try
+		{
+            Recensione recensione = recensioneService.findId(id);
+            return new ResponseEntity<>(recensione, HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     
     @DeleteMapping("/deleteId/{id}")
     public ResponseEntity<Recensione> deleteId(@PathVariable("id") int id) {
-        recensioneService.deleteId(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+    	try
+		{
+            recensioneService.deleteId(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @PostMapping("/insert")
     public ResponseEntity<Recensione> insert(Recensione rec) {
-        recensioneService.insert(rec);
-        return new ResponseEntity<>(HttpStatus.OK);
+    	try
+		{
+            recensioneService.insert(rec);
+            return new ResponseEntity<>(HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @PostMapping("/update")
     public ResponseEntity<Recensione> update(Recensione rec) {
-        recensioneService.udpate(rec);
-        return new ResponseEntity<>(HttpStatus.OK);
+    	try
+		{
+            recensioneService.udpate(rec);
+            return new ResponseEntity<>(HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
 }

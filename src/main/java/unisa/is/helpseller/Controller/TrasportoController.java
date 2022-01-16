@@ -21,32 +21,62 @@ public class TrasportoController {
     
       @GetMapping("/findAll")
     public ResponseEntity<List<Trasporto>> findAll() {
-        List<Trasporto> trasporti = trasportoService.findAll();
-        return new ResponseEntity<>(trasporti, HttpStatus.OK);
+    	  try
+  		{
+    	        List<Trasporto> trasporti = trasportoService.findAll();
+    	        return new ResponseEntity<>(trasporti, HttpStatus.OK);
+  		}catch (Exception ex)
+  		{
+  			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+  		}
     }
     
     @GetMapping("/findId/{id}")
     public ResponseEntity<Trasporto> findId(@PathVariable("id") int id) {
-        Trasporto trasporto = trasportoService.findId(id);
-        return new ResponseEntity<>(trasporto, HttpStatus.OK);
+    	try
+		{
+            Trasporto trasporto = trasportoService.findId(id);
+            return new ResponseEntity<>(trasporto, HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @DeleteMapping("/deleteId/{id}")
     public ResponseEntity<Trasporto> deleteId(@PathVariable("id") int id) {
-        trasportoService.deleteId(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+    	try
+		{
+            trasportoService.deleteId(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @PostMapping("/insert")
     public ResponseEntity<Trasporto> insert(Trasporto tr) {
-        trasportoService.insert(tr);
-        return new ResponseEntity<>(HttpStatus.OK);
+    	try
+		{
+            trasportoService.insert(tr);
+            return new ResponseEntity<>(HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @PostMapping("/update")
     public ResponseEntity<Trasporto> update(Trasporto tr) {
-        trasportoService.udpate(tr);
-        return new ResponseEntity<>(HttpStatus.OK);
+    	try
+		{
+            trasportoService.udpate(tr);
+            return new ResponseEntity<>(HttpStatus.OK);
+		}catch (Exception ex)
+		{
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
 }

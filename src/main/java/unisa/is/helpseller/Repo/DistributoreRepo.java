@@ -13,7 +13,7 @@ public interface DistributoreRepo extends JpaRepository<Distributore, Integer>{
    
    @Modifying
    @Query("DELETE FROM Distributore d WHERE d.id = ?1")
-   void deleteId(int id);
+   int deleteId(int id);
    
    //SQL
    @Modifying
@@ -22,7 +22,7 @@ public interface DistributoreRepo extends JpaRepository<Distributore, Integer>{
            +  "VALUES (:username, :email, "
            + ":password, :nome, :cognome, :telefono, :indirizzo_sede, :id_ordine_prova, :vat)",
            nativeQuery = true)
-   void insert(@Param("username") String username, @Param("email") String email, 
+   int insert(@Param("username") String username, @Param("email") String email, 
            @Param("password") String password, @Param("nome") String nome, 
            @Param("cognome") String cognome, @Param("telefono") String telefono, 
            @Param("indirizzo_sede") String indirizzo_sede, 
@@ -33,7 +33,7 @@ public interface DistributoreRepo extends JpaRepository<Distributore, Integer>{
    @Query("UPDATE Distributore d SET username = :username, email = :email, password = :password, "
            + "nome = :nome, cognome = :cognome, telefono = :telefono, indirizzo_sede = :indirizzo_sede, "
            + "id_ordine_prova = :id_ordine_prova, vat = :vat WHERE d.id = :id")
-   void update(@Param("username") String username, @Param("email") String email, 
+   int update(@Param("username") String username, @Param("email") String email, 
            @Param("password") String password, @Param("nome") String nome, 
            @Param("cognome") String cognome, @Param("telefono") String telefono, 
            @Param("indirizzo_sede") String indirizzo_sede, 
