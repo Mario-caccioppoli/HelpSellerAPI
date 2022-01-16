@@ -3,10 +3,16 @@ package unisa.is.helpseller.Entity;
 
 import java.io.Serializable;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class ScontoProdottoId implements Serializable {
     private int id_sconto;
     private int id_prodotto;
     
+    @Autowired
+    public ScontoProdottoId() {
+    	
+    }
     public ScontoProdottoId(int id_sconto, int id_prodotto) {
         this.id_sconto = id_sconto;
         this.id_prodotto = id_prodotto;

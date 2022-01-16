@@ -13,11 +13,16 @@ package unisa.is.helpseller.Controller;
 import java.sql.Date;
 import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
+import unisa.is.helpseller.Entity.OrdineProdotto;
 import unisa.is.helpseller.Entity.Sconto;
 
 
@@ -26,26 +31,46 @@ public class ScontoControllerTest {
 
     @Autowired
     private ScontoController controller;
+    ResponseEntity<Sconto> response;
+    private Sconto sconto;
+    
+    @BeforeEach
+    public void setUp() {
+    	response = controller.findId(1);
+    	sconto = response.getBody();
+    }
 
     @Test
-    public void contextLoads() throws Exception {
-    assertThat(controller.findAll().getBody().isEmpty()).isFalse();
-    assertThat(controller.findId(1).getBody().getClass().equals("Sconto"));
-    assertThat(controller.findId(1).getBody().getTipo()== null).isFalse();
-    assertThat(controller.findId(1).getBody().getId()>0);
-    assertThat(controller.findId(1).getBody().getDataFine()!= null);
-    assertThat(controller.findId(1).getBody().getIdAzienda()>0);
-    assertThat(controller.findId(1).getBody().getDataInizio()!= null);
-    assertThat(controller.findId(1).getBody().getPercentuale()>0);
-    assertThat(controller.findId(1).getBody().getTipo()!= null);
-    assertThat(controller.findId(1).getBody().getQuantita()>0);
-        int i,m;
-        List<Sconto> s=controller.findAll().getBody();
-        m=s.size();
-    for( i=0; i<=m;i++){
-        Date dataInizio=s.get(i).getDataInizio();
-        assertThat(s.get(i).getDataFine().after(dataInizio));
- 
-                        }
-    }
+    public void findAllStatus() throws Exception {
+    	ResponseEntity<List<Sconto>> response = controller.findAll();
+    	List<Sconto> allSconti = response.getBody();
+    	if(allSconti.size() > 0)
+    	{
+    		assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+    	}
+    	else
+    	{
+    		assertThat(response.getStatusCode().compareTo(HttpStatus.NOT_FOUND));
+    	}
+   }
+  
+    @Test
+    public void Status() throws Exception {
+    	if(sconto != null)
+    	{
+    		assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+    	}
+    	else
+    	{
+    		assertThat(response.getStatusCode().compareTo(HttpStatus.NOT_FOUND));
+    	}
+   }
+    
+    @Test
+    public void Id() throws Exception {
+    	if(sconto != null)
+    	{
+    		assertThat(sconto.getId() > 0);
+    	}
+   }
 }

@@ -2,10 +2,13 @@ package unisa.is.helpseller.Entity;
 
 import java.io.Serializable;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class OrdineProdottoId implements Serializable {
     private int id_ordine;
     private int id_prodotto;
     
+    @Autowired
     public OrdineProdottoId() {}
     
     public OrdineProdottoId(int id_ordine, int id_prodotto) {
