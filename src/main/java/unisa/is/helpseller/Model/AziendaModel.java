@@ -5,13 +5,13 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.*;
+import unisa.is.helpseller.Entity.Azienda;
 
 public class AziendaModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    
-    private int idAzienda;
+
     private String email;
     private String password;
     private String nomeAzienda;
@@ -35,15 +35,21 @@ public class AziendaModel implements Serializable {
         this.descrizione = descrizione;
         this.logo = logo;
     }
+    
+    public AziendaModel(Azienda a) {
+        this.id = a.getId();
+        this.email = a.getEmail();
+        this.password = a.getPassword();
+        this.nomeAzienda = a.getNomeAzienda();
+        this.vat = a.getvat();
+        this.indirizzo = a.getIndirizzo();
+        this.descrizione = a.getDescrizione();
+        this.logo = a.getLogo();
+    }
 
     public long getId() {
         return id;
     }
-
-    public int getIdAzienda() {
-        return idAzienda;
-    }
-
 
     public String getEmail() {
         return email;
