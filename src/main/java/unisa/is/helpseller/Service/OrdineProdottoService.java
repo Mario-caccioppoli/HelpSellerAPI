@@ -27,16 +27,16 @@ public class OrdineProdottoService {
         return ordineProdottoRepo.findId(ordProd.getIdOrdine(), ordProd.getIdProdotto());
     }
     
-    public void deleteId(OrdineProdotto ordProd) {
-        ordineProdottoRepo.deleteId(ordProd.getIdOrdine(), ordProd.getIdProdotto());
+    public int deleteId(OrdineProdotto ordProd) {
+    	return ordineProdottoRepo.deleteId(ordProd.getIdOrdine(), ordProd.getIdProdotto());
     }
     
-    public void insert(OrdineProdotto ordProd) {
-        ordineProdottoRepo.insert(ordProd.getIdOrdine(), ordProd.getIdProdotto(), ordProd.getQuantitaOrdine(), ordProd.getPrezzo(), ordProd.getPrezzoUnitario());
+    public int insert(OrdineProdotto ordProd) {
+    	return ordineProdottoRepo.insert(ordProd.getIdOrdine(), ordProd.getIdProdotto(), ordProd.getQuantitaOrdine(), ordProd.getPrezzo(), ordProd.getPrezzoUnitario());
     }
     
-    public void udpate(OrdineProdotto ordProd) {
-        ordineProdottoRepo.update(ordProd.getIdOrdine(), ordProd.getIdProdotto(), ordProd.getQuantitaOrdine(), ordProd.getPrezzo(), ordProd.getPrezzoUnitario());
+    public int udpate(OrdineProdotto ordProd) {
+    	return ordineProdottoRepo.update(ordProd.getIdOrdine(), ordProd.getIdProdotto(), ordProd.getQuantitaOrdine(), ordProd.getPrezzo(), ordProd.getPrezzoUnitario());
     }
     
     public List<OrdineProdotto> findDettagliOrdine(int id_ordine) {

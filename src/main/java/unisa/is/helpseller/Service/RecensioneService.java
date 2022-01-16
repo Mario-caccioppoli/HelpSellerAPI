@@ -25,16 +25,16 @@ public class RecensioneService {
         return recensioneRepo.findId(id);
     }
     
-    public void deleteId(int id) {
-        recensioneRepo.deleteId(id);
+    public int deleteId(int id) {
+    	return recensioneRepo.deleteId(id);
     }
     
-    public void insert(Recensione rec) {
-        recensioneRepo.insert(rec.getTesto(), rec.getVoto(), rec.getData(), rec.getIdProdotto(), rec.getIdDistributore());
+    public int insert(Recensione rec) {
+    	return recensioneRepo.insert(rec.getTesto(), rec.getVoto(), rec.getData(), rec.getIdProdotto(), rec.getIdDistributore());
     }
     
-    public void udpate(Recensione rec) {
-        recensioneRepo.update(rec.getTesto(), rec.getVoto(), rec.getData(), rec.getIdProdotto(), rec.getIdDistributore(), rec.getId());
+    public int udpate(Recensione rec) {
+    	return recensioneRepo.update(rec.getTesto(), rec.getVoto(), rec.getData(), rec.getIdProdotto(), rec.getIdDistributore(), rec.getId());
     }
     
 }

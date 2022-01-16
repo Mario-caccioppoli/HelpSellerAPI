@@ -25,15 +25,15 @@ public class TrasportoService {
         return trasportoRepo.findId(id);
     }
     
-    public void deleteId(int id) {
-        trasportoRepo.deleteId(id);
+    public int deleteId(int id) {
+       return trasportoRepo.deleteId(id);
     }
     
-    public void insert(Trasporto tr) {
-        trasportoRepo.insert(tr.getIdOrdine(), tr.getDataConsegna(), tr.getIndirizzoConsegna(), tr.getQuantitaMinima());
+    public int insert(Trasporto tr) {
+    	return trasportoRepo.insert(tr.getIdOrdine(), tr.getDataConsegna(), tr.getIndirizzoConsegna(), tr.getQuantitaMinima());
     }
     
-    public void udpate(Trasporto tr) {
-        trasportoRepo.update(tr.getIdOrdine(), tr.getDataConsegna(), tr.getIndirizzoConsegna(), tr.getQuantitaMinima(), tr.getId());
+    public int udpate(Trasporto tr) {
+    	return  trasportoRepo.update(tr.getIdOrdine(), tr.getDataConsegna(), tr.getIndirizzoConsegna(), tr.getQuantitaMinima(), tr.getId());
     }
 }

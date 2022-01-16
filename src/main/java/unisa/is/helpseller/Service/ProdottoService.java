@@ -25,17 +25,17 @@ public class ProdottoService {
         return prodottoRepo.findId(id);
     }
     
-    public void deleteId(int id) {
-        prodottoRepo.deleteId(id);
+    public int deleteId(int id) {
+    	return prodottoRepo.deleteId(id);
     }
     
-    public void insert(Prodotto prod) {
-        prodottoRepo.insert(prod.getNomeProdotto(), prod.getPrezzo(), prod.getDescrizione(), 
+    public int insert(Prodotto prod) {
+    	return prodottoRepo.insert(prod.getNomeProdotto(), prod.getPrezzo(), prod.getDescrizione(), 
                 prod.getQuantita(), prod.getImmagine(), prod.getPeso(), prod.getVolume(), prod.getIdAzienda(), prod.getQuantitaMinima());
     }
     
-    public void udpate(Prodotto prod) {
-        prodottoRepo.update(prod.getNomeProdotto(), prod.getPrezzo(), prod.getDescrizione(), 
+    public int udpate(Prodotto prod) {
+    	return prodottoRepo.update(prod.getNomeProdotto(), prod.getPrezzo(), prod.getDescrizione(), 
                 prod.getQuantita(), prod.getImmagine(), prod.getPeso(), prod.getVolume(), prod.getIdAzienda(), prod.getQuantitaMinima(), prod.getId());
     }
     

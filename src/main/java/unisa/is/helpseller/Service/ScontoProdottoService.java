@@ -29,16 +29,16 @@ public class ScontoProdottoService {
         return scontoProdottoRepo.findByProdotto(id);
     }
     
-    public void deleteId(int id) {
-        scontoProdottoRepo.deleteId(id);
+    public int deleteId(int id) {
+    	return scontoProdottoRepo.deleteId(id);
     }
     
-    public void insert(ScontoProdotto scontoProd) {
-        scontoProdottoRepo.insert(scontoProd.getIdSconto(), scontoProd.getIdProdotto());
+    public int insert(ScontoProdotto scontoProd) {
+    	return scontoProdottoRepo.insert(scontoProd.getIdSconto(), scontoProd.getIdProdotto());
     }
     
-    public void udpate(ScontoProdotto updated, ScontoProdotto old) {
-        scontoProdottoRepo.update(updated.getIdSconto(), updated.getIdProdotto(), old.getIdSconto(), old.getIdProdotto());
+    public int udpate(ScontoProdotto updated, ScontoProdotto old) {
+    	return scontoProdottoRepo.update(updated.getIdSconto(), updated.getIdProdotto(), old.getIdSconto(), old.getIdProdotto());
     }
     
     public List<Object[]> findProdottiScontatiAzienda(String nome, int id_azienda) {

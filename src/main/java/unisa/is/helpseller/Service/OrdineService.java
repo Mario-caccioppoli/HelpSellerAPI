@@ -25,16 +25,16 @@ public class OrdineService {
         return ordineRepo.findId(id);
     }
     
-    public void deleteId(int id) {
-        ordineRepo.deleteId(id);
+    public int deleteId(int id) {
+    	return ordineRepo.deleteId(id);
     }
     
-    public void insert(Ordine ord) {
-        ordineRepo.insert(ord.getCommento(), ord.getStato(), ord.getIdDistributore(), ord.getDataConsegna(), ord.getDataOrdinazione());
+    public int insert(Ordine ord) {
+    	return ordineRepo.insert(ord.getCommento(), ord.getStato(), ord.getIdDistributore(), ord.getDataConsegna(), ord.getDataOrdinazione());
     }
     
-    public void update(Ordine ord) {
-        ordineRepo.update(ord.getCommento(), ord.getStato(), ord.getIdDistributore(), ord.getDataConsegna(), ord.getDataOrdinazione(), ord.getId());
+    public int update(Ordine ord) {
+    	return ordineRepo.update(ord.getCommento(), ord.getStato(), ord.getIdDistributore(), ord.getDataConsegna(), ord.getDataOrdinazione(), ord.getId());
     }
     
     public List<Ordine> findOrdiniByDistributore(int id_distributore) {

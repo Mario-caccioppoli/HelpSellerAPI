@@ -27,15 +27,15 @@ public class DocumentoService {
         return documentoRepo.findId(id);
     }
     
-    public void deleteId(int id) {
-        documentoRepo.deleteId(id);
+    public int deleteId(int id) {
+    	return documentoRepo.deleteId(id);
     }
     
-    public void insert(Documento doc) {
-        documentoRepo.insert(doc.getTitolo(), doc.getAutore(), doc.getIdOrdine(), doc.getData());
+    public int insert(Documento doc) {
+    	return documentoRepo.insert(doc.getTitolo(), doc.getAutore(), doc.getIdOrdine(), doc.getData());
     }
     
-    public void udpate(Documento doc) {
-        documentoRepo.update(doc.getTitolo(), doc.getAutore(), doc.getIdOrdine(), doc.getData(), doc.getId());
+    public int udpate(Documento doc) {
+    	return documentoRepo.update(doc.getTitolo(), doc.getAutore(), doc.getIdOrdine(), doc.getData(), doc.getId());
     }
 }

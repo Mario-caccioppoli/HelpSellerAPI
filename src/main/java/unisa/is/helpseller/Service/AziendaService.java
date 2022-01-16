@@ -25,16 +25,16 @@ public class AziendaService {
         return aziendaRepo.findId(id);
     }
     
-    public void deleteId(int id) {
-        aziendaRepo.deleteId(id);
+    public int deleteId(int id) {
+    	return aziendaRepo.deleteId(id);
     }
     
-    public void insert(Azienda a) {
-        aziendaRepo.insert(a.getEmail(), a.getPassword(), a.getNomeAzienda(), a.getIndirizzo(), a.getvat(), a.getDescrizione(), a.getLogo());
+    public int insert(Azienda a) {
+    	return aziendaRepo.insert(a.getEmail(), a.getPassword(), a.getNomeAzienda(), a.getIndirizzo(), a.getvat(), a.getDescrizione(), a.getLogo());
     }
     
-    public void update(Azienda a) {
-        aziendaRepo.update(a.getEmail(), a.getPassword(), a.getNomeAzienda(), a.getIndirizzo(), a.getvat(), a.getDescrizione(), a.getLogo(), a.getId());
+    public int update(Azienda a) {
+    	return aziendaRepo.update(a.getEmail(), a.getPassword(), a.getNomeAzienda(), a.getIndirizzo(), a.getvat(), a.getDescrizione(), a.getLogo(), a.getId());
     }
     
     public List<Azienda> findAziendeByNome(String nome) {

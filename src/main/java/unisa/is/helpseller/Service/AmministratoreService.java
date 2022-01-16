@@ -25,16 +25,16 @@ public class AmministratoreService {
         return amministratoreRepo.findId(id);
     }
     
-    public void deleteId(int id) {
-        amministratoreRepo.deleteId(id);
+    public int deleteId(int id) {
+        return amministratoreRepo.deleteId(id);
     }
     
-    public void insert(Amministratore a) {
-        amministratoreRepo.insert(a.getUsername(), a.getEmail(), a.getPassword());
+    public int insert(Amministratore a) {
+    	return amministratoreRepo.insert(a.getUsername(), a.getEmail(), a.getPassword());
     }
     
-    public void udpate(Amministratore a) {
-        amministratoreRepo.update(a.getUsername(), a.getEmail(), a.getPassword(), a.getId());
+    public int udpate(Amministratore a) {
+    	return amministratoreRepo.update(a.getUsername(), a.getEmail(), a.getPassword(), a.getId());
     }
     
 }

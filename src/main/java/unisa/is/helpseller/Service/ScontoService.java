@@ -25,16 +25,16 @@ public class ScontoService {
         return scontoRepo.findId(id);
     }
     
-    public void deleteId(int id) {
-        scontoRepo.deleteId(id);
+    public int deleteId(int id) {
+    	return scontoRepo.deleteId(id);
     }
     
-    public void insert(Sconto sc) {
-        scontoRepo.insert(sc.getPercentuale(), sc.getTipo(), sc.getQuantita(), sc.getIdAzienda(), sc.getDataFine(), sc.getDataInizio());
+    public int insert(Sconto sc) {
+    	return scontoRepo.insert(sc.getPercentuale(), sc.getTipo(), sc.getQuantita(), sc.getIdAzienda(), sc.getDataFine(), sc.getDataInizio());
     }
     
-    public void udpate(Sconto sc) {
-        scontoRepo.update(sc.getPercentuale(), sc.getTipo(), sc.getQuantita(), sc.getIdAzienda(), sc.getDataFine(), sc.getDataInizio(), sc.getId());
+    public int udpate(Sconto sc) {
+    	return scontoRepo.update(sc.getPercentuale(), sc.getTipo(), sc.getQuantita(), sc.getIdAzienda(), sc.getDataFine(), sc.getDataInizio(), sc.getId());
     }
     
     public List<Sconto> findScontiByAzienda(int id_azienda) {

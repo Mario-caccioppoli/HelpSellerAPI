@@ -25,17 +25,17 @@ public class DistributoreService {
         return distributoreRepo.findId(id);
     }
     
-    public void deleteId(int id) {
-        distributoreRepo.deleteId(id);
+    public int deleteId(int id) {
+    	return  distributoreRepo.deleteId(id);
     }
     
-      public void insert(Distributore d) {
-        distributoreRepo.insert(d.getUsername(), d.getEmail(), d.getPassword(), d.getNome(), d.getCognome(), 
+      public int insert(Distributore d) {
+    	  return distributoreRepo.insert(d.getUsername(), d.getEmail(), d.getPassword(), d.getNome(), d.getCognome(), 
                 d.getTelefono(), d.getIndirizzoSede(), d.getIdOrdineProva(), d.getvat());
     }
     
-      public void update(Distributore d) {
-        distributoreRepo.update(d.getUsername(), d.getEmail(), d.getPassword(), d.getNome(), d.getCognome(), 
+      public int update(Distributore d) {
+    	  return distributoreRepo.update(d.getUsername(), d.getEmail(), d.getPassword(), d.getNome(), d.getCognome(), 
                 d.getTelefono(), d.getIndirizzoSede(), d.getIdOrdineProva(), d.getvat(), d.getId());
     }
 }
