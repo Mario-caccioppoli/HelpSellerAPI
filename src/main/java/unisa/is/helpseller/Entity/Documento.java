@@ -4,6 +4,7 @@ package unisa.is.helpseller.Entity;
 import java.io.Serializable;
 import java.sql.Date;
 import javax.persistence.*;
+import unisa.is.helpseller.Model.DocumentoModel;
 
 
 @Entity
@@ -25,6 +26,13 @@ public class Documento implements Serializable{
         this.autore = autore;
         this.data = data;
         this.id_ordine = id_ordine;
+    }
+    
+    public Documento(DocumentoModel d) {
+        this.titolo = d.getTitolo();
+        this.autore = d.getAutore();
+        this.data = d.getData();
+        this.id_ordine = d.getIdOrdine();
     }
 
     public int getId() {

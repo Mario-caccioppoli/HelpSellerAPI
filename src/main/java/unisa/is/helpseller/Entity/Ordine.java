@@ -4,6 +4,7 @@ package unisa.is.helpseller.Entity;
 import java.sql.Date;
 import java.io.Serializable;
 import javax.persistence.*;
+import unisa.is.helpseller.Model.OrdineModel;
 
 
 @Entity
@@ -17,7 +18,7 @@ public class Ordine implements Serializable{
     private Date data_consegna;
     private String commento;
     private String stato;
-    private int id_distributore;
+    private int id_distributore, id_ordine_prova;
  
     public Ordine() {}
 
@@ -26,7 +27,14 @@ public class Ordine implements Serializable{
         this.data_consegna = data_consegna;
         this.commento = commento;
         this.id_distributore = id_distributore;
-
+        this.stato = "Generated";
+    }
+    
+    public Ordine(OrdineModel o) {
+        this.data_ordinazione = o.getDataOrdinazione();
+        this.data_consegna = o.getDataConsegna();
+        this.commento = o.getCommento();
+        this.id_distributore = o.getIdDistributore();
         this.stato = "Generated";
     }
 
@@ -74,4 +82,13 @@ public class Ordine implements Serializable{
         this.id_distributore = id_distributore;
     }
 
+    public int getId_ordine_prova() {
+        return id_ordine_prova;
+    }
+
+    public void setId_ordine_prova(int id_ordine_prova) {
+        this.id_ordine_prova = id_ordine_prova;
+    }
+
+    
 }
