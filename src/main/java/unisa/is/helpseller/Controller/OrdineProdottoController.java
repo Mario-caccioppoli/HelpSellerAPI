@@ -88,7 +88,7 @@ public class OrdineProdottoController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+/*
     @GetMapping("/findDettagliOrdine/{id}")
     public ResponseEntity<List<OrdineProdottoModel>> findDettagliOrdine(@PathVariable("id") int id) {
         try {
@@ -132,7 +132,7 @@ public class OrdineProdottoController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+*/
     /*
     @GetMapping("/findDettagliOrdineProdotto/{id}")
     public ResponseEntity<List<Object[]>> findDettagliOrdineProdotto(@PathVariable("id") int id) {
