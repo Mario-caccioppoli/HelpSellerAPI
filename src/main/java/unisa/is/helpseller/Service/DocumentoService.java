@@ -38,4 +38,8 @@ public class DocumentoService {
     public int udpate(Documento doc) {
     	return documentoRepo.update(doc.getTitolo(), doc.getAutore(), doc.getIdOrdine(), doc.getData(), doc.getId());
     }
+    
+    public List<Documento> findDocumentiByOrdine(int id) {
+        return documentoRepo.findDocumentiByOrdine(id);
+    }
 }

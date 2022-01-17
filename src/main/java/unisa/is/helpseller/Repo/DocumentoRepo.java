@@ -1,6 +1,7 @@
 package unisa.is.helpseller.Repo;
 
 import java.sql.Date;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -30,4 +31,7 @@ public interface DocumentoRepo extends JpaRepository<Documento, Integer>{
    @Query("UPDATE Documento d SET titolo = :titolo, autore = :autore, id_ordine = :id_ordine, data = :data WHERE d.id = :id")
    int update(@Param("titolo") String titolo, @Param("autore") String autore, @Param("id_ordine") int id_ordine, @Param("data") Date data, @Param("id") int id);
    
+   //JPQL
+   @Query("SELECT d FROM Documento d WHERE d.id_ordine = ?1")
+   List<Documento> findDocumentiByOrdine(int id);
 }

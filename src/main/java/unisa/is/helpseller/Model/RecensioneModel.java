@@ -2,14 +2,11 @@ package unisa.is.helpseller.Model;
 
 import java.sql.Date;
 import java.io.Serializable;
-import javax.persistence.*;
 
 
 public class RecensioneModel implements Serializable{
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
 
+    private int id;
     private String testo;
     private int voto;
     private Date data;
@@ -19,7 +16,8 @@ public class RecensioneModel implements Serializable{
    
     public RecensioneModel() {}
 
-    public RecensioneModel(String testo, int voto, Date data, int idProdotto, int idDistributore) {
+    public RecensioneModel(int id, String testo, int voto, Date data, int idProdotto, int idDistributore) {
+        this.id = id;
         this.testo = testo;
         this.voto = voto;
         this.data = data;
@@ -27,8 +25,12 @@ public class RecensioneModel implements Serializable{
         this.idDistributore = idDistributore;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTesto() {
@@ -70,5 +72,7 @@ public class RecensioneModel implements Serializable{
     public void setIdDistributore(int idDistributore) {
         this.idDistributore = idDistributore;
     }
+
+   
       
 }

@@ -4,31 +4,32 @@ package unisa.is.helpseller.Model;
 import java.sql.Date;
 import java.util.List;
 
-import javax.persistence.*;
 import java.io.Serializable;
 
 public class TrasportoModel implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
 
+    private int id;
     private String indirizzoConsegna;
     private int quantitaMinima;
     private Date dataConsegna;
     private int idOrdine;
-    private List<OrdineModel> ordine;
 
     public TrasportoModel() {}
 
-    public TrasportoModel(String indirizzoConsegna, int quantitaMinima, Date dataConsegna, int idOrdine) {
+    public TrasportoModel(int id, String indirizzoConsegna, int quantitaMinima, Date dataConsegna, int idOrdine) {
+        this.id = id;
         this.indirizzoConsegna = indirizzoConsegna;
         this.quantitaMinima = quantitaMinima;
         this.dataConsegna = dataConsegna;
         this.idOrdine = idOrdine;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getIndirizzoConsegna() {

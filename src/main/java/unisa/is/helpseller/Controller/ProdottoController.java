@@ -1,6 +1,7 @@
 
 package unisa.is.helpseller.Controller;
 
+import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import unisa.is.helpseller.Service.ProdottoService;
@@ -8,7 +9,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import unisa.is.helpseller.Entity.Prodotto;
-import unisa.is.helpseller.Model.ScontoProdottoModel;
+import unisa.is.helpseller.Model.ProdottoModel;
 
 @RestController
 @RequestMapping("/prodotto")
@@ -141,6 +142,25 @@ public class ProdottoController {
 		}
     }
     
+    @GetMapping("/findProdottiByIdInAzienda/{id_prodotto}/{id_azienda}")
+    public ResponseEntity<List<ProdottoModel>> findProdottiByIdInAzienda(@PathVariable("id_prodotto") int id_prodotto, @PathVariable("id_azienda") int id_azienda) {
+        try {
+            List<Prodotto> pList = prodottoService.findProdottiByIdInAzienda(id_prodotto, id_azienda);
+            List<ProdottoModel> modelList = new ArrayList<ProdottoModel>();
+            
+            for (Prodotto p : pList) {
+                ProdottoModel pmBuf = new ProdottoModel(p.getId(), p.getNomeProdotto(),
+                p.getPrezzo(), p.getDescrizione(), p.getQuantita(), p.getImmagine(), 
+                p.getQuantitaMinima(), p.getPeso(), p.getVolume(), p.getIdAzienda(), null, null);
+                
+                modelList.add(pmBuf);
+            }
+            
+            return new ResponseEntity<>(modelList, HttpStatus.OK);
+        } catch (Exception ex) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
 }
 

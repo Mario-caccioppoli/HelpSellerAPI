@@ -4,13 +4,10 @@ package unisa.is.helpseller.Model;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.*;
 
 public class DistributoreModel implements Serializable{
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-    
+
+    private int id;
     private String username;    
     private String email;
     private String password;
@@ -24,32 +21,27 @@ public class DistributoreModel implements Serializable{
     
     public DistributoreModel() {}
 
-    public DistributoreModel(String username, String email, String password, 
-            String nome, String cognome, String VAT, String telefono, 
-            String indirizzoSede, int idOrdineProva) {
+    public DistributoreModel(int id, String username, String email, String password, String nome, String cognome, String vat, String telefono, String indirizzoSede, int idOrdineProva, List<OrdineModel> ordini) {
+        this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
         this.nome = nome;
         this.cognome = cognome;
-        this.vat = VAT;
+        this.vat = vat;
         this.telefono = telefono;
         this.indirizzoSede = indirizzoSede;
         this.idOrdineProva = idOrdineProva;
+        this.ordini = ordini;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
-    
-    public String getPassword() {
-        return password;
-    }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setId(int id) {
+        this.id = id;
     }
-
 
     public String getUsername() {
         return username;
@@ -65,6 +57,14 @@ public class DistributoreModel implements Serializable{
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getNome() {
@@ -83,12 +83,12 @@ public class DistributoreModel implements Serializable{
         this.cognome = cognome;
     }
 
-    public String getVAT() {
+    public String getVat() {
         return vat;
     }
 
-    public void setVAT(String VAT) {
-        this.vat = VAT;
+    public void setVat(String vat) {
+        this.vat = vat;
     }
 
     public String getTelefono() {
@@ -114,6 +114,16 @@ public class DistributoreModel implements Serializable{
     public void setIdOrdineProva(int idOrdineProva) {
         this.idOrdineProva = idOrdineProva;
     }
+
+    public List<OrdineModel> getOrdini() {
+        return ordini;
+    }
+
+    public void setOrdini(List<OrdineModel> ordini) {
+        this.ordini = ordini;
+    }
+
+   
     
     
 }

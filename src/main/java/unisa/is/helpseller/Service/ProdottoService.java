@@ -59,5 +59,9 @@ public class ProdottoService {
         return prodottoRepo.findProdottiBySconto(id_sconto);
     }
     
+    public List<Prodotto> findProdottiByIdInAzienda(int id_prodotto, int id_azienda) {
+        return prodottoRepo.findProdottiByIdInAzienda(id_prodotto, id_azienda);
+    }
+    
 
 }

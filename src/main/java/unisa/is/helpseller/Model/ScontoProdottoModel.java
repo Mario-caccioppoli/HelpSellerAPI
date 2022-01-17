@@ -2,34 +2,33 @@ package unisa.is.helpseller.Model;
 
 
 import java.io.Serializable;
-import unisa.is.helpseller.Entity.Prodotto;
-import unisa.is.helpseller.Entity.Sconto;
 
 public class ScontoProdottoModel implements Serializable {
-    private Prodotto prodotto;
-    private Sconto sconto;
+    private ProdottoModel prodotto;
+    private ScontoModel sconto;
 
     public ScontoProdottoModel() {}
 
-    public ScontoProdottoModel(Prodotto prodotto, Sconto sconto) {
+    public ScontoProdottoModel(ProdottoModel prodotto, ScontoModel sconto) {
         this.prodotto = prodotto;
         this.sconto = sconto;
     }
 
-    public Prodotto getProdotto() {
+    public ProdottoModel getProdotto() {
         return prodotto;
     }
 
-    public void setProdotto(Prodotto prodotto) {
+    public void setProdotto(ProdottoModel prodotto) {
         this.prodotto = prodotto;
     }
 
-    public Sconto getSconto() {
+    public ScontoModel getSconto() {
         return sconto;
     }
 
-    public void setSconto(Sconto sconto) {
+    public void setSconto(ScontoModel sconto) {
         this.sconto = sconto;
     }
+
     
 }

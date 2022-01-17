@@ -4,14 +4,10 @@ package unisa.is.helpseller.Model;
 import java.sql.Date;
 import java.util.List;
 import java.io.Serializable;
-import javax.persistence.*;
-
 
 public class ScontoModel implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-
+    
+    private int id;
     private int percentuale;
     private Date dataInizio;
     private Date dataFine;
@@ -22,17 +18,23 @@ public class ScontoModel implements Serializable {
 
     public ScontoModel() {}
 
-    public ScontoModel(int percentuale, Date dataInizio, Date dataFine, String tipo, int quantita, int idAzienda) {
+    public ScontoModel(int id, int percentuale, Date dataInizio, Date dataFine, String tipo, int quantita, int idAzienda, List<ProdottoModel> prodotti) {
+        this.id = id;
         this.percentuale = percentuale;
         this.dataInizio = dataInizio;
         this.dataFine = dataFine;
         this.tipo = tipo;
         this.quantita = quantita;
         this.idAzienda = idAzienda;
+        this.prodotti = prodotti;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getPercentuale() {
@@ -83,4 +85,13 @@ public class ScontoModel implements Serializable {
         this.idAzienda = idAzienda;
     }
 
+    public List<ProdottoModel> getProdotti() {
+        return prodotti;
+    }
+
+    public void setProdotti(List<ProdottoModel> prodotti) {
+        this.prodotti = prodotti;
+    }
+
+   
 }

@@ -37,4 +37,7 @@ public class RecensioneService {
     	return recensioneRepo.update(rec.getTesto(), rec.getVoto(), rec.getData(), rec.getIdProdotto(), rec.getIdDistributore(), rec.getId());
     }
     
+    public List<Recensione> findRecensioniByProdotto(int id) {
+        return recensioneRepo.findRecensioniByProdotto(id);
+    }
 }

@@ -4,14 +4,10 @@ package unisa.is.helpseller.Model;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.*;
 
 public class AziendaModel implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-    
-    private int idAzienda;
+
+    private int id;
     private String email;
     private String password;
     private String nomeAzienda;
@@ -23,27 +19,27 @@ public class AziendaModel implements Serializable {
     private List<OrdineModel> ordini;
     
     public AziendaModel() {}
-    
-    public AziendaModel(String email, String password, String nomeAzienda, String VAT,
-            String indirizzo, String descrizione, String logo) {
-        
+
+    public AziendaModel(int id, String email, String password, String nomeAzienda, String vat, String indirizzo, String descrizione, String logo, List<ProdottoModel> prodotti, List<OrdineModel> ordini) {
+        this.id = id;
         this.email = email;
         this.password = password;
         this.nomeAzienda = nomeAzienda;
-        this.vat = VAT;
+        this.vat = vat;
         this.indirizzo = indirizzo;
         this.descrizione = descrizione;
         this.logo = logo;
+        this.prodotti = prodotti;
+        this.ordini = ordini;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public int getIdAzienda() {
-        return idAzienda;
+    public void setId(int id) {
+        this.id = id;
     }
-
 
     public String getEmail() {
         return email;
@@ -69,12 +65,12 @@ public class AziendaModel implements Serializable {
         this.nomeAzienda = nomeAzienda;
     }
 
-    public String getVAT() {
+    public String getVat() {
         return vat;
     }
 
-    public void setVAT(String VAT) {
-        this.vat = VAT;
+    public void setVat(String vat) {
+        this.vat = vat;
     }
 
     public String getIndirizzo() {
@@ -100,6 +96,25 @@ public class AziendaModel implements Serializable {
     public void setLogo(String logo) {
         this.logo = logo;
     }
-        
+
+    public List<ProdottoModel> getProdotti() {
+        return prodotti;
+    }
+
+    public void setProdotti(List<ProdottoModel> prodotti) {
+        this.prodotti = prodotti;
+    }
+
+    public List<OrdineModel> getOrdini() {
+        return ordini;
+    }
+
+    public void setOrdini(List<OrdineModel> ordini) {
+        this.ordini = ordini;
+    }
+    
+
+
+   
     
 }

@@ -2,7 +2,6 @@ package unisa.is.helpseller.Model;
 
 
 import java.io.Serializable;
-import javax.persistence.*;
 
 
 public class AmministratoreModel implements Serializable{

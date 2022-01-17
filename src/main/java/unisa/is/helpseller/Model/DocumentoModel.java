@@ -3,13 +3,10 @@ package unisa.is.helpseller.Model;
 
 import java.io.Serializable;
 import java.sql.Date;
-import javax.persistence.*;
 
 public class DocumentoModel implements Serializable{
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-
+    
+    private int id;
     private String titolo;
     private String autore;
     private Date data;
@@ -17,15 +14,20 @@ public class DocumentoModel implements Serializable{
     
     public DocumentoModel() {}
 
-    public DocumentoModel(String titolo, String autore, Date data, int idOrdine) {
+    public DocumentoModel(int id, String titolo, String autore, Date data, int idOrdine) {
+        this.id = id;
         this.titolo = titolo;
         this.autore = autore;
         this.data = data;
         this.idOrdine = idOrdine;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitolo() {
@@ -59,6 +61,6 @@ public class DocumentoModel implements Serializable{
     public void setIdOrdine(int idOrdine) {
         this.idOrdine = idOrdine;
     }
-    
+
     
 }

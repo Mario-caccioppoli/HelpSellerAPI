@@ -3,14 +3,11 @@ package unisa.is.helpseller.Model;
 
 import java.sql.Date;
 import java.io.Serializable;
-import javax.persistence.*;
 
 
 public class OrdineModel implements Serializable{
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
 
+    private int id;
     private Date dataOrdinazione;
     private Date dataConsegna;
     private String commento;
@@ -18,21 +15,28 @@ public class OrdineModel implements Serializable{
     private int idDistributore;
     private int idOrdineProva;
     private DocumentoModel documento;
-    private int prezzoTotale;
+    private double prezzoTotale;
  
     public OrdineModel() {}
 
-    public OrdineModel(Date dataOrdinazione, Date dataConsegna, String commento, int idDistributore, int idOrdineProva) {
+    public OrdineModel(int id, Date dataOrdinazione, Date dataConsegna, String commento, String stato, int idDistributore, int idOrdineProva, DocumentoModel documento, double prezzoTotale) {
+        this.id = id;
         this.dataOrdinazione = dataOrdinazione;
         this.dataConsegna = dataConsegna;
         this.commento = commento;
+        this.stato = stato;
         this.idDistributore = idDistributore;
         this.idOrdineProva = idOrdineProva;
-        this.stato = "Generated";
+        this.documento = documento;
+        this.prezzoTotale = prezzoTotale;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Date getDataOrdinazione() {
@@ -82,6 +86,22 @@ public class OrdineModel implements Serializable{
     public void setIdOrdineProva(int idOrdineProva) {
         this.idOrdineProva = idOrdineProva;
     }
-    
+
+    public DocumentoModel getDocumento() {
+        return documento;
+    }
+
+    public void setDocumento(DocumentoModel documento) {
+        this.documento = documento;
+    }
+
+    public double getPrezzoTotale() {
+        return prezzoTotale;
+    }
+
+    public void setPrezzoTotale(double prezzoTotale) {
+        this.prezzoTotale = prezzoTotale;
+    }
+
     
 }

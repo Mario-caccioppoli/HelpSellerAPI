@@ -1,19 +1,18 @@
 package unisa.is.helpseller.Model;
 
 import java.io.Serializable;
-import unisa.is.helpseller.Entity.Prodotto;
 
 public class OrdineProdottoModel implements Serializable {
 
     private int idOrdine;
     private int quantitaOrdine;
     private double prezzoUnitario;
-    private Prodotto prodotto;
+    private ProdottoModel prodotto;
 
     public OrdineProdottoModel() {
     }
 
-    public OrdineProdottoModel(int idOrdine, int quantitaOrdine, double prezzoUnitario, Prodotto prodotto) {
+    public OrdineProdottoModel(int idOrdine, int quantitaOrdine, double prezzoUnitario, ProdottoModel prodotto) {
         this.idOrdine = idOrdine;
         this.quantitaOrdine = quantitaOrdine;
         this.prezzoUnitario = prezzoUnitario;
@@ -44,12 +43,13 @@ public class OrdineProdottoModel implements Serializable {
         this.prezzoUnitario = prezzoUnitario;
     }
 
-    public Prodotto getProdotto() {
+    public ProdottoModel getProdotto() {
         return prodotto;
     }
 
-    public void setProdotto(Prodotto prodotto) {
+    public void setProdotto(ProdottoModel prodotto) {
         this.prodotto = prodotto;
     }
 
+    
 }

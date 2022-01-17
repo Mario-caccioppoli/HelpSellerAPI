@@ -1,6 +1,7 @@
 package unisa.is.helpseller.Repo;
 
 import java.sql.Date;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -28,4 +29,8 @@ public interface RecensioneRepo extends JpaRepository<Recensione, Integer>{
    @Query("UPDATE Recensione r SET testo = :testo, voto = :voto, data = :data, id_prodotto = :id_prodotto, id_distributore = :id_distributore WHERE r.id = :id")
    int update(@Param("testo") String testo, @Param("voto") int voto, @Param("data") Date data, 
            @Param("id_prodotto") int id_prodotto, @Param("id_distributore") int id_distributore, @Param("id") int id);
+   
+   //JPQL
+   @Query("SELECT r FROM Recensione r WHERE r.id_prodotto = ?1")
+   List<Recensione> findRecensioniByProdotto(int id);
 }

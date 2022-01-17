@@ -1,17 +1,11 @@
 package unisa.is.helpseller.Model;
 
-
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.*;
-
-
 public class ProdottoModel implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
 
+    private int id;
     private String nomeProdotto;
     private double prezzo;
     private String descrizione;
@@ -22,12 +16,13 @@ public class ProdottoModel implements Serializable {
     private int volume;
     private int idAzienda;
     private List<RecensioneModel> recensioni;
-    private int quantita_ordine;
-    
- 
-    public ProdottoModel() {}
+    private List<ScontoModel> sconti;
 
-    public ProdottoModel(String nomeProdotto, double prezzo, String descrizione, int quantita, String immagine, int quantitaMinima, int peso, int volume, int idAzienda) {
+    public ProdottoModel() {
+    }
+
+    public ProdottoModel(int id, String nomeProdotto, double prezzo, String descrizione, int quantita, String immagine, int quantitaMinima, int peso, int volume, int idAzienda, List<RecensioneModel> recensioni, List<ScontoModel> sconti) {
+        this.id = id;
         this.nomeProdotto = nomeProdotto;
         this.prezzo = prezzo;
         this.descrizione = descrizione;
@@ -37,10 +32,16 @@ public class ProdottoModel implements Serializable {
         this.peso = peso;
         this.volume = volume;
         this.idAzienda = idAzienda;
+        this.recensioni = recensioni;
+        this.sconti = sconti;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNomeProdotto() {
@@ -114,7 +115,21 @@ public class ProdottoModel implements Serializable {
     public void setIdAzienda(int idAzienda) {
         this.idAzienda = idAzienda;
     }
-    
-    
-    
+
+    public List<RecensioneModel> getRecensioni() {
+        return recensioni;
+    }
+
+    public void setRecensioni(List<RecensioneModel> recensioni) {
+        this.recensioni = recensioni;
+    }
+
+    public List<ScontoModel> getSconti() {
+        return sconti;
+    }
+
+    public void setSconti(List<ScontoModel> sconti) {
+        this.sconti = sconti;
+    }
+
 }
