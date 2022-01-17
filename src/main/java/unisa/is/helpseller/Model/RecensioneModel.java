@@ -24,15 +24,6 @@ public class RecensioneModel implements Serializable{
         this.idProdotto = idProdotto;
         this.idDistributore = idDistributore;
     }
-    
-    public RecensioneModel(Recensione r) {
-        this.id = r.getId();
-        this.testo = r.getTesto();
-        this.voto = r.getVoto();
-        this.data = r.getData();
-        this.idProdotto = r.getIdProdotto();
-        this.idDistributore = r.getIdDistributore();
-    }
 
     public int getId() {
         return id;
