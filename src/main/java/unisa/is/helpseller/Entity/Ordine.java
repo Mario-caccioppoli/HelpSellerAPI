@@ -18,7 +18,7 @@ public class Ordine implements Serializable{
     private Date data_consegna;
     private String commento;
     private String stato;
-    private int id_distributore, id_ordine_prova;
+    private int id_distributore;
  
     public Ordine() {}
 
@@ -81,14 +81,4 @@ public class Ordine implements Serializable{
     public void setIdDistributore(int id_distributore) {
         this.id_distributore = id_distributore;
     }
-
-    public int getId_ordine_prova() {
-        return id_ordine_prova;
-    }
-
-    public void setId_ordine_prova(int id_ordine_prova) {
-        this.id_ordine_prova = id_ordine_prova;
-    }
-
-    
 }

@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.util.List;
 
 import java.io.Serializable;
+import unisa.is.helpseller.Entity.Trasporto;
 
 public class TrasportoModel implements Serializable {
 
@@ -22,6 +23,14 @@ public class TrasportoModel implements Serializable {
         this.quantitaMinima = quantitaMinima;
         this.dataConsegna = dataConsegna;
         this.idOrdine = idOrdine;
+    }
+    
+    public TrasportoModel(Trasporto t) {
+        this.id = t.getId();
+        this.indirizzoConsegna = t.getIndirizzoConsegna();
+        this.quantitaMinima = t.getQuantitaMinima();
+        this.dataConsegna = t.getDataConsegna();
+        this.idOrdine = t.getIdOrdine();
     }
 
     public int getId() {

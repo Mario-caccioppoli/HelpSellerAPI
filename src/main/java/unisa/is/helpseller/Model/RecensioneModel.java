@@ -2,6 +2,7 @@ package unisa.is.helpseller.Model;
 
 import java.sql.Date;
 import java.io.Serializable;
+import unisa.is.helpseller.Entity.Recensione;
 
 
 public class RecensioneModel implements Serializable{
@@ -16,8 +17,7 @@ public class RecensioneModel implements Serializable{
    
     public RecensioneModel() {}
 
-    public RecensioneModel(int id, String testo, int voto, Date data, int idProdotto, int idDistributore) {
-        this.id = id;
+    public RecensioneModel(String testo, int voto, Date data, int idProdotto, int idDistributore) {
         this.testo = testo;
         this.voto = voto;
         this.data = data;
@@ -25,6 +25,15 @@ public class RecensioneModel implements Serializable{
         this.idDistributore = idDistributore;
     }
 
+    public RecensioneModel(Recensione r) {
+        this.id = r.getId();
+        this.testo = r.getTesto();
+        this.voto = r.getVoto();
+        this.data = r.getData();
+        this.idProdotto = r.getIdProdotto();
+        this.idDistributore = r.getIdDistributore();
+    }
+    
     public int getId() {
         return id;
     }

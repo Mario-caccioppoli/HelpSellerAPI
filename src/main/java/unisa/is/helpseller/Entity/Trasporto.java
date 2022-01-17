@@ -4,6 +4,7 @@ package unisa.is.helpseller.Entity;
 import java.io.Serializable;
 import java.sql.Date;
 import javax.persistence.*;
+import unisa.is.helpseller.Model.TrasportoModel;
 
 
 @Entity
@@ -25,6 +26,13 @@ public class Trasporto implements Serializable{
         this.quantita_minima = quantita_minima;
         this.data_consegna = data_consegna;
         this.id_ordine = id_ordine;
+    }
+    
+    public Trasporto(TrasportoModel t) {
+        this.indirizzo_consegna = t.getIndirizzoConsegna();
+        this.quantita_minima = t.getQuantitaMinima();
+        this.data_consegna = t.getDataConsegna();
+        this.id_ordine = t.getIdOrdine();
     }
 
     public int getId() {

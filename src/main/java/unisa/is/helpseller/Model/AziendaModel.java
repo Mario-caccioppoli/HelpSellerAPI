@@ -3,6 +3,7 @@ package unisa.is.helpseller.Model;
 
 import java.io.Serializable;
 import java.util.List;
+import unisa.is.helpseller.Entity.Azienda;
 
 
 public class AziendaModel implements Serializable {
@@ -20,8 +21,7 @@ public class AziendaModel implements Serializable {
     
     public AziendaModel() {}
 
-    public AziendaModel(int id, String email, String password, String nomeAzienda, String vat, String indirizzo, String descrizione, String logo, List<ProdottoModel> prodotti, List<OrdineModel> ordini) {
-        this.id = id;
+    public AziendaModel(String email, String password, String nomeAzienda, String vat, String indirizzo, String descrizione, String logo, List<ProdottoModel> prodotti, List<OrdineModel> ordini) {
         this.email = email;
         this.password = password;
         this.nomeAzienda = nomeAzienda;
@@ -31,6 +31,19 @@ public class AziendaModel implements Serializable {
         this.logo = logo;
         this.prodotti = prodotti;
         this.ordini = ordini;
+    }
+    
+    public AziendaModel(Azienda a) {
+        this.id = a.getId();
+        this.email = a.getEmail();
+        this.password = a.getPassword();
+        this.nomeAzienda = a.getNomeAzienda();
+        this.vat = a.getvat();
+        this.indirizzo = a.getIndirizzo();
+        this.descrizione = a.getDescrizione();
+        this.logo = a.getLogo();
+        this.prodotti = null;
+        this.ordini = null;
     }
 
     public int getId() {

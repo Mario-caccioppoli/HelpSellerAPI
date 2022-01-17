@@ -3,6 +3,7 @@ package unisa.is.helpseller.Model;
 
 import java.sql.Date;
 import java.io.Serializable;
+import unisa.is.helpseller.Entity.Ordine;
 
 
 public class OrdineModel implements Serializable{
@@ -13,22 +14,29 @@ public class OrdineModel implements Serializable{
     private String commento;
     private String stato;
     private int idDistributore;
-    private int idOrdineProva;
     private DocumentoModel documento;
     private double prezzoTotale;
  
     public OrdineModel() {}
 
-    public OrdineModel(int id, Date dataOrdinazione, Date dataConsegna, String commento, String stato, int idDistributore, int idOrdineProva, DocumentoModel documento, double prezzoTotale) {
-        this.id = id;
+    public OrdineModel(Date dataOrdinazione, Date dataConsegna, String commento, String stato, int idDistributore, DocumentoModel documento, double prezzoTotale) {
         this.dataOrdinazione = dataOrdinazione;
         this.dataConsegna = dataConsegna;
         this.commento = commento;
         this.stato = stato;
         this.idDistributore = idDistributore;
-        this.idOrdineProva = idOrdineProva;
         this.documento = documento;
         this.prezzoTotale = prezzoTotale;
+    }
+    
+    public OrdineModel(Ordine o) {
+        this.id = o.getId();
+        this.dataOrdinazione = o.getDataOrdinazione();
+        this.dataConsegna = o.getDataConsegna();
+        this.commento = o.getCommento();
+        this.stato = o.getStato();
+        this.idDistributore = o.getIdDistributore();
+        this.documento = null;
     }
 
     public int getId() {
@@ -77,14 +85,6 @@ public class OrdineModel implements Serializable{
 
     public void setIdDistributore(int idDistributore) {
         this.idDistributore = idDistributore;
-    }
-
-    public int getIdOrdineProva() {
-        return idOrdineProva;
-    }
-
-    public void setIdOrdineProva(int idOrdineProva) {
-        this.idOrdineProva = idOrdineProva;
     }
 
     public DocumentoModel getDocumento() {

@@ -2,6 +2,7 @@ package unisa.is.helpseller.Model;
 
 import java.io.Serializable;
 import java.util.List;
+import unisa.is.helpseller.Entity.Prodotto;
 
 public class ProdottoModel implements Serializable {
 
@@ -34,6 +35,21 @@ public class ProdottoModel implements Serializable {
         this.idAzienda = idAzienda;
         this.recensioni = recensioni;
         this.sconti = sconti;
+    }
+    
+    public ProdottoModel(Prodotto p) {
+        this.id = p.getId();
+        this.nomeProdotto = p.getNomeProdotto();
+        this.prezzo = p.getPrezzo();
+        this.descrizione = p.getDescrizione();
+        this.quantita = p.getQuantita();
+        this.immagine = p.getImmagine();
+        this.quantitaMinima = p.getQuantitaMinima();
+        this.peso = p.getPeso();
+        this.volume = p.getVolume();
+        this.idAzienda = p.getIdAzienda();
+        this.recensioni = null;
+        this.sconti = null;
     }
 
     public int getId() {

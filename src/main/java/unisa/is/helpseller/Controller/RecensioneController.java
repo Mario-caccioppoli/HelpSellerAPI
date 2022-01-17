@@ -84,7 +84,7 @@ public class RecensioneController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    
+    /* DA AGGIORNARE
     @GetMapping("/findRecensioniByProdotto/{id}")
     public ResponseEntity<List<RecensioneModel>> findRecensioniByProdotto(@PathVariable("id") int id) {
         try {
@@ -104,4 +104,5 @@ public class RecensioneController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+*/
 }

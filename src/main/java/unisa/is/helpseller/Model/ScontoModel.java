@@ -4,6 +4,7 @@ package unisa.is.helpseller.Model;
 import java.sql.Date;
 import java.util.List;
 import java.io.Serializable;
+import unisa.is.helpseller.Entity.Sconto;
 
 public class ScontoModel implements Serializable {
     
@@ -27,6 +28,17 @@ public class ScontoModel implements Serializable {
         this.quantita = quantita;
         this.idAzienda = idAzienda;
         this.prodotti = prodotti;
+    }
+    
+    public ScontoModel(Sconto s) {
+        this.id = s.getId();
+        this.percentuale = s.getPercentuale();
+        this.dataInizio = s.getDataInizio();
+        this.dataFine = s.getDataFine();
+        this.tipo = s.getTipo();
+        this.quantita = s.getQuantita();
+        this.idAzienda = s.getIdAzienda();
+        this.prodotti = null;
     }
 
     public int getId() {

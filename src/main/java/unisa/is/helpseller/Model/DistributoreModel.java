@@ -3,6 +3,7 @@ package unisa.is.helpseller.Model;
 
 import java.io.Serializable;
 import java.util.List;
+import unisa.is.helpseller.Entity.Distributore;
 
 
 public class DistributoreModel implements Serializable{
@@ -16,13 +17,12 @@ public class DistributoreModel implements Serializable{
     private String vat;
     private String telefono;
     private String indirizzoSede;
-    private int idOrdineProva;
+    private Integer idOrdineProva;
     private List<OrdineModel> ordini;
     
     public DistributoreModel() {}
 
-    public DistributoreModel(int id, String username, String email, String password, String nome, String cognome, String vat, String telefono, String indirizzoSede, int idOrdineProva, List<OrdineModel> ordini) {
-        this.id = id;
+    public DistributoreModel(String username, String email, String password, String nome, String cognome, String vat, String telefono, String indirizzoSede, Integer idOrdineProva, List<OrdineModel> ordini) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -33,6 +33,20 @@ public class DistributoreModel implements Serializable{
         this.indirizzoSede = indirizzoSede;
         this.idOrdineProva = idOrdineProva;
         this.ordini = ordini;
+    }
+    
+    public DistributoreModel(Distributore d) {
+        this.id = d.getId();
+        this.username = d.getUsername();
+        this.email = d.getEmail();
+        this.password = d.getPassword();
+        this.nome = d.getNome();
+        this.cognome = d.getCognome();
+        this.vat = d.getvat();
+        this.telefono = d.getTelefono();
+        this.indirizzoSede = d.getIndirizzoSede();
+        this.idOrdineProva = d.getIdOrdineProva();
+        this.ordini = null;
     }
 
     public int getId() {
@@ -107,11 +121,11 @@ public class DistributoreModel implements Serializable{
         this.indirizzoSede = indirizzoSede;
     }
 
-    public int getIdOrdineProva() {
+    public Integer getIdOrdineProva() {
         return idOrdineProva;
     }
 
-    public void setIdOrdineProva(int idOrdineProva) {
+    public void setIdOrdineProva(Integer idOrdineProva) {
         this.idOrdineProva = idOrdineProva;
     }
 

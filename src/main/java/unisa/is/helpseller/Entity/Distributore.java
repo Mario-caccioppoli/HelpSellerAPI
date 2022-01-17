@@ -3,6 +3,7 @@ package unisa.is.helpseller.Entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import unisa.is.helpseller.Model.DistributoreModel;
 
 @Entity
 @Table(name = "distributore")
@@ -35,6 +36,18 @@ public class Distributore implements Serializable{
         this.telefono = telefono;
         this.indirizzo_sede = indirizzo_sede;
         this.id_ordine_prova = id_ordine_prova;
+    }
+    
+    public Distributore(DistributoreModel d) {
+        this.username = d.getUsername();
+        this.email = d.getEmail();
+        this.password = d.getPassword();
+        this.nome = d.getNome();
+        this.cognome = d.getCognome();
+        this.vat = d.getVat();
+        this.telefono = d.getTelefono();
+        this.indirizzo_sede = d.getIndirizzoSede();
+        this.id_ordine_prova = d.getIdOrdineProva();
     }
 
     public int getId() {

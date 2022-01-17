@@ -4,6 +4,7 @@ package unisa.is.helpseller.Entity;
 import java.sql.Date;
 import java.io.Serializable;
 import javax.persistence.*;
+import unisa.is.helpseller.Model.ScontoModel;
 
 
 @Entity
@@ -29,6 +30,15 @@ public class Sconto implements Serializable {
         this.tipo = tipo;
         this.quantita = quantita;
         this.id_azienda = id_azienda;
+    }
+    
+    public Sconto(ScontoModel s) {
+        this.percentuale = s.getPercentuale();
+        this.data_inizio = s.getDataInizio();
+        this.data_fine = s.getDataFine();
+        this.tipo = s.getTipo();
+        this.quantita = s.getQuantita();
+        this.id_azienda = s.getIdAzienda();
     }
 
     public int getId() {
