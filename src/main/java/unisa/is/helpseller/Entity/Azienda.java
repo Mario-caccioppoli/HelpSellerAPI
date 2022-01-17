@@ -36,6 +36,7 @@ public class Azienda implements Serializable {
     }
     
     public Azienda(AziendaModel a) {
+        this.id = a.getId();
         this.email = a.getEmail();
         this.password = a.getPassword();
         this.nome_azienda = a.getNomeAzienda();

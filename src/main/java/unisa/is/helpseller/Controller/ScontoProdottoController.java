@@ -66,17 +66,18 @@ public class ScontoProdottoController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-    @PostMapping("/insert")
-    public ResponseEntity<ScontoProdotto> insert(ScontoProdotto scontoProd) {
+    
+    //DA MODIFICARE
+    @PostMapping("/insert/{id_sconto}/{id_prodotto}")
+    public ResponseEntity<ScontoProdotto> insert(@PathVariable("id_sconto") int id_sconto, @PathVariable("id_prodotto") int id_prodotto) {
         try {
-            scontoProdottoService.insert(scontoProd);
+            //scontoProdottoService.insert(scontoProd);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+    //DA MODIFICARE COME SOPRA
     @PostMapping("/update")
     public ResponseEntity<ScontoProdotto> update(ScontoProdotto updated, ScontoProdotto old) {
         try {
@@ -86,7 +87,7 @@ public class ScontoProdottoController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+/*
     @GetMapping("/findProdottiScontatiAzienda/{name}/{id}")
     public ResponseEntity<List<ScontoProdottoModel>> findProdottiScontatiAzienda(@PathVariable("name") String name, @PathVariable("id") int id) {
         try {
@@ -117,5 +118,5 @@ public class ScontoProdottoController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-    }
+    }*/
 }

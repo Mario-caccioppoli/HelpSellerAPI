@@ -136,7 +136,7 @@ public class ProdottoController {
 		{
             List<Prodotto> prodotti = prodottoService.findProdottiBySconto(id);
             return new ResponseEntity<>(prodotti, HttpStatus.OK);
-		}catch (Exception ex)
+		} catch (Exception ex)
 		{
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
