@@ -3,6 +3,7 @@ package unisa.is.helpseller.Entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import unisa.is.helpseller.Model.AziendaModel;
 
 
 @Entity
@@ -32,6 +33,17 @@ public class Azienda implements Serializable {
         this.indirizzo = indirizzo;
         this.descrizione = descrizione;
         this.logo = logo;
+    }
+    
+    public Azienda(AziendaModel a) {
+        
+        this.email = a.getEmail();
+        this.password = a.getPassword();
+        this.nome_azienda = a.getNomeAzienda();
+        this.vat = a.getVAT();
+        this.indirizzo = a.getIndirizzo();
+        this.descrizione = a.getDescrizione();
+        this.logo = a.getLogo();
     }
 
     public int getId() {

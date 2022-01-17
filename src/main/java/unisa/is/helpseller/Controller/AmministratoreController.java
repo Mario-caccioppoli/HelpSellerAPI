@@ -51,7 +51,7 @@ public class AmministratoreController {
 		try
 		{
 			Amministratore amministratore = amministratoreService.findId(id);
-			System.out.println(amministratore);
+			//System.out.println(amministratore);
 			AmministratoreModel amministratoreModel = new AmministratoreModel(amministratore.getId(), amministratore.getEmail(), amministratore.getUsername(), amministratore.getPassword());
 			return new ResponseEntity<>(amministratoreModel, HttpStatus.OK);
 		}catch (Exception ex)
@@ -61,10 +61,11 @@ public class AmministratoreController {
 	}
 
 	@GetMapping("/update")
-	public ResponseEntity<Amministratore> update(Amministratore amministratore) {
+	public ResponseEntity<AmministratoreModel> update(AmministratoreModel amministratore) {
 		try
 		{
-			amministratoreService.udpate(amministratore);
+                        Amministratore a = new Amministratore(amministratore.getEmail(), amministratore.getUsername(), amministratore.getPassword());
+			amministratoreService.udpate(a);
 			return new ResponseEntity<>(HttpStatus.OK);
 		}catch (Exception ex)
 		{
