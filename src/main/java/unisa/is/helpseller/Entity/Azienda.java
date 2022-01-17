@@ -35,17 +35,6 @@ public class Azienda implements Serializable {
         this.logo = logo;
     }
     
-    public Azienda(AziendaModel a) {
-        
-        this.email = a.getEmail();
-        this.password = a.getPassword();
-        this.nome_azienda = a.getNomeAzienda();
-        this.vat = a.getVAT();
-        this.indirizzo = a.getIndirizzo();
-        this.descrizione = a.getDescrizione();
-        this.logo = a.getLogo();
-    }
-
     public int getId() {
         return id;
     }
