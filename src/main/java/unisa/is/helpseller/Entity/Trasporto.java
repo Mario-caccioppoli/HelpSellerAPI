@@ -29,6 +29,7 @@ public class Trasporto implements Serializable{
     }
     
     public Trasporto(TrasportoModel t) {
+        this.id = t.getId();
         this.indirizzo_consegna = t.getIndirizzoConsegna();
         this.quantita_minima = t.getQuantitaMinima();
         this.data_consegna = t.getDataConsegna();

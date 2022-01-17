@@ -41,6 +41,7 @@ public class Prodotto implements Serializable {
     }
     
     public Prodotto(ProdottoModel p) {
+        this.id = p.getId();
         this.nome_prodotto = p.getNomeProdotto();
         this.prezzo = p.getPrezzo();
         this.descrizione = p.getDescrizione();

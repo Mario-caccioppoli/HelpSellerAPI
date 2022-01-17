@@ -3,6 +3,7 @@ package unisa.is.helpseller.Model;
 
 import java.io.Serializable;
 import java.sql.Date;
+import unisa.is.helpseller.Entity.Documento;
 
 public class DocumentoModel implements Serializable{
     
@@ -20,6 +21,14 @@ public class DocumentoModel implements Serializable{
         this.autore = autore;
         this.data = data;
         this.idOrdine = idOrdine;
+    }
+    
+    public DocumentoModel(Documento d) {
+        this.id = d.getId();
+        this.titolo = d.getTitolo();
+        this.autore = d.getAutore();
+        this.data = d.getData();
+        this.idOrdine = d.getIdOrdine();
     }
 
     public int getId() {

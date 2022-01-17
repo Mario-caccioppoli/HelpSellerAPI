@@ -32,6 +32,7 @@ public class Recensione implements Serializable{
     }
     
     public Recensione(RecensioneModel r) {
+        this.id = r.getId();
         this.testo = r.getTesto();
         this.voto = r.getVoto();
         this.data = r.getData();

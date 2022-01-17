@@ -29,6 +29,7 @@ public class Documento implements Serializable{
     }
     
     public Documento(DocumentoModel d) {
+        this.id = d.getId();
         this.titolo = d.getTitolo();
         this.autore = d.getAutore();
         this.data = d.getData();

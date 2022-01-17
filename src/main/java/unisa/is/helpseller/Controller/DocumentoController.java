@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import unisa.is.helpseller.Service.DocumentoService;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import unisa.is.helpseller.Entity.Documento;
@@ -24,27 +25,36 @@ public class DocumentoController {
     }
 
     @GetMapping("/findAll")
-    public ResponseEntity<List<Documento>> findAll() {
+    public ResponseEntity<List<DocumentoModel>> findAll() {
         try {
             List<Documento> documenti = documentoService.findAll();
-            return new ResponseEntity<>(documenti, HttpStatus.OK);
+            List<DocumentoModel> documentiModel = new ArrayList<DocumentoModel>();
+            if (documenti.size() > 0) {
+                documentiModel = documenti.stream().map(p -> {
+                    return new DocumentoModel(p);
+                }).collect(Collectors.toList());
+                return new ResponseEntity<>(documentiModel, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(documentiModel, HttpStatus.NOT_FOUND);
+            }
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @GetMapping("/findId/{id}")
-    public ResponseEntity<Documento> findId(@PathVariable("id") int id) {
+    public ResponseEntity<DocumentoModel> findId(@PathVariable("id") int id) {
         try {
             Documento documento = documentoService.findId(id);
-            return new ResponseEntity<>(documento, HttpStatus.OK);
+            DocumentoModel d = new DocumentoModel(documento);
+            return new ResponseEntity<>(d, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @DeleteMapping("/deleteId/{id}")
-    public ResponseEntity<Documento> deleteId(@PathVariable("id") int id) {
+    public ResponseEntity<DocumentoModel> deleteId(@PathVariable("id") int id) {
         try {
             documentoService.deleteId(id);
             return new ResponseEntity<>(HttpStatus.OK);
@@ -54,9 +64,10 @@ public class DocumentoController {
     }
 
     @PostMapping("/insert")
-    public ResponseEntity<Documento> insert(Documento doc) {
+    public ResponseEntity<DocumentoModel> insert(DocumentoModel doc) {
         try {
-            documentoService.insert(doc);
+            Documento d = new Documento(doc);
+            documentoService.insert(d);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -64,9 +75,10 @@ public class DocumentoController {
     }
 
     @PostMapping("/update")
-    public ResponseEntity<Documento> update(Documento doc) {
+    public ResponseEntity<DocumentoModel> update(DocumentoModel doc) {
         try {
-            documentoService.udpate(doc);
+            Documento d = new Documento(doc);
+            documentoService.udpate(d);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -76,15 +88,16 @@ public class DocumentoController {
     @GetMapping("/findDocumentiByOrdine/{id}")
     public ResponseEntity<List<DocumentoModel>> findDocumentiByOrdine(@PathVariable("id") int id) {
         try {
-            List<Documento> docList = documentoService.findDocumentiByOrdine(id);
-            List<DocumentoModel> modelList = new ArrayList<DocumentoModel>();
-
-            for (Documento doc : docList) {
-                DocumentoModel modelBuf = new DocumentoModel(doc.getId(), doc.getTitolo(), doc.getAutore(), doc.getData(), doc.getIdOrdine());
-                modelList.add(modelBuf);
+            List<Documento> documenti = documentoService.findDocumentiByOrdine(id);
+            List<DocumentoModel> documentiModel = new ArrayList<DocumentoModel>();
+            if (documenti.size() > 0) {
+                documentiModel = documenti.stream().map(p -> {
+                    return new DocumentoModel(p);
+                }).collect(Collectors.toList());
+                return new ResponseEntity<>(documentiModel, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(documentiModel, HttpStatus.NOT_FOUND);
             }
-
-            return new ResponseEntity<>(modelList, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

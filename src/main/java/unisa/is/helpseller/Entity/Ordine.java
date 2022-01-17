@@ -31,6 +31,7 @@ public class Ordine implements Serializable{
     }
     
     public Ordine(OrdineModel o) {
+        this.id = o.getId();
         this.data_ordinazione = o.getDataOrdinazione();
         this.data_consegna = o.getDataConsegna();
         this.commento = o.getCommento();

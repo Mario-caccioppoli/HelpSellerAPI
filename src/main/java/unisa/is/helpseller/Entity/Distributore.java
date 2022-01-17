@@ -39,6 +39,7 @@ public class Distributore implements Serializable{
     }
     
     public Distributore(DistributoreModel d) {
+        this.id = d.getId();
         this.username = d.getUsername();
         this.email = d.getEmail();
         this.password = d.getPassword();

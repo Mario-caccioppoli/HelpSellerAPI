@@ -33,6 +33,7 @@ public class Sconto implements Serializable {
     }
     
     public Sconto(ScontoModel s) {
+        this.id = s.getId();
         this.percentuale = s.getPercentuale();
         this.data_inizio = s.getDataInizio();
         this.data_fine = s.getDataFine();
