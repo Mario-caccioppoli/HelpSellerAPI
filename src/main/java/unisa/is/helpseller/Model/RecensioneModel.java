@@ -3,6 +3,7 @@ package unisa.is.helpseller.Model;
 import java.sql.Date;
 import java.io.Serializable;
 import javax.persistence.*;
+import unisa.is.helpseller.Entity.Recensione;
 
 
 public class RecensioneModel implements Serializable{
@@ -25,6 +26,15 @@ public class RecensioneModel implements Serializable{
         this.data = data;
         this.idProdotto = idProdotto;
         this.idDistributore = idDistributore;
+    }
+    
+    public RecensioneModel(Recensione r) {
+        this.id = r.getId();
+        this.testo = r.getTesto();
+        this.voto = r.getVoto();
+        this.data = r.getData();
+        this.idProdotto = r.getIdProdotto();
+        this.idDistributore = r.getIdDistributore();
     }
 
     public long getId() {

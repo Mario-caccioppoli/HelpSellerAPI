@@ -3,6 +3,7 @@ package unisa.is.helpseller.Entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import unisa.is.helpseller.Model.ProdottoModel;
 
 
 @Entity
@@ -37,6 +38,18 @@ public class Prodotto implements Serializable {
         this.peso = peso;
         this.volume = volume;
         this.id_azienda = id_azienda;
+    }
+    
+    public Prodotto(ProdottoModel p) {
+        this.nome_prodotto = p.getNomeProdotto();
+        this.prezzo = p.getPrezzo();
+        this.descrizione = p.getDescrizione();
+        this.quantita = p.getQuantita();
+        this.immagine = p.getImmagine();
+        this.quantita_minima = p.getQuantitaMinima();
+        this.peso = p.getPeso();
+        this.volume = p.getVolume();
+        this.id_azienda = p.getIdAzienda();
     }
 
     public int getId() {

@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.*;
+import unisa.is.helpseller.Entity.Prodotto;
 
 
 public class ProdottoModel implements Serializable {
@@ -37,6 +38,19 @@ public class ProdottoModel implements Serializable {
         this.peso = peso;
         this.volume = volume;
         this.idAzienda = idAzienda;
+    }
+    
+    public ProdottoModel(Prodotto p) {
+        this.nomeProdotto = p.getNomeProdotto();
+        this.prezzo = p.getPrezzo();
+        this.descrizione = p.getDescrizione();
+        this.quantita = p.getQuantita();
+        this.immagine = p.getImmagine();
+        this.quantitaMinima = p.getQuantitaMinima();
+        this.peso = p.getPeso();
+        this.volume = p.getVolume();
+        this.idAzienda = p.getIdAzienda();
+        this.id = p.getId();
     }
 
     public long getId() {
