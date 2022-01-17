@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Table(name = "amministratore")
 public class Amministratore implements Serializable{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
     private String username;

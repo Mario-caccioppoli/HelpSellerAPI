@@ -32,7 +32,7 @@ public class DocumentoService {
     }
     
     public int insert(Documento doc) {
-    	return documentoRepo.insert(doc.getTitolo(), doc.getAutore(), doc.getIdOrdine(), doc.getData());
+    	return documentoRepo.saveAndFlush(doc).getId();
     }
     
     public int udpate(Documento doc) {

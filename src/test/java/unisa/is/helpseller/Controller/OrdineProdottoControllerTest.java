@@ -10,6 +10,7 @@ package unisa.is.helpseller.Controller;
  * @author UTENTE
  */
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.List;
 
@@ -39,21 +40,24 @@ public class OrdineProdottoControllerTest {
     	}
     	else
     	{
-    		assertThat(response.getStatusCode().compareTo(HttpStatus.NOT_FOUND));
+    		assertThat(response.getStatusCode().equals(HttpStatus.NOT_FOUND));
     	}
+    	 assertNotNull(response,"Response is not null");
    }
     
     @Test
     public void findId() throws Exception {
-    	ResponseEntity<OrdineProdotto> response = controller.findId(1,1);
-    	/*if(all.size() > 0)
+    	ResponseEntity<OrdineProdotto> response = controller.findId(-1, 1);
+    	OrdineProdotto single = response.getBody();
+    	if(single != null)
     	{
     		assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
     	}
     	else
     	{
-    		assertThat(response.getStatusCode().compareTo(HttpStatus.NOT_FOUND));
-    	}*/
+    		assertThat(response.getStatusCode().equals(HttpStatus.NOT_FOUND));
+    	}
+    	 assertNotNull(response,"Response is not null");
    }
     
 }

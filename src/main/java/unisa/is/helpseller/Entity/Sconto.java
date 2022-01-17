@@ -11,7 +11,7 @@ import unisa.is.helpseller.Model.ScontoModel;
 @Table(name = "sconto")
 public class Sconto implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private int percentuale;

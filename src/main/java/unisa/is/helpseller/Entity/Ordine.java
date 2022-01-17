@@ -11,7 +11,7 @@ import unisa.is.helpseller.Model.OrdineModel;
 @Table(name = "ordine")
 public class Ordine implements Serializable{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
     private Date data_ordinazione;

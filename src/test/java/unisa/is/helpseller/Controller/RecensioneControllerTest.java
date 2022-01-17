@@ -25,9 +25,6 @@ public class RecensioneControllerTest {
 
     @Test
     public void contextLoads() throws Exception {
-    assertThat(controller.findAll().getBody().isEmpty()).isFalse();
-    assertThat(controller.findId(1).getStatusCode().equals(HttpStatus.OK));
-    assertThat(controller.findId(1000).getStatusCode().equals(HttpStatus.INTERNAL_SERVER_ERROR));
-    assertThat(controller.deleteId(5000).getStatusCode().equals(HttpStatus.INTERNAL_SERVER_ERROR));
+
     }
 }

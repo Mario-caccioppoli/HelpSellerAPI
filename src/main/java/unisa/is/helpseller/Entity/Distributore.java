@@ -9,7 +9,7 @@ import unisa.is.helpseller.Model.DistributoreModel;
 @Table(name = "distributore")
 public class Distributore implements Serializable{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
     private String username;    

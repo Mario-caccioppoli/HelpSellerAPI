@@ -30,7 +30,7 @@ public class RecensioneService {
     }
     
     public int insert(Recensione rec) {
-    	return recensioneRepo.insert(rec.getTesto(), rec.getVoto(), rec.getData(), rec.getIdProdotto(), rec.getIdDistributore());
+    	return recensioneRepo.saveAndFlush(rec).getId();
     }
     
     public int udpate(Recensione rec) {

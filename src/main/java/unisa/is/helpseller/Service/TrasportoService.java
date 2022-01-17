@@ -30,7 +30,7 @@ public class TrasportoService {
     }
     
     public int insert(Trasporto tr) {
-    	return trasportoRepo.insert(tr.getIdOrdine(), tr.getDataConsegna(), tr.getIndirizzoConsegna(), tr.getQuantitaMinima());
+    	return trasportoRepo.saveAndFlush(tr).getId();
     }
     
     public int udpate(Trasporto tr) {

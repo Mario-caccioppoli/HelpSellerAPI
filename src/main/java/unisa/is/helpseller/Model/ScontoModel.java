@@ -13,13 +13,13 @@ public class ScontoModel implements Serializable {
     private Date dataInizio;
     private Date dataFine;
     private String tipo;
-    private int quantita;
+    private Integer quantita;
     private int idAzienda;
     private List<ProdottoModel> prodotti;
 
     public ScontoModel() {}
 
-    public ScontoModel(int id, int percentuale, Date dataInizio, Date dataFine, String tipo, int quantita, int idAzienda, List<ProdottoModel> prodotti) {
+    public ScontoModel(int id, int percentuale, Date dataInizio, Date dataFine, String tipo, Integer quantita, int idAzienda, List<ProdottoModel> prodotti) {
         this.id = id;
         this.percentuale = percentuale;
         this.dataInizio = dataInizio;
@@ -81,11 +81,11 @@ public class ScontoModel implements Serializable {
         this.tipo = tipo;
     }
 
-    public int getQuantita() {
+    public Integer getQuantita() {
         return quantita;
     }
 
-    public void setQuantita(int quantita) {
+    public void setQuantita(Integer quantita) {
         this.quantita = quantita;
     }
 

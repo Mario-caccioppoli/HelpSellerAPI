@@ -30,7 +30,7 @@ public class AziendaService {
     }
     
     public int insert(Azienda a) {
-    	return aziendaRepo.insert(a.getEmail(), a.getPassword(), a.getNomeAzienda(), a.getIndirizzo(), a.getvat(), a.getDescrizione(), a.getLogo());
+    	return aziendaRepo.saveAndFlush(a).getId();
     }
     
     public int update(Azienda a) {

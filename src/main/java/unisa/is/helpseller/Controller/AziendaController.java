@@ -29,14 +29,10 @@ public class AziendaController {
         try {
             List<Azienda> aziende = aziendaService.findAll();
             List<AziendaModel> aziendeModel = new ArrayList<AziendaModel>();
-            if (aziende.size() > 0) {
                 aziendeModel = aziende.stream().map(p -> {
                     return new AziendaModel(p);
                 }).collect(Collectors.toList());
                 return new ResponseEntity<>(aziendeModel, HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(aziendeModel, HttpStatus.NOT_FOUND);
-            }
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
