@@ -14,7 +14,7 @@ public class Sconto implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String nome;
+    private String nome_sconto;
     private int percentuale;
     private Date data_inizio;
     private Date data_fine;
@@ -22,10 +22,12 @@ public class Sconto implements Serializable {
     private Integer quantita;
     private int id_azienda;
 
+
     public Sconto() {}
 
-    public Sconto(String nome, int percentuale, Date data_inizio, Date data_fine, String tipo, int quantita, int id_azienda) {
-        this.nome = nome;
+    public Sconto(String nome_sconto, int percentuale, Date data_inizio, 
+            Date data_fine, String tipo, int quantita, int id_azienda) {
+        this.nome_sconto = nome_sconto;
         this.percentuale = percentuale;
         this.data_inizio = data_inizio;
         this.data_fine = data_fine;
@@ -36,7 +38,7 @@ public class Sconto implements Serializable {
     
     public Sconto(ScontoModel s) {
         this.id = s.getId();
-        this.nome = s.getNome();
+        this.nome_sconto = s.getNome();
         this.percentuale = s.getPercentuale();
         this.data_inizio = s.getDataInizio();
         this.data_fine = s.getDataFine();
@@ -98,11 +100,11 @@ public class Sconto implements Serializable {
     }
 
     public String getNome() {
-        return nome;
+        return nome_sconto;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNome(String nome_sconto) {
+        this.nome_sconto = nome_sconto;
     }
 
 }

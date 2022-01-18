@@ -21,8 +21,8 @@ public interface OrdineRepo extends JpaRepository<Ordine, Integer> {
    //SQL
    @Modifying
    @Query(
-   value = "INSERT INTO ordine (commento, stato, id_distributore, id_ordine_prova, data_consegna, data_ordinazione) "
-           + "VALUES (:commento, :stato, :id_distributore, :id_ordine_prova, :data_consegna, :data_ordinazione)",
+   value = "INSERT INTO ordine (commento, stato, id_distributore, data_consegna, data_ordinazione) "
+           + "VALUES (:commento, :stato, :id_distributore, :data_consegna, :data_ordinazione)",
            nativeQuery = true)
    int insert(@Param("commento") String commento, @Param("stato") String stato, 
            @Param("id_distributore") int id_distributore, 
@@ -30,7 +30,7 @@ public interface OrdineRepo extends JpaRepository<Ordine, Integer> {
    
    //JPQL
    @Modifying
-   @Query("UPDATE Ordine o SET commento = :commento, stato = :stato, id_distributore = :id_distributore, id_ordine_prova = :id_ordine_prova,"
+   @Query("UPDATE Ordine o SET commento = :commento, stato = :stato, id_distributore = :id_distributore,"
            + " data_consegna = :data_consegna, data_ordinazione = :data_ordinazione WHERE o.id = :id")
    int update(@Param("commento") String commento, @Param("stato") String stato, @Param("id_distributore") int id_distributore, 
            @Param("data_consegna") Date data_consegna, 
@@ -42,7 +42,7 @@ public interface OrdineRepo extends JpaRepository<Ordine, Integer> {
    List<Ordine> findOrdiniByDistributore(@Param("id_distributore") int id_distributore);
    
    //SQL
-   @Query(value = "SELECT DISTINCT ordine.id, ordine.commento, ordine.stato, ordine.id_distributore, ordine.id_ordine_prova, ordine.data_consegna, ordine.data_ordinazione " +
+   @Query(value = "SELECT DISTINCT ordine.id, ordine.commento, ordine.stato, ordine.id_distributore, ordine.data_consegna, ordine.data_ordinazione " +
         "FROM prodotto " +
         "INNER JOIN ordine_prodotto AS ordprd " +
         "ON prodotto.id = ordprd.id_prodotto " +

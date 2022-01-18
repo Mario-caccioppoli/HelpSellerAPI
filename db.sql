@@ -2,7 +2,7 @@ CREATE DATABASE  IF NOT EXISTS `helpseller` /*!40100 DEFAULT CHARACTER SET utf8 
 USE `helpseller`;
 -- MySQL dump 10.13  Distrib 8.0.27, for Win64 (x86_64)
 --
--- Host: localhost    Database: helpseller
+-- Host: 127.0.0.1    Database: helpseller
 -- ------------------------------------------------------
 -- Server version	8.0.27
 
@@ -64,7 +64,7 @@ CREATE TABLE `azienda` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `VATNumber_UNIQUE` (`vat`),
   UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -73,7 +73,7 @@ CREATE TABLE `azienda` (
 
 LOCK TABLES `azienda` WRITE;
 /*!40000 ALTER TABLE `azienda` DISABLE KEYS */;
-INSERT INTO `azienda` VALUES (1,'bevande@gmail.com','123','bevande SPA','111111','via piedi','vendiamo bevande',NULL),(2,'surgelati@gmail.com','234','surgelati','222222','via vai','vendiamo surgelati',NULL),(3,'messico@gmail.com','2982','mexican foods','333333','corso veloce','vendiamo cibo etnico',NULL),(4,'sboorra@gmail.com','123','bevande SPA','999','via piedi','vendiamo bevande',''),(5,'ukuleleporcodio','123','bevande SPA','9898','via piedi','vendiamo bevande','');
+INSERT INTO `azienda` VALUES (1,'bevande@gmail.com','123','bevande SPA','111111','via piedi','vendiamo bevande',NULL),(2,'surgelati@gmail.com','234','surgelati','222222','via vai','vendiamo surgelati',NULL),(3,'messico@gmail.com','2982','mexican foods','333333','corso veloce','vendiamo cibo etnico',NULL);
 /*!40000 ALTER TABLE `azienda` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -100,7 +100,7 @@ CREATE TABLE `distributore` (
   UNIQUE KEY `email_UNIQUE` (`email`),
   UNIQUE KEY `username_UNIQUE` (`username`),
   KEY `ordineprova_idx` (`id_ordine_prova`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -109,7 +109,7 @@ CREATE TABLE `distributore` (
 
 LOCK TABLES `distributore` WRITE;
 /*!40000 ALTER TABLE `distributore` DISABLE KEYS */;
-INSERT INTO `distributore` VALUES (1,'mario','mario@gmail.com','111','mario','caccioppoli','125425','2525145','napoli',0),(9,'bruno','cazzi@gmail.com','111','bruno','asdasdsa','123','2525145','napoli',0),(10,'ashish','fumo la droga','111','bruno','asdasdsa','123777','2525145','napoli',0);
+INSERT INTO `distributore` VALUES (1,'mario','mario@gmail.com','111','mario','caccioppoli','125425','2525145','napoli',NULL);
 /*!40000 ALTER TABLE `distributore` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -128,7 +128,7 @@ CREATE TABLE `documento` (
   `data` date NOT NULL,
   PRIMARY KEY (`id`),
   KEY `ordinedoc_idx` (`id_ordine`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -137,7 +137,6 @@ CREATE TABLE `documento` (
 
 LOCK TABLES `documento` WRITE;
 /*!40000 ALTER TABLE `documento` DISABLE KEYS */;
-INSERT INTO `documento` VALUES (1,'docuNUOVONUOVOAAAAAAAAA','mento',1,'2022-01-01'),(4,'diocane','mento',1,'2022-01-01'),(5,'new','stocazzo',1,'2022-01-01'),(6,'nuovonuovonuovo','xcxccx',1,'2022-01-01');
 /*!40000 ALTER TABLE `documento` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -157,7 +156,7 @@ CREATE TABLE `ordine` (
   `data_ordinazione` date NOT NULL,
   PRIMARY KEY (`id`),
   KEY `distributore_idx` (`id_distributore`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -166,7 +165,6 @@ CREATE TABLE `ordine` (
 
 LOCK TABLES `ordine` WRITE;
 /*!40000 ALTER TABLE `ordine` DISABLE KEYS */;
-INSERT INTO `ordine` VALUES (1,'bella merda','qwe',1,'2022-01-01','2022-01-01'),(2,'asd','ads',2,'2022-01-01','2022-01-01');
 /*!40000 ALTER TABLE `ordine` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -196,7 +194,6 @@ CREATE TABLE `ordine_prodotto` (
 
 LOCK TABLES `ordine_prodotto` WRITE;
 /*!40000 ALTER TABLE `ordine_prodotto` DISABLE KEYS */;
-INSERT INTO `ordine_prodotto` VALUES (1,1,12,2,2),(2,2,21,4,4);
 /*!40000 ALTER TABLE `ordine_prodotto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -222,7 +219,7 @@ CREATE TABLE `prodotto` (
   UNIQUE KEY `nomeProdotto_UNIQUE` (`nome_prodotto`),
   KEY `Azienda_idx` (`id_azienda`),
   CONSTRAINT `Azienda` FOREIGN KEY (`id_azienda`) REFERENCES `azienda` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -231,7 +228,7 @@ CREATE TABLE `prodotto` (
 
 LOCK TABLES `prodotto` WRITE;
 /*!40000 ALTER TABLE `prodotto` DISABLE KEYS */;
-INSERT INTO `prodotto` VALUES (1,'LA DROGAINA',1,'asdfsdvsdvdfsbgf',50,'',1,1,1,0),(2,'cherry cola',1.15,'bevanda gusto cola alla ciliegia',55,NULL,2,1,1,0),(3,'cola zero',1,'bevanda gusto cola zero calorie',40,NULL,3,1,1,0),(4,'sofficini',2,'sofficini generici surgelati',60,NULL,1,2,2,0),(5,'bastoncini',2,'bastoncini di merluzzo surgelati',50,NULL,2,2,2,0),(6,'kebab',3,'kebab surgelato',40,NULL,3,2,2,0),(7,'tacos',1.5,'tacos surgelati',20,NULL,1,3,3,0),(8,'chili sauce',1,'salsa chili piccante',10,NULL,2,3,3,0),(9,'kebab piccante',3,'kebab piccante surgelato',5,NULL,3,3,3,0),(10,'spicy doritos',1.5,'tortillas chips piccanti',1,NULL,4,3,3,0),(14,'cacca',10000,'simile alla nutella',1000,NULL,999,999,1,10),(15,'sborra',1,'bevanda gusto sborra generica',50,'',1,1,1,0),(16,'sburrosandro',1.15,'bevanda gusto TRISTEZZA',55,'',2,1,1,0);
+INSERT INTO `prodotto` VALUES (1,'cola',1,'bevanda gusto cola generica',50,NULL,1,1,1,0),(2,'cherry cola',1.15,'bevanda gusto cola alla ciliegia',55,NULL,2,1,1,0),(3,'cola zero',1,'bevanda gusto cola zero calorie',40,NULL,3,1,1,0),(4,'sofficini',2,'sofficini generici surgelati',60,NULL,1,2,2,0),(5,'bastoncini',2,'bastoncini di merluzzo surgelati',50,NULL,2,2,2,0),(6,'kebab',3,'kebab surgelato',40,NULL,3,2,2,0),(7,'tacos',1.5,'tacos surgelati',20,NULL,1,3,3,0),(8,'chili sauce',1,'salsa chili piccante',10,NULL,2,3,3,0),(9,'kebab piccante',3,'kebab piccante surgelato',5,NULL,3,3,3,0),(10,'spicy doritos',1.5,'tortillas chips piccanti',1,NULL,4,3,3,0),(14,'cacca',10000,'simile alla nutella',1000,NULL,999,999,1,10);
 /*!40000 ALTER TABLE `prodotto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -243,7 +240,7 @@ DROP TABLE IF EXISTS `recensione`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `recensione` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL,
   `testo` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `voto` int NOT NULL,
   `data` date NOT NULL,
@@ -252,7 +249,7 @@ CREATE TABLE `recensione` (
   PRIMARY KEY (`id`),
   KEY `Distributore_idx` (`id_distributore`),
   KEY `Prodotto` (`id_prodotto`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -261,7 +258,6 @@ CREATE TABLE `recensione` (
 
 LOCK TABLES `recensione` WRITE;
 /*!40000 ALTER TABLE `recensione` DISABLE KEYS */;
-INSERT INTO `recensione` VALUES (1,'dioporcomuori',4,'2022-01-01',1,1),(2,'asdsadasdsadsasadsdsa',5,'2022-01-01',2,1);
 /*!40000 ALTER TABLE `recensione` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -274,7 +270,7 @@ DROP TABLE IF EXISTS `sconto`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sconto` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `nome` varchar(45) NOT NULL,
+  `nome_sconto` varchar(45) NOT NULL,
   `percentuale` int NOT NULL,
   `tipo` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `quantita` int DEFAULT NULL,
@@ -284,7 +280,7 @@ CREATE TABLE `sconto` (
   PRIMARY KEY (`id`),
   KEY `azienda_idx` (`id_azienda`),
   CONSTRAINT `aziend` FOREIGN KEY (`id_azienda`) REFERENCES `azienda` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -293,7 +289,7 @@ CREATE TABLE `sconto` (
 
 LOCK TABLES `sconto` WRITE;
 /*!40000 ALTER TABLE `sconto` DISABLE KEYS */;
-INSERT INTO `sconto` VALUES (4,'sconto4',10,'catalogo',12,3,'2022-09-10','2022-02-10'),(5,'sconto5',5,'catalogo',23,3,'2022-09-10','2022-04-10'),(6,'sconto6',10,'catalogo',12,3,'2022-09-10','2022-02-10'),(7,'sconto7',10,'catalogo',12,3,'2022-09-10','2022-02-10'),(8,'sconto8',7,'pisello',12,3,'2022-06-19','2022-02-10'),(9,'sconto9',69,'catalogo',120,3,'2022-09-10','2022-02-10');
+INSERT INTO `sconto` VALUES (4,'nome1',10,'catalogo',NULL,3,'2022-09-10','2022-02-10'),(5,'nome2',5,'catalogo',NULL,3,'2022-09-10','2022-04-10');
 /*!40000 ALTER TABLE `sconto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -340,7 +336,7 @@ CREATE TABLE `trasporto` (
   PRIMARY KEY (`id`),
   KEY `ordine_idx` (`id_ordine`),
   CONSTRAINT `ordine` FOREIGN KEY (`id_ordine`) REFERENCES `ordine` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -349,7 +345,6 @@ CREATE TABLE `trasporto` (
 
 LOCK TABLES `trasporto` WRITE;
 /*!40000 ALTER TABLE `trasporto` DISABLE KEYS */;
-INSERT INTO `trasporto` VALUES (1,1,'2022-01-01','stocazzodiocane',12),(2,1,'2022-01-01','uccidetemi',69),(3,1,'2022-01-01','mannaggiaggesadsdasxa',12);
 /*!40000 ALTER TABLE `trasporto` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -362,4 +357,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-01-18 13:32:44
+-- Dump completed on 2022-01-16  1:12:20

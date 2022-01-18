@@ -35,7 +35,8 @@ public class ScontoService {
     }
     
     public int udpate(Sconto sc) {
-    	return scontoRepo.update(sc.getPercentuale(), sc.getTipo(), sc.getQuantita(), sc.getIdAzienda(), sc.getDataFine(), sc.getDataInizio(), sc.getId());
+    	return scontoRepo.update(sc.getNome(), sc.getPercentuale(), sc.getTipo(), sc.getQuantita(), sc.getIdAzienda(), 
+                sc.getDataFine(), sc.getDataInizio(), sc.getId());
     }
     
     public List<Sconto> findScontiByAzienda(int id_azienda) {
