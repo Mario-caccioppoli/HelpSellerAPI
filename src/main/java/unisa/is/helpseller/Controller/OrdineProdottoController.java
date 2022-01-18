@@ -69,7 +69,7 @@ public class OrdineProdottoController {
     }
 
     @PostMapping("/insert")
-    public ResponseEntity<OrdineProdotto> insert(OrdineProdotto ordProd) {
+    public ResponseEntity<OrdineProdotto> insert(@RequestBody OrdineProdotto ordProd) {
         try {
             ordineprodottoService.insert(ordProd);
             return new ResponseEntity<>(HttpStatus.OK);
@@ -79,7 +79,7 @@ public class OrdineProdottoController {
     }
 
     @PostMapping("/update")
-    public ResponseEntity<OrdineProdotto> update(OrdineProdotto ordProd) {
+    public ResponseEntity<OrdineProdotto> update(@RequestBody OrdineProdotto ordProd) {
         try {
             ordineprodottoService.udpate(ordProd);
             return new ResponseEntity<>(HttpStatus.OK);

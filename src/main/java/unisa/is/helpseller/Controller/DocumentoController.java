@@ -68,7 +68,7 @@ public class DocumentoController {
     }
 
     @PostMapping("/insert")
-    public ResponseEntity<Integer> insert(DocumentoModel doc) {
+    public ResponseEntity<Integer> insert(@RequestBody DocumentoModel doc) {
         try {
             Documento d = new Documento(doc);
             int id = documentoService.insert(d);
@@ -83,7 +83,7 @@ public class DocumentoController {
     }
 
     @PostMapping("/update")
-    public ResponseEntity<Integer> update(DocumentoModel doc) {
+    public ResponseEntity<Integer> update(@RequestBody DocumentoModel doc) {
         try {
             Documento d = new Documento(doc);
             int id = documentoService.udpate(d);

@@ -67,7 +67,7 @@ public class OrdineController {
     }
 
     @PostMapping("/insert")
-    public ResponseEntity<Integer> insert(OrdineModel ord) {
+    public ResponseEntity<Integer> insert(@RequestBody OrdineModel ord) {
         try {
             Ordine o = new Ordine(ord);
             int id = ordineService.insert(o);
@@ -82,7 +82,7 @@ public class OrdineController {
     }
 
     @PostMapping("/update")
-    public ResponseEntity<Integer> update(OrdineModel ord) {
+    public ResponseEntity<Integer> update(@RequestBody OrdineModel ord) {
         try {
             Ordine o = new Ordine(ord);
             int id = ordineService.update(o);

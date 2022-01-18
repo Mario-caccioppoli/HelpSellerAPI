@@ -68,7 +68,7 @@ public class AziendaController {
     }
 
     @PostMapping("/insert")
-    public ResponseEntity<Integer> insert(AziendaModel a) {
+    public ResponseEntity<Integer> insert(@RequestBody AziendaModel a) {
         try {
             Azienda azienda = new Azienda(a);
             int id = aziendaService.insert(azienda);
@@ -83,7 +83,7 @@ public class AziendaController {
     }
 
     @PostMapping("/update")
-    public ResponseEntity<Integer> update(AziendaModel a) {
+    public ResponseEntity<Integer> update(@RequestBody AziendaModel a) {
         try {
             Azienda azienda = new Azienda(a);
             int id = aziendaService.update(azienda);

@@ -67,7 +67,7 @@ public class DistributoreController {
     }
 
     @PostMapping("/insert")
-    public ResponseEntity<Integer> insert(DistributoreModel d) {
+    public ResponseEntity<Integer> insert(@RequestBody DistributoreModel d) {
         try {
             Distributore distributore = new Distributore(d);
             if(!distributore.equals(null)) {
@@ -82,7 +82,7 @@ public class DistributoreController {
     }
 
     @PostMapping("/update")
-    public ResponseEntity<Integer> update(DistributoreModel d) {
+    public ResponseEntity<Integer> update(@RequestBody DistributoreModel d) {
         try {
             Distributore distributore = new Distributore(d);
             int id = distributoreService.update(distributore);

@@ -60,7 +60,7 @@ public class RecensioneController {
     }
 
     @PostMapping("/insert")
-    public ResponseEntity<RecensioneModel> insert(RecensioneModel rec) {
+    public ResponseEntity<RecensioneModel> insert(@RequestBody RecensioneModel rec) {
         try {
             Recensione r = new Recensione(rec);
             recensioneService.insert(r);
@@ -71,7 +71,7 @@ public class RecensioneController {
     }
 
     @PostMapping("/update")
-    public ResponseEntity<RecensioneModel> update(RecensioneModel rec) {
+    public ResponseEntity<RecensioneModel> update(@RequestBody RecensioneModel rec) {
         try {
             Recensione r = new Recensione(rec);
             recensioneService.udpate(r);

@@ -60,7 +60,7 @@ public class ProdottoController {
     }
 
     @PostMapping("/insert")
-    public ResponseEntity<ProdottoModel> insert(ProdottoModel prod) {
+    public ResponseEntity<ProdottoModel> insert(@RequestBody ProdottoModel prod) {
         try {
             Prodotto p = new Prodotto(prod);
             prodottoService.insert(p);
@@ -71,7 +71,7 @@ public class ProdottoController {
     }
 
     @PostMapping("/update")
-    public ResponseEntity<ProdottoModel> update(ProdottoModel prod) {
+    public ResponseEntity<ProdottoModel> update(@RequestBody ProdottoModel prod) {
         try {
             Prodotto p = new Prodotto(prod);
             prodottoService.udpate(p);

@@ -60,7 +60,7 @@ public class TrasportoController {
     }
 
     @PostMapping("/insert")
-    public ResponseEntity<TrasportoModel> insert(TrasportoModel tr) {
+    public ResponseEntity<TrasportoModel> insert(@RequestBody TrasportoModel tr) {
         try {
             Trasporto t = new Trasporto(tr);
             trasportoService.insert(t);
@@ -71,7 +71,7 @@ public class TrasportoController {
     }
 
     @PostMapping("/update")
-    public ResponseEntity<TrasportoModel> update(TrasportoModel tr) {
+    public ResponseEntity<TrasportoModel> update(@RequestBody TrasportoModel tr) {
         try {
             Trasporto t = new Trasporto(tr);
             trasportoService.udpate(t);

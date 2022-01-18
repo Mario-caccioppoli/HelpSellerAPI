@@ -67,7 +67,7 @@ public class ScontoController {
     }
 
     @PostMapping("/insert")
-    public ResponseEntity<Integer> insert(ScontoModel sc) {
+    public ResponseEntity<Integer> insert(@RequestBody ScontoModel sc) {
         try {
             Sconto s = new Sconto(sc);
             int id = scontoService.insert(s);
