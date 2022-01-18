@@ -38,7 +38,7 @@ public class Sconto implements Serializable {
     
     public Sconto(ScontoModel s) {
         this.id = s.getId();
-        this.nome_sconto = s.getNome();
+        this.nome_sconto = s.getNomeSconto();
         this.percentuale = s.getPercentuale();
         this.data_inizio = s.getDataInizio();
         this.data_fine = s.getDataFine();
@@ -99,11 +99,11 @@ public class Sconto implements Serializable {
         this.id_azienda = id_azienda;
     }
 
-    public String getNome() {
+    public String getNomeSconto() {
         return nome_sconto;
     }
 
-    public void setNome(String nome_sconto) {
+    public void setNomeSconto(String nome_sconto) {
         this.nome_sconto = nome_sconto;
     }
 
