@@ -48,7 +48,6 @@ public class OrdineProdottoController {
             OrdineProdotto ordProd = new OrdineProdotto();
             ordProd.setIdOrdine(idOrdine);
             ordProd.setIdProdotto(idProdotto);
-            System.out.println(ordProd);
             OrdineProdotto ordineProdotto = ordineprodottoService.findId(ordProd);
             return new ResponseEntity<>(ordineProdotto, HttpStatus.OK);
         } catch (Exception ex) {

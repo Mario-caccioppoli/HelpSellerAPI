@@ -83,15 +83,19 @@ public class ScontoController {
     }
 
     @PostMapping("/update")
-    public ResponseEntity<ScontoModel> update(ScontoModel sc) {
+    public ResponseEntity<Integer> update(@RequestBody ScontoModel sc) {
         try {
             Sconto s = new Sconto(sc);
-            scontoService.udpate(s);
-            return new ResponseEntity<>(HttpStatus.OK);
+            int id = scontoService.udpate(s);
+            if (id > 0) {
+                return new ResponseEntity<>(id, HttpStatus.OK);
+            }
+
         } catch (Exception ex) {
             ex.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
     @GetMapping("/findScontiByAzienda/{id}")

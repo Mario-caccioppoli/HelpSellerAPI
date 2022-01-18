@@ -58,7 +58,7 @@ public class DocumentoController {
         try {
             int result = documentoService.deleteId(id);
             if (result > 0) {
-                return new ResponseEntity<>(HttpStatus.OK);
+                return new ResponseEntity<>(result, HttpStatus.OK);
             }
 
         } catch (Exception ex) {
@@ -88,7 +88,7 @@ public class DocumentoController {
             Documento d = new Documento(doc);
             int id = documentoService.udpate(d);
             if (id > 0) {
-                return new ResponseEntity<>(HttpStatus.OK);
+                return new ResponseEntity<>(id, HttpStatus.OK);
             }
 
         } catch (Exception ex) {

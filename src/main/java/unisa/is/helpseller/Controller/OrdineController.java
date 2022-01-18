@@ -29,10 +29,10 @@ public class OrdineController {
         try {
             List<Ordine> ordini = ordineService.findAll();
             List<OrdineModel> ordiniModel = new ArrayList<OrdineModel>();
-                ordiniModel = ordini.stream().map(p -> {
-                    return new OrdineModel(p);
-                }).collect(Collectors.toList());
-                return new ResponseEntity<>(ordiniModel, HttpStatus.OK);
+            ordiniModel = ordini.stream().map(p -> {
+                return new OrdineModel(p);
+            }).collect(Collectors.toList());
+            return new ResponseEntity<>(ordiniModel, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -42,43 +42,58 @@ public class OrdineController {
     public ResponseEntity<OrdineModel> findId(@PathVariable("id") int id) {
         try {
             Ordine ordine = ordineService.findId(id);
-            OrdineModel o = new OrdineModel(ordine);
-            return new ResponseEntity<>(o, HttpStatus.OK);
+            if (!ordine.equals(null)) {
+                OrdineModel o = new OrdineModel(ordine);
+                return new ResponseEntity<>(o, HttpStatus.OK);
+            } 
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @DeleteMapping("/deleteId/{id}")
-    public ResponseEntity<OrdineModel> deleteId(@PathVariable("id") int id) {
+    public ResponseEntity<Integer> deleteId(@PathVariable("id") int id) {
         try {
-            ordineService.deleteId(id);
-            return new ResponseEntity<>(HttpStatus.OK);
+            int result = ordineService.deleteId(id);
+            if(result > 0) {
+               return new ResponseEntity<>(result, HttpStatus.OK);
+            }
+            
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
     @PostMapping("/insert")
-    public ResponseEntity<OrdineModel> insert(OrdineModel ord) {
+    public ResponseEntity<Integer> insert(OrdineModel ord) {
         try {
             Ordine o = new Ordine(ord);
-            ordineService.insert(o);
-            return new ResponseEntity<>(HttpStatus.OK);
+            int id = ordineService.insert(o);
+            if(id > 0) {
+               return new ResponseEntity<>(id, HttpStatus.OK);
+            }
+            
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
     @PostMapping("/update")
-    public ResponseEntity<OrdineModel> update(OrdineModel ord) {
+    public ResponseEntity<Integer> update(OrdineModel ord) {
         try {
             Ordine o = new Ordine(ord);
-            ordineService.update(o);
-            return new ResponseEntity<>(HttpStatus.OK);
+            int id = ordineService.update(o);
+            if(id > 0) {
+               return new ResponseEntity<>(id, HttpStatus.OK);
+            }
+            
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
     @GetMapping("/findOrdiniByDistributore/{id}")
