@@ -9,12 +9,15 @@ package unisa.is.helpseller.Controller;
  *
  * @author UTENTE
  */
+import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import unisa.is.helpseller.Model.DistributoreModel;
 
 
 @SpringBootTest
@@ -24,11 +27,41 @@ public class DistributoreControllerTest {
     private DistributoreController controller;
 
     @Test
-    public void contextLoads() throws Exception {
-    assertThat(controller.findAll().getBody().isEmpty()).isFalse();
-    assertThat(controller.findId(1).getBody().getClass().equals("Distributore"));
-    assertThat(controller.findId(1).getBody().getEmail() == null).isFalse();
-    assertThat(controller.findId(1).getBody().getId()>0);
-    assertThat(controller.findId(1).getBody().getPassword()!= null);
+    public void findAllStatus() throws Exception {
+        ResponseEntity<List<DistributoreModel>> response = controller.findAll();
+        List<DistributoreModel> allDistributori = response.getBody();
+        assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+        assertThat(allDistributori).asList();
+    }
+
+    @Test
+    public void findIncorrectId() throws Exception {
+        ResponseEntity<DistributoreModel> response = controller.findId(-1);
+        DistributoreModel distributore = response.getBody();
+        assertThat(response.getStatusCode().compareTo(HttpStatus.NOT_FOUND));
+        assertThat(distributore).isNull();
+    }
+
+    @Test
+    public void findCorrectId() throws Exception {
+        ResponseEntity<DistributoreModel> response = controller.findId(1);
+        DistributoreModel distributore = response.getBody();
+        assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+        assertThat(distributore).isNotNull();
+    }
+    
+    //public DistributoreModel(String username, String email, String password, String nome, String cognome, String vat, 
+    //String telefono, String indirizzoSede, Integer idOrdineProva, List<OrdineModel> ordini)
+    @Test
+    public void CUD() throws Exception {
+        DistributoreModel distributore = new DistributoreModel("Fabio22", "fabio@email.it", "123", "Fabio", "Frizzi", "1212", "333", "via della sede", null, null);
+        ResponseEntity<DistributoreModel> response = controller.insert(distributore);
+        assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+        String email = "fabio22@email.it";
+        distributore.setEmail(email);
+        response = controller.update(distributore);
+        assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+        response = controller.deleteId(distributore.getId());
+        assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
     }
 }
