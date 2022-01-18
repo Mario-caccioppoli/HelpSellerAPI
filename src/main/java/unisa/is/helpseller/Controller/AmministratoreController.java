@@ -47,7 +47,6 @@ public class AmministratoreController {
 		try
 		{
 			Amministratore amministratore = amministratoreService.findId(id);
-			//System.out.println(amministratore);
 			AmministratoreModel amministratoreModel = new AmministratoreModel(amministratore.getId(), amministratore.getEmail(), amministratore.getUsername(), amministratore.getPassword());
 			return new ResponseEntity<>(amministratoreModel, HttpStatus.OK);
 		}catch (Exception ex)

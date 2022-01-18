@@ -42,33 +42,43 @@ public class DistributoreController {
     public ResponseEntity<DistributoreModel> findId(@PathVariable("id") int id) {
         try {
             Distributore distributore = distributoreService.findId(id);
-            DistributoreModel d = new DistributoreModel(distributore);
-            
-            return new ResponseEntity<>(d, HttpStatus.OK);
+            if(!distributore.equals(null)) {
+                DistributoreModel d = new DistributoreModel(distributore);
+                return new ResponseEntity<>(d, HttpStatus.OK);
+            }
+
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @DeleteMapping("/deleteId/{id}")
-    public ResponseEntity<DistributoreModel> deleteId(@PathVariable("id") int id) {
+    public ResponseEntity<Integer> deleteId(@PathVariable("id") int id) {
         try {
-            distributoreService.deleteId(id);
-            return new ResponseEntity<>(HttpStatus.OK);
+            int result = distributoreService.deleteId(id);
+            if(result > 0) {
+                return new ResponseEntity<>(result, HttpStatus.OK);  
+            }
         } catch (Exception ex) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
     }
 
     @PostMapping("/insert")
-    public ResponseEntity<DistributoreModel> insert(DistributoreModel d) {
+    public ResponseEntity<Integer> insert(DistributoreModel d) {
         try {
             Distributore distributore = new Distributore(d);
-            distributoreService.insert(distributore);
-            return new ResponseEntity<>(HttpStatus.OK);
+            if(!distributore.equals(null)) {
+                int id = distributoreService.insert(distributore);
+                return new ResponseEntity<>(id, HttpStatus.OK);
+            }
+
         } catch (Exception ex) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
     }
 
     @PostMapping("/update")
