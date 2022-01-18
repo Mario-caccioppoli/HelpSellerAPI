@@ -116,7 +116,7 @@ public class ProdottoController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+//il nome è del prodotto, l'id è dell'azienda
     @GetMapping("/findProdottiByNomeInAzienda/{name}/{id}")
     public ResponseEntity<List<ProdottoModel>> findProdottiByNomeInAzienda(@PathVariable("name") String name, @PathVariable("id") int id) {
         try {

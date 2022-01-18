@@ -20,8 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
-import unisa.is.helpseller.Entity.OrdineProdotto;
+import unisa.is.helpseller.Model.OrdineProdottoModel;
 
 
 @SpringBootTest
@@ -29,35 +28,5 @@ public class OrdineProdottoControllerTest {
 
     @Autowired
     private OrdineProdottoController controller;
-
-    @Test
-    public void findAll() throws Exception {
-    	ResponseEntity<List<OrdineProdotto>> response = controller.findAll();
-    	List<OrdineProdotto> all = response.getBody();
-    	if(all.size() > 0)
-    	{
-    		assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
-    	}
-    	else
-    	{
-    		assertThat(response.getStatusCode().equals(HttpStatus.NOT_FOUND));
-    	}
-    	 assertNotNull(response,"Response is not null");
-   }
-    
-    @Test
-    public void findId() throws Exception {
-    	ResponseEntity<OrdineProdotto> response = controller.findId(-1, 1);
-    	OrdineProdotto single = response.getBody();
-    	if(single != null)
-    	{
-    		assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
-    	}
-    	else
-    	{
-    		assertThat(response.getStatusCode().equals(HttpStatus.NOT_FOUND));
-    	}
-    	 assertNotNull(response,"Response is not null");
-   }
     
 }

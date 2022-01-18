@@ -36,6 +36,17 @@ public class ScontoModel implements Serializable {
         this.prodotti = prodotti;
     }
     
+    public ScontoModel(int id, String nome, int percentuale, Date dataInizio, Date dataFine, String tipo, int quantita, int idAzienda) {
+        this.id = id;
+        this.nome = nome;
+        this.percentuale = percentuale;
+        this.dataInizio = dataInizio;
+        this.dataFine = dataFine;
+        this.tipo = tipo;
+        this.quantita = quantita;
+        this.idAzienda = idAzienda;
+    }
+    
     public ScontoModel(Sconto s) {
         this.id = s.getId();
         this.nomeSconto = s.getNomeSconto();
