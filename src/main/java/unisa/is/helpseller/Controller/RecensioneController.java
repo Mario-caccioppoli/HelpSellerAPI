@@ -42,43 +42,59 @@ public class RecensioneController {
     public ResponseEntity<RecensioneModel> findId(@PathVariable("id") int id) {
         try {
             Recensione recensione = recensioneService.findId(id);
-            RecensioneModel r = new RecensioneModel(recensione);
-            return new ResponseEntity<>(r, HttpStatus.OK);
+            if(!recensione.equals(null)) {
+                RecensioneModel r = new RecensioneModel(recensione);
+                return new ResponseEntity<>(r, HttpStatus.OK);
+            }
+            
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @DeleteMapping("/deleteId/{id}")
-    public ResponseEntity<RecensioneModel> deleteId(@PathVariable("id") int id) {
+    public ResponseEntity<Integer> deleteId(@PathVariable("id") int id) {
         try {
-            recensioneService.deleteId(id);
-            return new ResponseEntity<>(HttpStatus.OK);
+            int result = recensioneService.deleteId(id);
+            if(result > 0) {
+                return new ResponseEntity<>(result, HttpStatus.OK);
+            }
+            
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
     @PostMapping("/insert")
-    public ResponseEntity<RecensioneModel> insert(@RequestBody RecensioneModel rec) {
+    public ResponseEntity<Integer> insert(@RequestBody RecensioneModel rec) {
         try {
             Recensione r = new Recensione(rec);
-            recensioneService.insert(r);
-            return new ResponseEntity<>(HttpStatus.OK);
+            int id = recensioneService.insert(r);
+            if(id > 0) {
+                return new ResponseEntity<>(id, HttpStatus.OK);
+            }
+            
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
     @PostMapping("/update")
-    public ResponseEntity<RecensioneModel> update(@RequestBody RecensioneModel rec) {
+    public ResponseEntity<Integer> update(@RequestBody RecensioneModel rec) {
         try {
             Recensione r = new Recensione(rec);
-            recensioneService.udpate(r);
-            return new ResponseEntity<>(HttpStatus.OK);
+            int id = recensioneService.udpate(r);
+            if(id > 0) {
+                return new ResponseEntity<>(id, HttpStatus.OK);
+            }
+            
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
     /* DA AGGIORNARE
     @GetMapping("/findRecensioniByProdotto/{id}")

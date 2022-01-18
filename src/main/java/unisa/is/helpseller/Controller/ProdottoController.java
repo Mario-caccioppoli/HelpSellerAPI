@@ -29,10 +29,10 @@ public class ProdottoController {
         try {
             List<Prodotto> prodotti = prodottoService.findAll();
             List<ProdottoModel> prodottiModel = new ArrayList<ProdottoModel>();
-                prodottiModel = prodotti.stream().map(p -> {
-                    return new ProdottoModel(p);
-                }).collect(Collectors.toList());
-                return new ResponseEntity<>(prodottiModel, HttpStatus.OK);
+            prodottiModel = prodotti.stream().map(p -> {
+                return new ProdottoModel(p);
+            }).collect(Collectors.toList());
+            return new ResponseEntity<>(prodottiModel, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -42,43 +42,59 @@ public class ProdottoController {
     public ResponseEntity<ProdottoModel> findId(@PathVariable("id") int id) {
         try {
             Prodotto prodotto = prodottoService.findId(id);
-            ProdottoModel p = new ProdottoModel(prodotto);
-            return new ResponseEntity<>(p, HttpStatus.OK);
+            if (!prodotto.equals(null)) {
+                ProdottoModel p = new ProdottoModel(prodotto);
+                return new ResponseEntity<>(p, HttpStatus.OK);
+            }
+
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @DeleteMapping("/deleteId/{id}")
-    public ResponseEntity<ProdottoModel> deleteId(@PathVariable("id") int id) {
+    public ResponseEntity<Integer> deleteId(@PathVariable("id") int id) {
         try {
-            prodottoService.deleteId(id);
-            return new ResponseEntity<>(HttpStatus.OK);
+            int result = prodottoService.deleteId(id);
+            if(result > 0) {
+                return new ResponseEntity<>(result, HttpStatus.OK);
+            }
+            
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
     @PostMapping("/insert")
-    public ResponseEntity<ProdottoModel> insert(@RequestBody ProdottoModel prod) {
+    public ResponseEntity<Integer> insert(@RequestBody ProdottoModel prod) {
         try {
             Prodotto p = new Prodotto(prod);
-            prodottoService.insert(p);
-            return new ResponseEntity<>(HttpStatus.OK);
+            int id = prodottoService.insert(p);
+            if(id > 0) {
+               return new ResponseEntity<>(id, HttpStatus.OK);
+            }
+            
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
     @PostMapping("/update")
-    public ResponseEntity<ProdottoModel> update(@RequestBody ProdottoModel prod) {
+    public ResponseEntity<Integer> update(@RequestBody ProdottoModel prod) {
         try {
             Prodotto p = new Prodotto(prod);
-            prodottoService.udpate(p);
-            return new ResponseEntity<>(HttpStatus.OK);
+            int id = prodottoService.udpate(p);
+            if(id > 0) {
+                return new ResponseEntity<>(id, HttpStatus.OK);
+            }
+            
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
     @GetMapping("/findProdottiByAzienda/{id}")
@@ -117,6 +133,7 @@ public class ProdottoController {
         }
     }
 //il nome è del prodotto, l'id è dell'azienda
+
     @GetMapping("/findProdottiByNomeInAzienda/{name}/{id}")
     public ResponseEntity<List<ProdottoModel>> findProdottiByNomeInAzienda(@PathVariable("name") String name, @PathVariable("id") int id) {
         try {

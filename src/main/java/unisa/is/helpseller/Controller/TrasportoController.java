@@ -42,43 +42,59 @@ public class TrasportoController {
     public ResponseEntity<TrasportoModel> findId(@PathVariable("id") int id) {
         try {
             Trasporto trasporto = trasportoService.findId(id);
-            TrasportoModel t = new TrasportoModel(trasporto);
-            return new ResponseEntity<>(t, HttpStatus.OK);
+            if(!trasporto.equals(null)) {
+                TrasportoModel t = new TrasportoModel(trasporto);
+                return new ResponseEntity<>(t, HttpStatus.OK);
+            }
+           
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @DeleteMapping("/deleteId/{id}")
-    public ResponseEntity<TrasportoModel> deleteId(@PathVariable("id") int id) {
+    public ResponseEntity<Integer> deleteId(@PathVariable("id") int id) {
         try {
-            trasportoService.deleteId(id);
-            return new ResponseEntity<>(HttpStatus.OK);
+            int result = trasportoService.deleteId(id);
+            if(result > 0) {
+                return new ResponseEntity<>(result, HttpStatus.OK);
+            }
+            
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
     @PostMapping("/insert")
-    public ResponseEntity<TrasportoModel> insert(@RequestBody TrasportoModel tr) {
+    public ResponseEntity<Integer> insert(@RequestBody TrasportoModel tr) {
         try {
             Trasporto t = new Trasporto(tr);
-            trasportoService.insert(t);
-            return new ResponseEntity<>(HttpStatus.OK);
+            int id = trasportoService.insert(t);
+            if(id > 0) {
+                return new ResponseEntity<>(HttpStatus.OK);
+            }
+            
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
     @PostMapping("/update")
-    public ResponseEntity<TrasportoModel> update(@RequestBody TrasportoModel tr) {
+    public ResponseEntity<Integer> update(@RequestBody TrasportoModel tr) {
         try {
             Trasporto t = new Trasporto(tr);
-            trasportoService.udpate(t);
-            return new ResponseEntity<>(HttpStatus.OK);
+            int id = trasportoService.udpate(t);
+            if(id > 0) {
+                return new ResponseEntity<>(id, HttpStatus.OK);
+            }
+            
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
 }

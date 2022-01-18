@@ -57,13 +57,17 @@ public class ScontoController {
     }
 
     @DeleteMapping("/deleteId/{id}")
-    public ResponseEntity<ScontoModel> deleteId(@PathVariable("id") int id) {
+    public ResponseEntity<Integer> deleteId(@PathVariable("id") int id) {
         try {
-            scontoService.deleteId(id);
-            return new ResponseEntity<>(HttpStatus.OK);
+            int result = scontoService.deleteId(id);
+            if(result > 0) {
+                return new ResponseEntity<>(result, HttpStatus.OK);
+            }
+            
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
     @PostMapping("/insert")
