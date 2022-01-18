@@ -45,7 +45,7 @@ public class ScontoController {
     public ResponseEntity<ScontoModel> findId(@PathVariable("id") int id) {
         try {
             Sconto sconto = scontoService.findId(id);
-            if(sconto != null)
+            if(!sconto.equals(null))
             {
             	ScontoModel s = new ScontoModel(sconto);
                 return new ResponseEntity<>(s, HttpStatus.OK);

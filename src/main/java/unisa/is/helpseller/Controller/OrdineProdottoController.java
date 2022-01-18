@@ -110,7 +110,18 @@ public class OrdineProdottoController {
                     }
 
                     ProdottoModel pBuf = new ProdottoModel(pList.get(i).getId(),
-                            pList.get(i).getNomeProdotto(), pList.get(i).getPrezzo(),
+                            pList.get(i).getNomeProdotto((int i = 0; i < opList.size(); i++) {
+
+                    List<Recensione> rList = recensioneService.findRecensioniByProdotto(pList.get(i).getId());
+
+                    for (Recensione r : rList) {
+                        RecensioneModel rBuf = new RecensioneModel(rList.get(i).getId(),
+                                rList.get(i).getTesto(), rList.get(i).getVoto(), rList.get(i).getData(),
+                                rList.get(i).getIdProdotto(), rList.get(i).getIdDistributore());
+                        rmList.add(rBuf);
+                    }
+
+                    ProdottoModel pBuf = new ProdottoModel(pList.get), pList.get(i).getPrezzo(),
                             pList.get(i).getDescrizione(), pList.get(i).getQuantita(),
                             pList.get(i).getImmagine(), pList.get(i).getQuantitaMinima(),
                             pList.get(i).getPeso(), pList.get(i).getVolume(), pList.get(i).getIdAzienda(),

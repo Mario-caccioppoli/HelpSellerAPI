@@ -8,21 +8,25 @@ import unisa.is.helpseller.Entity.Sconto;
 
 public class ScontoModel implements Serializable {
     
-    private String nome;
     private int id;
+    private String nomeSconto;
     private int percentuale;
     private Date dataInizio;
     private Date dataFine;
     private String tipo;
-    private int quantita;
+    private Integer quantita;
     private int idAzienda;
+
     private List<ProdottoModel> prodotti;
+
 
     public ScontoModel() {}
 
-    public ScontoModel(int id, String nome, int percentuale, Date dataInizio, Date dataFine, String tipo, int quantita, int idAzienda, List<ProdottoModel> prodotti) {
+    public ScontoModel(int id, String nomeSconto, int percentuale, 
+            Date dataInizio, Date dataFine, String tipo, Integer quantita, 
+            int idAzienda, List<ProdottoModel> prodotti) {
         this.id = id;
-        this.nome = nome;
+        this.nomeSconto = nomeSconto;
         this.percentuale = percentuale;
         this.dataInizio = dataInizio;
         this.dataFine = dataFine;
@@ -45,14 +49,13 @@ public class ScontoModel implements Serializable {
     
     public ScontoModel(Sconto s) {
         this.id = s.getId();
-        this.nome = s.getNome();
+        this.nomeSconto = s.getNomeSconto();
         this.percentuale = s.getPercentuale();
         this.dataInizio = s.getDataInizio();
         this.dataFine = s.getDataFine();
         this.tipo = s.getTipo();
         this.quantita = s.getQuantita();
         this.idAzienda = s.getIdAzienda();
-        this.prodotti = null;
     }
 
     public int getId() {
@@ -95,11 +98,11 @@ public class ScontoModel implements Serializable {
         this.tipo = tipo;
     }
 
-    public int getQuantita() {
+    public Integer getQuantita() {
         return quantita;
     }
 
-    public void setQuantita(int quantita) {
+    public void setQuantita(Integer quantita) {
         this.quantita = quantita;
     }
 
@@ -119,12 +122,12 @@ public class ScontoModel implements Serializable {
         this.prodotti = prodotti;
     }
 
-    public String getNome() {
-        return nome;
+    public String getNomeSconto() {
+        return nomeSconto;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNomeSconto(String nomeSconto) {
+        this.nomeSconto = nomeSconto;
     }
 
    

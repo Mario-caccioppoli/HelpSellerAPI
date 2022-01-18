@@ -84,7 +84,7 @@ public class OrdineController {
     @GetMapping("/findOrdiniByDistributore/{id}")
     public ResponseEntity<List<OrdineModel>> findOrdiniByDistributore(@PathVariable("id") int id) {
         try {
-            List<Ordine> ordini = ordineService.findAll();
+            List<Ordine> ordini = ordineService.findOrdiniByDistributore(id);
             List<OrdineModel> ordiniModel = new ArrayList<OrdineModel>();
             if (ordini.size() > 0) {
                 ordiniModel = ordini.stream().map(p -> {
@@ -102,7 +102,7 @@ public class OrdineController {
     @GetMapping("/findOrdiniByAzienda/{id}")
     public ResponseEntity<List<OrdineModel>> findOrdiniByAzienda(@PathVariable("id") int id) {
         try {
-            List<Ordine> ordini = ordineService.findAll();
+            List<Ordine> ordini = ordineService.findOrdiniByAzienda(id);
             List<OrdineModel> ordiniModel = new ArrayList<OrdineModel>();
             if (ordini.size() > 0) {
                 ordiniModel = ordini.stream().map(p -> {

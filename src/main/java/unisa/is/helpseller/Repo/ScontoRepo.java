@@ -19,19 +19,21 @@ public interface ScontoRepo extends JpaRepository<Sconto, Integer> {
    //SQL
    @Modifying
    @Query(
-   value = "INSERT INTO sconto (percentuale, tipo, quantita, id_azienda, data_fine, data_inizio) VALUES (:percentuale, :tipo, :quantita, :id_azienda, :data_fine, :data_inizio)",
+   value = "INSERT INTO sconto (nome_sconto, percentuale, tipo, quantita, id_azienda, data_fine, data_inizio) "
+           + "VALUES (:nome_sconto, :percentuale, :tipo, :quantita, :id_azienda, :data_fine, :data_inizio)",
            nativeQuery = true)
-   int insert(@Param("percentuale") int percentuale, @Param("tipo") String tipo, @Param("quantita") Integer quantita, 
+   int insert(@Param("nome_sconto") String nome_sconto, @Param("percentuale") int percentuale, @Param("tipo") String tipo, @Param("quantita") Integer quantita, 
            @Param("id_azienda") int id_azienda, @Param("data_fine") Date data_fine, @Param("data_inizio") Date data_inizio);
    
    //JPQL
    @Modifying
-   @Query("UPDATE Sconto s SET percentuale = :percentuale, tipo = :tipo, quantita = :quantita, "
+   @Query("UPDATE Sconto s SET nome_sconto = :nome_sconto, percentuale = :percentuale, tipo = :tipo, quantita = :quantita, "
            + "id_azienda = :id_azienda, data_fine = :data_fine, data_inizio = :data_inizio WHERE s.id = :id")
-   int update(@Param("percentuale") int percentuale, @Param("tipo") String tipo, @Param("quantita") Integer quantita, 
-           @Param("id_azienda") int id_azienda, @Param("data_fine") Date data_fine, @Param("data_inizio") Date data_inizio, @Param("id") int id);
+   int update(@Param("nome_sconto") String nome_sconto, @Param("percentuale") int percentuale, @Param("tipo") String tipo, @Param("quantita") Integer quantita, 
+           @Param("id_azienda") int id_azienda, @Param("data_fine") Date data_fine, @Param("data_inizio") Date data_inizio,
+            @Param("id") int id);
    
-    //JPQL
+   //JPQL
    @Query("SELECT s FROM Sconto s WHERE s.id_azienda = :id_azienda")
    List<Sconto> findScontiByAzienda(@Param("id_azienda") int id_azienda);
    
