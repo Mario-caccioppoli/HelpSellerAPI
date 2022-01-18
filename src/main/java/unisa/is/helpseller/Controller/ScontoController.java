@@ -137,4 +137,42 @@ public class ScontoController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    
+    @GetMapping("findScontiAziendaByTipo/{tipo}/{id_azienda}")
+    public ResponseEntity<List<ScontoModel>> findScontiAziendaByTipo(@PathVariable("tipo") String tipo, 
+            @PathVariable("id_azienda") int id_azienda) {
+        try {
+            List<Sconto> sconti = scontoService.findScontiAziendaByTipo(tipo, id_azienda);
+            if(!sconti.equals(null)) {
+                List<ScontoModel> scontiModel = new ArrayList<ScontoModel>();
+                scontiModel = sconti.stream().map(p -> {
+                    return new ScontoModel(p);
+                }).collect(Collectors.toList());
+                return new ResponseEntity<>(scontiModel, HttpStatus.OK);
+            }
+        } catch (Exception ex) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+    
+    
+    @GetMapping("findScontiByNomeInAzienda/{nome_sconto}/{id_azienda}")
+    public ResponseEntity<List<ScontoModel>> findScontiByNomeInAzienda(@PathVariable("nome_sconto") String nome_sconto, 
+            @PathVariable("id_azienda") int id) {
+        try {
+            List<Sconto> sconti = scontoService.findScontiByNomeInAzienda(nome_sconto, id);
+            if(!sconti.equals(null)) {
+                List<ScontoModel> scontiModel = new ArrayList<ScontoModel>();
+                scontiModel = sconti.stream().map(p -> {
+                    return new ScontoModel(p);
+                }).collect(Collectors.toList());
+                return new ResponseEntity<>(scontiModel, HttpStatus.OK);
+            }
+            
+        } catch (Exception ex) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 }

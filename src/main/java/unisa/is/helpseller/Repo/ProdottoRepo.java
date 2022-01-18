@@ -65,7 +65,7 @@ public interface ProdottoRepo extends JpaRepository<Prodotto, Integer>{
    List<Prodotto> findProdottiBySconto(@Param("id_sconto") int id_sconto);
    
    //JPQL
-   @Query("SELECT p FROM Prodotto p WHERE p.id LIKE :id_prodotto% AND p.id_azienda = :id_azienda")
+   @Query("SELECT p FROM Prodotto p WHERE CAST(p.id AS string) LIKE :id_prodotto% AND p.id_azienda = :id_azienda")
    List<Prodotto> findProdottiByIdInAzienda(@Param("id_prodotto") int id_prodotto, @Param("id_azienda") int id_azienda);
 
 }

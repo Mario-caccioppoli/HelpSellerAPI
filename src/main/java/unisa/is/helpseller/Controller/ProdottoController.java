@@ -189,7 +189,8 @@ public class ProdottoController {
     }
 
     @GetMapping("/findProdottiByIdInAzienda/{id_prodotto}/{id_azienda}")
-    public ResponseEntity<List<ProdottoModel>> findProdottiByIdInAzienda(@PathVariable("id_prodotto") int id_prodotto, @PathVariable("id_azienda") int id_azienda) {
+    public ResponseEntity<List<ProdottoModel>> findProdottiByIdInAzienda(@PathVariable("id_prodotto") int id_prodotto, 
+            @PathVariable("id_azienda") int id_azienda) {
         try {
             List<Prodotto> prodotti = prodottoService.findProdottiByIdInAzienda(id_prodotto, id_azienda);
             List<ProdottoModel> prodottiModel = new ArrayList<ProdottoModel>();
