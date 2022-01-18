@@ -29,14 +29,10 @@ public class DocumentoController {
         try {
             List<Documento> documenti = documentoService.findAll();
             List<DocumentoModel> documentiModel = new ArrayList<DocumentoModel>();
-            if (documenti.size() > 0) {
                 documentiModel = documenti.stream().map(p -> {
                     return new DocumentoModel(p);
                 }).collect(Collectors.toList());
                 return new ResponseEntity<>(documentiModel, HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(documentiModel, HttpStatus.NOT_FOUND);
-            }
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

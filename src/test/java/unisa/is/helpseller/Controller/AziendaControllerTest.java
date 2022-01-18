@@ -17,10 +17,6 @@ public class AziendaControllerTest {
 
     @Test
     public void contextLoads() throws Exception {
-    assertThat(controller.findAll().getBody().isEmpty()).isFalse();
-    assertThat(controller.findId(1).getBody().getClass().equals("Azienda"));
-    assertThat(controller.findId(1).getBody().getEmail().equals(null)).isFalse();
-    assertThat(controller.findId(1).getBody().getId()>0);
-    assertThat(controller.findId(1).getBody().getPassword()!= null);
+    assertThat(controller.findAziendeByNome(null).getBody().getClass().equals("Azienda"));
     }
 }

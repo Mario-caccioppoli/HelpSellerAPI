@@ -30,7 +30,7 @@ public class AmministratoreService {
     }
     
     public int insert(Amministratore a) {
-    	return amministratoreRepo.insert(a.getUsername(), a.getEmail(), a.getPassword());
+    	return amministratoreRepo.saveAndFlush(a).getId();
     }
     
     public int udpate(Amministratore a) {

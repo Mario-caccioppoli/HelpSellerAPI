@@ -29,14 +29,10 @@ public class DistributoreController {
         try {
             List<Distributore> distributori = distributoreService.findAll();
             List<DistributoreModel> distributoriModel = new ArrayList<DistributoreModel>();
-            if (distributori.size() > 0) {
                 distributoriModel = distributori.stream().map(p -> {
                     return new DistributoreModel(p);
                 }).collect(Collectors.toList());
                 return new ResponseEntity<>(distributoriModel, HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(distributoriModel, HttpStatus.NOT_FOUND);
-            }
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

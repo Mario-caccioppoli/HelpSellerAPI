@@ -32,14 +32,10 @@ public class AmministratoreController {
 		{
 			List<Amministratore> amministratori = amministratoreService.findAll();
 			List<AmministratoreModel> amministratoriModel = new ArrayList<AmministratoreModel>();
-			if (amministratori.size() > 0) {
 				amministratoriModel = amministratori.stream().map(p -> {
 					return new AmministratoreModel(p.getId(), p.getEmail(), p.getUsername(), p.getPassword());
 				}).collect(Collectors.toList());
 				return new ResponseEntity<>(amministratoriModel, HttpStatus.OK);
-			} else {
-				return new ResponseEntity<>(amministratoriModel, HttpStatus.NOT_FOUND);
-			}
 		}catch(Exception ex)
 		{
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -64,7 +60,7 @@ public class AmministratoreController {
 	public ResponseEntity<AmministratoreModel> update(AmministratoreModel amministratore) {
 		try
 		{
-                        Amministratore a = new Amministratore(amministratore.getEmail(), amministratore.getUsername(), amministratore.getPassword());
+             Amministratore a = new Amministratore(amministratore.getEmail(), amministratore.getUsername(), amministratore.getPassword());
 			amministratoreService.udpate(a);
 			return new ResponseEntity<>(HttpStatus.OK);
 		}catch (Exception ex)

@@ -30,7 +30,7 @@ public class OrdineService {
     }
     
     public int insert(Ordine ord) {
-    	return ordineRepo.insert(ord.getCommento(), ord.getStato(), ord.getIdDistributore(), ord.getDataConsegna(), ord.getDataOrdinazione());
+    	return ordineRepo.saveAndFlush(ord).getId();
     }
     
     public int update(Ordine ord) {

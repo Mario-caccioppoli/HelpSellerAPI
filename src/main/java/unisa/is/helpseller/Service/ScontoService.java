@@ -30,7 +30,8 @@ public class ScontoService {
     }
     
     public int insert(Sconto sc) {
-    	return scontoRepo.insert(sc.getPercentuale(), sc.getTipo(), sc.getQuantita(), sc.getIdAzienda(), sc.getDataFine(), sc.getDataInizio());
+    	 return scontoRepo.saveAndFlush(sc).getId();
+    	//return scontoRepo.insert(sc.getPercentuale(), sc.getTipo(), sc.getQuantita(), sc.getIdAzienda(), sc.getDataFine(), sc.getDataInizio());
     }
     
     public int udpate(Sconto sc) {

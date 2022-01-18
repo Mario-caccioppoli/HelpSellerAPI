@@ -21,14 +21,14 @@ public interface ScontoRepo extends JpaRepository<Sconto, Integer> {
    @Query(
    value = "INSERT INTO sconto (percentuale, tipo, quantita, id_azienda, data_fine, data_inizio) VALUES (:percentuale, :tipo, :quantita, :id_azienda, :data_fine, :data_inizio)",
            nativeQuery = true)
-   int insert(@Param("percentuale") int percentuale, @Param("tipo") String tipo, @Param("quantita") int quantita, 
+   int insert(@Param("percentuale") int percentuale, @Param("tipo") String tipo, @Param("quantita") Integer quantita, 
            @Param("id_azienda") int id_azienda, @Param("data_fine") Date data_fine, @Param("data_inizio") Date data_inizio);
    
    //JPQL
    @Modifying
    @Query("UPDATE Sconto s SET percentuale = :percentuale, tipo = :tipo, quantita = :quantita, "
            + "id_azienda = :id_azienda, data_fine = :data_fine, data_inizio = :data_inizio WHERE s.id = :id")
-   int update(@Param("percentuale") int percentuale, @Param("tipo") String tipo, @Param("quantita") int quantita, 
+   int update(@Param("percentuale") int percentuale, @Param("tipo") String tipo, @Param("quantita") Integer quantita, 
            @Param("id_azienda") int id_azienda, @Param("data_fine") Date data_fine, @Param("data_inizio") Date data_inizio, @Param("id") int id);
    
     //JPQL

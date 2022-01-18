@@ -29,14 +29,10 @@ public class TrasportoController {
         try {
             List<Trasporto> trasporti = trasportoService.findAll();
             List<TrasportoModel> trasportiModel = new ArrayList<TrasportoModel>();
-            if (trasporti.size() > 0) {
                 trasportiModel = trasporti.stream().map(p -> {
                     return new TrasportoModel(p);
                 }).collect(Collectors.toList());
                 return new ResponseEntity<>(trasportiModel, HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(trasportiModel, HttpStatus.NOT_FOUND);
-            }
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

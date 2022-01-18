@@ -29,14 +29,10 @@ public class RecensioneController {
         try {
             List<Recensione> recensioni = recensioneService.findAll();
             List<RecensioneModel> recensioniModel = new ArrayList<RecensioneModel>();
-            if (recensioni.size() > 0) {
                 recensioniModel = recensioni.stream().map(p -> {
                     return new RecensioneModel(p);
                 }).collect(Collectors.toList());
                 return new ResponseEntity<>(recensioniModel, HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(recensioniModel, HttpStatus.NOT_FOUND);
-            }
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

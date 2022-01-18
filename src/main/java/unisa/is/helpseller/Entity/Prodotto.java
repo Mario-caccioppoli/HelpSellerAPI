@@ -10,7 +10,7 @@ import unisa.is.helpseller.Model.ProdottoModel;
 @Table(name = "prodotto")
 public class Prodotto implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
     private String nome_prodotto;

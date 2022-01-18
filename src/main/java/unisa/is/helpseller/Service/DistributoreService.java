@@ -30,8 +30,7 @@ public class DistributoreService {
     }
     
       public int insert(Distributore d) {
-    	  return distributoreRepo.insert(d.getUsername(), d.getEmail(), d.getPassword(), d.getNome(), d.getCognome(), 
-                d.getTelefono(), d.getIndirizzoSede(), d.getIdOrdineProva(), d.getvat());
+    	  return distributoreRepo.saveAndFlush(d).getId();
     }
     
       public int update(Distributore d) {

@@ -11,7 +11,7 @@ import unisa.is.helpseller.Model.TrasportoModel;
 @Table(name = "trasporto")
 public class Trasporto implements Serializable{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String indirizzo_consegna;

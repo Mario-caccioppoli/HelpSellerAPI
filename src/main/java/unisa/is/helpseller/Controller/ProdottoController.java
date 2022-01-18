@@ -29,14 +29,10 @@ public class ProdottoController {
         try {
             List<Prodotto> prodotti = prodottoService.findAll();
             List<ProdottoModel> prodottiModel = new ArrayList<ProdottoModel>();
-            if (prodotti.size() > 0) {
                 prodottiModel = prodotti.stream().map(p -> {
                     return new ProdottoModel(p);
                 }).collect(Collectors.toList());
                 return new ResponseEntity<>(prodottiModel, HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(prodottiModel, HttpStatus.NOT_FOUND);
-            }
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

@@ -11,7 +11,7 @@ import unisa.is.helpseller.Model.RecensioneModel;
 @Table(name = "recensione")
 public class Recensione implements Serializable{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
     private String testo;

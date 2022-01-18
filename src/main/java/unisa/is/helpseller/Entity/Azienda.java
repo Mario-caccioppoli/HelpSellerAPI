@@ -10,7 +10,7 @@ import unisa.is.helpseller.Model.AziendaModel;
 @Table(name = "azienda")
 public class Azienda implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
     private String email;

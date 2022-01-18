@@ -30,8 +30,7 @@ public class ProdottoService {
     }
     
     public int insert(Prodotto prod) {
-    	return prodottoRepo.insert(prod.getNomeProdotto(), prod.getPrezzo(), prod.getDescrizione(), 
-                prod.getQuantita(), prod.getImmagine(), prod.getPeso(), prod.getVolume(), prod.getIdAzienda(), prod.getQuantitaMinima());
+    	return prodottoRepo.saveAndFlush(prod).getId();
     }
     
     public int udpate(Prodotto prod) {

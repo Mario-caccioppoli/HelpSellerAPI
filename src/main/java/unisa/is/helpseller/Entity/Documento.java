@@ -11,7 +11,7 @@ import unisa.is.helpseller.Model.DocumentoModel;
 @Table(name = "documento")
 public class Documento implements Serializable{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String titolo;

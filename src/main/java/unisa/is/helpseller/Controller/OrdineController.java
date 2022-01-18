@@ -29,14 +29,10 @@ public class OrdineController {
         try {
             List<Ordine> ordini = ordineService.findAll();
             List<OrdineModel> ordiniModel = new ArrayList<OrdineModel>();
-            if (ordini.size() > 0) {
                 ordiniModel = ordini.stream().map(p -> {
                     return new OrdineModel(p);
                 }).collect(Collectors.toList());
                 return new ResponseEntity<>(ordiniModel, HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(ordiniModel, HttpStatus.NOT_FOUND);
-            }
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
