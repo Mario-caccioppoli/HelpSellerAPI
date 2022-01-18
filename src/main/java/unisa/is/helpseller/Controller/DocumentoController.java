@@ -29,10 +29,10 @@ public class DocumentoController {
         try {
             List<Documento> documenti = documentoService.findAll();
             List<DocumentoModel> documentiModel = new ArrayList<DocumentoModel>();
-                documentiModel = documenti.stream().map(p -> {
-                    return new DocumentoModel(p);
-                }).collect(Collectors.toList());
-                return new ResponseEntity<>(documentiModel, HttpStatus.OK);
+            documentiModel = documenti.stream().map(p -> {
+                return new DocumentoModel(p);
+            }).collect(Collectors.toList());
+            return new ResponseEntity<>(documentiModel, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -42,43 +42,59 @@ public class DocumentoController {
     public ResponseEntity<DocumentoModel> findId(@PathVariable("id") int id) {
         try {
             Documento documento = documentoService.findId(id);
-            DocumentoModel d = new DocumentoModel(documento);
-            return new ResponseEntity<>(d, HttpStatus.OK);
+            if (!documento.equals(null)) {
+                DocumentoModel d = new DocumentoModel(documento);
+                return new ResponseEntity<>(d, HttpStatus.OK);
+            }
+
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @DeleteMapping("/deleteId/{id}")
-    public ResponseEntity<DocumentoModel> deleteId(@PathVariable("id") int id) {
+    public ResponseEntity<Integer> deleteId(@PathVariable("id") int id) {
         try {
-            documentoService.deleteId(id);
-            return new ResponseEntity<>(HttpStatus.OK);
+            int result = documentoService.deleteId(id);
+            if (result > 0) {
+                return new ResponseEntity<>(HttpStatus.OK);
+            }
+
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
     @PostMapping("/insert")
-    public ResponseEntity<DocumentoModel> insert(DocumentoModel doc) {
+    public ResponseEntity<Integer> insert(DocumentoModel doc) {
         try {
             Documento d = new Documento(doc);
-            documentoService.insert(d);
-            return new ResponseEntity<>(HttpStatus.OK);
+            int id = documentoService.insert(d);
+            if (id > 0) {
+                return new ResponseEntity<>(id, HttpStatus.OK);
+            }
+
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
     @PostMapping("/update")
-    public ResponseEntity<DocumentoModel> update(DocumentoModel doc) {
+    public ResponseEntity<Integer> update(DocumentoModel doc) {
         try {
             Documento d = new Documento(doc);
-            documentoService.udpate(d);
-            return new ResponseEntity<>(HttpStatus.OK);
+            int id = documentoService.udpate(d);
+            if (id > 0) {
+                return new ResponseEntity<>(HttpStatus.OK);
+            }
+
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
     @GetMapping("/findDocumentiByOrdine/{id}")

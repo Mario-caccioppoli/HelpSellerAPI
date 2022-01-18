@@ -82,13 +82,17 @@ public class DistributoreController {
     }
 
     @PostMapping("/update")
-    public ResponseEntity<DistributoreModel> update(DistributoreModel d) {
+    public ResponseEntity<Integer> update(DistributoreModel d) {
         try {
             Distributore distributore = new Distributore(d);
-            distributoreService.update(distributore);
-            return new ResponseEntity<>(HttpStatus.OK);
+            int id = distributoreService.update(distributore);
+            if(id > 0){
+                return new ResponseEntity<>(id, HttpStatus.OK);
+            }
+
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 }

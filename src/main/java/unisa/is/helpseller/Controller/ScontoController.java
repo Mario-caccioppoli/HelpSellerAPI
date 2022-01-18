@@ -31,10 +31,10 @@ public class ScontoController {
         try {
             List<Sconto> sconti = scontoService.findAll();
             List<ScontoModel> scontiModel = new ArrayList<ScontoModel>();
-                scontiModel = sconti.stream().map(p -> {
-                    return new ScontoModel(p);
-                }).collect(Collectors.toList());
-                return new ResponseEntity<>(scontiModel, HttpStatus.OK);
+            scontiModel = sconti.stream().map(p -> {
+                return new ScontoModel(p);
+            }).collect(Collectors.toList());
+            return new ResponseEntity<>(scontiModel, HttpStatus.OK);
         } catch (Exception ex) {
             System.out.println(ex);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -45,14 +45,11 @@ public class ScontoController {
     public ResponseEntity<ScontoModel> findId(@PathVariable("id") int id) {
         try {
             Sconto sconto = scontoService.findId(id);
-            if(!sconto.equals(null))
-            {
-            	ScontoModel s = new ScontoModel(sconto);
+            if (!sconto.equals(null)) {
+                ScontoModel s = new ScontoModel(sconto);
                 return new ResponseEntity<>(s, HttpStatus.OK);
-            }
-            else
-            {
-            	return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -70,15 +67,19 @@ public class ScontoController {
     }
 
     @PostMapping("/insert")
-    public ResponseEntity<ScontoModel> insert(ScontoModel sc) {
+    public ResponseEntity<Integer> insert(ScontoModel sc) {
         try {
             Sconto s = new Sconto(sc);
-            System.out.println("insert : " + scontoService.insert(s));
-            return new ResponseEntity<>(HttpStatus.OK);
+            int id = scontoService.insert(s);
+            if (id > 0) {
+                return new ResponseEntity<>(id, HttpStatus.OK);
+            }
+
         } catch (Exception ex) {
-        	ex.printStackTrace();
+            ex.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
     @PostMapping("/update")
@@ -88,7 +89,7 @@ public class ScontoController {
             scontoService.udpate(s);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception ex) {
-        	ex.printStackTrace();
+            ex.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

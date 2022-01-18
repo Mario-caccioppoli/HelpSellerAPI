@@ -83,12 +83,12 @@ public class AziendaController {
     }
 
     @PostMapping("/update")
-    public ResponseEntity<AziendaModel> update(AziendaModel a) {
+    public ResponseEntity<Integer> update(AziendaModel a) {
         try {
             Azienda azienda = new Azienda(a);
             int id = aziendaService.update(azienda);
             if(id > 0) {
-                return new ResponseEntity<>(HttpStatus.OK);
+                return new ResponseEntity<>(id, HttpStatus.OK);
             }
            
         } catch (Exception ex) {
