@@ -8,19 +8,21 @@ import unisa.is.helpseller.Entity.Sconto;
 
 public class ScontoModel implements Serializable {
     
+    private String nome;
     private int id;
     private int percentuale;
     private Date dataInizio;
     private Date dataFine;
     private String tipo;
-    private Integer quantita;
+    private int quantita;
     private int idAzienda;
     private List<ProdottoModel> prodotti;
 
     public ScontoModel() {}
 
-    public ScontoModel(int id, int percentuale, Date dataInizio, Date dataFine, String tipo, Integer quantita, int idAzienda, List<ProdottoModel> prodotti) {
+    public ScontoModel(int id, String nome, int percentuale, Date dataInizio, Date dataFine, String tipo, int quantita, int idAzienda, List<ProdottoModel> prodotti) {
         this.id = id;
+        this.nome = nome;
         this.percentuale = percentuale;
         this.dataInizio = dataInizio;
         this.dataFine = dataFine;
@@ -32,6 +34,7 @@ public class ScontoModel implements Serializable {
     
     public ScontoModel(Sconto s) {
         this.id = s.getId();
+        this.nome = s.getNome();
         this.percentuale = s.getPercentuale();
         this.dataInizio = s.getDataInizio();
         this.dataFine = s.getDataFine();
@@ -81,11 +84,11 @@ public class ScontoModel implements Serializable {
         this.tipo = tipo;
     }
 
-    public Integer getQuantita() {
+    public int getQuantita() {
         return quantita;
     }
 
-    public void setQuantita(Integer quantita) {
+    public void setQuantita(int quantita) {
         this.quantita = quantita;
     }
 
@@ -103,6 +106,14 @@ public class ScontoModel implements Serializable {
 
     public void setProdotti(List<ProdottoModel> prodotti) {
         this.prodotti = prodotti;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
    
