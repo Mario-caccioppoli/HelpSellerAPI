@@ -63,5 +63,24 @@ public interface OrdineProdottoRepo extends JpaRepository<OrdineProdotto, Intege
             + "WHERE op.id_prodotto = p.id AND op.id_ordine = :id_ordine")
     List<Object[]> findDettagliOrdineProdotto(@Param("id_ordine") int id_ordine);
     
+    //SQL
+    @Query(value = "SELECT SUM(prezzo_ordine) FROM ordine_prodotto INNER JOIN ordine ON id_ordine=ordine.id WHERE year(ordine.data_ordinazione) = :anno", 
+            nativeQuery = true)
+    Integer findReportAnnuale(@Param("anno") Integer anno);
     
+    //SQL
+    @Query(value = "SELECT SUM(prezzo_ordine) FROM ordine_prodotto INNER JOIN ordine ON id_ordine=ordine.id INNER JOIN prodotto ON id_prodotto=prodotto.id "
+            + "WHERE month(ordine.data_ordinazione) = :mese AND year(ordine.data_ordinazione) = :anno AND prodotto.id_azienda = :id_azienda", nativeQuery = true)
+    Integer findReportMensile(@Param("mese") String mese, @Param("anno") Integer anno, @Param("id_azienda") Integer id_azienda);
+    
+    //SQL
+    @Query(value = "SELECT SUM(prezzo_ordine) FROM ordine_prodotto INNER JOIN ordine ON id_ordine=ordine.id INNER JOIN prodotto ON id_prodotto=prodotto.id "
+            + "WHERE year(ordine.data_ordinazione) = :anno AND prodotto.id_azienda = :id_azienda", 
+            nativeQuery = true)
+    Integer findReportAnnualeAzienda(@Param("anno") Integer anno, @Param("id_azienda") Integer id_azienda);
+    
+    //SQL
+    @Query(value = "SELECT SUM(prezzo_ordine) FROM ordine_prodotto INNER JOIN ordine ON id_ordine=ordine.id  "
+            + "WHERE month(ordine.data_ordinazione) = :mese AND year(ordine.data_ordinazione) = :anno", nativeQuery = true)
+    Integer findReportMensileGruppo(@Param("mese") String mese, @Param("anno") Integer anno);
 }

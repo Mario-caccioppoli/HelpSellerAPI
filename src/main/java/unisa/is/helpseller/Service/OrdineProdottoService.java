@@ -50,4 +50,20 @@ public class OrdineProdottoService {
     public List<Object[]> findDettagliOrdineProdotto(int id_ordine) {
         return ordineProdottoRepo.findDettagliOrdineProdotto(id_ordine);
     }
+    
+   public Integer findReportAnnuale(Integer anno) {
+       return ordineProdottoRepo.findReportAnnuale(anno);
+   }
+   
+   public Integer findReportMensile(String mese, Integer anno, Integer id_azienda) {
+       return ordineProdottoRepo.findReportMensile(mese, anno, id_azienda);
+   }
+   
+   public Integer findReportAnnualeAzienda(Integer anno, Integer id_azienda) {
+       return ordineProdottoRepo.findReportAnnualeAzienda(anno, id_azienda);
+   }
+   public Integer findReportMensileGruppo(String mese, Integer anno) {
+       return ordineProdottoRepo.findReportMensileGruppo(mese, anno);
+   }
+
 }

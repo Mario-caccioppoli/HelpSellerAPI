@@ -149,4 +149,343 @@ public class OrdineProdottoController {
         List<Object[]>
         
     }*/
+    
+    @GetMapping("/findReportAnnuale/{anno}")
+    public ResponseEntity<Integer> findReportAnnuale(@PathVariable("anno") Integer anno) {
+        try {
+            Integer report = ordineprodottoService.findReportAnnuale(anno);
+            if (!report.equals(null)) {
+                return new ResponseEntity<>(report, HttpStatus.OK);
+            }
+        } catch (Exception ex) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+    
+    @GetMapping("/findReportAnnualeAzienda/{anno}/{id_azienda}")
+    public ResponseEntity<Integer> findReportAnnualeAzienda(@PathVariable("anno") Integer anno, @PathVariable("id_azienda") Integer id) {
+        try {
+            Integer report = ordineprodottoService.findReportAnnualeAzienda(anno, id);
+            if (!report.equals(null)) {
+                return new ResponseEntity<>(report, HttpStatus.OK);
+            }
+        } catch (Exception ex) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        
+    }
+    
+    @GetMapping("findReportGennaio/{anno}/{id_azienda}")
+    public ResponseEntity<Integer> findReportGennaio(@PathVariable("anno") Integer anno, @PathVariable("id_azienda") Integer id) {
+        try {
+            Integer report = ordineprodottoService.findReportMensile("01", anno, id);
+            if (!report.equals(null)) {
+                return new ResponseEntity<>(report, HttpStatus.OK);
+            }
+        } catch (Exception ex) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+    
+        @GetMapping("findReportFebbraio/{anno}/{id_azienda}")
+    public ResponseEntity<Integer> findReportFebbraio(@PathVariable("anno") Integer anno, @PathVariable("id_azienda") Integer id) {
+        try {
+            Integer report = ordineprodottoService.findReportMensile("02", anno, id);
+            if (!report.equals(null)) {
+                return new ResponseEntity<>(report, HttpStatus.OK);
+            }
+        } catch (Exception ex) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+    
+        @GetMapping("findReportMarzo/{anno}/{id_azienda}")
+    public ResponseEntity<Integer> findReportMarzo(@PathVariable("anno") Integer anno, @PathVariable("id_azienda") Integer id) {
+        try {
+            Integer report = ordineprodottoService.findReportMensile("03", anno, id);
+            if (!report.equals(null)) {
+                return new ResponseEntity<>(report, HttpStatus.OK);
+            }
+        } catch (Exception ex) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+    
+        @GetMapping("findReportAprile/{anno}/{id_azienda}")
+    public ResponseEntity<Integer> findReportAprile(@PathVariable("anno") Integer anno, @PathVariable("id_azienda") Integer id) {
+        try {
+            Integer report = ordineprodottoService.findReportMensile("04", anno, id);
+            if (!report.equals(null)) {
+                return new ResponseEntity<>(report, HttpStatus.OK);
+            }
+        } catch (Exception ex) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+    
+        @GetMapping("findReportMaggio/{anno}/{id_azienda}")
+    public ResponseEntity<Integer> findReportMaggio(@PathVariable("anno") Integer anno, @PathVariable("id_azienda") Integer id) {
+        try {
+            Integer report = ordineprodottoService.findReportMensile("05", anno, id);
+            if (!report.equals(null)) {
+                return new ResponseEntity<>(report, HttpStatus.OK);
+            }
+        } catch (Exception ex) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+    
+        @GetMapping("findReportGiugno/{anno}/{id_azienda}")
+    public ResponseEntity<Integer> findReportGiugno(@PathVariable("anno") Integer anno, @PathVariable("id_azienda") Integer id) {
+        try {
+            Integer report = ordineprodottoService.findReportMensile("06", anno, id);
+            if (!report.equals(null)) {
+                return new ResponseEntity<>(report, HttpStatus.OK);
+            }
+        } catch (Exception ex) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+    
+        @GetMapping("findReportLuglio/{anno}/{id_azienda}")
+    public ResponseEntity<Integer> findReportLuglio(@PathVariable("anno") Integer anno, @PathVariable("id_azienda") Integer id) {
+        try {
+            Integer report = ordineprodottoService.findReportMensile("07", anno, id);
+            if (!report.equals(null)) {
+                return new ResponseEntity<>(report, HttpStatus.OK);
+            }
+        } catch (Exception ex) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+    
+        @GetMapping("findReportAgosto/{anno}/{id_azienda}")
+    public ResponseEntity<Integer> findReportAgosto(@PathVariable("anno") Integer anno, @PathVariable("id_azienda") Integer id) {
+        try {
+            Integer report = ordineprodottoService.findReportMensile("08", anno, id);
+            if (!report.equals(null)) {
+                return new ResponseEntity<>(report, HttpStatus.OK);
+            }
+        } catch (Exception ex) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+    
+        @GetMapping("findReportSettembre/{anno}/{id_azienda}")
+    public ResponseEntity<Integer> findReportSettembre(@PathVariable("anno") Integer anno, @PathVariable("id_azienda") Integer id) {
+        try {
+            Integer report = ordineprodottoService.findReportMensile("09", anno, id);
+            if (!report.equals(null)) {
+                return new ResponseEntity<>(report, HttpStatus.OK);
+            }
+        } catch (Exception ex) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+    
+        @GetMapping("findReportOttobre/{anno}/{id_azienda}")
+    public ResponseEntity<Integer> findReportOttobre(@PathVariable("anno") Integer anno, @PathVariable("id_azienda") Integer id) {
+        try {
+            Integer report = ordineprodottoService.findReportMensile("10", anno, id);
+            if (!report.equals(null)) {
+                return new ResponseEntity<>(report, HttpStatus.OK);
+            }
+        } catch (Exception ex) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+    
+        @GetMapping("findReportNovembre/{anno}/{id_azienda}")
+    public ResponseEntity<Integer> findReportNovembre(@PathVariable("anno") Integer anno, @PathVariable("id_azienda") Integer id) {
+        try {
+            Integer report = ordineprodottoService.findReportMensile("11", anno, id);
+            if (!report.equals(null)) {
+                return new ResponseEntity<>(report, HttpStatus.OK);
+            }
+        } catch (Exception ex) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+    
+        @GetMapping("findReportDicembre/{anno}/{id_azienda}")
+    public ResponseEntity<Integer> findReportDicembre(@PathVariable("anno") Integer anno, @PathVariable("id_azienda") Integer id) {
+        try {
+            Integer report = ordineprodottoService.findReportMensile("12", anno, id);
+            if (!report.equals(null)) {
+                return new ResponseEntity<>(report, HttpStatus.OK);
+            }
+        } catch (Exception ex) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+    
+    @GetMapping("findReportGennaioGruppo/{anno}")
+    public ResponseEntity<Integer> findReportGennaioGruppo(@PathVariable("anno") Integer anno) {
+        try {
+            Integer report = ordineprodottoService.findReportMensileGruppo("01", anno);
+            if(!report.equals(null)) {
+                return new ResponseEntity<>(report, HttpStatus.OK);
+            }
+        } catch (Exception ex) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+    
+     @GetMapping("findReportFebbraioGruppo/{anno}")
+    public ResponseEntity<Integer> findReportFebbraioGruppo(@PathVariable("anno") Integer anno) {
+        try {
+            Integer report = ordineprodottoService.findReportMensileGruppo("02", anno);
+            if(!report.equals(null)) {
+                return new ResponseEntity<>(report, HttpStatus.OK);
+            }
+        } catch (Exception ex) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+    
+     @GetMapping("findReportMarzoGruppo/{anno}")
+    public ResponseEntity<Integer> findReportMarzoGruppo(@PathVariable("anno") Integer anno) {
+        try {
+            Integer report = ordineprodottoService.findReportMensileGruppo("03", anno);
+            if(!report.equals(null)) {
+                return new ResponseEntity<>(report, HttpStatus.OK);
+            }
+        } catch (Exception ex) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+    
+     @GetMapping("findReportAprileGruppo/{anno}")
+    public ResponseEntity<Integer> findReportAprileGruppo(@PathVariable("anno") Integer anno) {
+        try {
+            Integer report = ordineprodottoService.findReportMensileGruppo("04", anno);
+            if(!report.equals(null)) {
+                return new ResponseEntity<>(report, HttpStatus.OK);
+            }
+        } catch (Exception ex) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+    
+     @GetMapping("findReportMaggioGruppo/{anno}")
+    public ResponseEntity<Integer> findReportMaggioGruppo(@PathVariable("anno") Integer anno) {
+        try {
+            Integer report = ordineprodottoService.findReportMensileGruppo("05", anno);
+            if(!report.equals(null)) {
+                return new ResponseEntity<>(report, HttpStatus.OK);
+            }
+        } catch (Exception ex) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+    
+     @GetMapping("findReportGiugnoGruppo/{anno}")
+    public ResponseEntity<Integer> findReportGiugnoGruppo(@PathVariable("anno") Integer anno) {
+        try {
+            Integer report = ordineprodottoService.findReportMensileGruppo("06", anno);
+            if(!report.equals(null)) {
+                return new ResponseEntity<>(report, HttpStatus.OK);
+            }
+        } catch (Exception ex) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+    
+     @GetMapping("findReportLuglioGruppo/{anno}")
+    public ResponseEntity<Integer> findReportLuglioGruppo(@PathVariable("anno") Integer anno) {
+        try {
+            Integer report = ordineprodottoService.findReportMensileGruppo("07", anno);
+            if(!report.equals(null)) {
+                return new ResponseEntity<>(report, HttpStatus.OK);
+            }
+        } catch (Exception ex) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+    
+     @GetMapping("findReportAgostoGruppo/{anno}")
+    public ResponseEntity<Integer> findReportAgostoGruppo(@PathVariable("anno") Integer anno) {
+        try {
+            Integer report = ordineprodottoService.findReportMensileGruppo("08", anno);
+            if(!report.equals(null)) {
+                return new ResponseEntity<>(report, HttpStatus.OK);
+            }
+        } catch (Exception ex) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+    
+     @GetMapping("findReportSettembreGruppo/{anno}")
+    public ResponseEntity<Integer> findReportSettembreGruppo(@PathVariable("anno") Integer anno) {
+        try {
+            Integer report = ordineprodottoService.findReportMensileGruppo("09", anno);
+            if(!report.equals(null)) {
+                return new ResponseEntity<>(report, HttpStatus.OK);
+            }
+        } catch (Exception ex) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+    
+     @GetMapping("findReportOttobreGruppo/{anno}")
+    public ResponseEntity<Integer> findReportOttobreGruppo(@PathVariable("anno") Integer anno) {
+        try {
+            Integer report = ordineprodottoService.findReportMensileGruppo("10", anno);
+            if(!report.equals(null)) {
+                return new ResponseEntity<>(report, HttpStatus.OK);
+            }
+        } catch (Exception ex) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+    
+     @GetMapping("findReportNovembreGruppo/{anno}")
+    public ResponseEntity<Integer> findReportNovembreGruppo(@PathVariable("anno") Integer anno) {
+        try {
+            Integer report = ordineprodottoService.findReportMensileGruppo("11", anno);
+            if(!report.equals(null)) {
+                return new ResponseEntity<>(report, HttpStatus.OK);
+            }
+        } catch (Exception ex) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+    
+     @GetMapping("findReportDicembreGruppo/{anno}")
+    public ResponseEntity<Integer> findReportDicembreGruppo(@PathVariable("anno") Integer anno) {
+        try {
+            Integer report = ordineprodottoService.findReportMensileGruppo("12", anno);
+            if(!report.equals(null)) {
+                return new ResponseEntity<>(report, HttpStatus.OK);
+            }
+        } catch (Exception ex) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
 }
