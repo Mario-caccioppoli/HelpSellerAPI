@@ -15,7 +15,7 @@ import unisa.is.helpseller.Service.EmailSenderService;
  *
  * @author Alex
  */
-@SpringBootApplication
+//@SpringBootApplication    per farlo partire togliere il commento
 public class inviaMail {
     @Autowired
     private EmailSenderService senderService;
