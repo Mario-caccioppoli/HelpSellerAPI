@@ -60,8 +60,9 @@ public class TrasportoControllerTest {
         java.sql.Date data = new java.sql.Date(d1.getTime());
         //int id, String indirizzoConsegna, int quantitaMinima, Date dataConsegna, int idOrdine
         TrasportoModel trasporto = new TrasportoModel(15, "via vai", 1, data, 1);
-        ResponseEntity<TrasportoModel> response = controller.insert(trasporto);
+        ResponseEntity<Integer> response = controller.insert(trasporto);
         assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+        assertThat(response.getBody() > 0);
         trasporto.setIndirizzoConsegna("nuovo indirizzo");
         response = controller.update(trasporto);
         assertThat(response.getStatusCode().compareTo(HttpStatus.OK));

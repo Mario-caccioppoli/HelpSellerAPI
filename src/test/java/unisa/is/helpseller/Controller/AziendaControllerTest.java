@@ -47,8 +47,9 @@ public class AziendaControllerTest {
     @Test
     public void CUD() throws Exception {
         AziendaModel azienda = new AziendaModel("", "123", "AziendaTest", "123", "via vai", "azienda di prova", "", null, null);
-        ResponseEntity<AziendaModel> response = controller.insert(azienda);
+        ResponseEntity<Integer> response = controller.insert(azienda);
         assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+        assertThat(response.getBody() > 0);
         String email = "azienda@email.it";
         azienda.setEmail(email);
         response = controller.update(azienda);

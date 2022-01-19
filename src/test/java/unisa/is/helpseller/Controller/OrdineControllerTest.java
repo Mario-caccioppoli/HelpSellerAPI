@@ -69,8 +69,9 @@ public class OrdineControllerTest {
         java.sql.Date sqlD2 = new java.sql.Date(d2.getTime());
   //Date dataOrdinazione, Date dataConsegna, String commento, String stato, int idDistributore, DocumentoModel documento, double prezzoTotale
         OrdineModel ordine = new OrdineModel(sqlD1, sqlD2, "", "", 1, null, 120);
-    	ResponseEntity<OrdineModel> response = controller.insert(ordine);
+    	ResponseEntity<Integer> response = controller.insert(ordine);
     	assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+        assertThat(response.getBody() > 0);
     	ordine.setStato("consegnato");
     	response = controller.update(ordine);
     	assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
@@ -90,7 +91,6 @@ public class OrdineControllerTest {
     @Test
     public void InvalidRicercaPerDistributore() throws Exception {
         ResponseEntity<List<OrdineModel>> response = controller.findOrdiniByDistributore(150);
-        OrdineModel ordine = response.getBody().get(0);
         assertThat(response.getStatusCode().compareTo(HttpStatus.NOT_FOUND));
     }
     
@@ -106,7 +106,6 @@ public class OrdineControllerTest {
     @Test
     public void invalidRicercaPerAzienda() throws Exception {
         ResponseEntity<List<OrdineModel>> response = controller.findOrdiniByAzienda(15);
-        OrdineModel ordine = response.getBody().get(0);
         assertThat(response.getStatusCode().compareTo(HttpStatus.NOT_FOUND));
     }
 }

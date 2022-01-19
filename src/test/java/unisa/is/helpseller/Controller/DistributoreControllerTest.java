@@ -54,9 +54,10 @@ public class DistributoreControllerTest {
     //String telefono, String indirizzoSede, Integer idOrdineProva, List<OrdineModel> ordini)
     @Test
     public void CUD() throws Exception {
-        DistributoreModel distributore = new DistributoreModel("Fabio22", "fabio@email.it", "123", "Fabio", "Frizzi", "1212", "333", "via della sede", null, null);
-        ResponseEntity<DistributoreModel> response = controller.insert(distributore);
+        DistributoreModel distributore = new DistributoreModel("prova", "fabio@email.it", "123", "Fabio", "Frizzi", "1", "333", "via della sede", null, null);
+        ResponseEntity<Integer> response = controller.insert(distributore);
         assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+        assertThat(response.getBody() > 0);
         String email = "fabio22@email.it";
         distributore.setEmail(email);
         response = controller.update(distributore);
