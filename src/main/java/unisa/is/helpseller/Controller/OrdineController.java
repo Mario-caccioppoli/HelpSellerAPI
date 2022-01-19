@@ -8,8 +8,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import unisa.is.helpseller.Entity.Distributore;
 import unisa.is.helpseller.Entity.Ordine;
 import unisa.is.helpseller.Model.OrdineModel;
+import unisa.is.helpseller.Service.DistributoreService;
+import unisa.is.helpseller.Service.EmailSenderService;
 
 @RestController
 @RequestMapping("/ordine")
@@ -18,6 +21,12 @@ public class OrdineController {
 
     @Autowired
     private final OrdineService ordineService;
+    
+    @Autowired
+    private DistributoreService distributoreService;
+    
+    @Autowired
+    private EmailSenderService senderService;
 
     @Autowired
     public OrdineController(OrdineService ordineService) {
@@ -72,6 +81,9 @@ public class OrdineController {
             Ordine o = new Ordine(ord);
             int id = ordineService.insert(o);
             if(id > 0) {
+               
+               Distributore d = distributoreService.findId(o.getIdDistributore());
+               senderService.sendEmail(d.getEmail(), "Ordine confermato", "Il tuo ordine è stato confermato");
                return new ResponseEntity<>(id, HttpStatus.OK);
             }
             
