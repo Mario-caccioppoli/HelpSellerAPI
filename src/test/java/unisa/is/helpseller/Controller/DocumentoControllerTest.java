@@ -44,7 +44,7 @@ public class DocumentoControllerTest {
 
     @Test
     public void findCorrectId() throws Exception {
-        ResponseEntity<DocumentoModel> response = controller.findId(1);
+        ResponseEntity<DocumentoModel> response = controller.findId(4);
         DocumentoModel documento = response.getBody();
         assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
         assertThat(documento).isNotNull();
@@ -67,8 +67,9 @@ public class DocumentoControllerTest {
         java.sql.Date data = new java.sql.Date(d1.getTime());
 
         DocumentoModel documento = new DocumentoModel(150, "doc del test", "aldo moro", data, 1);
-        ResponseEntity<DocumentoModel> response = controller.insert(documento);
+        ResponseEntity<Integer> response = controller.insert(documento);
         assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+        assertThat(response.getBody() > 0);
         String email = "azienda@email.it";
         documento.setTitolo("nuovo titolo");
         response = controller.update(documento);

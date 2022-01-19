@@ -60,8 +60,9 @@ public class RecensioneControllerTest {
         java.sql.Date data = new java.sql.Date(d1.getTime());
         
         RecensioneModel recensione = new RecensioneModel("testo recensione", 3, data, 4, 1);
-        ResponseEntity<RecensioneModel> response = controller.insert(recensione);
+        ResponseEntity<Integer> response = controller.insert(recensione);
         assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+        assertThat(response.getBody() > 0);
         String email = "azienda@email.it";
         recensione.setTesto("nuovo testo recensione");
         response = controller.update(recensione);

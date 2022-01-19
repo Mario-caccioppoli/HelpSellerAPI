@@ -68,8 +68,8 @@ public class ScontoControllerTest {
         java.util.Date d2 = c2.getTime();
         java.sql.Date sqlD2 = new java.sql.Date(d2.getTime());
   
-        ScontoModel sconto = new ScontoModel(1, "newSconto", 10, sqlD1, sqlD2, "catalogo", 5, 1);
-    	ResponseEntity<ScontoModel> response = controller.insert(sconto);
+        ScontoModel sconto = new ScontoModel(1, "newSconto", 10, sqlD1, sqlD2, "catalogo", 5, 1, null);
+    	ResponseEntity<Integer> response = controller.insert(sconto);
     	assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
     	sconto.setPercentuale(30);
     	response = controller.update(sconto);
@@ -95,9 +95,10 @@ public class ScontoControllerTest {
         java.util.Date d2 = c2.getTime();
         java.sql.Date sqlD2 = new java.sql.Date(d2.getTime());
   
-        ScontoModel sconto = new ScontoModel(1, "newSconto", 10, sqlD1, sqlD2, "catalogo", 5, 1);
-    	ResponseEntity<ScontoModel> response = controller.insert(sconto);
+        ScontoModel sconto = new ScontoModel(1, "newSconto", 10, sqlD1, sqlD2, "catalogo", 5, 1, null);
+    	ResponseEntity<Integer> response = controller.insert(sconto);
     	assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+        assertThat(response.getBody() > 0);
     	sconto.setPercentuale(-5);
     	response = controller.update(sconto);
     	assertThat(response.getStatusCode().compareTo(HttpStatus.INTERNAL_SERVER_ERROR));

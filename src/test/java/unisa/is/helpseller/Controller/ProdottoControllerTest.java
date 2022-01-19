@@ -54,8 +54,9 @@ public class ProdottoControllerTest {
     @Test
     public void CUD() throws Exception {
         ProdottoModel prodotto = new ProdottoModel(99, "wafer croccanti", 2, "wafer al cioccolato", 150, "", 1, 1, 1, 3, null, null);
-        ResponseEntity<ProdottoModel> response = controller.insert(prodotto);
+        ResponseEntity<Integer> response = controller.insert(prodotto);
         assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+        assertThat(response.getBody() > 0);
         prodotto.setPrezzo(3);
         response = controller.update(prodotto);
         assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
