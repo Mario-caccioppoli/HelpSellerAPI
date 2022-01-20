@@ -9,7 +9,7 @@ package unisa.is.helpseller.Controller;
  *
  * @author UTENTE
  */
-import java.util.Calendar;
+import java.sql.Date;
 import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
@@ -52,31 +52,26 @@ public class OrdineControllerTest {
         assertThat(ordine.getDataConsegna().after(ordine.getDataOrdinazione())).isTrue();
     }
     
-    @Test
-    public void CUD() throws Exception {
-        Calendar c1 = Calendar.getInstance();
-        c1.set(Calendar.MONTH, 11);
-        c1.set(Calendar.DATE, 01);
-        c1.set(Calendar.YEAR, 2022);
-        java.util.Date d1 = c1.getTime();
-        java.sql.Date sqlD1 = new java.sql.Date(d1.getTime());
+      public void CUD() throws Exception {
+        OrdineModel ordine = new OrdineModel(Date.valueOf("2022-01-10"), Date.valueOf("2022-01-21"), "commentoTest", "statoTest", 1, null, 120);
+
+        ResponseEntity<Integer> response = controller.insert(ordine);
+
+        assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+
+        ordine.setCommento("nuovo commento");
+
+        response = controller.update(ordine);
+
+        assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
         
-        Calendar c2 = Calendar.getInstance();
-        c2.set(Calendar.MONTH, 23);
-        c2.set(Calendar.DATE, 01);
-        c2.set(Calendar.YEAR, 2022);
-        java.util.Date d2 = c2.getTime();
-        java.sql.Date sqlD2 = new java.sql.Date(d2.getTime());
-  //Date dataOrdinazione, Date dataConsegna, String commento, String stato, int idDistributore, DocumentoModel documento, double prezzoTotale
-        OrdineModel ordine = new OrdineModel(sqlD1, sqlD2, "", "", 1, null, 120);
-    	ResponseEntity<Integer> response = controller.insert(ordine);
-    	assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
         assertThat(response.getBody() > 0);
-    	ordine.setStato("consegnato");
-    	response = controller.update(ordine);
-    	assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
-    	response = controller.deleteId(ordine.getId());
-    	assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+
+        response = controller.deleteId(ordine.getId());
+
+        assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+        
+        assertThat(response.getBody() > 0);
     }
     
     @Test

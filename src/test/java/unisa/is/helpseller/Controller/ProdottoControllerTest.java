@@ -51,17 +51,23 @@ public class ProdottoControllerTest {
     }
     //int id, String nomeProdotto, double prezzo, String descrizione, int quantita, String immagine, int quantitaMinima, 
     //int peso, int volume, int idAzienda, List<RecensioneModel> recensioni, List<ScontoModel> sconti
-    @Test
-    public void CUD() throws Exception {
+    
+        public void CUD() throws Exception {
         ProdottoModel prodotto = new ProdottoModel(99, "wafer croccanti", 2, "wafer al cioccolato", 150, "", 1, 1, 1, 3, null, null);
+
         ResponseEntity<Integer> response = controller.insert(prodotto);
+
         assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
         assertThat(response.getBody() > 0);
-        prodotto.setPrezzo(3);
+        prodotto.setQuantita(5);
+
         response = controller.update(prodotto);
         assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+        assertThat(response.getBody() > 0);
+        
         response = controller.deleteId(prodotto.getId());
         assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+        assertThat(response.getBody() > 0);
     }
     
     @Test

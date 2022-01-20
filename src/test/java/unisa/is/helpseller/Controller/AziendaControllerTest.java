@@ -9,14 +9,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import unisa.is.helpseller.Entity.Azienda;
 import unisa.is.helpseller.Model.AziendaModel;
+import unisa.is.helpseller.Model.DistributoreModel;
 
 @SpringBootTest
 public class AziendaControllerTest {
 
     @Autowired
     private AziendaController controller;
-
+    
     @Test
     public void findAllStatus() throws Exception {
         ResponseEntity<List<AziendaModel>> response = controller.findAll();
@@ -41,22 +43,30 @@ public class AziendaControllerTest {
         assertThat(azienda).isNotNull();
     }
 
-    //public AziendaModel(String email, String password, String nomeAzienda, String vat, String indirizzo, 
-    //String descrizione, String logo, List<ProdottoModel> prodotti, List<OrdineModel> ordini)
+    //String email, String password, String nomeAzienda, String vat, String indirizzo, String descrizione, String logo, List<ProdottoModel> prodotti, List<OrdineModel> ordini
     
-    @Test
     public void CUD() throws Exception {
-        AziendaModel azienda = new AziendaModel("", "123", "AziendaTest", "123", "via vai", "azienda di prova", "", null, null);
-        ResponseEntity<Integer> response = controller.insert(azienda);
+        AziendaModel distributore = new AziendaModel("emailAziendaTest@email.it", "password", "AziendaTest", "99", "via vai", "azienda di prova", "", null, null);
+
+        ResponseEntity<Integer> response = controller.insert(distributore);
+
         assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+
+        distributore.setDescrizione("la descrizione è stata cambiata");
+
+        response = controller.update(distributore);
+
+        assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+        
         assertThat(response.getBody() > 0);
-        String email = "azienda@email.it";
-        azienda.setEmail(email);
-        response = controller.update(azienda);
+
+        response = controller.deleteId(distributore.getId());
+
         assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
-        response = controller.deleteId(azienda.getId());
-        assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+        
+        assertThat(response.getBody() > 0);
     }
+    
     
     @Test
     public void ricercaPerNome() throws Exception{
@@ -89,4 +99,5 @@ public class AziendaControllerTest {
         assertThat(response.getStatusCode().compareTo(HttpStatus.INTERNAL_SERVER_ERROR));
         assertThat(azienda).isNull();
     }
+
 }

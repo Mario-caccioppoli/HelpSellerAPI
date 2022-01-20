@@ -9,6 +9,8 @@ package unisa.is.helpseller.Controller;
  *
  * @author UTENTE
  */
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -19,6 +21,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import unisa.is.helpseller.Model.DocumentoModel;
+import unisa.is.helpseller.Model.ProdottoModel;
+import unisa.is.helpseller.Model.ScontoModel;
 
 @SpringBootTest
 public class DocumentoControllerTest {
@@ -57,25 +61,26 @@ public class DocumentoControllerTest {
     }
 
     //int id, String titolo, String autore, Date data, int idOrdine
-    @Test
     public void CUD() throws Exception {
-        Calendar c1 = Calendar.getInstance();
-        c1.set(Calendar.MONTH, 15);
-        c1.set(Calendar.DATE, 01);
-        c1.set(Calendar.YEAR, 2022);
-        java.util.Date d1 = c1.getTime();
-        java.sql.Date data = new java.sql.Date(d1.getTime());
+        DocumentoModel documento = new DocumentoModel(0, "DocumentoTest", "aldo moro", Date.valueOf("2022-01-10"), 1);
 
-        DocumentoModel documento = new DocumentoModel(150, "doc del test", "aldo moro", data, 1);
         ResponseEntity<Integer> response = controller.insert(documento);
+
         assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
-        assertThat(response.getBody() > 0);
-        String email = "azienda@email.it";
+
         documento.setTitolo("nuovo titolo");
+
         response = controller.update(documento);
+
         assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+        
+        assertThat(response.getBody() > 0);
+
         response = controller.deleteId(documento.getId());
+
         assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+        
+        assertThat(response.getBody() > 0);
     }
 
     @Test

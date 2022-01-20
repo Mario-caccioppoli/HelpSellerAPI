@@ -12,7 +12,6 @@ package unisa.is.helpseller.Controller;
 import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
@@ -50,19 +49,21 @@ public class DistributoreControllerTest {
         assertThat(distributore).isNotNull();
     }
     
-    //public DistributoreModel(String username, String email, String password, String nome, String cognome, String vat, 
-    //String telefono, String indirizzoSede, Integer idOrdineProva, List<OrdineModel> ordini)
-    @Test
     public void CUD() throws Exception {
-        DistributoreModel distributore = new DistributoreModel("prova", "fabio@email.it", "123", "Fabio", "Frizzi", "1", "333", "via della sede", null, null);
+        DistributoreModel distributore = new DistributoreModel("Gaetano", "gaetano@email.it", "123", "Gaetano", "Frizzi", "777", "389", "via della sede", null, null);
+
         ResponseEntity<Integer> response = controller.insert(distributore);
+
         assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
         assertThat(response.getBody() > 0);
-        String email = "fabio22@email.it";
-        distributore.setEmail(email);
+        distributore.setEmail("testemail@email.it");
+
         response = controller.update(distributore);
         assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+        assertThat(response.getBody() > 0);
+        
         response = controller.deleteId(distributore.getId());
         assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+        assertThat(response.getBody() > 0);
     }
 }
