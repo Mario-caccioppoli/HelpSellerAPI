@@ -7,12 +7,10 @@ import unisa.is.helpseller.Service.ScontoProdottoService;
 import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import unisa.is.helpseller.Entity.Prodotto;
-import unisa.is.helpseller.Entity.Sconto;
 import unisa.is.helpseller.Entity.ScontoProdotto;
-import unisa.is.helpseller.Model.ProdottoModel;
-import unisa.is.helpseller.Model.ScontoModel;
 import unisa.is.helpseller.Model.ScontoProdottoModel;
+import unisa.is.helpseller.Service.ProdottoService;
+import unisa.is.helpseller.Service.ScontoService;
 
 @RestController
 @RequestMapping("/scontoprodotto")
@@ -21,102 +19,124 @@ public class ScontoProdottoController {
 
     @Autowired
     private final ScontoProdottoService scontoProdottoService;
+    
+    ScontoController scontoController;
+    ProdottoController prodottoController;
 
     @Autowired
     public ScontoProdottoController(ScontoProdottoService scontoProdottoService) {
-        this.scontoProdottoService = scontoProdottoService;
+        this.scontoProdottoService = scontoProdottoService; 
     }
 
     @GetMapping("/findAll")
-    public ResponseEntity<List<ScontoProdotto>> findAll() {
+    public ResponseEntity<List<ScontoProdottoModel>> findAll() {
         try {
             List<ScontoProdotto> scontoProdotti = scontoProdottoService.findAll();
-            return new ResponseEntity<>(scontoProdotti, HttpStatus.OK);
+            List<ScontoProdottoModel> modelList = new ArrayList<ScontoProdottoModel>();
+            
+            for(ScontoProdotto sp : scontoProdotti) {
+                
+                ScontoProdottoModel modelBuf = new ScontoProdottoModel(
+                    prodottoController.findId(sp.getIdProdotto()).getBody(),
+                    scontoController.findId(sp.getIdSconto()).getBody());
+                
+                modelList.add(modelBuf);
+            }
+            return new ResponseEntity<>(modelList, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @GetMapping("/findBySconto/{id}")
-    public ResponseEntity<ScontoProdotto> findBySconto(@PathVariable("id") int id) {
+    public ResponseEntity<List<ScontoProdottoModel>> findBySconto(@PathVariable("id") int id) {
         try {
-            ScontoProdotto scontoProdotto = scontoProdottoService.findBySconto(id);
-            return new ResponseEntity<>(scontoProdotto, HttpStatus.OK);
+            List<ScontoProdotto> scontoProdotti = scontoProdottoService.findBySconto(id);
+            List<ScontoProdottoModel> modelList = new ArrayList<ScontoProdottoModel>();
+            
+             for(ScontoProdotto sp : scontoProdotti) {
+                
+                ScontoProdottoModel modelBuf = new ScontoProdottoModel(
+                    prodottoController.findId(sp.getIdProdotto()).getBody(),
+                    scontoController.findId(sp.getIdSconto()).getBody());
+                
+                modelList.add(modelBuf);
+            }
+            
+            return new ResponseEntity<>(modelList, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @GetMapping("/findByProdotto/{id}")
-    public ResponseEntity<ScontoProdotto> findByProdotto(@PathVariable("id") int id) {
+    public ResponseEntity<List<ScontoProdottoModel>> findByProdotto(@PathVariable("id") int id) {
         try {
-            ScontoProdotto scontoProdotto = scontoProdottoService.findByProdotto(id);
-            return new ResponseEntity<>(scontoProdotto, HttpStatus.OK);
+            List<ScontoProdotto> scontoProdotti = scontoProdottoService.findByProdotto(id);
+            List<ScontoProdottoModel> modelList = new ArrayList<ScontoProdottoModel>();
+            
+             for(ScontoProdotto sp : scontoProdotti) {
+                
+                ScontoProdottoModel modelBuf = new ScontoProdottoModel(
+                    prodottoController.findId(sp.getIdProdotto()).getBody(),
+                    scontoController.findId(sp.getIdSconto()).getBody());
+                
+                modelList.add(modelBuf);
+            }
+            
+            return new ResponseEntity<>(modelList, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @DeleteMapping("/deleteId/{id}")
-    public ResponseEntity<ScontoProdotto> deleteId(@PathVariable("id") int id) {
+    @DeleteMapping("/deleteId/{id_prodotto}/{id_sconto}")
+    public ResponseEntity<Integer> deleteId(
+            @PathVariable("id_prodotto") int id_prodotto, 
+            @PathVariable("id_sconto") int id_sconto) {
+        
         try {
-            scontoProdottoService.deleteId(id);
-            return new ResponseEntity<>(HttpStatus.OK);
+            int result = scontoProdottoService.deleteId(id_prodotto, id_sconto);
+            if (result > 0) {
+                return new ResponseEntity<>(result, HttpStatus.OK);
+            }
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
     
     //DA MODIFICARE
-    @PostMapping("/insert/{id_sconto}/{id_prodotto}")
-    public ResponseEntity<ScontoProdotto> insert(@PathVariable("id_sconto") int id_sconto, @PathVariable("id_prodotto") int id_prodotto) {
+    @PostMapping("/insert/{id_prodotto}/{id_sconto}")
+    public ResponseEntity<Integer> insert(
+            @PathVariable("id_prodotto") int id_prodotto, 
+            @PathVariable("id_sconto") int id_sconto) {
+        
         try {
-            //scontoProdottoService.insert(scontoProd);
-            return new ResponseEntity<>(HttpStatus.OK);
+            ScontoProdotto sp = new ScontoProdotto(id_sconto, id_prodotto);
+            Integer result = scontoProdottoService.insert(sp);
+            
+            if (result > 0) {
+                return new ResponseEntity<>(result, HttpStatus.OK);
+            }
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
     //DA MODIFICARE COME SOPRA
     @PostMapping("/update")
-    public ResponseEntity<ScontoProdotto> update(ScontoProdotto updated, ScontoProdotto old) {
+    public ResponseEntity<Integer> update(ScontoProdotto updated, ScontoProdotto old) {
         try {
-            scontoProdottoService.udpate(updated, old);
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (Exception ex) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-/*
-    @GetMapping("/findProdottiScontatiAzienda/{name}/{id}")
-    public ResponseEntity<List<ScontoProdottoModel>> findProdottiScontatiAzienda(@PathVariable("name") String name, @PathVariable("id") int id) {
-        try {
-            List<Object[]> objList = scontoProdottoService.findProdottiScontatiAzienda(name, id);
-            List<ScontoProdottoModel> listModel = new ArrayList<ScontoProdottoModel>();
-            System.out.println("TEST 1");
-            for (Object[] obj : objList) {
-                Prodotto pBuf = (Prodotto) obj[0];
-                Sconto sBuf = (Sconto) obj[1];
-                System.out.println("TEST 2");
-                ProdottoModel pmBuf = new ProdottoModel(pBuf.getId(), 
-                        pBuf.getNomeProdotto(), pBuf.getPrezzo(), pBuf.getDescrizione(),
-                pBuf.getQuantita(), pBuf.getImmagine(), pBuf.getQuantitaMinima(), pBuf.getPeso(),
-                pBuf.getVolume(), pBuf.getIdAzienda(), null, null);
-                System.out.println("TEST 3");
-                ScontoModel smBuf = new ScontoModel(sBuf.getId(), sBuf.getPercentuale(),
-                sBuf.getDataInizio(), sBuf.getDataFine(), sBuf.getTipo(), sBuf.getQuantita(),
-                sBuf.getIdAzienda(), null);
-                System.out.println("TEST 4");
-                ScontoProdottoModel spmBuf = new ScontoProdottoModel(pmBuf, smBuf);
-                System.out.println("TEST 5");
-                listModel.add(spmBuf);
-                System.out.println("TEST 6");
+            int result = scontoProdottoService.udpate(updated, old);
+            if (result > 0) {
+                return new ResponseEntity<>(result, HttpStatus.OK);
             }
-            System.out.println("TEST 7");    
-            return new ResponseEntity<>(listModel, HttpStatus.OK);
+
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+    }
 
-    }*/
 }

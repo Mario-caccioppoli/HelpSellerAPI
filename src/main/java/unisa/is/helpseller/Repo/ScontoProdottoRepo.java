@@ -10,14 +10,14 @@ import unisa.is.helpseller.Entity.ScontoProdotto;
 
 public interface ScontoProdottoRepo extends JpaRepository<ScontoProdotto, Integer>{
    @Query("SELECT sp FROM ScontoProdotto sp WHERE sp.id_sconto = ?1")
-   ScontoProdotto findBySconto(int id);
+   List<ScontoProdotto> findBySconto(int id);
    
    @Query("SELECT sp FROM ScontoProdotto sp WHERE sp.id_prodotto = ?1")
-   ScontoProdotto findByProdotto(int id);
+   List<ScontoProdotto> findByProdotto(int id);
    
    @Modifying
-   @Query("DELETE FROM ScontoProdotto sp WHERE sp.id = ?1")
-   int deleteId(int id);
+   @Query("DELETE FROM ScontoProdotto sp WHERE sp.id_prodotto = :id_prodotto AND sp.id_sconto = :id_sconto")
+   int deleteId(@Param("id_prodotto") int id_prodotto, @Param("id_sconto") int id_sconto);
    
    //SQL
    @Modifying

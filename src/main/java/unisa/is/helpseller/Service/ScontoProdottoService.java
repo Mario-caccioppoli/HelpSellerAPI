@@ -21,16 +21,16 @@ public class ScontoProdottoService {
         return scontoProdottoRepo.findAll();
     }
     
-    public ScontoProdotto findBySconto(int id) {
+    public List<ScontoProdotto> findBySconto(int id) {
         return scontoProdottoRepo.findBySconto(id);
     }
     
-    public ScontoProdotto findByProdotto(int id) {
+    public List<ScontoProdotto> findByProdotto(int id) {
         return scontoProdottoRepo.findByProdotto(id);
     }
     
-    public int deleteId(int id) {
-    	return scontoProdottoRepo.deleteId(id);
+    public int deleteId(int id_prodotto, int id_sconto) {
+    	return scontoProdottoRepo.deleteId(id_prodotto, id_sconto);
     }
     
     public int insert(ScontoProdotto scontoProd) {

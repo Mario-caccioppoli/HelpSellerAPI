@@ -1,12 +1,15 @@
 package unisa.is.helpseller.Controller;
 
 import java.util.List;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import unisa.is.helpseller.Entity.Amministratore;
@@ -36,29 +39,40 @@ public class UtenteController {
     private AziendaService aziendaService;
     
     @Autowired
-    public UtenteController(UtenteService utenteService) {this.utenteService = utenteService;}
+    public UtenteController(UtenteService utenteService, 
+            AmministratoreService adminService,
+            DistributoreService distributoreService,
+            AziendaService aziendaService) {
+        this.utenteService = utenteService;
+        this.adminService = adminService;
+        this.distService = distributoreService;
+        this.aziendaService = aziendaService;
+    }
     
     
     @PostMapping("/login")
-    public ResponseEntity<UtenteModel> auth(String email, String password, String tipo){
-    	UtenteModel utente = null;
+    public ResponseEntity<UtenteModel> auth(@RequestBody String input){
+    	UtenteModel utente = new UtenteModel();
+        
+        JSONObject json = new JSONObject(input);
+        
     	try
 		{
-    		  if(tipo.equals("Amministratore")){
+    		  if(json.getString("tipo").equals("Amministratore")){
     	            List<Amministratore> admin = adminService.findAll();
-    	            utente = utenteService.authAdmin(email, password, admin);
+    	            utente = utenteService.authAdmin(json.getString("email"), json.getString("password"), admin);
     	        }
-    	        else if(tipo.equals("Distributore")){
+    	        else if(json.get("tipo").equals("Distributore")){
     	            List<Distributore> dist = distService.findAll();
-    	            utente = utenteService.authDist(email, password, dist);
+    	            utente = utenteService.authDist(json.getString("email"), json.getString("password"), dist);
     	        }
     	        
-    	        else if(tipo.equals("Azienda")){
+    	        else if(json.get("tipo").equals("Azienda")){
     	            List<Azienda> azienda = aziendaService.findAll();
-    	            utente = utenteService.authAzienda(email, password, azienda);
+    	            utente = utenteService.authAzienda(json.getString("email"), json.getString("password"), azienda);
     	        }
     	        
-    	        if(utente != null)
+    	        if(utente.getId() > 0)
     	        {
     	        	 return new ResponseEntity<UtenteModel>(utente,HttpStatus.OK);
     	        }

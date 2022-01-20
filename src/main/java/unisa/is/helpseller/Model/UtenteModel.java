@@ -27,6 +27,7 @@ public class UtenteModel implements Serializable{
     }
     //enum?
     public UtenteModel(Amministratore admin){
+        this.id = admin.getId();
         this.email = admin.getEmail();
         this.username = admin.getUsername();
         this.password = admin.getPassword();
@@ -35,6 +36,7 @@ public class UtenteModel implements Serializable{
     
     //costruttore di un utente dato un distributore
     public UtenteModel(Distributore dist){
+        this.id = dist.getId();
         this.email = dist.getEmail();
         this.username = dist.getUsername();
         this.password = dist.getPassword();
@@ -48,6 +50,7 @@ public class UtenteModel implements Serializable{
     
     //costruttore di un utente data un'azienda
     public UtenteModel(Azienda az){
+        this.id = az.getId();
         this.email = az.getEmail();
         this.nome = az.getNomeAzienda();
         this.password = az.getPassword();
@@ -57,7 +60,7 @@ public class UtenteModel implements Serializable{
         this.descrizione = az.getDescrizione();
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
