@@ -9,6 +9,8 @@ package unisa.is.helpseller.Controller;
  *
  * @author UTENTE
  */
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -18,7 +20,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import unisa.is.helpseller.Entity.Recensione;
+import unisa.is.helpseller.Model.ProdottoModel;
 import unisa.is.helpseller.Model.RecensioneModel;
+import unisa.is.helpseller.Model.ScontoModel;
 
 
 @SpringBootTest
@@ -49,25 +54,27 @@ public class RecensioneControllerTest {
     	assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
     	assertThat(recensione).isNotNull();
    }
-    //String testo, int voto, Date data, int idProdotto, int idDistributore
-    @Test
+
+    //(String testo, int voto, Date data, int idProdotto, int idDistributore)
     public void CUD() throws Exception {
-        Calendar c1 = Calendar.getInstance();
-        c1.set(Calendar.MONTH, 01);
-        c1.set(Calendar.DATE, 23);
-        c1.set(Calendar.YEAR, 2022);
-        java.util.Date d1 = c1.getTime();
-        java.sql.Date data = new java.sql.Date(d1.getTime());
-        
-        RecensioneModel recensione = new RecensioneModel("testo recensione", 3, data, 4, 1);
+        RecensioneModel recensione = new RecensioneModel("recensione test", 5, Date.valueOf("2022-01-10"), 1, 1);
+
         ResponseEntity<Integer> response = controller.insert(recensione);
+
         assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
-        assertThat(response.getBody() > 0);
-        String email = "azienda@email.it";
-        recensione.setTesto("nuovo testo recensione");
+
+        recensione.setVoto(4);
+
         response = controller.update(recensione);
+
         assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+        
+        assertThat(response.getBody() > 0);
+
         response = controller.deleteId(recensione.getId());
+
         assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+        
+        assertThat(response.getBody() > 0);
     }
 }

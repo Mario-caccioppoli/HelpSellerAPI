@@ -9,6 +9,8 @@ package unisa.is.helpseller.Controller;
  * @author UTENTE
  */
 
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -20,6 +22,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import unisa.is.helpseller.Model.ScontoModel;
 import java.util.Calendar;
+import unisa.is.helpseller.Model.ProdottoModel;
 
 
 @SpringBootTest
@@ -51,7 +54,34 @@ public class ScontoControllerTest {
     	assertThat(sconto).isNotNull();
     	assertThat(sconto.getDataInizio().before(sconto.getDataFine())).isTrue();
    }
+    
+    //(int id, String nomeSconto, int percentuale, Date dataInizio, Date dataFine, String tipo, Integer quantita, 
+            //int idAzienda, List<ProdottoModel> prodotti) {
+    public void CUD() throws Exception {
+        ScontoModel sconto = new ScontoModel(0, "ScontoTest", 50, Date.valueOf("2022-01-10"), Date.valueOf("2022-01-01"), "catalogo", null, 1, new ArrayList<ProdottoModel>());
+
+        ResponseEntity<Integer> response = controller.insert(sconto);
+
+        assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+
+        sconto.setPercentuale(30);
+
+        response = controller.update(sconto);
+
+        assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+        
+        assertThat(response.getBody() > 0);
+
+        response = controller.deleteId(sconto.getId());
+
+        assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+        
+        assertThat(response.getBody() > 0);
+    }
+    
+    
 //test Create Update Delete POSITIVO
+    /*
     @Test
     public void CUD() throws Exception {
         Calendar c1 = Calendar.getInstance();
@@ -105,6 +135,7 @@ public class ScontoControllerTest {
     	response = controller.deleteId(sconto.getId());
     	assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
     }
+*/
 }
 
 

@@ -9,11 +9,11 @@ package unisa.is.helpseller.Controller;
  *
  * @author UTENTE
  */
-import java.util.Calendar;
+
+import java.sql.Date;
 import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
@@ -49,24 +49,27 @@ public class TrasportoControllerTest {
     	assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
     	assertThat(trasporto).isNotNull();
    }
-    
-    @Test
+
+    //int id, String indirizzoConsegna, int quantitaMinima, Date dataConsegna, int idOrdine
     public void CUD() throws Exception {
-        Calendar c1 = Calendar.getInstance();
-        c1.set(Calendar.MONTH, 01);
-        c1.set(Calendar.DATE, 23);
-        c1.set(Calendar.YEAR, 2022);
-        java.util.Date d1 = c1.getTime();
-        java.sql.Date data = new java.sql.Date(d1.getTime());
-        //int id, String indirizzoConsegna, int quantitaMinima, Date dataConsegna, int idOrdine
-        TrasportoModel trasporto = new TrasportoModel(15, "via vai", 1, data, 1);
+        TrasportoModel trasporto = new TrasportoModel(0, "indirizzoconsegnaTest", 1, Date.valueOf("2022-01-10"), 1);
+
         ResponseEntity<Integer> response = controller.insert(trasporto);
+
         assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
-        assertThat(response.getBody() > 0);
+
         trasporto.setIndirizzoConsegna("nuovo indirizzo");
+
         response = controller.update(trasporto);
+
         assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+        
+        assertThat(response.getBody() > 0);
+
         response = controller.deleteId(trasporto.getId());
+
         assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+        
+        assertThat(response.getBody() > 0);
     }
 }
