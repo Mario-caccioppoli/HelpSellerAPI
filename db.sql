@@ -1,4 +1,5 @@
-
+CREATE DATABASE  IF NOT EXISTS `helpseller` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `helpseller`;
 -- MySQL dump 10.13  Distrib 8.0.27, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: helpseller
@@ -361,7 +362,6 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2022-01-20 22:43:16
-=======
 CREATE DATABASE  IF NOT EXISTS `helpseller` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `helpseller`;
 -- MySQL dump 10.13  Distrib 8.0.27, for Win64 (x86_64)
@@ -727,4 +727,3 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2022-01-20 22:21:09
->>>>>>> branch 'main' of https://github.com/Mario-caccioppoli/HelpSellerAPI.git
