@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import unisa.is.helpseller.Entity.Amministratore;
 import unisa.is.helpseller.Entity.Azienda;
 import unisa.is.helpseller.Entity.Distributore;
-import unisa.is.helpseller.Entity.Trasporto;
 import unisa.is.helpseller.Model.UtenteModel;
 import unisa.is.helpseller.Service.AmministratoreService;
 import unisa.is.helpseller.Service.AziendaService;
@@ -27,9 +26,8 @@ import unisa.is.helpseller.Service.UtenteService;
 @RequestMapping("/user")
 @CrossOrigin("http://localhost:4200")
 public class UtenteController {
-	@Autowired
+    @Autowired
     private final UtenteService utenteService;
-    
     @Autowired
     private AmministratoreService adminService;
     @Autowired

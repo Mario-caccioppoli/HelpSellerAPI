@@ -33,13 +33,21 @@ public class OrdineProdottoController {
     }
 
     @GetMapping("/findAll")
-    public ResponseEntity<List<OrdineProdotto>> findAll() {
+    public ResponseEntity<List<OrdineProdottoModel>> findAll() {
         try {
             List<OrdineProdotto> ordineProdotti = ordineprodottoService.findAll();
-            return new ResponseEntity<>(ordineProdotti, HttpStatus.OK);
+            if(!ordineProdotti.isEmpty()) {
+                List<OrdineProdottoModel> opmList = new ArrayList<OrdineProdottoModel>();
+                for(OrdineProdotto op : ordineProdotti) {
+                    OrdineProdottoModel modelBuf = new OrdineProdottoModel();
+                }
+                return new ResponseEntity<>(HttpStatus.OK);
+            }
+            
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/findId/{idOrdine}/{idProdotto}")
@@ -56,38 +64,47 @@ public class OrdineProdottoController {
     }
 
     @DeleteMapping("/deleteId/{idOrdine}/{idProdotto}")
-    public ResponseEntity<OrdineProdotto> deleteId(@PathVariable("idOrdine") int idOrdine, @PathVariable("idProdotto") int idProdotto) {
+    public ResponseEntity<Integer> deleteId(@PathVariable("idOrdine") int idOrdine, @PathVariable("idProdotto") int idProdotto) {
         try {
             OrdineProdotto ordProd = new OrdineProdotto();
             ordProd.setIdOrdine(idOrdine);
             ordProd.setIdProdotto(idProdotto);
-            ordineprodottoService.deleteId(ordProd);
-            return new ResponseEntity<>(HttpStatus.OK);
+            int result = ordineprodottoService.deleteId(ordProd);
+            if(result > 0) {
+                return new ResponseEntity<>(result, HttpStatus.OK);
+            } 
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
     @PostMapping("/insert")
-    public ResponseEntity<OrdineProdotto> insert(@RequestBody OrdineProdotto ordProd) {
+    public ResponseEntity<Integer> insert(@RequestBody OrdineProdotto ordProd) {
         try {
-            ordineprodottoService.insert(ordProd);
-            return new ResponseEntity<>(HttpStatus.OK);
+            int result = ordineprodottoService.insert(ordProd);
+            if(result > 0) {
+                return new ResponseEntity<>(result, HttpStatus.OK);
+            }
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
     @PostMapping("/update")
-    public ResponseEntity<OrdineProdotto> update(@RequestBody OrdineProdotto ordProd) {
+    public ResponseEntity<Integer> update(@RequestBody OrdineProdotto ordProd) {
         try {
-            ordineprodottoService.udpate(ordProd);
-            return new ResponseEntity<>(HttpStatus.OK);
+            int result = ordineprodottoService.udpate(ordProd);
+            if(result > 0) {
+                return new ResponseEntity<>(result, HttpStatus.OK);
+            }
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+        return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
-/*
+
     @GetMapping("/findDettagliOrdine/{id}")
     public ResponseEntity<List<OrdineProdottoModel>> findDettagliOrdine(@PathVariable("id") int id) {
         try {
@@ -98,57 +115,33 @@ public class OrdineProdottoController {
 
             if (opList.size() == pList.size()) {
                 for (int i = 0; i < opList.size(); i++) {
-
                     List<Recensione> rList = recensioneService.findRecensioniByProdotto(pList.get(i).getId());
 
                     for (Recensione r : rList) {
-                        RecensioneModel rBuf = new RecensioneModel(rList.get(i).getId(),
-                                rList.get(i).getTesto(), rList.get(i).getVoto(), rList.get(i).getData(),
-                                rList.get(i).getIdProdotto(), rList.get(i).getIdDistributore());
+                        RecensioneModel rBuf = new RecensioneModel(r);
                         rmList.add(rBuf);
-                    }
+                    } //END RECENSIONI FOR
 
-                    ProdottoModel pBuf = new ProdottoModel(pList.get(i).getId(),
-                            pList.get(i).getNomeProdotto((int i = 0; i < opList.size(); i++) {
-
-                    List<Recensione> rList = recensioneService.findRecensioniByProdotto(pList.get(i).getId());
-
-                    for (Recensione r : rList) {
-                        RecensioneModel rBuf = new RecensioneModel(rList.get(i).getId(),
-                                rList.get(i).getTesto(), rList.get(i).getVoto(), rList.get(i).getData(),
-                                rList.get(i).getIdProdotto(), rList.get(i).getIdDistributore());
-                        rmList.add(rBuf);
-                    }
-
-                    ProdottoModel pBuf = new ProdottoModel(pList.get), pList.get(i).getPrezzo(),
-                            pList.get(i).getDescrizione(), pList.get(i).getQuantita(),
-                            pList.get(i).getImmagine(), pList.get(i).getQuantitaMinima(),
-                            pList.get(i).getPeso(), pList.get(i).getVolume(), pList.get(i).getIdAzienda(),
-                            rmList, null);
+                    ProdottoModel pBuf = new ProdottoModel(pList.get(i));
+                    pBuf.setRecensioni(rmList);
 
                     OrdineProdottoModel opmBuf = new OrdineProdottoModel(
                             opList.get(i).getIdOrdine(), opList.get(i).getQuantitaOrdine(),
                             opList.get(i).getPrezzoUnitario(), pBuf);
 
                     opmList.add(opmBuf);
-                }
-                return new ResponseEntity<>(opmList, HttpStatus.OK);
+                } //END RIEMPIMENTO FOR
 
-            } else {
-                return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-            }
+                if (!opmList.isEmpty()) {
+                    return new ResponseEntity<>(opmList, HttpStatus.OK);
+                } //END RETURN IF    
+            }  //END RIEMPIMENTO IF
 
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-*/
-    /*
-    @GetMapping("/findDettagliOrdineProdotto/{id}")
-    public ResponseEntity<List<Object[]>> findDettagliOrdineProdotto(@PathVariable("id") int id) {
-        List<Object[]>
-        
-    }*/
+        } //END CATCH
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    } //END METODO
     
     @GetMapping("/findReportAnnuale/{anno}")
     public ResponseEntity<Integer> findReportAnnuale(@PathVariable("anno") Integer anno) {
@@ -158,9 +151,9 @@ public class OrdineProdottoController {
                 return new ResponseEntity<>(report, HttpStatus.OK);
             }
         } catch (Exception ex) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(0, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(0, HttpStatus.NOT_FOUND);
     }
     
     @GetMapping("/findReportAnnualeAzienda/{anno}/{id_azienda}")
@@ -171,9 +164,9 @@ public class OrdineProdottoController {
                 return new ResponseEntity<>(report, HttpStatus.OK);
             }
         } catch (Exception ex) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(0, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(0, HttpStatus.NOT_FOUND);
         
     }
     
@@ -185,9 +178,9 @@ public class OrdineProdottoController {
                 return new ResponseEntity<>(report, HttpStatus.OK);
             }
         } catch (Exception ex) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(0, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(0, HttpStatus.NOT_FOUND);
     }
     
         @GetMapping("findReportFebbraio/{anno}/{id_azienda}")
@@ -198,9 +191,9 @@ public class OrdineProdottoController {
                 return new ResponseEntity<>(report, HttpStatus.OK);
             }
         } catch (Exception ex) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(0, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(0, HttpStatus.NOT_FOUND);
     }
     
         @GetMapping("findReportMarzo/{anno}/{id_azienda}")
@@ -211,9 +204,9 @@ public class OrdineProdottoController {
                 return new ResponseEntity<>(report, HttpStatus.OK);
             }
         } catch (Exception ex) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(0, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(0, HttpStatus.NOT_FOUND);
     }
     
         @GetMapping("findReportAprile/{anno}/{id_azienda}")
@@ -224,9 +217,9 @@ public class OrdineProdottoController {
                 return new ResponseEntity<>(report, HttpStatus.OK);
             }
         } catch (Exception ex) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(0, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(0, HttpStatus.NOT_FOUND);
     }
     
         @GetMapping("findReportMaggio/{anno}/{id_azienda}")
@@ -237,9 +230,9 @@ public class OrdineProdottoController {
                 return new ResponseEntity<>(report, HttpStatus.OK);
             }
         } catch (Exception ex) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(0, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(0, HttpStatus.NOT_FOUND);
     }
     
         @GetMapping("findReportGiugno/{anno}/{id_azienda}")
@@ -250,9 +243,9 @@ public class OrdineProdottoController {
                 return new ResponseEntity<>(report, HttpStatus.OK);
             }
         } catch (Exception ex) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(0, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(0, HttpStatus.NOT_FOUND);
     }
     
         @GetMapping("findReportLuglio/{anno}/{id_azienda}")
@@ -263,9 +256,9 @@ public class OrdineProdottoController {
                 return new ResponseEntity<>(report, HttpStatus.OK);
             }
         } catch (Exception ex) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(0, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(0, HttpStatus.NOT_FOUND);
     }
     
         @GetMapping("findReportAgosto/{anno}/{id_azienda}")
@@ -276,9 +269,9 @@ public class OrdineProdottoController {
                 return new ResponseEntity<>(report, HttpStatus.OK);
             }
         } catch (Exception ex) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(0, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(0, HttpStatus.NOT_FOUND);
     }
     
         @GetMapping("findReportSettembre/{anno}/{id_azienda}")
@@ -289,9 +282,9 @@ public class OrdineProdottoController {
                 return new ResponseEntity<>(report, HttpStatus.OK);
             }
         } catch (Exception ex) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(0, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(0, HttpStatus.NOT_FOUND);
     }
     
         @GetMapping("findReportOttobre/{anno}/{id_azienda}")
@@ -302,9 +295,9 @@ public class OrdineProdottoController {
                 return new ResponseEntity<>(report, HttpStatus.OK);
             }
         } catch (Exception ex) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(0, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(0, HttpStatus.NOT_FOUND);
     }
     
         @GetMapping("findReportNovembre/{anno}/{id_azienda}")
@@ -315,9 +308,9 @@ public class OrdineProdottoController {
                 return new ResponseEntity<>(report, HttpStatus.OK);
             }
         } catch (Exception ex) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(0, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(0, HttpStatus.NOT_FOUND);
     }
     
         @GetMapping("findReportDicembre/{anno}/{id_azienda}")
@@ -328,9 +321,9 @@ public class OrdineProdottoController {
                 return new ResponseEntity<>(report, HttpStatus.OK);
             }
         } catch (Exception ex) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(0, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(0, HttpStatus.NOT_FOUND);
     }
     
     @GetMapping("findReportGennaioGruppo/{anno}")
@@ -341,9 +334,9 @@ public class OrdineProdottoController {
                 return new ResponseEntity<>(report, HttpStatus.OK);
             }
         } catch (Exception ex) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(0, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(0, HttpStatus.NOT_FOUND);
     }
     
      @GetMapping("findReportFebbraioGruppo/{anno}")
@@ -354,9 +347,9 @@ public class OrdineProdottoController {
                 return new ResponseEntity<>(report, HttpStatus.OK);
             }
         } catch (Exception ex) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(0, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(0, HttpStatus.NOT_FOUND);
     }
     
      @GetMapping("findReportMarzoGruppo/{anno}")
@@ -367,9 +360,9 @@ public class OrdineProdottoController {
                 return new ResponseEntity<>(report, HttpStatus.OK);
             }
         } catch (Exception ex) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(0, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(0, HttpStatus.NOT_FOUND);
     }
     
      @GetMapping("findReportAprileGruppo/{anno}")
@@ -380,9 +373,9 @@ public class OrdineProdottoController {
                 return new ResponseEntity<>(report, HttpStatus.OK);
             }
         } catch (Exception ex) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(0, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(0, HttpStatus.NOT_FOUND);
     }
     
      @GetMapping("findReportMaggioGruppo/{anno}")
@@ -393,9 +386,9 @@ public class OrdineProdottoController {
                 return new ResponseEntity<>(report, HttpStatus.OK);
             }
         } catch (Exception ex) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(0, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(0, HttpStatus.NOT_FOUND);
     }
     
      @GetMapping("findReportGiugnoGruppo/{anno}")
@@ -406,9 +399,9 @@ public class OrdineProdottoController {
                 return new ResponseEntity<>(report, HttpStatus.OK);
             }
         } catch (Exception ex) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(0, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(0, HttpStatus.NOT_FOUND);
     }
     
      @GetMapping("findReportLuglioGruppo/{anno}")
@@ -419,9 +412,9 @@ public class OrdineProdottoController {
                 return new ResponseEntity<>(report, HttpStatus.OK);
             }
         } catch (Exception ex) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(0, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(0, HttpStatus.NOT_FOUND);
     }
     
      @GetMapping("findReportAgostoGruppo/{anno}")
@@ -432,9 +425,9 @@ public class OrdineProdottoController {
                 return new ResponseEntity<>(report, HttpStatus.OK);
             }
         } catch (Exception ex) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(0, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(0, HttpStatus.NOT_FOUND);
     }
     
      @GetMapping("findReportSettembreGruppo/{anno}")
@@ -445,9 +438,9 @@ public class OrdineProdottoController {
                 return new ResponseEntity<>(report, HttpStatus.OK);
             }
         } catch (Exception ex) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(0, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(0, HttpStatus.NOT_FOUND);
     }
     
      @GetMapping("findReportOttobreGruppo/{anno}")
@@ -458,9 +451,9 @@ public class OrdineProdottoController {
                 return new ResponseEntity<>(report, HttpStatus.OK);
             }
         } catch (Exception ex) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(0, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(0, HttpStatus.NOT_FOUND);
     }
     
      @GetMapping("findReportNovembreGruppo/{anno}")
@@ -471,9 +464,9 @@ public class OrdineProdottoController {
                 return new ResponseEntity<>(report, HttpStatus.OK);
             }
         } catch (Exception ex) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(0, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(0, HttpStatus.NOT_FOUND);
     }
     
      @GetMapping("findReportDicembreGruppo/{anno}")
@@ -484,8 +477,8 @@ public class OrdineProdottoController {
                 return new ResponseEntity<>(report, HttpStatus.OK);
             }
         } catch (Exception ex) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(0, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(0, HttpStatus.NOT_FOUND);
     }
 }
