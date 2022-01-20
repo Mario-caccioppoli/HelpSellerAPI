@@ -32,36 +32,6 @@ public class OrdineProdottoController {
         this.recensioneService = recensioneService;
     }
 
-    @GetMapping("/findAll")
-    public ResponseEntity<List<OrdineProdottoModel>> findAll() {
-        try {
-            List<OrdineProdotto> ordineProdotti = ordineprodottoService.findAll();
-            if(!ordineProdotti.isEmpty()) {
-                List<OrdineProdottoModel> opmList = new ArrayList<OrdineProdottoModel>();
-                for(OrdineProdotto op : ordineProdotti) {
-                    OrdineProdottoModel modelBuf = new OrdineProdottoModel();
-                }
-                return new ResponseEntity<>(HttpStatus.OK);
-            }
-            
-        } catch (Exception ex) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-
-    @GetMapping("/findId/{idOrdine}/{idProdotto}")
-    public ResponseEntity<OrdineProdotto> findId(@PathVariable("idOrdine") int idOrdine, @PathVariable("idProdotto") int idProdotto) {
-        try {
-            OrdineProdotto ordProd = new OrdineProdotto();
-            ordProd.setIdOrdine(idOrdine);
-            ordProd.setIdProdotto(idProdotto);
-            OrdineProdotto ordineProdotto = ordineprodottoService.findId(ordProd);
-            return new ResponseEntity<>(ordineProdotto, HttpStatus.OK);
-        } catch (Exception ex) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 
     @DeleteMapping("/deleteId/{idOrdine}/{idProdotto}")
     public ResponseEntity<Integer> deleteId(@PathVariable("idOrdine") int idOrdine, @PathVariable("idProdotto") int idProdotto) {
@@ -80,8 +50,9 @@ public class OrdineProdottoController {
     }
 
     @PostMapping("/insert")
-    public ResponseEntity<Integer> insert(@RequestBody OrdineProdotto ordProd) {
+    public ResponseEntity<Integer> insert(@RequestBody OrdineProdottoModel ordProdModel) {
         try {
+            OrdineProdotto ordProd = new OrdineProdotto(ordProdModel);
             int result = ordineprodottoService.insert(ordProd);
             if(result > 0) {
                 return new ResponseEntity<>(result, HttpStatus.OK);
@@ -170,6 +141,59 @@ public class OrdineProdottoController {
         
     }
     
+    @GetMapping("findReportMensileAzienda/{anno}/{id_azienda}")
+    public ResponseEntity<Integer[]> findReportMensile(@PathVariable("anno") Integer anno, @PathVariable("id_azienda") Integer id) {
+        Integer mensilita[] = new Integer[12]; 
+        for(Integer i = 1; i < 13; i++) {
+            try {
+                if(i < 10) {
+                    Integer mese = ordineprodottoService.findReportMensile("0" + i.toString() , anno, id);
+                    mensilita[i-1] = mese;
+                } else {
+                    Integer mese = ordineprodottoService.findReportMensile(i.toString(), anno, id);
+                    mensilita[i-1] = mese;
+                }
+                
+            } catch (Exception ex) {
+                System.out.println("Null passed");
+            }
+        } //END FOR
+        
+        for(int i = 0; i < 12; i++) {
+            if(mensilita[i] == null) {
+                mensilita[i] = 0;
+            }
+        }
+        return new ResponseEntity<>(mensilita, HttpStatus.OK);
+    }
+    
+    @GetMapping("findReportMensileGruppo/{anno}")
+    public ResponseEntity<Integer[]> findReportMensileGruppo(@PathVariable("anno") Integer anno) {
+        Integer mensilita[] = new Integer[12]; 
+        for(Integer i = 1; i < 13; i++) {
+            try {
+                if(i < 10) {
+                    Integer mese = ordineprodottoService.findReportMensileGruppo("0" + i.toString() , anno);
+                    mensilita[i-1] = mese;
+                } else {
+                    Integer mese = ordineprodottoService.findReportMensileGruppo(i.toString(), anno);
+                    mensilita[i-1] = mese;
+                }
+                
+            } catch (Exception ex) {
+                System.out.println("Null passed");
+            }
+        } //END FOR
+        
+        for(int i = 0; i < 12; i++) {
+            if(mensilita[i] == null) {
+                mensilita[i] = 0;
+            }
+        }
+        return new ResponseEntity<>(mensilita, HttpStatus.OK);
+    }
+    
+    /*
     @GetMapping("findReportGennaio/{anno}/{id_azienda}")
     public ResponseEntity<Integer> findReportGennaio(@PathVariable("anno") Integer anno, @PathVariable("id_azienda") Integer id) {
         try {
@@ -481,4 +505,5 @@ public class OrdineProdottoController {
         }
         return new ResponseEntity<>(0, HttpStatus.NOT_FOUND);
     }
+    */
 }

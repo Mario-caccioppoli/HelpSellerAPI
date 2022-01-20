@@ -3,6 +3,7 @@ package unisa.is.helpseller.Entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import unisa.is.helpseller.Model.OrdineProdottoModel;
 
 
 @Entity
@@ -27,6 +28,14 @@ public class OrdineProdotto implements Serializable{
         this.quantita_ordine = quantita_ordine;
         this.prezzo_unitario = prezzo_unitario;
         this.prezzo_ordine = prezzo_ordine;
+    }
+    
+    public OrdineProdotto(OrdineProdottoModel opm) {
+        this.id_ordine = opm.getIdOrdine();
+        this.id_prodotto = opm.getProdotto().getId();
+        this.quantita_ordine = opm.getQuantitaOrdine();
+        this.prezzo_unitario = opm.getPrezzoUnitario();
+        this.prezzo_ordine = quantita_ordine * prezzo_unitario;
     }
 
     public int getIdOrdine() {
