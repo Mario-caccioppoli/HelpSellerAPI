@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `helpseller` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `helpseller`;
--- MySQL dump 10.13  Distrib 8.0.27, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.27, for Win64 (x86_64)
 --
 -- Host: localhost    Database: helpseller
 -- ------------------------------------------------------
--- Server version	8.0.27-0ubuntu0.20.04.1
+-- Server version	8.0.27
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -166,7 +166,7 @@ CREATE TABLE `ordine` (
 
 LOCK TABLES `ordine` WRITE;
 /*!40000 ALTER TABLE `ordine` DISABLE KEYS */;
-INSERT INTO `ordine` VALUES (2,NULL,'ricevuto',1,'2022-04-10','2022-01-10'),(3,NULL,'ricevuto',1,'2022-04-05','2022-01-05'),(4,'','Generated',1,'2023-12-01','2022-12-01');
+INSERT INTO `ordine` VALUES (1,NULL,'ricevuto',1,'2023-12-01','2022-12-01'),(2,NULL,'ricevuto',1,'2022-04-10','2022-01-10'),(3,NULL,'ricevuto',1,'2022-04-05','2022-01-05'),(4,'','Generated',1,'2023-12-01','2022-12-01');
 /*!40000 ALTER TABLE `ordine` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -196,7 +196,7 @@ CREATE TABLE `ordine_prodotto` (
 
 LOCK TABLES `ordine_prodotto` WRITE;
 /*!40000 ALTER TABLE `ordine_prodotto` DISABLE KEYS */;
-INSERT INTO `ordine_prodotto` VALUES (2,1,1000,1000,1),(2,2,1000,1150,1.15),(2,4,5000,10000,2),(3,3,500,500,1);
+INSERT INTO `ordine_prodotto` VALUES (1,1,500,500,1),(2,1,1000,1000,1),(2,2,1000,1150,1.15),(2,4,5000,10000,2),(3,3,500,500,1);
 /*!40000 ALTER TABLE `ordine_prodotto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -349,6 +349,7 @@ CREATE TABLE `trasporto` (
 
 LOCK TABLES `trasporto` WRITE;
 /*!40000 ALTER TABLE `trasporto` DISABLE KEYS */;
+INSERT INTO `trasporto` VALUES (1,1,'2022-01-01','indirizzo via ',1);
 /*!40000 ALTER TABLE `trasporto` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -361,4 +362,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-01-20 12:38:21
+-- Dump completed on 2022-01-20 22:12:44
