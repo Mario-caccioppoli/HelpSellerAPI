@@ -23,7 +23,7 @@ USE `helpseller`;
 
 DROP TABLE IF EXISTS `amministratore`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `amministratore` (
   `id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(45) NOT NULL,
@@ -51,7 +51,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `azienda`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `azienda` (
   `id` int NOT NULL AUTO_INCREMENT,
   `email` varchar(45) NOT NULL,
@@ -83,7 +83,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `distributore`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `distributore` (
   `id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(45) NOT NULL,
@@ -119,7 +119,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `documento`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `documento` (
   `id` int NOT NULL AUTO_INCREMENT,
   `titolo` varchar(45) NOT NULL,
@@ -147,7 +147,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `ordine`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `ordine` (
   `id` int NOT NULL AUTO_INCREMENT,
   `commento` varchar(45) DEFAULT NULL,
@@ -176,7 +176,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `ordine_prodotto`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `ordine_prodotto` (
   `id_ordine` int NOT NULL,
   `id_prodotto` int NOT NULL,
@@ -206,7 +206,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `prodotto`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `prodotto` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nome_prodotto` varchar(45) NOT NULL,
@@ -241,7 +241,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `recensione`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `recensione` (
   `id` int NOT NULL AUTO_INCREMENT,
   `testo` varchar(255) NOT NULL,
@@ -271,7 +271,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `sconto`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `sconto` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nome_sconto` varchar(45) NOT NULL,
@@ -303,7 +303,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `sconto_prodotto`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `sconto_prodotto` (
   `id_sconto` int NOT NULL,
   `id_prodotto` int NOT NULL,
@@ -330,7 +330,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `trasporto`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `trasporto` (
   `id` int NOT NULL AUTO_INCREMENT,
   `id_ordine` int NOT NULL,
@@ -387,12 +387,12 @@ USE `helpseller`;
 
 DROP TABLE IF EXISTS `amministratore`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `amministratore` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `username` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `email` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `password` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `username` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `email` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `password` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username_UNIQUE` (`username`),
   UNIQUE KEY `email_UNIQUE` (`email`)
@@ -415,16 +415,16 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `azienda`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `azienda` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `email` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `password` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `nome_azienda` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `vat` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `indirizzo` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `descrizione` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `logo` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `email` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `password` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `nome_azienda` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `vat` varchar(12) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `indirizzo` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `descrizione` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `logo` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `VATNumber_UNIQUE` (`vat`),
   UNIQUE KEY `email_UNIQUE` (`email`)
@@ -447,17 +447,17 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `distributore`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `distributore` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `username` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `email` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `password` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `nome` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `cognome` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `vat` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `telefono` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `indirizzo_sede` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `username` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `email` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `password` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `nome` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `cognome` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `vat` varchar(12) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `telefono` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `indirizzo_sede` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `id_ordine_prova` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `VATNumber_UNIQUE` (`vat`),
@@ -483,11 +483,11 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `documento`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `documento` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `titolo` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `autore` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `titolo` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `autore` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `id_ordine` int NOT NULL,
   `data` date NOT NULL,
   PRIMARY KEY (`id`),
@@ -511,11 +511,11 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `ordine`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `ordine` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `commento` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `stato` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `commento` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `stato` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `id_distributore` int NOT NULL,
   `data_consegna` date NOT NULL,
   `data_ordinazione` date NOT NULL,
@@ -540,7 +540,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `ordine_prodotto`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `ordine_prodotto` (
   `id_ordine` int NOT NULL,
   `id_prodotto` int NOT NULL,
@@ -570,14 +570,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `prodotto`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `prodotto` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `nome_prodotto` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `nome_prodotto` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `prezzo` double NOT NULL,
-  `descrizione` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `descrizione` varchar(2000) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `quantita` int NOT NULL,
-  `immagine` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `immagine` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `peso` int NOT NULL,
   `volume` int NOT NULL,
   `id_azienda` int NOT NULL,
@@ -605,10 +605,10 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `recensione`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `recensione` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `testo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `testo` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `voto` int NOT NULL,
   `data` date NOT NULL,
   `id_prodotto` int NOT NULL,
@@ -635,12 +635,12 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `sconto`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `sconto` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `nome_sconto` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `nome_sconto` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `percentuale` int NOT NULL,
-  `tipo` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `tipo` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `quantita` int DEFAULT NULL,
   `id_azienda` int NOT NULL,
   `data_fine` date NOT NULL,
@@ -667,7 +667,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `sconto_prodotto`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `sconto_prodotto` (
   `id_sconto` int NOT NULL,
   `id_prodotto` int NOT NULL,
@@ -694,12 +694,12 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `trasporto`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `trasporto` (
   `id` int NOT NULL AUTO_INCREMENT,
   `id_ordine` int NOT NULL,
   `data_consegna` date NOT NULL,
-  `indirizzo_consegna` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `indirizzo_consegna` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `quantita_minima` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `ordine_idx` (`id_ordine`),
