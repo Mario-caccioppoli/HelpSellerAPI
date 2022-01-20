@@ -53,7 +53,7 @@ public class OrdineControllerTest {
     }
     
       public void CUD() throws Exception {
-        OrdineModel ordine = new OrdineModel(Date.valueOf("2022-01-10"), Date.valueOf("2022-01-21"), "commentoTest", "statoTest", 1, null, 120);
+        OrdineModel ordine = new OrdineModel(Date.valueOf("2022-01-10"), Date.valueOf("2022-01-21"), "commentoTest", "statoTest", 1, null, 120, null);
 
         ResponseEntity<Integer> response = controller.insert(ordine);
 
