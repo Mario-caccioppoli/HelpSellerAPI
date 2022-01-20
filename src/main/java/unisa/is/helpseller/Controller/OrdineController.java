@@ -27,6 +27,8 @@ public class OrdineController {
     
     @Autowired
     private EmailSenderService senderService;
+    
+    OrdineProdottoController ordineProdottoController;
 
     @Autowired
     public OrdineController(OrdineService ordineService) {
@@ -81,7 +83,7 @@ public class OrdineController {
             Ordine o = new Ordine(ord);
             int id = ordineService.insert(o);
             if(id > 0) {
-               
+               ordineProdottoController.insert(ord.getOrdineProdotti());
                Distributore d = distributoreService.findId(o.getIdDistributore());
                senderService.sendEmail(d.getEmail(), "Ordine confermato", "Il tuo ordine è stato confermato");
                return new ResponseEntity<>(id, HttpStatus.OK);

@@ -3,6 +3,7 @@ package unisa.is.helpseller.Model;
 
 import java.sql.Date;
 import java.io.Serializable;
+import java.util.List;
 import unisa.is.helpseller.Entity.Ordine;
 
 
@@ -16,10 +17,13 @@ public class OrdineModel implements Serializable{
     private int idDistributore;
     private DocumentoModel documento;
     private double prezzoTotale;
+    private List<OrdineProdottoModel> ordineProdotti;
  
     public OrdineModel() {}
 
-    public OrdineModel(Date dataOrdinazione, Date dataConsegna, String commento, String stato, int idDistributore, DocumentoModel documento, double prezzoTotale) {
+    public OrdineModel(Date dataOrdinazione, Date dataConsegna, String commento, 
+            String stato, int idDistributore, DocumentoModel documento, 
+            double prezzoTotale, List<OrdineProdottoModel> ordineProdotti) {
         this.dataOrdinazione = dataOrdinazione;
         this.dataConsegna = dataConsegna;
         this.commento = commento;
@@ -27,6 +31,7 @@ public class OrdineModel implements Serializable{
         this.idDistributore = idDistributore;
         this.documento = documento;
         this.prezzoTotale = prezzoTotale;
+        this.ordineProdotti = ordineProdotti;
     }
     
     public OrdineModel(Ordine o) {
@@ -37,6 +42,7 @@ public class OrdineModel implements Serializable{
         this.stato = o.getStato();
         this.idDistributore = o.getIdDistributore();
         this.documento = null;
+        this.ordineProdotti = null;
     }
 
     public int getId() {
@@ -102,6 +108,15 @@ public class OrdineModel implements Serializable{
     public void setPrezzoTotale(double prezzoTotale) {
         this.prezzoTotale = prezzoTotale;
     }
+
+    public List<OrdineProdottoModel> getOrdineProdotti() {
+        return ordineProdotti;
+    }
+
+    public void setOrdineProdotti(List<OrdineProdottoModel> ordineProdotti) {
+        this.ordineProdotti = ordineProdotti;
+    }
+    
 
     
 }

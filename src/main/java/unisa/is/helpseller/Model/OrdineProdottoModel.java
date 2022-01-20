@@ -3,7 +3,7 @@ package unisa.is.helpseller.Model;
 import java.io.Serializable;
 
 public class OrdineProdottoModel implements Serializable {
-
+    
     private int idOrdine;
     private int quantitaOrdine;
     private double prezzoUnitario;
