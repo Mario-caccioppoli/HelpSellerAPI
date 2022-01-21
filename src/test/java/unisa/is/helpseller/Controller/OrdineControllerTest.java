@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import unisa.is.helpseller.Model.DistributoreModel;
 import unisa.is.helpseller.Model.OrdineModel;
 
 
@@ -39,8 +40,16 @@ public class OrdineControllerTest {
     public void findIncorrectId() throws Exception {
         ResponseEntity<OrdineModel> response = controller.findId(-1);
         OrdineModel ordine = response.getBody();
-        assertThat(response.getStatusCode().compareTo(HttpStatus.NOT_FOUND));
+        assertThat(response.getStatusCode().compareTo(HttpStatus.INTERNAL_SERVER_ERROR));
         assertThat(ordine).isNull();
+    }
+
+    @Test
+    public void findIncorrectId2() throws Exception {
+        ResponseEntity<OrdineModel> response = controller.findId(55);
+        OrdineModel distributore = response.getBody();
+        assertThat(response.getStatusCode().compareTo(HttpStatus.NOT_FOUND));
+        assertThat(distributore).isNull();
     }
 
     @Test
@@ -51,28 +60,70 @@ public class OrdineControllerTest {
         assertThat(ordine).isNotNull();
         assertThat(ordine.getDataConsegna().after(ordine.getDataOrdinazione())).isTrue();
     }
-    
-      public void CUD() throws Exception {
-        OrdineModel ordine = new OrdineModel(Date.valueOf("2022-01-10"), Date.valueOf("2022-01-21"), "commentoTest", "statoTest", 1, null, 120, null);
 
+    @Test
+    public void CreateDestroyFail() throws Exception {
+        OrdineModel ordine = new OrdineModel(Date.valueOf("2022-01-10"), Date.valueOf("2022-01-21"), "commentoTest",
+                "statoTest", 1, null, 120, null);
         ResponseEntity<Integer> response = controller.insert(ordine);
-
-        assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
-
-        ordine.setCommento("nuovo commento");
-
-        response = controller.update(ordine);
-
-        assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
-        
-        assertThat(response.getBody() > 0);
-
-        response = controller.deleteId(ordine.getId());
-
-        assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
-        
-        assertThat(response.getBody() > 0);
+        assertThat(response.getStatusCode().compareTo(HttpStatus.INTERNAL_SERVER_ERROR));
     }
+
+    @Test
+    public void update() throws Exception{
+        ResponseEntity<OrdineModel> response = controller.findId(1);
+        OrdineModel d = response.getBody();
+        d.setCommento("commento modificato dal test");
+        ResponseEntity<Integer> response2 = controller.update(d);
+        assertThat(response2.getStatusCode().compareTo(HttpStatus.OK));
+        assertThat(response2.getBody() > 0);
+    }
+
+    @Test
+    public void invalidUpdate() throws Exception{
+        ResponseEntity<OrdineModel> response = controller.findId(1);
+        OrdineModel d = response.getBody();
+        d.setDataConsegna(null);
+        ResponseEntity<Integer> response2 = controller.update(d);
+        assertThat(response2.getStatusCode().compareTo(HttpStatus.INTERNAL_SERVER_ERROR));
+        assertThat(response2.getStatusCode().compareTo(HttpStatus.NOT_ACCEPTABLE));
+    }
+
+    @Test
+    public void invalidInsert() throws Exception{
+        ResponseEntity<OrdineModel> response = controller.findId(1);
+        OrdineModel d = response.getBody();
+        d.setIdDistributore(155);
+        ResponseEntity<Integer> response2 = controller.insert(d);
+        assertThat(response2.getStatusCode().compareTo(HttpStatus.INTERNAL_SERVER_ERROR));
+        assertThat(response2.getBody()).isNull();
+
+    }
+
+    @Test
+    public void invalidDelete() throws Exception {
+        ResponseEntity<Integer> response = controller.deleteId(-1);
+        assertThat(response.getStatusCode().compareTo(HttpStatus.NOT_ACCEPTABLE));
+        assertThat(response.getBody()).isNull();
+    }
+
+    @Test
+    public void invalidDelete2() throws Exception {
+        ResponseEntity<Integer> response = controller.deleteId(999);
+        assertThat(response.getStatusCode().compareTo(HttpStatus.INTERNAL_SERVER_ERROR));
+        assertThat(response.getBody()).isNull();
+    }
+
+    @Test
+    public void delete() throws Exception {
+        ResponseEntity<Integer> response = controller.deleteId(1);
+        assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+        assertThat(response.getBody()).isNull();
+    }
+
+
+
+
     
     @Test
     public void ricercaPerDistributore() throws Exception {
