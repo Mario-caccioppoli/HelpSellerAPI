@@ -119,7 +119,7 @@ public class OrdineProdottoController {
     public ResponseEntity<Integer> findReportAnnuale(@PathVariable("anno") Integer anno) {
         try {
             Integer report = ordineprodottoService.findReportAnnuale(anno);
-            if (!report.equals(null)) {
+            if (report != null) {
                 return new ResponseEntity<>(report, HttpStatus.OK);
             }
         } catch (Exception ex) {
@@ -132,7 +132,7 @@ public class OrdineProdottoController {
     public ResponseEntity<Integer> findReportAnnualeAzienda(@PathVariable("anno") Integer anno, @PathVariable("id_azienda") Integer id) {
         try {
             Integer report = ordineprodottoService.findReportAnnualeAzienda(anno, id);
-            if (!report.equals(null)) {
+            if (report != null) {
                 return new ResponseEntity<>(report, HttpStatus.OK);
             }
         } catch (Exception ex) {
