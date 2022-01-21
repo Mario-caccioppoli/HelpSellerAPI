@@ -16,6 +16,9 @@ import unisa.is.helpseller.Entity.Amministratore;
 import unisa.is.helpseller.Entity.Azienda;
 import unisa.is.helpseller.Entity.Distributore;
 import unisa.is.helpseller.Model.UtenteModel;
+import unisa.is.helpseller.Model.AmministratoreModel;
+import unisa.is.helpseller.Model.AziendaModel;
+import unisa.is.helpseller.Model.DistributoreModel;
 import unisa.is.helpseller.Service.AmministratoreService;
 import unisa.is.helpseller.Service.AziendaService;
 import unisa.is.helpseller.Service.DistributoreService;
@@ -29,6 +32,7 @@ import unisa.is.helpseller.Service.UtenteService;
 @RequestMapping("/user")
 @CrossOrigin("http://localhost:4200")
 public class UtenteController {
+
     @Autowired
     private final UtenteService utenteService;
     @Autowired
@@ -37,9 +41,12 @@ public class UtenteController {
     private DistributoreService distService;
     @Autowired
     private AziendaService aziendaService;
-    
+
+    private AziendaController aziendaController;
+    private DistributoreController distributoreController;
+
     @Autowired
-    public UtenteController(UtenteService utenteService, 
+    public UtenteController(UtenteService utenteService,
             AmministratoreService adminService,
             DistributoreService distributoreService,
             AziendaService aziendaService) {
@@ -48,83 +55,65 @@ public class UtenteController {
         this.distService = distributoreService;
         this.aziendaService = aziendaService;
     }
-    
-    
+
     @PostMapping("/login")
-    public ResponseEntity<UtenteModel> auth(@RequestBody String input){
-    	UtenteModel utente = new UtenteModel();
-        
+    public ResponseEntity<UtenteModel> auth(@RequestBody String input) {
+        UtenteModel utente = new UtenteModel();
+
         JSONObject json = new JSONObject(input);
-        
-    	try
-		{
-    		  if(json.getString("tipo").equals("Amministratore")){
-    	            List<Amministratore> admin = adminService.findAll();
-    	            utente = utenteService.authAdmin(json.getString("email"), json.getString("password"), admin);
-    	        }
-    	        else if(json.get("tipo").equals("Distributore")){
-    	            List<Distributore> dist = distService.findAll();
-    	            utente = utenteService.authDist(json.getString("email"), json.getString("password"), dist);
-    	        }
-    	        
-    	        else if(json.get("tipo").equals("Azienda")){
-    	            List<Azienda> azienda = aziendaService.findAll();
-    	            utente = utenteService.authAzienda(json.getString("email"), json.getString("password"), azienda);
-    	        }
-    	        
-    	        if(utente.getId() > 0)
-    	        {
-    	        	 return new ResponseEntity<UtenteModel>(utente,HttpStatus.OK);
-    	        }
-    	        else {
-    	        	 return new ResponseEntity<UtenteModel>(HttpStatus.UNAUTHORIZED);
-    	        }
-		}catch (Exception ex)
-		{
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+
+        try {
+            if (json.getString("tipo").equals("Amministratore")) {
+                List<Amministratore> admin = adminService.findAll();
+                utente = utenteService.authAdmin(json.getString("email"), json.getString("password"), admin);
+            } else if (json.get("tipo").equals("Distributore")) {
+                List<Distributore> dist = distService.findAll();
+                utente = utenteService.authDist(json.getString("email"), json.getString("password"), dist);
+            } else if (json.get("tipo").equals("Azienda")) {
+                List<Azienda> azienda = aziendaService.findAll();
+                utente = utenteService.authAzienda(json.getString("email"), json.getString("password"), azienda);
+            }
+
+            if (utente.getId() > 0) {
+                return new ResponseEntity<UtenteModel>(utente, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<UtenteModel>(HttpStatus.UNAUTHORIZED);
+            }
+        } catch (Exception ex) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
-    
-    @PostMapping("/regAdmin")
-    public  ResponseEntity<UtenteModel> regAdmin(Amministratore a){
-    	try
-		{
-    		 adminService.insert(a);
-    		 return new ResponseEntity<>(HttpStatus.OK);
-		}catch (Exception ex)
-		{
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-    }
-    
+
     @PostMapping("/regAzienda")
-    public  ResponseEntity<UtenteModel> registrazione(Azienda a){
-    	try
-		{
-    		aziendaService.insert(a);
-    		 return new ResponseEntity<>(HttpStatus.OK);
-		}catch (Exception ex)
-		{
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+    public ResponseEntity<Integer> registrazione(AziendaModel a) {
+        try {
+            ResponseEntity<Integer> response = aziendaController.insert(a);
+            Integer result = response.getBody();
+            if (result > 0) {
+                return new ResponseEntity<>(result, HttpStatus.OK);
+            }
+        } catch (Exception ex) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
-    
+
     @PostMapping("/regDistributore")
-    public  ResponseEntity<UtenteModel> registrazione(Distributore d){
-    	try
-		{
-    		distService.insert(d);
-    		 return new ResponseEntity<>(HttpStatus.OK);
-		}catch (Exception ex)
-		{
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+    public ResponseEntity<Integer> registrazione(DistributoreModel d) {
+        try {
+            ResponseEntity<Integer> response = distributoreController.insert(d);
+            Integer result = response.getBody();
+            if (result > 0) {
+                return new ResponseEntity<>(result, HttpStatus.OK);
+            }
+        } catch (Exception ex) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
-    
+
     @GetMapping("/")
     public String index() {
         return "index";
     }
 }
-
-
