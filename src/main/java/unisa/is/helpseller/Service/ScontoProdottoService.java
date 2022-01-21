@@ -21,6 +21,10 @@ public class ScontoProdottoService {
         return scontoProdottoRepo.findAll();
     }
     
+    public List<ScontoProdotto> findAllScontoProdotto() {
+        return scontoProdottoRepo.findAllScontoProdotto();
+    }
+    
     public List<ScontoProdotto> findBySconto(int id) {
         return scontoProdottoRepo.findBySconto(id);
     }

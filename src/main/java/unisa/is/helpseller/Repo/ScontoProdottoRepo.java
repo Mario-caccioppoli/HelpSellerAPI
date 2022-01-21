@@ -9,6 +9,9 @@ import org.springframework.data.repository.query.Param;
 import unisa.is.helpseller.Entity.ScontoProdotto;
 
 public interface ScontoProdottoRepo extends JpaRepository<ScontoProdotto, Integer>{
+   @Query(value = "SELECT * FROM sconto_prodotto", nativeQuery = true)
+   List<ScontoProdotto> findAllScontoProdotto();
+    
    @Query("SELECT sp FROM ScontoProdotto sp WHERE sp.id_sconto = ?1")
    List<ScontoProdotto> findBySconto(int id);
    

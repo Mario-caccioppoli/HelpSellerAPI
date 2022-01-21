@@ -9,16 +9,16 @@ import javax.persistence.*;
 @Table(name = "sconto_prodotto")
 public class ScontoProdotto implements Serializable {
     @Id
-    private int id_sconto;
+    private Integer id_sconto;
     
     @Id
-    private int id_prodotto;
+    private Integer id_prodotto;
 
     public ScontoProdotto() {}
 
-    public ScontoProdotto(int id_sconto, int id_prodotto) {
-        this.id_sconto = id_sconto;
+    public ScontoProdotto(Integer id_prodotto, Integer id_sconto) {
         this.id_prodotto = id_prodotto;
+        this.id_sconto = id_sconto;
     }
 
 
@@ -26,7 +26,7 @@ public class ScontoProdotto implements Serializable {
         return id_sconto;
     }
 
-    public void setIdSconto(int id_sconto) {
+    public void setIdSconto(Integer id_sconto) {
         this.id_sconto = id_sconto;
     }
 
@@ -34,7 +34,7 @@ public class ScontoProdotto implements Serializable {
         return id_prodotto;
     }
 
-    public void setIdProdotto(int id_prodotto) {
+    public void setIdProdotto(Integer id_prodotto) {
         this.id_prodotto = id_prodotto;
     }
     

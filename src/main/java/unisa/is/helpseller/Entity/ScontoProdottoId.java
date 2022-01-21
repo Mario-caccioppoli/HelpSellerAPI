@@ -6,14 +6,14 @@ import java.io.Serializable;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class ScontoProdottoId implements Serializable {
-    private int id_sconto;
-    private int id_prodotto;
+    private Integer id_sconto;
+    private Integer id_prodotto;
     
     @Autowired
     public ScontoProdottoId() {
     	
     }
-    public ScontoProdottoId(int id_sconto, int id_prodotto) {
+    public ScontoProdottoId(Integer id_sconto, Integer id_prodotto) {
         this.id_sconto = id_sconto;
         this.id_prodotto = id_prodotto;
     }
@@ -44,19 +44,19 @@ public class ScontoProdottoId implements Serializable {
         return this.id_prodotto == other.id_prodotto;
     }
 
-    public int getId_sconto() {
+    public int getIdSconto() {
         return id_sconto;
     }
 
-    public void setId_sconto(int id_sconto) {
+    public void setIdSconto(Integer id_sconto) {
         this.id_sconto = id_sconto;
     }
 
-    public int getId_prodotto() {
+    public int getIdProdotto() {
         return id_prodotto;
     }
 
-    public void setId_prodotto(int id_prodotto) {
+    public void setIdProdotto(Integer id_prodotto) {
         this.id_prodotto = id_prodotto;
     }
     
