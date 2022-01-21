@@ -138,7 +138,7 @@ public class ScontoProdottoController {
         return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
-    //DA MODIFICARE COME SOPRA
+    /*
     @PostMapping("/update")
     public ResponseEntity<Integer> update(@RequestBody List<ScontoProdottoModel> spList) {
         try {
@@ -159,5 +159,6 @@ public class ScontoProdottoController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
+*/
 
 }
