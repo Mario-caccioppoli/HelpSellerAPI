@@ -15,7 +15,7 @@ import unisa.is.helpseller.Model.DistributoreModel;
 
 @SpringBootTest
 public class AziendaControllerTest {
-
+    public int id;
     @Autowired
     private AziendaController controller;
     
@@ -44,29 +44,72 @@ public class AziendaControllerTest {
     }
 
     //String email, String password, String nomeAzienda, String vat, String indirizzo, String descrizione, String logo, List<ProdottoModel> prodotti, List<OrdineModel> ordini
-    
-    public void CUD() throws Exception {
-        AziendaModel distributore = new AziendaModel("emailAziendaTest@email.it", "password", "AziendaTest", "99", "via vai", "azienda di prova", "", null, null);
-
-        ResponseEntity<Integer> response = controller.insert(distributore);
-
+    @Test
+    public void CreateDestroy() throws Exception {
+        AziendaModel azienda = new AziendaModel("emailAziendaTest@email.it", "password",
+                "AziendaTest", "99", "via vai", "azienda di prova", "", null, null);
+        ResponseEntity<Integer> response = controller.insert(azienda);
+        System.out.println("id value : " + response.getBody());
         assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
-
-        distributore.setDescrizione("la descrizione è stata cambiata");
-
-        response = controller.update(distributore);
-
-        assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
-        
         assertThat(response.getBody() > 0);
 
-        response = controller.deleteId(distributore.getId());
+        ResponseEntity<Integer> response2 = controller.deleteId(response.getBody());
+        assertThat(response2.getStatusCode().compareTo(HttpStatus.OK));
+        assertThat(response2.getBody() > 0);
+    }
 
+    @Test
+    public void update() throws Exception{
+        ResponseEntity<AziendaModel> response = controller.findId(1);
+        AziendaModel azienda = response.getBody();
+        azienda.setDescrizione("descrizione modificata dal test");
+        ResponseEntity<Integer> response2 = controller.update(azienda);
+        assertThat(response2.getStatusCode().compareTo(HttpStatus.OK));
+        assertThat(response2.getBody() > 0);
+    }
+
+    @Test
+    public void invalidUpdate() throws Exception{
+        AziendaModel azienda = new AziendaModel("emailAzienssdaTest@email.it", "password",
+                "AziendaTest", "15353513", "via vai", "azienda di prova", "", null, null);
+        ResponseEntity<Integer> response = controller.update(azienda);
+        assertThat(response.getStatusCode().compareTo(HttpStatus.INTERNAL_SERVER_ERROR));
+        assertThat(response.getBody() == null);
+    }
+
+    @Test
+    public void invalidInsert() throws Exception{
+        ResponseEntity<AziendaModel> response = controller.findId(1);
+        AziendaModel azienda = response.getBody();
+        ResponseEntity<Integer> response2 = controller.insert(azienda);
+        assertThat(response2.getStatusCode().compareTo(HttpStatus.INTERNAL_SERVER_ERROR));
+        assertThat(response2.getStatusCode().compareTo(HttpStatus.NOT_ACCEPTABLE));
+        assertThat(response2.getBody() == null);
+    }
+
+    @Test
+    public void invalidDelete() throws Exception{
+        ResponseEntity<Integer> response = controller.deleteId(0);
+        assertThat(response.getStatusCode().compareTo(HttpStatus.INTERNAL_SERVER_ERROR));
+        assertThat(response.getStatusCode().compareTo(HttpStatus.NOT_ACCEPTABLE));
+        assertThat(response.getBody() == null);
+    }
+
+/*
+    @Test
+    public void insert() throws Exception{
+        ResponseEntity<Integer> response = controller.insert(azienda);
+        id = response.getBody();
         assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
-        
         assertThat(response.getBody() > 0);
     }
-    
+
+    @Test
+    public void delete() throws Exception{
+        System.out.println("VALORE DI ID: " + azienda.getId());
+        ResponseEntity<Integer> response = controller.deleteId(azienda.getId());
+        assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+    }*/
     
     @Test
     public void ricercaPerNome() throws Exception{
