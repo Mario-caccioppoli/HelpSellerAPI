@@ -56,10 +56,10 @@ public class AmministratoreController {
 	}
 
 	@GetMapping("/update")
-	public ResponseEntity<AmministratoreModel> update(AmministratoreModel amministratore) {
+	public ResponseEntity<AmministratoreModel> update(@RequestBody AmministratoreModel amministratore) {
 		try
 		{
-             Amministratore a = new Amministratore(amministratore.getEmail(), amministratore.getUsername(), amministratore.getPassword());
+                        Amministratore a = new Amministratore(amministratore.getEmail(), amministratore.getUsername(), amministratore.getPassword());
 			amministratoreService.udpate(a);
 			return new ResponseEntity<>(HttpStatus.OK);
 		}catch (Exception ex)

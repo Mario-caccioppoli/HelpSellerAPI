@@ -37,5 +37,5 @@ public interface DistributoreRepo extends JpaRepository<Distributore, Integer>{
            @Param("password") String password, @Param("nome") String nome, 
            @Param("cognome") String cognome, @Param("telefono") String telefono, 
            @Param("indirizzo_sede") String indirizzo_sede, 
-           @Param("id_ordine_prova") int id_ordine_prova, @Param("vat") String vat, @Param("id") int id);
+           @Param("id_ordine_prova") Integer id_ordine_prova, @Param("vat") String vat, @Param("id") int id);
 }

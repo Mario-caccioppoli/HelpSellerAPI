@@ -15,7 +15,7 @@ import unisa.is.helpseller.Service.EmailSenderService;
  *
  * @author Alex
  */
-//@SpringBootApplication    per farlo partire togliere il commento
+//@SpringBootApplication    
 public class inviaMail {
     @Autowired
     private EmailSenderService senderService;
@@ -26,6 +26,6 @@ public class inviaMail {
     
     @EventListener(ApplicationReadyEvent.class)
     public void sendMail(){
-        senderService.sendEmail("xlitsl0l@gmail.com", "email", "testo");
+        senderService.sendEmail("daniele.iervo@gmail.com", "email", "testo");
     }
 }
