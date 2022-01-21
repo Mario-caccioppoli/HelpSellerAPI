@@ -48,7 +48,7 @@ public class ScontoProdottoControllerTest {
         ResponseEntity<List<ScontoProdottoModel>> response = controller.findBySconto(-1);
         List<ScontoProdottoModel> allSconti = response.getBody();
         assertThat(response.getStatusCode().compareTo(HttpStatus.INTERNAL_SERVER_ERROR));
-        assertThat(allSconti).isNull();
+        assertThat(allSconti).isEmpty();
     }
 
     @Test
@@ -64,7 +64,7 @@ public class ScontoProdottoControllerTest {
         ResponseEntity<List<ScontoProdottoModel>> response = controller.findBySconto(-1);
         List<ScontoProdottoModel> allProdotti = response.getBody();
         assertThat(response.getStatusCode().compareTo(HttpStatus.INTERNAL_SERVER_ERROR));
-        assertThat(allProdotti).isNull();
+        assertThat(allProdotti).isEmpty();
     }
     
     public void CD() throws Exception {
