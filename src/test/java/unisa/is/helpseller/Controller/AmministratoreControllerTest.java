@@ -36,7 +36,7 @@ public class AmministratoreControllerTest {
    }
     @Test
     public void findCorrectId() throws Exception {
-    	ResponseEntity<AmministratoreModel> response = controller.findId(1);
+    	ResponseEntity<AmministratoreModel> response = controller.findId(2);
     	AmministratoreModel admin = response.getBody();
     	assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
     	assertThat(admin).isNotNull();
@@ -44,12 +44,10 @@ public class AmministratoreControllerTest {
     //int id, String email, String username, String password
     @Test
     public void Update() throws Exception {
-        String oldPassword = controller.findId(1).getBody().getPassword();
-        String newPassword = "12345";
-    	AmministratoreModel admin = new AmministratoreModel(1, "aldo@libeo.it", "aldo123", newPassword);
+
+    	AmministratoreModel admin = controller.findId(2).getBody();
+        admin.setEmail("testmail");
         ResponseEntity<AmministratoreModel> response = controller.update(admin);
         assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
-        admin = controller.findId(1).getBody();
-        assertThat(admin.getPassword().equals(newPassword));
    }
 }
