@@ -20,20 +20,81 @@ public class UtenteControllerTest {
     @Autowired
     private UtenteController controller;
 
-
-    public static JSONObject datiDaccesso() throws Exception {
+    public static JSONObject azienda() throws Exception {
         JSONObject sampleObject = new JSONObject();
-        sampleObject.put("tipo", "azienda");
+        sampleObject.put("tipo", "Azienda");
         sampleObject.put("email", "bevande@gmail.com");
         sampleObject.put("password", "123");
         return sampleObject;
     }
 
-    @Test
-    public void login() throws Exception {
-       //ResponseEntity<UtenteModel> response = controller.auth("");
-        //assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+    public static JSONObject distributore() throws Exception {
+        JSONObject sampleObject = new JSONObject();
+        sampleObject.put("tipo", "Distributore");
+        sampleObject.put("email", "fabio@email.it");
+        sampleObject.put("password", "123");
+        return sampleObject;
     }
 
+    public static JSONObject admin() throws Exception {
+        JSONObject sampleObject = new JSONObject();
+        sampleObject.put("tipo", "Amministratore");
+        sampleObject.put("email", "aldo@libeo.it");
+        sampleObject.put("password", "password");
+        return sampleObject;
+    }
+
+    @Test
+    public void loginAzienda() throws Exception {
+        JSONObject json = azienda();
+        String input = json.toString();
+
+        ResponseEntity<UtenteModel> response = controller.auth(input);
+        UtenteModel utente = response.getBody();
+        assertThat(utente.getTipo().contains("Azienda"));
+        assertThat(response.getStatusCode().is2xxSuccessful());
+    }
+
+    @Test
+    public void loginDistributore() throws Exception {
+        JSONObject json = distributore();
+        String input = json.toString();
+
+        ResponseEntity<UtenteModel> response = controller.auth(input);
+        UtenteModel utente = response.getBody();
+        assertThat(utente.getTipo().contains("Distributore"));
+        assertThat(response.getStatusCode().is2xxSuccessful());
+    }
+
+    @Test
+    public void loginAmministratore() throws Exception {
+        JSONObject json = admin();
+        String input = json.toString();
+
+        ResponseEntity<UtenteModel> response = controller.auth(input);
+        UtenteModel utente = response.getBody();
+        assertThat(utente.getTipo().contains("Amministratore"));
+        assertThat(response.getStatusCode().is2xxSuccessful());
+    }
+    
+    @Test
+    public void recuperoPassword() throws Exception {
+        String email = "bevande@gmail.com";
+        ResponseEntity<Integer> response = controller.recuperoPassword(email);
+        
+        Integer result = response.getBody();
+        assertThat(result.intValue() == 1);
+    }
+    
+    @Test
+    public void wrongLogin() throws Exception {
+        JSONObject json = new JSONObject();
+        json.put("tipo", "Distributore");
+        json.put("email", "fabio@email.it");
+        json.put("password", "wrooong");
+        String input = json.toString();
+        ResponseEntity<UtenteModel> response = controller.auth(input);
+        assertThat(response.getStatusCode().is5xxServerError());
+    }
 
 }

@@ -44,9 +44,6 @@ public class UtenteController {
     @Autowired
     private EmailSenderService senderService;
 
-    private AziendaController aziendaController;
-    private DistributoreController distributoreController;
-
     @Autowired
     public UtenteController(UtenteService utenteService,
             AmministratoreService adminService,
@@ -85,34 +82,6 @@ public class UtenteController {
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-    }
-
-    @PostMapping("/regAzienda")
-    public ResponseEntity<Integer> registrazione(@RequestBody AziendaModel a) {
-        try {
-            ResponseEntity<Integer> response = aziendaController.insert(a);
-            Integer result = response.getBody();
-            if (result > 0) {
-                return new ResponseEntity<>(result, HttpStatus.OK);
-            }
-        } catch (Exception ex) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
-    }
-
-    @PostMapping("/regDistributore")
-    public ResponseEntity<Integer> registrazione(@RequestBody DistributoreModel d) {
-        try {
-            ResponseEntity<Integer> response = distributoreController.insert(d);
-            Integer result = response.getBody();
-            if (result > 0) {
-                return new ResponseEntity<>(result, HttpStatus.OK);
-            }
-        } catch (Exception ex) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
     @GetMapping("/")
