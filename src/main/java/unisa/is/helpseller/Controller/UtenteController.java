@@ -88,7 +88,7 @@ public class UtenteController {
     }
 
     @PostMapping("/regAzienda")
-    public ResponseEntity<Integer> registrazione(AziendaModel a) {
+    public ResponseEntity<Integer> registrazione(@RequestBody AziendaModel a) {
         try {
             ResponseEntity<Integer> response = aziendaController.insert(a);
             Integer result = response.getBody();
@@ -102,7 +102,7 @@ public class UtenteController {
     }
 
     @PostMapping("/regDistributore")
-    public ResponseEntity<Integer> registrazione(DistributoreModel d) {
+    public ResponseEntity<Integer> registrazione(@RequestBody DistributoreModel d) {
         try {
             ResponseEntity<Integer> response = distributoreController.insert(d);
             Integer result = response.getBody();
