@@ -1,4 +1,3 @@
-
 package unisa.is.helpseller.Service;
 
 import java.util.List;
@@ -11,37 +10,44 @@ import unisa.is.helpseller.Repo.AziendaRepo;
 @Service
 @Transactional
 public class AziendaService {
-	@Autowired
-    private final AziendaRepo aziendaRepo;
-    
+
     @Autowired
-    public AziendaService(AziendaRepo aziendaRepo) {this.aziendaRepo = aziendaRepo;}
-    
+    private final AziendaRepo aziendaRepo;
+
+    @Autowired
+    public AziendaService(AziendaRepo aziendaRepo) {
+        this.aziendaRepo = aziendaRepo;
+    }
+
     public List<Azienda> findAll() {
         return aziendaRepo.findAll();
     }
-    
+
     public Azienda findId(int id) {
         return aziendaRepo.findId(id);
     }
-    
+
     public int deleteId(int id) {
-    	return aziendaRepo.deleteId(id);
+        return aziendaRepo.deleteId(id);
     }
-    
+
     public int insert(Azienda a) {
-    	return aziendaRepo.saveAndFlush(a).getId();
+        return aziendaRepo.saveAndFlush(a).getId();
     }
-    
+
     public int update(Azienda a) {
-    	return aziendaRepo.update(a.getEmail(), a.getPassword(), a.getNomeAzienda(), a.getIndirizzo(), a.getvat(), a.getDescrizione(), a.getLogo(), a.getId());
+        return aziendaRepo.update(a.getEmail(), a.getPassword(), a.getNomeAzienda(), a.getIndirizzo(), a.getvat(), a.getDescrizione(), a.getLogo(), a.getId());
     }
-    
+
     public List<Azienda> findAziendeByNome(String nome) {
         return aziendaRepo.findAziendeByNome(nome);
     }
-    
+
     public Azienda findAziendaByProdotto(int id_prodotto) {
         return aziendaRepo.findAziendaByProdotto(id_prodotto);
+    }
+
+    public String recuperoPassword(String email) {
+        return aziendaRepo.recuperoPassword(email);
     }
 }

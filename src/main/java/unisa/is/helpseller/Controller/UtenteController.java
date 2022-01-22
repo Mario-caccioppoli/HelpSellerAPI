@@ -3,11 +3,11 @@ package unisa.is.helpseller.Controller;
 import java.util.List;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,12 +16,12 @@ import unisa.is.helpseller.Entity.Amministratore;
 import unisa.is.helpseller.Entity.Azienda;
 import unisa.is.helpseller.Entity.Distributore;
 import unisa.is.helpseller.Model.UtenteModel;
-import unisa.is.helpseller.Model.AmministratoreModel;
 import unisa.is.helpseller.Model.AziendaModel;
 import unisa.is.helpseller.Model.DistributoreModel;
 import unisa.is.helpseller.Service.AmministratoreService;
 import unisa.is.helpseller.Service.AziendaService;
 import unisa.is.helpseller.Service.DistributoreService;
+import unisa.is.helpseller.Service.EmailSenderService;
 import unisa.is.helpseller.Service.UtenteService;
 
 /**
@@ -41,6 +41,8 @@ public class UtenteController {
     private DistributoreService distService;
     @Autowired
     private AziendaService aziendaService;
+    @Autowired
+    private EmailSenderService senderService;
 
     private AziendaController aziendaController;
     private DistributoreController distributoreController;
@@ -49,11 +51,12 @@ public class UtenteController {
     public UtenteController(UtenteService utenteService,
             AmministratoreService adminService,
             DistributoreService distributoreService,
-            AziendaService aziendaService) {
+            AziendaService aziendaService, EmailSenderService senderService) {
         this.utenteService = utenteService;
         this.adminService = adminService;
         this.distService = distributoreService;
         this.aziendaService = aziendaService;
+        this.senderService = senderService;
     }
 
     @PostMapping("/login")
@@ -115,5 +118,35 @@ public class UtenteController {
     @GetMapping("/")
     public String index() {
         return "index";
+    }
+    
+    @PostMapping("/recuperoPassword/{email}")
+    public ResponseEntity<Integer> recuperoPassword(@PathVariable("email") String email) {
+        try {
+            String result = distService.recuperoPassword(email);
+            if(!result.isEmpty()) {
+                senderService.sendEmail(email, "Recupero Password", result);
+                return new ResponseEntity<>(1, HttpStatus.OK);
+            }
+        } catch (Exception distNotFound) {
+            try {
+                String result = aziendaService.recuperoPassword(email);
+                if(!result.isEmpty()) {
+                    senderService.sendEmail(email, "Recupero Password", result);
+                    return new ResponseEntity<>(1, HttpStatus.OK);
+                }
+            } catch (Exception aziendaNotFound) {
+                try {
+                    String result = adminService.recuperoPassword(email);
+                    if(!result.isEmpty()) {
+                        senderService.sendEmail(email, "Recupero Password", result);
+                        return new ResponseEntity<>(1, HttpStatus.OK);
+                    }
+                } catch (Exception adminNotFound) {
+                    return new ResponseEntity<>(0, HttpStatus.INTERNAL_SERVER_ERROR);
+                }
+            }
+        }
+        return new ResponseEntity<>(0, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

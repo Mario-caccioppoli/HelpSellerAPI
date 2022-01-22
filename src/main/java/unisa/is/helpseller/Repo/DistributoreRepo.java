@@ -38,4 +38,8 @@ public interface DistributoreRepo extends JpaRepository<Distributore, Integer>{
            @Param("cognome") String cognome, @Param("telefono") String telefono, 
            @Param("indirizzo_sede") String indirizzo_sede, 
            @Param("id_ordine_prova") Integer id_ordine_prova, @Param("vat") String vat, @Param("id") int id);
+   //JPQL
+   @Query("SELECT d.password FROM Distributore d WHERE d.email = :email")
+   String recuperoPassword(@Param("email") String email);
+   
 }

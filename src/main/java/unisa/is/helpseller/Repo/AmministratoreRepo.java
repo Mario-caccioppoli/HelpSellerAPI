@@ -30,4 +30,8 @@ public interface AmministratoreRepo extends JpaRepository<Amministratore, Intege
    @Modifying
    @Query("UPDATE Amministratore a SET username = :username, email = :email, password = :password WHERE a.id = :id")
    int update(@Param("username") String username, @Param("email") String email, @Param("password") String password, @Param("id") int id);
+   
+   //JPQL
+   @Query("SELECT a.password FROM Amministratore a WHERE a.email = :email")
+   String recuperoPassword(@Param("email") String email);
 }

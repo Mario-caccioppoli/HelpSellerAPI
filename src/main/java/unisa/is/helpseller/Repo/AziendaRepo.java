@@ -49,4 +49,7 @@ public interface AziendaRepo extends JpaRepository<Azienda, Integer> {
     "WHERE prodotto.id = :id_prodotto", nativeQuery = true)
    Azienda findAziendaByProdotto(@Param("id_prodotto") int id_prodotto);
    
+   //JPQL
+   @Query("SELECT a.password FROM Azienda a WHERE a.email = :email")
+   String recuperoPassword(@Param("email") String email);
 }

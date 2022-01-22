@@ -37,4 +37,7 @@ public class AmministratoreService {
     	return amministratoreRepo.update(a.getUsername(), a.getEmail(), a.getPassword(), a.getId());
     }
     
+    public String recuperoPassword(String email) {
+        return amministratoreRepo.recuperoPassword(email);
+    }
 }
