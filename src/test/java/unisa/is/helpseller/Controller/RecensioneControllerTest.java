@@ -79,10 +79,11 @@ public class RecensioneControllerTest {
 
     @Test
     public void insertFail() throws Exception {
-        RecensioneModel recensione = new RecensioneModel("recensione test fail", 5, Date.valueOf("2022-01-10"),
-                16, 16);
+        RecensioneModel recensione = new RecensioneModel("recensione test fail", 5, null,
+                16, 160);
         ResponseEntity<Integer> response = controller.insert(recensione);
-        assertThat(response.getStatusCode().compareTo(HttpStatus.INTERNAL_SERVER_ERROR));
+        assertThat(response.getStatusCode().compareTo(HttpStatus.NOT_ACCEPTABLE));
+        assertThat(response.getBody() == null);
     }
 
     @Test
@@ -95,6 +96,15 @@ public class RecensioneControllerTest {
     public void update() throws Exception {
         RecensioneModel r = controller.findId(1).getBody();
         r.setVoto(3);
+        ResponseEntity<Integer> response2 = controller.update(r);
+        assertThat(response2.getStatusCode().compareTo(HttpStatus.OK));
+        assertThat(response2.getBody() > 0);
+    }
+
+    @Test
+    public void updateFail() throws Exception {
+        RecensioneModel r = controller.findId(1).getBody();
+        r.setIdProdotto(50505);
         ResponseEntity<Integer> response2 = controller.update(r);
         assertThat(response2.getStatusCode().compareTo(HttpStatus.OK));
         assertThat(response2.getBody() > 0);

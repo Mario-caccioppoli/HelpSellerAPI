@@ -51,25 +51,51 @@ public class TrasportoControllerTest {
    }
 
     //int id, String indirizzoConsegna, int quantitaMinima, Date dataConsegna, int idOrdine
-    public void CUD() throws Exception {
+    @Test
+    public void Crea() throws Exception {
         TrasportoModel trasporto = new TrasportoModel(0, "indirizzoconsegnaTest", 1, Date.valueOf("2022-01-10"), 1);
-
         ResponseEntity<Integer> response = controller.insert(trasporto);
-
         assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+        assertThat(response.getBody() == null);
+    }
 
-        trasporto.setIndirizzoConsegna("nuovo indirizzo");
-
-        response = controller.update(trasporto);
-
+    @Test
+    public void CreaInvalid() throws Exception {
+        TrasportoModel trasporto = new TrasportoModel(0, "indirizzoconsegnaTest", 1, null, 1);
+        ResponseEntity<Integer> response = controller.insert(trasporto);
         assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
-        
+        assertThat(response.getBody() == null);
+    }
+
+    @Test
+    public void delete() throws Exception {
+        ResponseEntity<Integer> response = controller.deleteId(2);
+        assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
         assertThat(response.getBody() > 0);
+    }
 
-        response = controller.deleteId(trasporto.getId());
-
+    @Test
+    public void deleteInvalid() throws Exception {
+        ResponseEntity<Integer> response = controller.deleteId(160);
         assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
-        
+        assertThat(response.getBody() == null);
+    }
+
+    @Test
+    public void update() throws Exception {
+        TrasportoModel t = controller.findId(1).getBody();
+        t.setIndirizzoConsegna("nuovo indirizzo");
+        ResponseEntity<Integer> response = controller.update(t);
+        assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
         assertThat(response.getBody() > 0);
+    }
+
+    @Test
+    public void invalidUpdate() throws Exception {
+        TrasportoModel t = controller.findId(1).getBody();
+        t.setDataConsegna(null);
+        ResponseEntity<Integer> response = controller.update(t);
+        assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+        assertThat(response.getBody() == null);
     }
 }

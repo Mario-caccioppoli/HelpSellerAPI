@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import unisa.is.helpseller.Model.AziendaModel;
 import unisa.is.helpseller.Model.ScontoModel;
 import java.util.Calendar;
 import unisa.is.helpseller.Model.ProdottoModel;
@@ -43,9 +44,17 @@ public class ScontoControllerTest {
     public void findIncorrectId() throws Exception {
     	ResponseEntity<ScontoModel> response = controller.findId(-1);
     	ScontoModel sconto = response.getBody();
-    	assertThat(response.getStatusCode().compareTo(HttpStatus.NOT_FOUND));
+    	assertThat(response.getStatusCode().compareTo(HttpStatus.INTERNAL_SERVER_ERROR));
     	assertThat(sconto).isNull();
    }
+
+    @Test
+    public void findIncorrectId2() throws Exception {
+        ResponseEntity<ScontoModel> response = controller.findId(609);
+        ScontoModel sconto = response.getBody();
+        assertThat(response.getStatusCode().compareTo(HttpStatus.NOT_FOUND));
+        assertThat(sconto).isNull();
+    }
     @Test
     public void findCorrectId() throws Exception {
     	ResponseEntity<ScontoModel> response = controller.findId(4);
@@ -57,85 +66,121 @@ public class ScontoControllerTest {
     
     //(int id, String nomeSconto, int percentuale, Date dataInizio, Date dataFine, String tipo, Integer quantita, 
             //int idAzienda, List<ProdottoModel> prodotti) {
-    public void CUD() throws Exception {
-        ScontoModel sconto = new ScontoModel(0, "ScontoTest", 50, Date.valueOf("2022-01-10"), Date.valueOf("2022-01-01"), "catalogo", null, 1, new ArrayList<ProdottoModel>());
-
+    @Test
+    public void CreateDestroy() throws Exception {
+        ScontoModel sconto = new ScontoModel(0, "ScontoTest", 50, Date.valueOf("2022-01-10"), Date.valueOf("2022-01-01"),
+                "catalogo", null, 1, new ArrayList<ProdottoModel>());
         ResponseEntity<Integer> response = controller.insert(sconto);
-
+        System.out.println("id value : " + response.getBody());
         assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
-
-        sconto.setPercentuale(30);
-
-        response = controller.update(sconto);
-
-        assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
-        
         assertThat(response.getBody() > 0);
 
-        response = controller.deleteId(sconto.getId());
-
-        assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
-        
-        assertThat(response.getBody() > 0);
+        ResponseEntity<Integer> response2 = controller.deleteId(response.getBody());
+        assertThat(response2.getStatusCode().compareTo(HttpStatus.OK));
+        assertThat(response2.getBody() > 0);
     }
-    
-    
-//test Create Update Delete POSITIVO
-    /*
+
     @Test
-    public void CUD() throws Exception {
-        Calendar c1 = Calendar.getInstance();
-        c1.set(Calendar.MONTH, 11);
-        c1.set(Calendar.DATE, 01);
-        c1.set(Calendar.YEAR, 2022);
-        java.util.Date d1 = c1.getTime();
-        java.sql.Date sqlD1 = new java.sql.Date(d1.getTime());
-        
-        Calendar c2 = Calendar.getInstance();
-        c2.set(Calendar.MONTH, 23);
-        c2.set(Calendar.DATE, 01);
-        c2.set(Calendar.YEAR, 2022);
-        java.util.Date d2 = c2.getTime();
-        java.sql.Date sqlD2 = new java.sql.Date(d2.getTime());
-  
-        ScontoModel sconto = new ScontoModel(1, "newSconto", 10, sqlD1, sqlD2, "catalogo", 5, 1, null);
-    	ResponseEntity<Integer> response = controller.insert(sconto);
-    	assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
-    	sconto.setPercentuale(30);
-    	response = controller.update(sconto);
-    	assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
-    	response = controller.deleteId(sconto.getId());
-    	assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+    public void InvalidInsert() throws Exception {
+        ScontoModel sconto = new ScontoModel(0, "ScontoTest", 50, Date.valueOf("2022-01-10"), Date.valueOf("2022-01-01"),
+                "catalogo", null, 170, new ArrayList<ProdottoModel>());
+        ResponseEntity<Integer> response = controller.insert(sconto);
+        System.out.println("id value : " + response.getBody());
+        assertThat(response.getStatusCode().compareTo(HttpStatus.NOT_ACCEPTABLE));
+        assertThat(response.getBody() == null);
     }
-    
-//test Create Update Delete negativo
+
     @Test
-    public void CUDfail() throws Exception {
-        Calendar c1 = Calendar.getInstance();
-        c1.set(Calendar.MONTH, 11);
-        c1.set(Calendar.DATE, 01);
-        c1.set(Calendar.YEAR, 2022);
-        java.util.Date d1 = c1.getTime();
-        java.sql.Date sqlD1 = new java.sql.Date(d1.getTime());
-        
-        Calendar c2 = Calendar.getInstance();
-        c2.set(Calendar.MONTH, 23);
-        c2.set(Calendar.DATE, 01);
-        c2.set(Calendar.YEAR, 2022);
-        java.util.Date d2 = c2.getTime();
-        java.sql.Date sqlD2 = new java.sql.Date(d2.getTime());
-  
-        ScontoModel sconto = new ScontoModel(1, "newSconto", 10, sqlD1, sqlD2, "catalogo", 5, 1, null);
-    	ResponseEntity<Integer> response = controller.insert(sconto);
-    	assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
-        assertThat(response.getBody() > 0);
-    	sconto.setPercentuale(-5);
-    	response = controller.update(sconto);
-    	assertThat(response.getStatusCode().compareTo(HttpStatus.INTERNAL_SERVER_ERROR));
-    	response = controller.deleteId(sconto.getId());
-    	assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+    public void invalidDelete() throws Exception{
+        ResponseEntity<Integer> response = controller.deleteId(0);
+        assertThat(response.getStatusCode().compareTo(HttpStatus.INTERNAL_SERVER_ERROR));
+        assertThat(response.getStatusCode().compareTo(HttpStatus.NOT_ACCEPTABLE));
+        assertThat(response.getBody() == null);
     }
-*/
+
+    @Test
+    public void update() throws Exception{
+        ResponseEntity<ScontoModel> response = controller.findId(4);
+        ScontoModel sconto = response.getBody();
+        sconto.setPercentuale(4);
+        ResponseEntity<Integer> response2 = controller.update(sconto);
+        assertThat(response2.getStatusCode().compareTo(HttpStatus.OK));
+        assertThat(response2.getBody() > 0);
+    }
+
+    @Test
+    public void updateInvalid() throws Exception{
+        ResponseEntity<ScontoModel> response = controller.findId(4);
+        ScontoModel sconto = response.getBody();
+        sconto.setIdAzienda(77);
+        ResponseEntity<Integer> response2 = controller.update(sconto);
+        assertThat(response2.getStatusCode().compareTo(HttpStatus.NOT_MODIFIED));
+        assertThat(response2.getBody() == null);
+    }
+
+    @Test
+    public void findScontiByAzienda() throws Exception {
+        ResponseEntity<List<ScontoModel>> response = controller.findScontiByAzienda(1);
+        List<ScontoModel> allSconti = response.getBody();
+        assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+        assertThat(allSconti).asList();
+    }
+
+    @Test
+    public void invalidFindScontiByAzienda() throws Exception {
+        ResponseEntity<List<ScontoModel>> response = controller.findScontiByAzienda(10);
+        List<ScontoModel> allSconti = response.getBody();
+        assertThat(response.getStatusCode().compareTo(HttpStatus.NOT_FOUND));
+        assertThat(allSconti).asList();
+    }
+
+    @Test
+    public void findScontiByTipo() throws Exception {
+        ResponseEntity<List<ScontoModel>> response = controller.findScontiByTipo("catalogo");
+        List<ScontoModel> allSconti = response.getBody();
+        assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+        assertThat(allSconti).asList();
+    }
+
+    @Test
+    public void invalidFindScontiByTipo() throws Exception {
+        ResponseEntity<List<ScontoModel>> response = controller.findScontiByTipo("cose");
+        List<ScontoModel> allSconti = response.getBody();
+        assertThat(response.getStatusCode().compareTo(HttpStatus.NOT_FOUND));
+        assertThat(allSconti).asList();
+    }
+
+    @Test
+    public void findScontiAziendaByTipo() throws Exception {
+        ResponseEntity<List<ScontoModel>> response = controller.findScontiAziendaByTipo("catalogo", 1);
+        List<ScontoModel> allSconti = response.getBody();
+        assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+        assertThat(allSconti).asList();
+    }
+
+    @Test
+    public void invalidFindScontiAziendaByTipo() throws Exception {
+        ResponseEntity<List<ScontoModel>> response = controller.findScontiAziendaByTipo("catalogo", 10);
+        List<ScontoModel> allSconti = response.getBody();
+        assertThat(response.getStatusCode().compareTo(HttpStatus.NOT_FOUND));
+        assertThat(allSconti).asList();
+    }
+
+    @Test
+    public void findScontiByNomeInAzienda() throws Exception {
+        ResponseEntity<List<ScontoModel>> response = controller.findScontiByNomeInAzienda("nome1", 3);
+        List<ScontoModel> allSconti = response.getBody();
+        assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+        assertThat(allSconti).asList();
+    }
+
+    @Test
+    public void invalidFindScontiByNomeInAzienda() throws Exception {
+        ResponseEntity<List<ScontoModel>> response = controller.findScontiByNomeInAzienda("nome999", 3);
+        List<ScontoModel> allSconti = response.getBody();
+        assertThat(response.getStatusCode().compareTo(HttpStatus.NOT_FOUND));
+        assertThat(allSconti).asList();
+    }
 }
 
 

@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import unisa.is.helpseller.Model.AziendaModel;
 import unisa.is.helpseller.Model.ProdottoModel;
 
 
@@ -51,23 +52,51 @@ public class ProdottoControllerTest {
     }
     //int id, String nomeProdotto, double prezzo, String descrizione, int quantita, String immagine, int quantitaMinima, 
     //int peso, int volume, int idAzienda, List<RecensioneModel> recensioni, List<ScontoModel> sconti
-    
-        public void CUD() throws Exception {
-        ProdottoModel prodotto = new ProdottoModel("wafer croccanti", 2, "wafer al cioccolato", 150, "", 1, 1, 1, 3, null, null);
-        prodotto.setId(99);
+    @Test
+    public void CreateDestroy() throws Exception {
+        ProdottoModel prodotto = new ProdottoModel("wafer croccanti", 2, "wafer al cioccolato",
+                150, "", 1, 1, 1, 3, null, null);
         ResponseEntity<Integer> response = controller.insert(prodotto);
+        assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+        assertThat(response.getBody() > 0);
 
-        assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
-        assertThat(response.getBody() > 0);
-        prodotto.setQuantita(5);
+        ResponseEntity<Integer> response2 = controller.deleteId(response.getBody());
+        assertThat(response2.getStatusCode().compareTo(HttpStatus.OK));
+        assertThat(response2.getBody() > 0);
+    }
 
-        response = controller.update(prodotto);
+    @Test
+    public void invalidInsert(){
+        ProdottoModel prodotto = new ProdottoModel("wafer croccanti", 2, "wafer al cioccolato",
+                150, "", 1, 1, 1, 300, null, null);
+        ResponseEntity<Integer> response = controller.insert(prodotto);
+        assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+        assertThat(response.getBody() == null);
+    }
+
+    @Test
+    public void invalidDelete(){
+        ResponseEntity<Integer> response = controller.deleteId(150);
+        assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+        assertThat(response.getBody() == null);
+    }
+
+    @Test
+    public void update(){
+        ProdottoModel p = controller.findId(1).getBody();
+        p.setPrezzo(4);
+        ResponseEntity<Integer> response = controller.update(p);
         assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
         assertThat(response.getBody() > 0);
-        
-        response = controller.deleteId(prodotto.getId());
+    }
+
+    @Test
+    public void invalidUpdate(){
+        ProdottoModel p = controller.findId(1).getBody();
+        p.setIdAzienda(1505);
+        ResponseEntity<Integer> response = controller.update(p);
         assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
-        assertThat(response.getBody() > 0);
+        assertThat(response.getBody() == null);
     }
     
     @Test
@@ -158,14 +187,22 @@ public class ProdottoControllerTest {
         assertThat(allProdotti).asList();
         assertThat(allProdotti).asList().isEmpty();
     }
-///{id_prodotto}/{id_azienda}") 
-    /*
+
     @Test
     public void ricerdaProdottiByIdInAzienda() throws Exception {
-        ResponseEntity<List<ProdottoModel>> response = controller.findProdottiByIdInAzienda(1, 0));
+        ResponseEntity<List<ProdottoModel>> response = controller.findProdottiByIdInAzienda(1, 1);
         List<ProdottoModel> allProdotti = response.getBody();
-        assertThat(response.getStatusCode().compareTo(HttpStatus.NOT_FOUND));
+        assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+        assertThat(allProdotti).asList();
+        assertThat(allProdotti).asList().isNotEmpty();
+    }
+
+    @Test
+    public void invalidRicerdaProdottiByIdInAzienda() throws Exception {
+        ResponseEntity<List<ProdottoModel>> response = controller.findProdottiByIdInAzienda(1, 150);
+        List<ProdottoModel> allProdotti = response.getBody();
+        assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
         assertThat(allProdotti).asList();
         assertThat(allProdotti).asList().isEmpty();
-    }*/
+    }
 }
