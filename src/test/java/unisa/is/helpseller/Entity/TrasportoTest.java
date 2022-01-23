@@ -27,5 +27,6 @@ public class TrasportoTest {
         assertThat(i.isEmpty()).isFalse();
         assertThat(qm != 0 );
 
+        Trasporto t123 = new Trasporto("", 1, null, 1);
     }
 }

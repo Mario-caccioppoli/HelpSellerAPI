@@ -26,5 +26,8 @@ public class DocumentoTest {
         assertThat(data2.equals(null)).isFalse();
         assertThat(id != 0);
         assertThat(titolo.isEmpty()).isFalse();
+
+        Documento d = new Documento("", "", null, 1);
+
     }
 }

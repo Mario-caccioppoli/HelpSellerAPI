@@ -16,4 +16,9 @@ public class AziendaTest {
         azienda.setEmail("");azienda.setId(66);azienda.setPassword("");azienda.setNomeAzienda("");azienda.setDescrizione("");azienda.setIndirizzo("");azienda.setLogo("");
         azienda.setVat("");azienda.setOrdini(null);azienda.setProdotti(null);
     }
+    @Test
+    public void enti(){
+        Azienda a = new Azienda("", "", "", "", "", "", "");
+        a.setDescrizione("d");a.setEmail("e");a.setNomeAzienda("a");a.setIndirizzo("");a.setvat("");a.setLogo("");a.setPassword("");
+    }
 }

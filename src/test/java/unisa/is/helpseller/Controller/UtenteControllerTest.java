@@ -97,4 +97,12 @@ public class UtenteControllerTest {
         assertThat(response.getStatusCode().is5xxServerError());
     }
 
+    @Test
+    public void costr() throws Exception {
+        UtenteModel u = new UtenteModel("a", "b", "c", "d");
+        u.setCognome("c");u.setDescrizione("d");u.setEmail("");u.setIndirizzo("");u.setLogo("");u.setPassword("");
+        u.setNome("");u.setTelefono("");u.setUsername("");u.setVat("");
+        u.getCognome();u.getDescrizione();u.getEmail();u.getIndirizzo();u.getLogo();u.getPassword();
+        u.getNome();u.getTelefono();u.getUsername();u.getVat();
+    }
 }
