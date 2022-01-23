@@ -47,7 +47,7 @@ public class AmministratoreControllerTest {
 
     	AmministratoreModel admin = controller.findId(2).getBody();
         admin.setEmail("testmail");
-        ResponseEntity<AmministratoreModel> response = controller.update(admin);
+        ResponseEntity<Integer> response = controller.update(admin);
         assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
    }
 }

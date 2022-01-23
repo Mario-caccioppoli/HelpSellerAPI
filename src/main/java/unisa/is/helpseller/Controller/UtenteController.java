@@ -94,6 +94,7 @@ public class UtenteController {
         try {
             String result = distService.recuperoPassword(email);
             if(!result.isEmpty()) {
+                
                 senderService.sendEmail(email, "Recupero Password", result);
                 return new ResponseEntity<>(1, HttpStatus.OK);
             }
