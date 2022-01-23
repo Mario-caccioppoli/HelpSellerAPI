@@ -20,7 +20,7 @@ public class AmministratoreModel implements Serializable{
         this.password = password;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
