@@ -51,7 +51,7 @@ public class AmministratoreController {
         }
     }
 
-    @GetMapping("/update")
+    @PostMapping("/update")
     public ResponseEntity<Integer> update(@RequestBody AmministratoreModel amministratore) {
         try {
             Amministratore a = new Amministratore(amministratore);
