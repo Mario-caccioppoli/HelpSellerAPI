@@ -16,7 +16,7 @@ import unisa.is.helpseller.Service.EmailSenderService;
 
 @RestController
 @RequestMapping("/ordine")
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class OrdineController {
 
     @Autowired

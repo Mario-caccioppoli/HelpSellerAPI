@@ -30,7 +30,7 @@ import unisa.is.helpseller.Service.UtenteService;
  */
 @RestController
 @RequestMapping("/user")
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UtenteController {
 
     @Autowired

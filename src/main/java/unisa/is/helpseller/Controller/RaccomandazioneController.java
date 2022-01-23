@@ -21,7 +21,7 @@ import unisa.is.helpseller.Service.RecensioneService;
 
 @RestController
 @RequestMapping("/sugg")
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class RaccomandazioneController {
 
     private final RaccomandazioneService suggService;

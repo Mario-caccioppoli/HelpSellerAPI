@@ -17,7 +17,7 @@ import unisa.is.helpseller.Service.RecensioneService;
 
 @RestController
 @RequestMapping("/ordineprodotto")
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class OrdineProdottoController {
 
     @Autowired

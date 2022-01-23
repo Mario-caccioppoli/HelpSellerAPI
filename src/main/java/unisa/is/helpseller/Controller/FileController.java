@@ -15,6 +15,7 @@ import org.springframework.http.MediaType;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/file")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class FileController {
     private static final String DIRECTORY = "/home/daniele/IDE/Helpseller/HelpSellerAPI/file";
     

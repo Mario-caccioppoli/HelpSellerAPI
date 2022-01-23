@@ -15,7 +15,7 @@ import unisa.is.helpseller.Model.ScontoModel;
 
 @RestController
 @RequestMapping("/sconto")
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ScontoController {
 
     @Autowired

@@ -13,7 +13,7 @@ import unisa.is.helpseller.Model.RecensioneModel;
 
 @RestController
 @RequestMapping("/recensione")
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class RecensioneController {
 
     @Autowired

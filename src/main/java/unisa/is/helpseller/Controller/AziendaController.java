@@ -13,7 +13,7 @@ import unisa.is.helpseller.Model.AziendaModel;
 
 @RestController
 @RequestMapping("/azienda")
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class AziendaController {
 
     @Autowired

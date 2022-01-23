@@ -15,7 +15,7 @@ import unisa.is.helpseller.Model.AmministratoreModel;
 
 @RestController
 @RequestMapping("/admin")
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class AmministratoreController {
 
     @Autowired
