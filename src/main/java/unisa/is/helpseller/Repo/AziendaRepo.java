@@ -7,6 +7,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import unisa.is.helpseller.Entity.Azienda;
 
+/**
+ * classe repo dove vengono definire le query per la gestione ed interrogazione dell'entità Azienda del db
+ */
 public interface AziendaRepo extends JpaRepository<Azienda, Integer> {
    @Query("SELECT a FROM Azienda a WHERE a.id = ?1")
    Azienda findId(int id);

@@ -8,7 +8,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import unisa.is.helpseller.Entity.Documento;
 
-
+/**
+ * classe repo dove vengono definire le query per la gestione ed interrogazione dell'entità Documento del db
+ */
 public interface DocumentoRepo extends JpaRepository<Documento, Integer>{
    //JPQL
    @Query("SELECT d FROM Documento d WHERE d.id = ?1")

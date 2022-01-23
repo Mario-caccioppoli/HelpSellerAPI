@@ -7,7 +7,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import unisa.is.helpseller.Entity.Prodotto;
 
-
+/**
+ * classe repo dove vengono definire le query per la gestione ed interrogazione dell'entità Prodotto del db
+ */
 public interface ProdottoRepo extends JpaRepository<Prodotto, Integer>{
   
     //JPQL

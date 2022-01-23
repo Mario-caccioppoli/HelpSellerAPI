@@ -9,6 +9,9 @@ import org.springframework.data.util.Pair;
 import unisa.is.helpseller.Entity.OrdineProdotto;
 import unisa.is.helpseller.Entity.Prodotto;
 
+/**
+ * classe repo dove vengono definire le query per la gestione ed interrogazione dell'entità OrdineProdotto del db
+ */
 public interface OrdineProdottoRepo extends JpaRepository<OrdineProdotto, Integer> {
 
     @Query("SELECT o FROM OrdineProdotto o WHERE o.id_ordine = ?1 AND o.id_prodotto = ?2")

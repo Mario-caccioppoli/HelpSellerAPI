@@ -8,6 +8,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import unisa.is.helpseller.Entity.Recensione;
 
+/**
+ * classe repo dove vengono definire le query per la gestione ed interrogazione dell'entità Recensione del db
+ */
 public interface RecensioneRepo extends JpaRepository<Recensione, Integer>{
     @Query("SELECT r FROM Recensione r WHERE r.id = ?1")
     Recensione findId(int id);
