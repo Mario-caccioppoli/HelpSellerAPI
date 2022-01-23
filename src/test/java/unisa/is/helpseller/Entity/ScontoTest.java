@@ -4,6 +4,7 @@ import java.sql.Date;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import unisa.is.helpseller.Model.ScontoModel;
 
 @SpringBootTest
 public class ScontoTest {
@@ -35,5 +36,13 @@ public class ScontoTest {
         assertThat(p != 0);
         assertThat(q != 0);
         assertThat(tipo.isEmpty()).isFalse();
+
+        ScontoProdotto a = new ScontoProdotto(1, 1);
+
+        ScontoModel s1 = new ScontoModel();
+        s1.setId(1);s1.getDataFine();s1.setDataInizio(null);s1.setTipo("");s1.setQuantita(1);s1.setProdotti(null);
+        s1.getProdotti();s1.setNomeSconto("");
+
+        Sconto s123 = new Sconto("", 2, null, null, "", 2, 22);
     }
 }

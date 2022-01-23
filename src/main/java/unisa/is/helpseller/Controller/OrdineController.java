@@ -14,6 +14,9 @@ import unisa.is.helpseller.Model.OrdineModel;
 import unisa.is.helpseller.Service.DistributoreService;
 import unisa.is.helpseller.Service.EmailSenderService;
 
+/**
+ * classe di mappatura dei servizi relativi ad Ordine affinché siano accessibili dal frontend
+ */
 @RestController
 @RequestMapping("/ordine")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -35,6 +38,10 @@ public class OrdineController {
         this.ordineService = ordineService;
     }
 
+    /**
+     * metodo per il recupero di tutti le istanze presenti nel DB
+     * @return lista di oggetti delle entity da passare al frontEnd
+     */
     @GetMapping("/findAll")
     public ResponseEntity<List<OrdineModel>> findAll() {
         try {
@@ -49,6 +56,11 @@ public class OrdineController {
         }
     }
 
+    /**
+     * metodo per il recupero di una istanza dal DB dato in input il suo ID
+     * @param id    intero ID dell'entità ricercata
+     * @return oggetto prelevato dal DB da restituire al frontend
+     */
     @GetMapping("/findId/{id}")
     public ResponseEntity<OrdineModel> findId(@PathVariable("id") int id) {
         try {
@@ -63,6 +75,11 @@ public class OrdineController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    /**
+     * metodo per la rimozione di una istanza dato l'id
+     * @param id    id dell'entità da rimuovere
+     * @return int id dell'entità rimossa
+     */
     @DeleteMapping("/deleteId/{id}")
     public ResponseEntity<Integer> deleteId(@PathVariable("id") int id) {
         try {
@@ -77,15 +94,20 @@ public class OrdineController {
         return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
+    /**
+     * metodo per l'inserimento di un'istanza nel DB
+     * @param Ordine oggetto entity da inserire nel DB
+     * @return int id dell'entità aggiunta
+     */
     @PostMapping("/insert")
     public ResponseEntity<Integer> insert(@RequestBody OrdineModel ord) {
         try {
             Ordine o = new Ordine(ord);
             int id = ordineService.insert(o);
+            Distributore d = distributoreService.findId(o.getIdDistributore());
+            senderService.sendEmail(d.getEmail(), "Ordine confermato", "Il tuo ordine è stato confermato");
             if(id > 0) {
                ordineProdottoController.insert(ord.getOrdineProdotti());
-               Distributore d = distributoreService.findId(o.getIdDistributore());
-               senderService.sendEmail(d.getEmail(), "Ordine confermato", "Il tuo ordine è stato confermato");
                return new ResponseEntity<>(id, HttpStatus.OK);
             }
             
@@ -95,6 +117,11 @@ public class OrdineController {
         return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
+    /**
+     * metodo per l'update di una entità presente nel DB
+     * @param Ordine oggetto entity da modificare nel DB
+     * @return int id dell'entity modificata
+     */
     @PostMapping("/update")
     public ResponseEntity<Integer> update(@RequestBody OrdineModel ord) {
         try {
@@ -110,6 +137,11 @@ public class OrdineController {
         return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
+    /**
+     * metodo per il recupero degli ordini dato un distributore
+     * @param id_distributore id del distributore
+     * @return lista degli ordini recuperati
+     */
     @GetMapping("/findOrdiniByDistributore/{id}")
     public ResponseEntity<List<OrdineModel>> findOrdiniByDistributore(@PathVariable("id") int id) {
         try {
@@ -128,6 +160,11 @@ public class OrdineController {
         }
     }
 
+    /**
+     * metodo per il recupero degli ordini data un'azienda
+     * @param id_azienda id dell'azienda
+     * @return lista degli ordini recuperati
+     */
     @GetMapping("/findOrdiniByAzienda/{id}")
     public ResponseEntity<List<OrdineModel>> findOrdiniByAzienda(@PathVariable("id") int id) {
         try {

@@ -11,6 +11,9 @@ import org.springframework.http.ResponseEntity;
 import unisa.is.helpseller.Entity.Documento;
 import unisa.is.helpseller.Model.DocumentoModel;
 
+/**
+ * classe di mappatura dei servizi relativi a Documento affinché siano accessibili dal frontend
+ */
 @RestController
 @RequestMapping("/documento")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -24,6 +27,10 @@ public class DocumentoController {
         this.documentoService = documentoService;
     }
 
+    /**
+     * metodo per il recupero di tutti le istanze presenti nel DB
+     * @return List<Documento> lista di oggetti entity
+     */
     @GetMapping("/findAll")
     public ResponseEntity<List<DocumentoModel>> findAll() {
         try {
@@ -38,6 +45,11 @@ public class DocumentoController {
         }
     }
 
+    /**
+     * metodo per il recupero di una istanza dal DB dato in input il suo ID
+     * @param id    intero ID dell'entità ricercata
+     * @return oggetto prelevato dal DB, se presente
+     */
     @GetMapping("/findId/{id}")
     public ResponseEntity<DocumentoModel> findId(@PathVariable("id") int id) {
         try {
@@ -53,6 +65,11 @@ public class DocumentoController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    /**
+     * metodo per la rimozione di una istanza dato l'id
+     * @param id    id dell'entità da rimuovere
+     * @return int id dell'entità rimossa
+     */
     @DeleteMapping("/deleteId/{id}")
     public ResponseEntity<Integer> deleteId(@PathVariable("id") int id) {
         try {
@@ -67,6 +84,11 @@ public class DocumentoController {
         return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
+    /**
+     * metodo per l'inserimento di un'istanza nel DB
+     * @param Documento oggetto entity da inserire nel DB
+     * @return int id dell'entità aggiunta
+     */
     @PostMapping("/insert")
     public ResponseEntity<Integer> insert(@RequestBody DocumentoModel doc) {
         try {
@@ -82,6 +104,11 @@ public class DocumentoController {
         return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
+    /**
+     * metodo per l'update di una entità presente nel DB
+     * @param Documento oggetto entity da modificare nel DB
+     * @return int id dell'entity modificata
+     */
     @PostMapping("/update")
     public ResponseEntity<Integer> update(@RequestBody DocumentoModel doc) {
         try {
@@ -97,6 +124,11 @@ public class DocumentoController {
         return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
+    /**
+     * metodo di ricerca di un documento dato l'id di un ordine
+     * @param int id dell'ordine
+     * @return List<Documento> lista dei documenti recuperati
+     */
     @GetMapping("/findDocumentiByOrdine/{id}")
     public ResponseEntity<List<DocumentoModel>> findDocumentiByOrdine(@PathVariable("id") int id) {
         try {

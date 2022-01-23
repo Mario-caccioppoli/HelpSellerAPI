@@ -6,7 +6,9 @@ import java.io.Serializable;
 import javax.persistence.*;
 import unisa.is.helpseller.Model.ScontoModel;
 
-
+/**
+ * Classe descrittiva dell'oggetto entity Sconto
+ */
 @Entity
 @Table(name = "sconto")
 public class Sconto implements Serializable {

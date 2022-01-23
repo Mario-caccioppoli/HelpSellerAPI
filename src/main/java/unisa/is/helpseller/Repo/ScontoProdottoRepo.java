@@ -8,6 +8,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import unisa.is.helpseller.Entity.ScontoProdotto;
 
+/**
+ * classe repo dove vengono definire le query per la gestione ed interrogazione dell'entità ScontoProdotto del db
+ */
 public interface ScontoProdottoRepo extends JpaRepository<ScontoProdotto, Integer>{
    @Query(value = "SELECT * FROM sconto_prodotto", nativeQuery = true)
    List<ScontoProdotto> findAllScontoProdotto();

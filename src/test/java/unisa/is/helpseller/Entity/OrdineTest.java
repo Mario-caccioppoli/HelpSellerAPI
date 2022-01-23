@@ -4,6 +4,7 @@ import java.sql.Date;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import unisa.is.helpseller.Model.OrdineModel;
 
 @SpringBootTest
 public class OrdineTest {
@@ -29,5 +30,11 @@ public class OrdineTest {
         assertThat(d2.equals(null)).isFalse();
         assertThat(id != 0);
         assertThat(s.isEmpty()).isFalse();
+
+        OrdineModel o = new OrdineModel();
+        o.setId(1);o.setDataOrdinazione(null);o.setStato("");o.getStato();o.getDocumento();
+        o.setDocumento(null);o.getPrezzoTotale();o.setPrezzoTotale(1);o.setOrdineProdotti(null);
+
+        Ordine o1 = new Ordine(null, null, "", 1);
     }
 }

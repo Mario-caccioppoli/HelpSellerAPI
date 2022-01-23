@@ -11,6 +11,9 @@ import org.springframework.http.ResponseEntity;
 import unisa.is.helpseller.Entity.Distributore;
 import unisa.is.helpseller.Model.DistributoreModel;
 
+/**
+ * classe di mappatura dei servizi relativi a Distributore affinché siano accessibili dal frontend
+ */
 @RestController
 @RequestMapping("/distributore")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -24,6 +27,10 @@ public class DistributoreController {
         this.distributoreService = distributoreService;
     }
 
+    /**
+     * metodo per il recupero di tutti le istanze presenti nel DB
+     * @return lista di oggetti delle entity da passare al frontEnd
+     */
     @GetMapping("/findAll")
     public ResponseEntity<List<DistributoreModel>> findAll() {
         try {
@@ -38,6 +45,11 @@ public class DistributoreController {
         }
     }
 
+    /**
+     * metodo per il recupero di una istanza dal DB dato in input il suo ID
+     * @param id    intero ID dell'entità ricercata
+     * @return oggetto prelevato dal DB da restituire al frontend
+     */
     @GetMapping("/findId/{id}")
     public ResponseEntity<DistributoreModel> findId(@PathVariable("id") int id) {
         try {
@@ -53,6 +65,11 @@ public class DistributoreController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    /**
+     * metodo per la rimozione di una istanza dato l'id
+     * @param id dell'entità da rimuovere
+     * @return int id dell'entità rimossa
+     */
     @DeleteMapping("/deleteId/{id}")
     public ResponseEntity<Integer> deleteId(@PathVariable("id") int id) {
         try {
@@ -66,6 +83,11 @@ public class DistributoreController {
         return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
     }
 
+    /**
+     * metodo per l'inserimento di un'istanza nel DB
+     * @param Distributore oggetto entity da inserire nel DB
+     * @return int id dell'entità aggiunta
+     */
     @PostMapping("/insert")
     public ResponseEntity<Integer> insert(@RequestBody DistributoreModel d) {
         try {
@@ -81,13 +103,18 @@ public class DistributoreController {
         return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
     }
 
+    /**
+     * metodo per l'update di una entità presente nel DB
+     * @param Distributore oggetto entity da modificare nel DB
+     * @return int id dell'entity modificata
+     */
     @PostMapping("/update")
     public ResponseEntity<Integer> update(@RequestBody DistributoreModel d) {
         try {
             Distributore distributore = new Distributore(d);
             int id = distributoreService.update(distributore);
             if(id > 0){
-                return new ResponseEntity<>(id, HttpStatus.OK);
+                return new ResponseEntity<Integer>(id, HttpStatus.OK);
             }
 
         } catch (Exception ex) {

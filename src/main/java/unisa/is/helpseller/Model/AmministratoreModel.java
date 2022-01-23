@@ -3,6 +3,9 @@ package unisa.is.helpseller.Model;
 
 import java.io.Serializable;
 
+/**
+ * Classe model utilizzata per la comunicazione col frontend descrittiva dell'entity Amministratore
+ */
 
 public class AmministratoreModel implements Serializable{
  

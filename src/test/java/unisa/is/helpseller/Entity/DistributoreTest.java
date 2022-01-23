@@ -34,5 +34,8 @@ public class DistributoreTest {
         assertThat(vat.isEmpty()).isFalse();
         assertThat(tel.isEmpty()).isFalse();
         assertThat(sede.isEmpty()).isFalse();
+
+        Distributore d = new Distributore("", "", "", "", "", "", "", "", 1);
+        d.setIdOrdineProva(2);
     }
 }

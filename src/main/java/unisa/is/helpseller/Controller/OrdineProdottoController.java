@@ -15,6 +15,9 @@ import unisa.is.helpseller.Model.ProdottoModel;
 import unisa.is.helpseller.Model.RecensioneModel;
 import unisa.is.helpseller.Service.RecensioneService;
 
+/**
+ * classe di mappatura dei servizi relativi ad OrdineProdotto affinché siano accessibili dal frontend
+ */
 @RestController
 @RequestMapping("/ordineprodotto")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -32,7 +35,11 @@ public class OrdineProdottoController {
         this.recensioneService = recensioneService;
     }
 
-
+    /**
+     * metodo per la rimozione di una istanza dato l'id
+     * @param int id dell'entità da rimuovere
+     * @return int id dell'entità rimossa
+     */
     @DeleteMapping("/deleteId/{idOrdine}/{idProdotto}")
     public ResponseEntity<Integer> deleteId(@PathVariable("idOrdine") int idOrdine, @PathVariable("idProdotto") int idProdotto) {
         try {
@@ -49,6 +56,11 @@ public class OrdineProdottoController {
         return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
+    /**
+     * metodo per l'inserimento di un'istanza nel DB
+     * @param OrdineProdotto oggetto entity da inserire nel DB
+     * @return int id dell'entità aggiunta
+     */
     @PostMapping("/insert")
     public ResponseEntity<List<Integer>> insert(@RequestBody List<OrdineProdottoModel> opList) {
         List<Integer> result = new ArrayList<Integer>();
@@ -63,6 +75,11 @@ public class OrdineProdottoController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
+    /**
+     * metodo per l'update di una entità presente nel DB
+     * @param OrdineProdotto oggetto entity da modificare nel DB
+     * @return int id dell'entity modificata
+     */
     @PostMapping("/update")
     public ResponseEntity<Integer> update(@RequestBody OrdineProdottoModel opModel) {
         try {
@@ -77,6 +94,11 @@ public class OrdineProdottoController {
         return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
+    /**
+     * metodo di ricerca dato l'id di un ordine
+     * @param id_ordine id dell'ordine
+     * @return lista contenente le entità OrdineProdotto recuperate
+     */
     @GetMapping("/findDettagliOrdine/{id}")
     public ResponseEntity<List<OrdineProdottoModel>> findDettagliOrdine(@PathVariable("id") int id) {
         try {
@@ -114,7 +136,12 @@ public class OrdineProdottoController {
         } //END CATCH
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     } //END METODO
-    
+
+    /**
+     * metodo per il report di un anno dato in input
+     * @param anno intero dell'anno
+     * @return somma complessiva del valore degli ordini dell'anno
+     */
     @GetMapping("/findReportAnnuale/{anno}")
     public ResponseEntity<Integer> findReportAnnuale(@PathVariable("anno") Integer anno) {
         try {
@@ -127,7 +154,12 @@ public class OrdineProdottoController {
         }
         return new ResponseEntity<>(0, HttpStatus.NOT_FOUND);
     }
-    
+
+    /**
+     * metodo per il report di un anno di una azienda
+     * @param anno intero dell'anno, l'id dell'azienda
+     * @return somma complessiva del valore degli ordini dell'anno
+     */
     @GetMapping("/findReportAnnualeAzienda/{anno}/{id_azienda}")
     public ResponseEntity<Integer> findReportAnnualeAzienda(@PathVariable("anno") Integer anno, @PathVariable("id_azienda") Integer id) {
         try {
@@ -141,7 +173,12 @@ public class OrdineProdottoController {
         return new ResponseEntity<>(0, HttpStatus.NOT_FOUND);
         
     }
-    
+
+    /**
+     * metodo per il report di un mese di una azienda
+     * @param anno intero del mese, l'anno e l'id dell'zienda
+     * @return somma complessiva del valore degli ordini
+     */
     @GetMapping("findReportMensileAzienda/{anno}/{id_azienda}")
     public ResponseEntity<Integer[]> findReportMensile(@PathVariable("anno") Integer anno, @PathVariable("id_azienda") Integer id) {
         Integer mensilita[] = new Integer[12]; 
@@ -167,7 +204,12 @@ public class OrdineProdottoController {
         }
         return new ResponseEntity<>(mensilita, HttpStatus.OK);
     }
-    
+
+    /**
+     * metodo per il report di un mese
+     * @param anno intero del mese e dell'anno
+     * @return somma complessiva del valore degli ordini del mese
+     */
     @GetMapping("findReportMensileGruppo/{anno}")
     public ResponseEntity<Integer[]> findReportMensileGruppo(@PathVariable("anno") Integer anno) {
         Integer mensilita[] = new Integer[12]; 

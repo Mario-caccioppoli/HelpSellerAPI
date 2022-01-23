@@ -30,5 +30,14 @@ public class OrdineProdottoTest {
         assertThat(pu != 0);
         assertThat(q != 0);
 
+        OrdineProdottoId op2 = new OrdineProdottoId(1, 1);
+        op2.hashCode();
+        op2.getId_ordine();
+        op2.getId_prodotto();
+        op2.setId_ordine(1);
+        op2.setId_prodotto(1);
+        op2.equals(op);
+
+        OrdineProdotto op12 = new OrdineProdotto(1, 1, 1, 1, 1);
     }
 }

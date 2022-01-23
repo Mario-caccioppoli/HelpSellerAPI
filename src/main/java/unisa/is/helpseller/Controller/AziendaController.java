@@ -11,6 +11,9 @@ import org.springframework.http.ResponseEntity;
 import unisa.is.helpseller.Entity.Azienda;
 import unisa.is.helpseller.Model.AziendaModel;
 
+/**
+ * classe di mappatura dei servizi relativi ad Azienda affinché siano accessibili dal frontend
+ */
 @RestController
 @RequestMapping("/azienda")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -24,6 +27,10 @@ public class AziendaController {
         this.aziendaService = aziendaService;
     }
 
+    /**
+     * metodo per il recupero di tutti le istanze presenti nel DB
+     * @return lista di oggetti delle entity da passare al frontEnd
+     */
     @GetMapping("/findAll")
     public ResponseEntity<List<AziendaModel>> findAll() {
         try {
@@ -38,6 +45,11 @@ public class AziendaController {
         }
     }
 
+    /**
+     * metodo per il recupero di una istanza dal DB dato in input il suo ID
+     * @param id    intero ID dell'entità ricercata
+     * @return oggetto prelevato dal DB da restituire al frontend
+     */
     @GetMapping("/findId/{id}")
     public ResponseEntity<AziendaModel> findId(@PathVariable("id") int id) {
         try {
@@ -53,6 +65,11 @@ public class AziendaController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    /**
+     * metodo per la rimozione di una istanza dato l'id
+     * @param id    id dell'entità da rimuovere
+     * @return int id dell'entità rimossa
+     */
     @DeleteMapping("/deleteId/{id}")
     public ResponseEntity<Integer> deleteId(@PathVariable("id") int id) {
         try {
@@ -67,6 +84,11 @@ public class AziendaController {
         return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
+    /**
+     * metodo per l'inserimento di un'istanza nel DB
+     * @param Azienda oggetto entity da inserire nel DB
+     * @return int id dell'entità aggiunta
+     */
     @PostMapping("/insert")
     public ResponseEntity<Integer> insert(@RequestBody AziendaModel a) {
         try {
@@ -82,6 +104,11 @@ public class AziendaController {
         return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
     }
 
+    /**
+     * metodo per l'update di una entità presente nel DB
+     * @param Azienda oggetto entity da modificare nel DB
+     * @return int id dell'entity modificata
+     */
     @PostMapping("/update")
     public ResponseEntity<Integer> update(@RequestBody AziendaModel a) {
         try {
@@ -97,6 +124,11 @@ public class AziendaController {
         return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
+    /**
+     * metodo di ricerca dato il nome dell'azienda
+     * @param nome Stringa contenente il nome dell'azienda
+     * @return  List<Azienda> lista di oggetti recuperati
+     */
     @GetMapping("/findAziendaByNome/{name}")
     public ResponseEntity<List<AziendaModel>> findAziendeByNome(@PathVariable("name") String name) {
         try {
@@ -115,6 +147,11 @@ public class AziendaController {
         }
     }
 
+    /**
+     * metodo di ricerca dato l'id del prodotto
+     * @param id_prodotto   variabile int contenente l'id del prodotto
+     * @return  oggetto dell'azienda produttrice del prodotto
+     */
     @GetMapping("/findAziendaByProdotto/{id}")
     public ResponseEntity<AziendaModel> findAziendaByProdotto(@PathVariable("id") int id) {
         try {

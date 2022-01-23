@@ -11,6 +11,9 @@ import org.springframework.http.ResponseEntity;
 import unisa.is.helpseller.Entity.Trasporto;
 import unisa.is.helpseller.Model.TrasportoModel;
 
+/**
+ * classe di mappatura dei servizi relativi a Trasporto affinché siano accessibili dal frontend
+ */
 @RestController
 @RequestMapping("/trasporto")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -24,6 +27,10 @@ public class TrasportoController {
         this.trasportoService = trasportoService;
     }
 
+    /**
+     * metodo per il recupero di tutti le istanze presenti nel DB
+     * @return lista di oggetti delle entity da passare al frontEnd
+     */
     @GetMapping("/findAll")
     public ResponseEntity<List<TrasportoModel>> findAll() {
         try {
@@ -38,6 +45,11 @@ public class TrasportoController {
         }
     }
 
+    /**
+     * metodo per il recupero di una istanza dal DB dato in input il suo ID
+     * @param id    intero ID dell'entità ricercata
+     * @return oggetto prelevato dal DB da restituire al frontend
+     */
     @GetMapping("/findId/{id}")
     public ResponseEntity<TrasportoModel> findId(@PathVariable("id") int id) {
         try {
@@ -53,6 +65,11 @@ public class TrasportoController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    /**
+     * metodo per la rimozione di una istanza dato l'id
+     * @param id    id dell'entità da rimuovere
+     * @return int id dell'entità rimossa
+     */
     @DeleteMapping("/deleteId/{id}")
     public ResponseEntity<Integer> deleteId(@PathVariable("id") int id) {
         try {
@@ -67,6 +84,11 @@ public class TrasportoController {
         return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
+    /**
+     * metodo per l'inserimento di un'istanza nel DB
+     * @param Trasporto oggetto entity da inserire nel DB
+     * @return int id dell'entità aggiunta
+     */
     @PostMapping("/insert")
     public ResponseEntity<Integer> insert(@RequestBody TrasportoModel tr) {
         try {
@@ -82,6 +104,11 @@ public class TrasportoController {
         return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
+    /**
+     * metodo per l'update di una entità presente nel DB
+     * @param Trasporto oggetto entity da modificare nel DB
+     * @return int id dell'entity modificata
+     */
     @PostMapping("/update")
     public ResponseEntity<Integer> update(@RequestBody TrasportoModel tr) {
         try {

@@ -9,7 +9,9 @@ import org.springframework.data.repository.query.Param;
 
 import unisa.is.helpseller.Entity.Ordine;
 
-
+/**
+ * classe repo dove vengono definire le query per la gestione ed interrogazione dell'entità Ordine del db
+ */
 public interface OrdineRepo extends JpaRepository<Ordine, Integer> {
    @Query("SELECT o FROM Ordine o WHERE o.id = ?1")
    Ordine findId(int id);

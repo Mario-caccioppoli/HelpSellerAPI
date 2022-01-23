@@ -5,7 +5,9 @@ import java.io.Serializable;
 import java.util.List;
 import unisa.is.helpseller.Entity.Distributore;
 
-
+/**
+ * Classe model utilizzata per la comunicazione col frontend descrittiva dell'entity Distributore
+ */
 public class DistributoreModel implements Serializable{
 
     private int id;

@@ -14,9 +14,7 @@ import unisa.is.helpseller.Service.RecensioneService;
 
 
 /**
- *
- * @author Alex
- * metodo che gestisce la selezione degli articoli da suggerire all'utente 
+ * classe di mappatura dei servizi relativi il Raccomandation Engine affinché siano accessibili dal frontend
  */
 
 @RestController
@@ -34,22 +32,35 @@ public class RaccomandazioneController {
     private ProdottoService ps;
     @Autowired
     private RecensioneService ds;
-    
-    
+
+    /**
+     * metodo per la generazione di un file .csv contenente le recensioni presenti nel db
+     * @throws IOException caso in cui non viene trovato il file .exe
+     */
     @GetMapping("/data")
     public void creaCsv() throws IOException{
         suggService.creaCsv();
     }
-    
-    //TO DO: ordinare i prodotti in output!
+
+    /**
+     * metodo per il recupero dei prodotti più popolari sulla piattaforma
+     * @param ps oggetto ProdottoService
+     * @return vettore di oggetti prodottoModel
+     * @throws IOException caso in cui non viene trovato il file .exe
+     */
     @GetMapping("/l1")
     public ProdottoModel[] firstLayer() throws IOException{
         ProdottoModel[] array = suggService.firstLayer(ps);
         System.out.println(array);
         return array;
     }
-    
-    //TO DO: prendere in considerazione tutti gli item non solo l'ultimo
+
+    /**
+     * metodo per il recupero dei prodotti da suggeerire all'utente
+     * @param id dell'utente che sta navigando
+     * @return vettore di model contente i prodotti da suggerire
+     * @throws IOException caso in cui non viene trovato il file .exe
+     */
     @PostMapping("/l2")
     public ProdottoModel[] secondLayer(int id) throws IOException{
         ProdottoModel[] array = suggService.secondLayer(ds, ps, id);

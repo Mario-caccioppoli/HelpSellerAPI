@@ -25,8 +25,7 @@ import unisa.is.helpseller.Service.EmailSenderService;
 import unisa.is.helpseller.Service.UtenteService;
 
 /**
- *
- * @author Alex
+ * classe di mappatura dei servizi relativi ad Utente affinché siano accessibili dal frontend
  */
 @RestController
 @RequestMapping("/user")
@@ -56,6 +55,13 @@ public class UtenteController {
         this.senderService = senderService;
     }
 
+    /**
+     * metodo per l'autenticazione dell'admin
+     * @param email email dell'utente
+     * @param password la sua password
+     * @param admin lista degli admin
+     * @return oggetto dell'utente
+     */
     @PostMapping("/login")
     public ResponseEntity<UtenteModel> auth(@RequestBody String input) {
         UtenteModel utente = new UtenteModel();
@@ -88,7 +94,11 @@ public class UtenteController {
     public String index() {
         return "index";
     }
-    
+
+    /**
+     * metodo per il recupero della password data la mail
+     * @param email
+     */
     @PostMapping("/recuperoPassword/{email}")
     public ResponseEntity<Integer> recuperoPassword(@PathVariable("email") String email) {
         try {

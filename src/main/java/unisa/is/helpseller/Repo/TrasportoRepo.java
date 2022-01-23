@@ -7,6 +7,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import unisa.is.helpseller.Entity.Trasporto;
 
+/**
+ * classe repo dove vengono definire le query per la gestione ed interrogazione dell'entità Trasporto del db
+ */
 public interface TrasportoRepo extends JpaRepository<Trasporto, Integer> {
    @Query("SELECT t FROM Trasporto t WHERE t.id = ?1")
    Trasporto findId(int id);

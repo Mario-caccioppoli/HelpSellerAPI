@@ -30,5 +30,6 @@ public class RecensioneTest {
         assertThat(t.isEmpty()).isFalse();
         assertThat(v != 0);
 
+        Recensione r = new Recensione("", 1, null, 1, 1);
     }
 }

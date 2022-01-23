@@ -5,7 +5,9 @@ import java.io.Serializable;
 import javax.persistence.*;
 import unisa.is.helpseller.Model.AmministratoreModel;
 
-
+/**
+ * Classe descrittiva dell'oggetto entity Amministratore
+ */
 @Entity
 @Table(name = "amministratore")
 public class Amministratore implements Serializable{

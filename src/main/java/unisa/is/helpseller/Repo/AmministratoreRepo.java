@@ -8,6 +8,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import unisa.is.helpseller.Entity.Amministratore;
 
+/**
+ * classe repo dove vengono definire le query per la gestione ed interrogazione dell'entità Amministratore del db
+ */
 public interface AmministratoreRepo extends JpaRepository<Amministratore, Integer> {
    
     //JPQL

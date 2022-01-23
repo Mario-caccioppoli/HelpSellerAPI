@@ -6,7 +6,9 @@ import java.io.Serializable;
 import java.util.List;
 import unisa.is.helpseller.Entity.Ordine;
 
-
+/**
+ * Classe model utilizzata per la comunicazione col frontend descrittiva dell'entity Ordine
+ */
 public class OrdineModel implements Serializable{
 
     private int id;

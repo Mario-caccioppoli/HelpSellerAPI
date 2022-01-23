@@ -4,7 +4,9 @@ package unisa.is.helpseller.Model;
 import java.io.Serializable;
 import java.sql.Date;
 import unisa.is.helpseller.Entity.Documento;
-
+/**
+ * Classe model utilizzata per la comunicazione col frontend descrittiva dell'entity Documento
+ */
 public class DocumentoModel implements Serializable{
     
     private int id;

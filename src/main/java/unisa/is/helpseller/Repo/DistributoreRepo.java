@@ -7,6 +7,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import unisa.is.helpseller.Entity.Distributore;
 
+/**
+ * classe repo dove vengono definire le query per la gestione ed interrogazione dell'entità Distributore del db
+ */
 public interface DistributoreRepo extends JpaRepository<Distributore, Integer>{
    @Query("SELECT d FROM Distributore d WHERE d.id = ?1")
    Distributore findId(int id);

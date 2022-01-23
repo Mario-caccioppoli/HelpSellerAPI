@@ -5,7 +5,9 @@ import java.io.Serializable;
 import javax.persistence.*;
 import unisa.is.helpseller.Model.OrdineProdottoModel;
 
-
+/**
+ * Classe descrittiva dell'oggetto entity OrdineProdotto
+ */
 @Entity
 @IdClass(OrdineProdottoId.class)
 @Table(name = "ordine_prodotto")
