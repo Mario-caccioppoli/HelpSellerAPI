@@ -52,11 +52,11 @@ public class AmministratoreController {
     }
 
     @GetMapping("/update")
-    public ResponseEntity<AmministratoreModel> update(@RequestBody AmministratoreModel amministratore) {
+    public ResponseEntity<Integer> update(@RequestBody AmministratoreModel amministratore) {
         try {
             Amministratore a = new Amministratore(amministratore);
-            amministratoreService.udpate(a);
-            return new ResponseEntity<>(HttpStatus.OK);
+            Integer response = amministratoreService.udpate(a);
+            return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
