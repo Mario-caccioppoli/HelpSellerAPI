@@ -17,56 +17,50 @@ import unisa.is.helpseller.Model.AmministratoreModel;
 @RequestMapping("/admin")
 @CrossOrigin("http://localhost:4200")
 public class AmministratoreController {
-	
-	@Autowired
-	private final AmministratoreService amministratoreService;
 
-	@Autowired
-	public AmministratoreController(AmministratoreService amministratoreService) {
-		this.amministratoreService = amministratoreService;
-	}
+    @Autowired
+    private final AmministratoreService amministratoreService;
 
-	@GetMapping("/findAll")
-	public ResponseEntity<List<AmministratoreModel>> findAll() {
-		try
-		{
-			List<Amministratore> amministratori = amministratoreService.findAll();
-			List<AmministratoreModel> amministratoriModel = new ArrayList<AmministratoreModel>();
-				amministratoriModel = amministratori.stream().map(p -> {
-					return new AmministratoreModel(p.getId(), p.getEmail(), p.getUsername(), p.getPassword());
-				}).collect(Collectors.toList());
-				return new ResponseEntity<>(amministratoriModel, HttpStatus.OK);
-		}catch(Exception ex)
-		{
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-	}
+    @Autowired
+    public AmministratoreController(AmministratoreService amministratoreService) {
+        this.amministratoreService = amministratoreService;
+    }
 
-	@GetMapping("/findId/{id}")
-	public ResponseEntity<AmministratoreModel> findId(@PathVariable("id") int id) {
-		try
-		{
-			Amministratore amministratore = amministratoreService.findId(id);
-			AmministratoreModel amministratoreModel = new AmministratoreModel(amministratore.getId(), amministratore.getEmail(), amministratore.getUsername(), amministratore.getPassword());
-			return new ResponseEntity<>(amministratoreModel, HttpStatus.OK);
-		}catch (Exception ex)
-		{
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-	}
+    @GetMapping("/findAll")
+    public ResponseEntity<List<AmministratoreModel>> findAll() {
+        try {
+            List<Amministratore> amministratori = amministratoreService.findAll();
+            List<AmministratoreModel> amministratoriModel = new ArrayList<AmministratoreModel>();
+            amministratoriModel = amministratori.stream().map(p -> {
+                return new AmministratoreModel(p.getId(), p.getEmail(), p.getUsername(), p.getPassword());
+            }).collect(Collectors.toList());
+            return new ResponseEntity<>(amministratoriModel, HttpStatus.OK);
+        } catch (Exception ex) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
-	@GetMapping("/update")
-	public ResponseEntity<AmministratoreModel> update(@RequestBody AmministratoreModel amministratore) {
-		try
-		{
-                        Amministratore a = new Amministratore(amministratore.getEmail(), amministratore.getUsername(), amministratore.getPassword());
-			amministratoreService.udpate(a);
-			return new ResponseEntity<>(HttpStatus.OK);
-		}catch (Exception ex)
-		{
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		
-	}
+    @GetMapping("/findId/{id}")
+    public ResponseEntity<AmministratoreModel> findId(@PathVariable("id") int id) {
+        try {
+            Amministratore amministratore = amministratoreService.findId(id);
+            AmministratoreModel amministratoreModel = new AmministratoreModel(amministratore.getId(), amministratore.getEmail(), amministratore.getUsername(), amministratore.getPassword());
+            return new ResponseEntity<>(amministratoreModel, HttpStatus.OK);
+        } catch (Exception ex) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/update")
+    public ResponseEntity<AmministratoreModel> update(@RequestBody AmministratoreModel amministratore) {
+        try {
+            Amministratore a = new Amministratore(amministratore.getEmail(), amministratore.getUsername(), amministratore.getPassword());
+            amministratoreService.udpate(a);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception ex) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
 
 }
