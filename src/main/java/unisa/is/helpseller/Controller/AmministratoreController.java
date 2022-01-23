@@ -18,7 +18,7 @@ import unisa.is.helpseller.Model.AmministratoreModel;
  */
 @RestController
 @RequestMapping("/admin")
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class AmministratoreController {
 	
 	@Autowired
@@ -72,13 +72,13 @@ public class AmministratoreController {
 	 * @param Amministratore oggetto entity da modificare nel DB
 	 * @return int id dell'entity modificata
 	 */
-	@GetMapping("/update")
-	public ResponseEntity<AmministratoreModel> update(@RequestBody AmministratoreModel amministratore) {
+	@PostMapping("/update")
+	public ResponseEntity<Integer> update(@RequestBody AmministratoreModel amministratore) {
 		try
 		{
-                        Amministratore a = new Amministratore(amministratore.getEmail(), amministratore.getUsername(), amministratore.getPassword());
-			amministratoreService.udpate(a);
-			return new ResponseEntity<>(HttpStatus.OK);
+                        Amministratore a = new Amministratore(amministratore);
+			Integer response = amministratoreService.udpate(a);
+			return new ResponseEntity<>(response, HttpStatus.OK);
 		}catch (Exception ex)
 		{
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
