@@ -2,6 +2,9 @@ package unisa.is.helpseller.Model;
 
 import java.io.Serializable;
 
+/**
+ * Classe model utilizzata per la comunicazione col frontend descrittiva dell'entity OrdineProdotto
+ */
 public class OrdineProdottoModel implements Serializable {
     
     private int idOrdine;

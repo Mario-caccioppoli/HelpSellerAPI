@@ -5,7 +5,9 @@ import java.io.Serializable;
 import java.util.List;
 import unisa.is.helpseller.Entity.Azienda;
 
-
+/**
+ * Classe model utilizzata per la comunicazione col frontend descrittiva dell'entity Azienda
+ */
 public class AziendaModel implements Serializable {
 
     private int id;

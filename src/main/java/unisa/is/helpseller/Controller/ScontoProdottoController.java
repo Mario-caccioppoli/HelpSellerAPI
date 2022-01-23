@@ -13,9 +13,12 @@ import unisa.is.helpseller.Model.ScontoProdottoModel;
 import unisa.is.helpseller.Service.ProdottoService;
 import unisa.is.helpseller.Service.ScontoService;
 
+/**
+ * classe di mappatura dei servizi relativi a ScontoProdotto affinché siano accessibili dal frontend
+ */
 @RestController
 @RequestMapping("/scontoprodotto")
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ScontoProdottoController {
 
     @Autowired
@@ -35,6 +38,10 @@ public class ScontoProdottoController {
         this.prodottoService = prodottoService;
     }
 
+    /**
+     * metodo per il recupero di tutti le istanze presenti nel DB
+     * @return lista di oggetti delle entity da passare al frontEnd
+     */
     @GetMapping("/findAll")
     public ResponseEntity<List<ScontoProdottoModel>> findAllScontoProdotto() {
         try {
@@ -57,6 +64,11 @@ public class ScontoProdottoController {
         }
     }
 
+    /**
+     * metodo per il recupero di una istanza dal DB dato in input il suo ID
+     * @param id    intero ID dell'entità ricercata
+     * @return oggetto prelevato dal DB da restituire al frontend
+     */
     @GetMapping("/findBySconto/{id}")
     public ResponseEntity<List<ScontoProdottoModel>> findBySconto(@PathVariable("id") int id) {
         try {
@@ -80,6 +92,11 @@ public class ScontoProdottoController {
         }
     }
 
+    /**
+     * metodo per il recupero di una istanza dal DB dato in input il suo ID
+     * @param id    intero ID dell'entità ricercata
+     * @return oggetto prelevato dal DB da restituire al frontend
+     */
     @GetMapping("/findByProdotto/{id}")
     public ResponseEntity<List<ScontoProdottoModel>> findByProdotto(@PathVariable("id") int id) {
         try {
@@ -103,6 +120,11 @@ public class ScontoProdottoController {
         }
     }
 
+    /**
+     * metodo per la rimozione di una istanza dato l'id
+     * @param id    id dell'entità da rimuovere
+     * @return int id dell'entità rimossa
+     */
     @DeleteMapping("/deleteId/{id_prodotto}/{id_sconto}")
     public ResponseEntity<Integer> deleteId(
             @PathVariable("id_prodotto") int id_prodotto,
@@ -119,7 +141,11 @@ public class ScontoProdottoController {
         return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
-    //DA MODIFICARE
+    /**
+     * metodo per l'inserimento di un'istanza nel DB
+     * @param ScontoProdotto oggetto entity da inserire nel DB
+     * @return int id dell'entità aggiunta
+     */
     @PostMapping("/insert/{id_prodotto}/{id_sconto}")
     public ResponseEntity<Integer> insert(
             @PathVariable("id_prodotto") int id_prodotto,

@@ -15,6 +15,7 @@ import org.springframework.http.MediaType;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,11 +24,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+/**
+ * classe di mappatura dei servizi relativi alla gestione dei file
+ */
 @RestController
 @RequestMapping("/file")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class FileController {
     private static final String DIRECTORY = "/home/daniele/IDE/Helpseller/HelpSellerAPI/file";
-    
+
+    /**
+     * metodo per l'upload di un file
+     * @param multipartFiles oggetto del file
+     */
     @PostMapping("/upload")
     public ResponseEntity<List<String>> uploadFiles
         (@RequestParam("files")List<MultipartFile> multipartFiles) throws IOException{
@@ -42,7 +51,11 @@ public class FileController {
             
             return ResponseEntity.ok().body(filenames);            
     }
-        
+
+    /**
+     * metodo per il download di un file
+     * @param filename nome del file
+     */
     @GetMapping("/download/{filename}")
     public ResponseEntity<Resource> downloadFiles
         (@PathVariable("filename") String filename) throws IOException {

@@ -5,6 +5,9 @@ import java.io.Serializable;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+/**
+ * Classe descrittiva dell'oggetto entity ScontoProdottoid
+ */
 public class ScontoProdottoId implements Serializable {
     private Integer id_sconto;
     private Integer id_prodotto;

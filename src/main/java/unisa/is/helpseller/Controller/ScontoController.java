@@ -13,9 +13,12 @@ import org.springframework.http.ResponseEntity;
 import unisa.is.helpseller.Entity.Sconto;
 import unisa.is.helpseller.Model.ScontoModel;
 
+/**
+ * classe di mappatura dei servizi relativi a Sconto affinché siano accessibili dal frontend
+ */
 @RestController
 @RequestMapping("/sconto")
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ScontoController {
 
     @Autowired
@@ -26,6 +29,10 @@ public class ScontoController {
         this.scontoService = scontoService;
     }
 
+    /**
+     * metodo per il recupero di tutti le istanze presenti nel DB
+     * @return lista di oggetti delle entity da passare al frontEnd
+     */
     @GetMapping("/findAll")
     public ResponseEntity<List<ScontoModel>> findAll() {
         try {
@@ -41,6 +48,11 @@ public class ScontoController {
         }
     }
 
+    /**
+     * metodo per il recupero di una istanza dal DB dato in input il suo ID
+     * @param id    intero ID dell'entità ricercata
+     * @return oggetto prelevato dal DB da restituire al frontend
+     */
     @GetMapping("/findId/{id}")
     public ResponseEntity<ScontoModel> findId(@PathVariable("id") int id) {
         try {
@@ -56,6 +68,11 @@ public class ScontoController {
         }
     }
 
+    /**
+     * metodo per la rimozione di una istanza dato l'id
+     * @param id    id dell'entità da rimuovere
+     * @return int id dell'entità rimossa
+     */
     @DeleteMapping("/deleteId/{id}")
     public ResponseEntity<Integer> deleteId(@PathVariable("id") int id) {
         try {
@@ -70,6 +87,11 @@ public class ScontoController {
         return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
+    /**
+     * metodo per l'inserimento di un'istanza nel DB
+     * @param Sconto oggetto entity da inserire nel DB
+     * @return int id dell'entità aggiunta
+     */
     @PostMapping("/insert")
     public ResponseEntity<Integer> insert(@RequestBody ScontoModel sc) {
         try {
@@ -86,6 +108,11 @@ public class ScontoController {
         return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
+    /**
+     * metodo per l'update di una entità presente nel DB
+     * @param Sconto oggetto entity da modificare nel DB
+     * @return int id dell'entity modificata
+     */
     @PostMapping("/update")
     public ResponseEntity<Integer> update(@RequestBody ScontoModel sc) {
         try {
@@ -102,6 +129,11 @@ public class ScontoController {
         return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
+    /**
+     * metodo di ricerca data l'azienda
+     * @param id_azienda
+     * @return lista degli sconti recuperati
+     */
     @GetMapping("/findScontiByAzienda/{id}")
     public ResponseEntity<List<ScontoModel>> findScontiByAzienda(@PathVariable("id") int id) {
         try {
@@ -120,6 +152,11 @@ public class ScontoController {
         }
     }
 
+    /**
+     * metodo di ricerca dato il tipo
+     * @param tipo dello sconto
+     * @return lista degli sconti recuperati
+     */
     @GetMapping("/findScontiByTipo/{tipo}")
     public ResponseEntity<List<ScontoModel>> findScontiByTipo(@PathVariable("tipo") String tipo) {
         try {
@@ -137,7 +174,13 @@ public class ScontoController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    
+
+    /**
+     * metodo di ricerca dato il tipo e l'azienda
+     * @param tipo
+     * @param id_azienda
+     * @return lista degli sconti recuperati
+     */
     @GetMapping("findScontiAziendaByTipo/{tipo}/{id_azienda}")
     public ResponseEntity<List<ScontoModel>> findScontiAziendaByTipo(@PathVariable("tipo") String tipo, 
             @PathVariable("id_azienda") int id_azienda) {
@@ -155,8 +198,13 @@ public class ScontoController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-    
-    
+
+    /**
+     * metodo di ricerca dato il nome e l'azienda
+     * @param nome_sconto
+     * @param id_azienda
+     * @return lista degli sconti recuperati
+     */
     @GetMapping("findScontiByNomeInAzienda/{nome_sconto}/{id_azienda}")
     public ResponseEntity<List<ScontoModel>> findScontiByNomeInAzienda(@PathVariable("nome_sconto") String nome_sconto, 
             @PathVariable("id_azienda") int id) {

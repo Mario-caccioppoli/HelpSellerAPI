@@ -11,15 +11,22 @@ import unisa.is.helpseller.Entity.Distributore;
 import unisa.is.helpseller.Model.UtenteModel;
 
 /**
+ *  Classe contenente tutti i servizi relativi all'entity Utente, generalizzazione di Admin, Distributore e Azienda
  *
- * @author Alex
  */
 @Service
 @Transactional
 public class UtenteService {
     
     //service per l'autenticazione V0.0
-    
+
+    /**
+     * metodo per l'autenticazione dell'admin
+     * @param email email dell'utente
+     * @param password la sua password
+     * @param admin lista degli admin
+     * @return oggetto dell'utente
+     */
     public UtenteModel authAdmin(String email, String password, List<Amministratore> admin){
         UtenteModel user;
         Iterator<Amministratore> iterator = admin.iterator();
@@ -34,7 +41,14 @@ public class UtenteService {
         }
         return null;
     }
-    
+
+    /**
+     * metodo per l'autenticazione del distributore
+     * @param email email dell'utente
+     * @param password la sua password
+     * @param dist lista dei distributore
+     * @return oggetto dell'utente
+     */
     public UtenteModel authDist(String email, String password, List<Distributore> dist){
         UtenteModel user;
         Iterator<Distributore> it = dist.iterator();
@@ -49,7 +63,14 @@ public class UtenteService {
         }
         return null;
     }
-    
+
+    /**
+     * metodo per l'autenticazione dell'azienda
+     * @param email email dell'utente
+     * @param password la sua password
+     * @param dist lista dei azienda
+     * @return oggetto dell'utente
+     */
     public UtenteModel authAzienda(String email, String password, List<Azienda> azienda){
         UtenteModel user;
         Iterator<Azienda> iter = azienda.iterator();

@@ -11,14 +11,20 @@ import org.springframework.stereotype.Service;
 
 
 /**
+ * classe per l'invio di una mail di posta elettronica
  *
- * @author Alex
  */
 @Service
 public class EmailSenderService {
     @Autowired
     private JavaMailSender mailSender;
-    
+
+    /**
+     * metodo per l'invio di una mail
+     * @param destinatario  il destinatario della mail
+     * @param oggetto   l'oggetto della mail
+     * @param body  il corpo della mail
+     */
     public void sendEmail(String destinatario, String oggetto, String body){
         SimpleMailMessage emailMsg = new SimpleMailMessage();
         emailMsg.setFrom("helpsellerapi@gmail.com");

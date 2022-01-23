@@ -6,7 +6,9 @@ import java.sql.Date;
 import javax.persistence.*;
 import unisa.is.helpseller.Model.TrasportoModel;
 
-
+/**
+ * Classe descrittiva dell'oggetto entity Trasporto
+ */
 @Entity
 @Table(name = "trasporto")
 public class Trasporto implements Serializable{

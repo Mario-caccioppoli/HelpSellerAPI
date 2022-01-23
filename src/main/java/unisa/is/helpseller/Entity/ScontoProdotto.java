@@ -4,6 +4,9 @@ package unisa.is.helpseller.Entity;
 import java.io.Serializable;
 import javax.persistence.*;
 
+/**
+ * Classe descrittiva dell'oggetto entity ScontoProdotto
+ */
 @Entity
 @IdClass(ScontoProdottoId.class)
 @Table(name = "sconto_prodotto")

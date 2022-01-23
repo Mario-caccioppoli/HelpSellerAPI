@@ -5,7 +5,9 @@ import unisa.is.helpseller.Entity.Amministratore;
 import unisa.is.helpseller.Entity.Azienda;
 import unisa.is.helpseller.Entity.Distributore;
 
-
+/**
+ * Classe model utilizzata per la comunicazione col frontend descrittiva dell'entity Utente
+ */
 public class UtenteModel implements Serializable{
 
     private int id;

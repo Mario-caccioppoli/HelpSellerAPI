@@ -7,6 +7,9 @@ import java.util.List;
 import java.io.Serializable;
 import unisa.is.helpseller.Entity.Trasporto;
 
+/**
+ * Classe model utilizzata per la comunicazione col frontend descrittiva dell'entity Trasporto
+ */
 public class TrasportoModel implements Serializable {
 
     private int id;

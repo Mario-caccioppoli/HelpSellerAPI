@@ -11,9 +11,12 @@ import org.springframework.http.ResponseEntity;
 import unisa.is.helpseller.Entity.Prodotto;
 import unisa.is.helpseller.Model.ProdottoModel;
 
+/**
+ * classe di mappatura dei servizi relativi ad Prodotto affinché siano accessibili dal frontend
+ */
 @RestController
 @RequestMapping("/prodotto")
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ProdottoController {
 
     @Autowired
@@ -24,6 +27,10 @@ public class ProdottoController {
         this.prodottoService = prodottoService;
     }
 
+    /**
+     * metodo per il recupero di tutti le istanze presenti nel DB
+     * @return List<Amministratore> lista di oggetti entity
+     */
     @GetMapping("/findAll")
     public ResponseEntity<List<ProdottoModel>> findAll() {
         try {
@@ -38,6 +45,11 @@ public class ProdottoController {
         }
     }
 
+    /**
+     * metodo per il recupero di una istanza dal DB dato in input il suo ID
+     * @param id    intero ID dell'entità ricercata
+     * @return oggetto prelevato dal DB, se presente
+     */
     @GetMapping("/findId/{id}")
     public ResponseEntity<ProdottoModel> findId(@PathVariable("id") int id) {
         try {
@@ -53,6 +65,11 @@ public class ProdottoController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    /**
+     * metodo per la rimozione di una istanza dato l'id
+     * @param id    id dell'entità da rimuovere
+     * @return int id dell'entità rimossa
+     */
     @DeleteMapping("/deleteId/{id}")
     public ResponseEntity<Integer> deleteId(@PathVariable("id") int id) {
         try {
@@ -67,6 +84,11 @@ public class ProdottoController {
         return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
+    /**
+     * metodo per l'inserimento di un'istanza nel DB
+     * @param Prodotto oggetto entity da inserire nel DB
+     * @return int id dell'entità aggiunta
+     */
     @PostMapping("/insert")
     public ResponseEntity<Integer> insert(@RequestBody ProdottoModel prod) {
         try {
@@ -82,6 +104,11 @@ public class ProdottoController {
         return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
+    /**
+     * metodo per l'update di una entità presente nel DB
+     * @param Prodotto oggetto entity da modificare nel DB
+     * @return int id dell'entity modificata
+     */
     @PostMapping("/update")
     public ResponseEntity<Integer> update(@RequestBody ProdottoModel prod) {
         try {
@@ -97,6 +124,11 @@ public class ProdottoController {
         return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
+    /**
+     * metodo di ricerca dei prodotti dato l'id dell'azienda
+     * @param id dell'azienda
+     * @return lista di prodotti recuperati
+     */
     @GetMapping("/findProdottiByAzienda/{id}")
     public ResponseEntity<List<ProdottoModel>> findProdottiByAzienda(@PathVariable("id") int id) {
         try {
@@ -115,6 +147,11 @@ public class ProdottoController {
         }
     }
 
+    /**
+     * metodo di ricerca dei prodotti dato il nome
+     * @param name stringa contenente il nome dell'azienda
+     * @return lista dei prodotti recuperati
+     */
     @GetMapping("/findProdottiByNome/{name}")
     public ResponseEntity<List<ProdottoModel>> findProdottiByNome(@PathVariable("name") String name) {
         try {
@@ -132,8 +169,13 @@ public class ProdottoController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-//il nome è del prodotto, l'id è dell'azienda
 
+    /**
+     * metodo di ricerda di prodotti dato il nome e l'id dellazienda
+     * @param name nome del prodotto
+     * @param id id dell'azienda
+     * @return lista dei prodotti recuperati
+     */
     @GetMapping("/findProdottiByNomeInAzienda/{name}/{id}")
     public ResponseEntity<List<ProdottoModel>> findProdottiByNomeInAzienda(@PathVariable("name") String name, @PathVariable("id") int id) {
         try {
@@ -152,6 +194,11 @@ public class ProdottoController {
         }
     }
 
+    /**
+     * metodo di ricerca dato l'id di un ordine
+     * @param id dell'ordine
+     * @return lista di prodotti recuperati
+     */
     @GetMapping("/findProdottiInOrdine/{id}")
     public ResponseEntity<List<ProdottoModel>> findProdottiInOrdine(@PathVariable("id") int id) {
         try {
@@ -170,6 +217,11 @@ public class ProdottoController {
         }
     }
 
+    /**
+     * metodo di ricerda dato l'id di uno sconto
+     * @param id dello sconto
+     * @return lista dei prodotti recuperati
+     */
     @GetMapping("/findProdottiBySconto/{id}")
     public ResponseEntity<List<ProdottoModel>> findProdottiInSconto(@PathVariable("id") int id) {
         try {
@@ -188,6 +240,12 @@ public class ProdottoController {
         }
     }
 
+    /**
+     * metodo di ricerca dato l'id del prodotto e dell'azienda
+     * @param id_prodotto id del prodotto
+     * @param id_azienda id dell'azienda
+     * @return lista contenente i prodotti recuperati
+     */
     @GetMapping("/findProdottiByIdInAzienda/{id_prodotto}/{id_azienda}")
     public ResponseEntity<List<ProdottoModel>> findProdottiByIdInAzienda(@PathVariable("id_prodotto") int id_prodotto, 
             @PathVariable("id_azienda") int id_azienda) {

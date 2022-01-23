@@ -4,7 +4,9 @@ import java.sql.Date;
 import java.io.Serializable;
 import unisa.is.helpseller.Entity.Recensione;
 
-
+/**
+ * Classe model utilizzata per la comunicazione col frontend descrittiva dell'entity Recensione
+ */
 public class RecensioneModel implements Serializable{
 
     private int id;

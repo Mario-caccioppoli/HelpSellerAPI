@@ -4,6 +4,9 @@ import java.io.Serializable;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+/**
+ * Classe descrittiva dell'oggetto entity OrdineProdottoId
+ */
 public class OrdineProdottoId implements Serializable {
     private int id_ordine;
     private int id_prodotto;

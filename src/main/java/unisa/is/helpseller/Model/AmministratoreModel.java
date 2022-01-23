@@ -3,6 +3,9 @@ package unisa.is.helpseller.Model;
 
 import java.io.Serializable;
 
+/**
+ * Classe model utilizzata per la comunicazione col frontend descrittiva dell'entity Amministratore
+ */
 
 public class AmministratoreModel implements Serializable{
  
@@ -20,7 +23,7 @@ public class AmministratoreModel implements Serializable{
         this.password = password;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 

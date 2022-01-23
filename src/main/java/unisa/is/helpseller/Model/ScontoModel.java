@@ -6,6 +6,9 @@ import java.util.List;
 import java.io.Serializable;
 import unisa.is.helpseller.Entity.Sconto;
 
+/**
+ * Classe model utilizzata per la comunicazione col frontend descrittiva dell'entity Sconto
+ */
 public class ScontoModel implements Serializable {
     
     private int id;

@@ -6,7 +6,9 @@ import java.io.Serializable;
 import javax.persistence.*;
 import unisa.is.helpseller.Model.OrdineModel;
 
-
+/**
+ * Classe descrittiva dell'oggetto entity Ordine
+ */
 @Entity
 @Table(name = "ordine")
 public class Ordine implements Serializable{

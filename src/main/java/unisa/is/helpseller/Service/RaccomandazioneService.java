@@ -14,22 +14,31 @@ import unisa.is.helpseller.Model.ProdottoModel;
 
 /**
  *
- * @author Alex
- * 
- * risolvere path nei .exe!!!
+ * classe implementativa dei servizi riguardati il Raccomandation Engine
  */
 
 @Service
 @Transactional
 public class RaccomandazioneService {
+
+    /**
+     * metodo per la generazione di un file .csv contenente le recensioni presenti nel db
+     * @throws IOException caso in cui non viene trovato il file .exe
+     */
     public void creaCsv() throws IOException{
         Runtime runTime = Runtime.getRuntime();
             
         String eseguibilePath = "getReviews.exe";
         runTime.exec(eseguibilePath);
     }
-    
-    //public ProdottoModel[] firstLayer(ProdottoService ps) throws IOException{
+
+    /**
+     * metodo per il recupero dei prodotti più popolari sulla piattaforma
+     * @param ps oggetto ProdottoService
+     * @return vettore di oggetti prodottoModel
+     * @throws IOException caso in cui non viene trovato il file .exe
+     */
+
     public ProdottoModel[] firstLayer(ProdottoService ps) throws IOException {
         ProdottoModel[] array = new ProdottoModel[10];   //da modificare la dimensione dell'array
         ProdottoModel prodottoM;
@@ -50,10 +59,17 @@ public class RaccomandazioneService {
         }
         return array;
     }
-    
-//Funzionamento: il parametro ID preso dal frontned indica l'utente che sta visualizzando la pagina
-//Viene preso l'ultimo articolo recensito dall'utente
-//Vengono trovati gli articoli simili e restituiti al frontend
+
+    /**
+     * //Funzionamento: il parametro ID preso dal frontned indica l'utente che sta visualizzando la pagina
+     * //Viene preso l'ultimo articolo recensito dall'utente
+     * //Vengono trovati gli articoli simili e restituiti al frontend
+     * @param ds oggetto RecensioneService
+     * @param ps oggetto ProdottoService
+     * @param id dell'utente che sta navigando sulla piattaforma
+     * @return model contente i prodotti da suggerire
+     * @throws IOException caso in cui non viene trovato il file .exe
+     */
     //ex input: 2, distributoreID 2 ha recensito l'ultima volta idProdotto 3. Modulo FIA riconosce che idProdotto 3 è correlato ai prodotti 1, 2, 11.
     public ProdottoModel[] secondLayer(RecensioneService ds, ProdottoService ps, int id) throws IOException {
         System.out.println("stampa PER RIDERE");

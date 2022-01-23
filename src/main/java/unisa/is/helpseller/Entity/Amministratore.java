@@ -3,8 +3,11 @@ package unisa.is.helpseller.Entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import unisa.is.helpseller.Model.AmministratoreModel;
 
-
+/**
+ * Classe descrittiva dell'oggetto entity Amministratore
+ */
 @Entity
 @Table(name = "amministratore")
 public class Amministratore implements Serializable{
@@ -22,6 +25,13 @@ public class Amministratore implements Serializable{
         this.email = email;
         this.username = username;
         this.password = password;
+    }
+    
+    public Amministratore(AmministratoreModel a) {
+        this.id = a.getId();
+        this.username = a.getUsername();
+        this.email = a.getEmail();
+        this.password = a.getPassword();
     }
 
     public int getId() {
