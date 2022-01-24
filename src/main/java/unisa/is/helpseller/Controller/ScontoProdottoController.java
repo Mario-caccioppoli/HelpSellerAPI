@@ -145,7 +145,7 @@ public class ScontoProdottoController {
      * @param ScontoProdotto oggetto entity da inserire nel DB
      * @return int id dell'entità aggiunta
      */
-    @PostMapping("/insert/")
+    @PostMapping("/insert/{id_prodotto}/{id_sconto}")
     public ResponseEntity<Integer> insert(
             @PathVariable("id_prodotto") int id_prodotto,
             @PathVariable("id_sconto") int id_sconto) {
