@@ -67,7 +67,8 @@ public class OrdineProdottoController {
         try {
             for(OrdineProdottoModel opm : opList) {
                 OrdineProdotto ordProd = new OrdineProdotto(opm);
-                result.add(ordineprodottoService.insert(ordProd));  
+                int resp = ordineprodottoService.insert(ordProd);
+                result.add(resp);  
             }
         } catch (Exception ex) {
             System.out.println("Not inserted");

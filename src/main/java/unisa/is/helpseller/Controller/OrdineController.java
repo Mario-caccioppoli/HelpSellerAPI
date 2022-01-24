@@ -11,11 +11,13 @@ import org.springframework.http.ResponseEntity;
 import unisa.is.helpseller.Entity.Distributore;
 import unisa.is.helpseller.Entity.Ordine;
 import unisa.is.helpseller.Model.OrdineModel;
+import unisa.is.helpseller.Model.OrdineProdottoModel;
 import unisa.is.helpseller.Service.DistributoreService;
 import unisa.is.helpseller.Service.EmailSenderService;
 
 /**
- * classe di mappatura dei servizi relativi ad Ordine affinché siano accessibili dal frontend
+ * classe di mappatura dei servizi relativi ad Ordine affinché siano accessibili
+ * dal frontend
  */
 @RestController
 @RequestMapping("/ordine")
@@ -24,14 +26,15 @@ public class OrdineController {
 
     @Autowired
     private final OrdineService ordineService;
-    
+
     @Autowired
     private DistributoreService distributoreService;
-    
+
     @Autowired
     private EmailSenderService senderService;
     
-    OrdineProdottoController ordineProdottoController;
+    @Autowired
+    private OrdineProdottoController ordineProdottoController;
 
     @Autowired
     public OrdineController(OrdineService ordineService) {
@@ -40,6 +43,7 @@ public class OrdineController {
 
     /**
      * metodo per il recupero di tutti le istanze presenti nel DB
+     *
      * @return lista di oggetti delle entity da passare al frontEnd
      */
     @GetMapping("/findAll")
@@ -58,7 +62,8 @@ public class OrdineController {
 
     /**
      * metodo per il recupero di una istanza dal DB dato in input il suo ID
-     * @param id    intero ID dell'entità ricercata
+     *
+     * @param id intero ID dell'entità ricercata
      * @return oggetto prelevato dal DB da restituire al frontend
      */
     @GetMapping("/findId/{id}")
@@ -68,7 +73,7 @@ public class OrdineController {
             if (!ordine.equals(null)) {
                 OrdineModel o = new OrdineModel(ordine);
                 return new ResponseEntity<>(o, HttpStatus.OK);
-            } 
+            }
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -77,17 +82,18 @@ public class OrdineController {
 
     /**
      * metodo per la rimozione di una istanza dato l'id
-     * @param id    id dell'entità da rimuovere
+     *
+     * @param id id dell'entità da rimuovere
      * @return int id dell'entità rimossa
      */
     @DeleteMapping("/deleteId/{id}")
     public ResponseEntity<Integer> deleteId(@PathVariable("id") int id) {
         try {
             int result = ordineService.deleteId(id);
-            if(result > 0) {
-               return new ResponseEntity<>(result, HttpStatus.OK);
+            if (result > 0) {
+                return new ResponseEntity<>(result, HttpStatus.OK);
             }
-            
+
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -96,21 +102,33 @@ public class OrdineController {
 
     /**
      * metodo per l'inserimento di un'istanza nel DB
+     *
      * @param Ordine oggetto entity da inserire nel DB
      * @return int id dell'entità aggiunta
      */
     @PostMapping("/insert")
-    public ResponseEntity<Integer> insert(@RequestBody OrdineModel ord) {
+    public ResponseEntity<Integer> insert(@RequestBody OrdineModel model) {
         try {
-            Ordine o = new Ordine(ord);
-            int id = ordineService.insert(o);
-            Distributore d = distributoreService.findId(o.getIdDistributore());
-            senderService.sendEmail(d.getEmail(), "Ordine confermato", "Il tuo ordine è stato confermato");
-            if(id > 0) {
-               ordineProdottoController.insert(ord.getOrdineProdotti());
-               return new ResponseEntity<>(id, HttpStatus.OK);
-            }
             
+            //Converto in entity e invio al database
+            Ordine entity = new Ordine(model);
+            int id = ordineService.insert(entity);
+
+            //Controllo che l'invio al database sia andato a buon fine
+            if (id > 0) {
+                //Invio ordineprodotto al database 
+                List<OrdineProdottoModel> opmList = model.getOrdineProdotti();
+                for(int i = 0; i < opmList.size(); i++) {
+                    opmList.get(i).setIdOrdine(id);
+                }
+                ordineProdottoController.insert(opmList);
+                
+                //Recupero il distributore e invio mail
+                Distributore d = distributoreService.findId(entity.getIdDistributore());
+                senderService.sendEmail(d.getEmail(), "Ordine confermato", "Il tuo ordine è stato confermato");
+                return new ResponseEntity<>(id, HttpStatus.OK);
+            }
+
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -119,6 +137,7 @@ public class OrdineController {
 
     /**
      * metodo per l'update di una entità presente nel DB
+     *
      * @param Ordine oggetto entity da modificare nel DB
      * @return int id dell'entity modificata
      */
@@ -127,10 +146,10 @@ public class OrdineController {
         try {
             Ordine o = new Ordine(ord);
             int id = ordineService.update(o);
-            if(id > 0) {
-               return new ResponseEntity<>(id, HttpStatus.OK);
+            if (id > 0) {
+                return new ResponseEntity<>(id, HttpStatus.OK);
             }
-            
+
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -139,6 +158,7 @@ public class OrdineController {
 
     /**
      * metodo per il recupero degli ordini dato un distributore
+     *
      * @param id_distributore id del distributore
      * @return lista degli ordini recuperati
      */
@@ -162,6 +182,7 @@ public class OrdineController {
 
     /**
      * metodo per il recupero degli ordini data un'azienda
+     *
      * @param id_azienda id dell'azienda
      * @return lista degli ordini recuperati
      */
