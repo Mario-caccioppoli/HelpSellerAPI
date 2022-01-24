@@ -86,7 +86,7 @@ public class RecensioneController {
 
     /**
      * metodo per l'inserimento di un'istanza nel DB
-     * @param Recensione oggetto entity da inserire nel DB
+     * @param rec RecensioneModel oggetto entity da inserire nel DB
      * @return int id dell'entità aggiunta
      */
     @PostMapping("/insert")
@@ -106,7 +106,7 @@ public class RecensioneController {
 
     /**
      * metodo per l'update di una entità presente nel DB
-     * @param Recensione oggetto entity da modificare nel DB
+     * @param rec RecensioneModel oggetto entity da modificare nel DB
      * @return int id dell'entity modificata
      */
     @PostMapping("/update")

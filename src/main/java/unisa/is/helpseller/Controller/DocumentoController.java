@@ -86,7 +86,7 @@ public class DocumentoController {
 
     /**
      * metodo per l'inserimento di un'istanza nel DB
-     * @param Documento oggetto entity da inserire nel DB
+     * @param doc DocumentoModel oggetto entity da inserire nel DB
      * @return int id dell'entità aggiunta
      */
     @PostMapping("/insert")
@@ -106,7 +106,7 @@ public class DocumentoController {
 
     /**
      * metodo per l'update di una entità presente nel DB
-     * @param Documento oggetto entity da modificare nel DB
+     * @param doc DocumentoModel oggetto entity da modificare nel DB
      * @return int id dell'entity modificata
      */
     @PostMapping("/update")
@@ -126,7 +126,7 @@ public class DocumentoController {
 
     /**
      * metodo di ricerca di un documento dato l'id di un ordine
-     * @param int id dell'ordine
+     * @param id dell'ordine
      * @return List<Documento> lista dei documenti recuperati
      */
     @GetMapping("/findDocumentiByOrdine/{id}")

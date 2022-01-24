@@ -68,7 +68,7 @@ public class UtenteService {
      * metodo per l'autenticazione dell'azienda
      * @param email email dell'utente
      * @param password la sua password
-     * @param dist lista dei azienda
+     * @param azienda
      * @return oggetto dell'utente
      */
     public UtenteModel authAzienda(String email, String password, List<Azienda> azienda){

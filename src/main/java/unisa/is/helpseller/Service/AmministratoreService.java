@@ -50,7 +50,7 @@ public class AmministratoreService {
 
     /**
      * metodo per l'inserimento di un'istanza nel DB
-     * @param Amministratore oggetto entity da inserire nel DB
+     * @param a Amministratore oggetto entity da inserire nel DB
      * @return int id dell'entità aggiunta
      */
     public int insert(Amministratore a) {
@@ -59,7 +59,7 @@ public class AmministratoreService {
 
     /**
      * metodo per l'update di una entità presente nel DB
-     * @param Amministratore oggetto entity da modificare nel DB
+     * @param a Amministratore oggetto entity da modificare nel DB
      * @return int id dell'entity modificata
      */
     public int udpate(Amministratore a) {

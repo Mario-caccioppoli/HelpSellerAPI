@@ -49,7 +49,7 @@ public class RecensioneService {
 
     /**
      * metodo per l'inserimento di un'istanza nel DB
-     * @param Recensione oggetto entity da inserire nel DB
+     * @param rec Recensione oggetto entity da inserire nel DB
      * @return int id dell'entità aggiunta
      */
     public int insert(Recensione rec) {
@@ -58,7 +58,7 @@ public class RecensioneService {
 
     /**
      * metodo per l'update di una entità presente nel DB
-     * @param Recensione oggetto entity da modificare nel DB
+     * @param rec Recensione oggetto entity da modificare nel DB
      * @return int id dell'entity modificata
      */
     public int udpate(Recensione rec) {

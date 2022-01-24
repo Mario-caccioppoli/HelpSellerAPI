@@ -49,7 +49,7 @@ public class TrasportoService {
 
     /**
      * metodo per l'inserimento di un'istanza nel DB
-     * @param Trasporto oggetto entity da inserire nel DB
+     * @param tr Trasporto oggetto entity da inserire nel DB
      * @return int id dell'entità aggiunta
      */
     public int insert(Trasporto tr) {
@@ -58,7 +58,7 @@ public class TrasportoService {
 
     /**
      * metodo per l'update di una entità presente nel DB
-     * @param Trasporto oggetto entity da modificare nel DB
+     * @param tr Trasporto oggetto entity da modificare nel DB
      * @return int id dell'entity modificata
      */
     public int udpate(Trasporto tr) {

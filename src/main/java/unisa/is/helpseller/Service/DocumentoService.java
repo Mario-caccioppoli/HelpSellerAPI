@@ -51,7 +51,7 @@ public class DocumentoService {
 
     /**
      * metodo per l'inserimento di un'istanza nel DB
-     * @param Documento oggetto entity da inserire nel DB
+     * @param doc Documento oggetto entity da inserire nel DB
      * @return int id dell'entità aggiunta
      */
     public int insert(Documento doc) {
@@ -60,7 +60,7 @@ public class DocumentoService {
 
     /**
      * metodo per l'update di una entità presente nel DB
-     * @param Documento oggetto entity da modificare nel DB
+     * @param doc Documento oggetto entity da modificare nel DB
      * @return int id dell'entity modificata
      */
     public int udpate(Documento doc) {
@@ -69,7 +69,7 @@ public class DocumentoService {
 
     /**
      * metodo di ricerca di un documento dato l'id di un ordine
-     * @param int id dell'ordine
+     * @param id dell'ordine
      * @return List<Documento> lista dei documenti recuperati
      */
     public List<Documento> findDocumentiByOrdine(int id) {

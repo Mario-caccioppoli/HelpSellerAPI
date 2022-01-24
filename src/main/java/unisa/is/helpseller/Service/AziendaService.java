@@ -52,7 +52,7 @@ public class AziendaService {
 
     /**
      * metodo per l'inserimento di un'istanza nel DB
-     * @param Azienda oggetto entity da inserire nel DB
+     * @param a Azienda oggetto entity da inserire nel DB
      * @return int id dell'entità aggiunta
      */
     public int insert(Azienda a) {
@@ -61,7 +61,7 @@ public class AziendaService {
 
     /**
      * metodo per l'update di una entità presente nel DB
-     * @param Azienda oggetto entity da modificare nel DB
+     * @param a Azienda oggetto entity da modificare nel DB
      * @return int id dell'entity modificata
      */
     public int update(Azienda a) {

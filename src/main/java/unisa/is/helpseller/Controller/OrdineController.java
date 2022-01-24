@@ -102,8 +102,7 @@ public class OrdineController {
 
     /**
      * metodo per l'inserimento di un'istanza nel DB
-     *
-     * @param Ordine oggetto entity da inserire nel DB
+     * @param ord OrdineModel oggetto entity da inserire nel DB
      * @return int id dell'entità aggiunta
      */
     @PostMapping("/insert")
@@ -137,8 +136,7 @@ public class OrdineController {
 
     /**
      * metodo per l'update di una entità presente nel DB
-     *
-     * @param Ordine oggetto entity da modificare nel DB
+     * @param ord OrdineModel oggetto entity da modificare nel DB
      * @return int id dell'entity modificata
      */
     @PostMapping("/update")
@@ -158,8 +156,7 @@ public class OrdineController {
 
     /**
      * metodo per il recupero degli ordini dato un distributore
-     *
-     * @param id_distributore id del distributore
+     * @param id del distributore
      * @return lista degli ordini recuperati
      */
     @GetMapping("/findOrdiniByDistributore/{id}")
@@ -182,8 +179,7 @@ public class OrdineController {
 
     /**
      * metodo per il recupero degli ordini data un'azienda
-     *
-     * @param id_azienda id dell'azienda
+     * @param id id dell'azienda
      * @return lista degli ordini recuperati
      */
     @GetMapping("/findOrdiniByAzienda/{id}")

@@ -33,7 +33,7 @@ public class OrdineProdottoService {
 
     /**
      * metodo per il recupero di una istanza dal DB dato in input il suo ID
-     * @param int ID dell'entità ricercata
+     * @param ordProd
      * @return oggetto prelevato dal DB, se presente
      */
     public OrdineProdotto findId(OrdineProdotto ordProd) {
@@ -42,7 +42,7 @@ public class OrdineProdottoService {
 
     /**
      * metodo per la rimozione di una istanza dato l'id
-     * @param int id dell'entità da rimuovere
+     * @param ordProd id dell'entità da rimuovere
      * @return int id dell'entità rimossa
      */
     public int deleteId(OrdineProdotto ordProd) {
@@ -51,7 +51,7 @@ public class OrdineProdottoService {
 
     /**
      * metodo per l'inserimento di un'istanza nel DB
-     * @param OrdineProdotto oggetto entity da inserire nel DB
+     * @param ordProd OrdineProdotto oggetto entity da inserire nel DB
      * @return int id dell'entità aggiunta
      */
     public int insert(OrdineProdotto ordProd) {
@@ -60,7 +60,7 @@ public class OrdineProdottoService {
 
     /**
      * metodo per l'update di una entità presente nel DB
-     * @param OrdineProdotto oggetto entity da modificare nel DB
+     * @param ordProd OrdineProdotto oggetto entity da modificare nel DB
      * @return int id dell'entity modificata
      */
     public int udpate(OrdineProdotto ordProd) {

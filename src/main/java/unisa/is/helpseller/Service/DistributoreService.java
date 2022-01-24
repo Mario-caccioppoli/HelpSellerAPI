@@ -51,7 +51,7 @@ public class DistributoreService {
 
     /**
      * metodo per l'inserimento di un'istanza nel DB
-     * @param Distributore oggetto entity da inserire nel DB
+     * @param d Distributore oggetto entity da inserire nel DB
      * @return int id dell'entità aggiunta
      */
     public int insert(Distributore d) {
@@ -60,7 +60,7 @@ public class DistributoreService {
 
     /**
      * metodo per l'update di una entità presente nel DB
-     * @param Distributore oggetto entity da modificare nel DB
+     * @param d Distributore oggetto entity da modificare nel DB
      * @return int id dell'entity modificata
      */
     public int update(Distributore d) {

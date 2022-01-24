@@ -44,7 +44,6 @@ public class RaccomandazioneController {
 
     /**
      * metodo per il recupero dei prodotti più popolari sulla piattaforma
-     * @param ps oggetto ProdottoService
      * @return vettore di oggetti prodottoModel
      * @throws IOException caso in cui non viene trovato il file .exe
      */
