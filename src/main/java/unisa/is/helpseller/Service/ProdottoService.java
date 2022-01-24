@@ -49,7 +49,7 @@ public class ProdottoService {
 
     /**
      * metodo per l'inserimento di un'istanza nel DB
-     * @param Prodotto oggetto entity da inserire nel DB
+     * @param prod Prodotto oggetto entity da inserire nel DB
      * @return int id dell'entità aggiunta
      */
     public int insert(Prodotto prod) {
@@ -58,7 +58,7 @@ public class ProdottoService {
 
     /**
      * metodo per l'update di una entità presente nel DB
-     * @param Prodotto oggetto entity da modificare nel DB
+     * @param prod Prodotto oggetto entity da modificare nel DB
      * @return int id dell'entity modificata
      */
     public int udpate(Prodotto prod) {

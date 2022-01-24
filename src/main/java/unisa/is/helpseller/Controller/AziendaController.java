@@ -86,7 +86,7 @@ public class AziendaController {
 
     /**
      * metodo per l'inserimento di un'istanza nel DB
-     * @param Azienda oggetto entity da inserire nel DB
+     * @param a AziendaModel oggetto entity da inserire nel DB
      * @return int id dell'entità aggiunta
      */
     @PostMapping("/insert")
@@ -106,7 +106,7 @@ public class AziendaController {
 
     /**
      * metodo per l'update di una entità presente nel DB
-     * @param Azienda oggetto entity da modificare nel DB
+     * @param a AziendaModel oggetto entity da modificare nel DB
      * @return int id dell'entity modificata
      */
     @PostMapping("/update")
@@ -126,7 +126,7 @@ public class AziendaController {
 
     /**
      * metodo di ricerca dato il nome dell'azienda
-     * @param nome Stringa contenente il nome dell'azienda
+     * @param name Stringa contenente il nome dell'azienda
      * @return  List<Azienda> lista di oggetti recuperati
      */
     @GetMapping("/findAziendaByNome/{name}")
@@ -149,7 +149,7 @@ public class AziendaController {
 
     /**
      * metodo di ricerca dato l'id del prodotto
-     * @param id_prodotto   variabile int contenente l'id del prodotto
+     * @param id   variabile int contenente l'id del prodotto
      * @return  oggetto dell'azienda produttrice del prodotto
      */
     @GetMapping("/findAziendaByProdotto/{id}")
@@ -164,7 +164,6 @@ public class AziendaController {
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }

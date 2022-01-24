@@ -58,7 +58,7 @@ public class OrdineProdottoController {
 
     /**
      * metodo per l'inserimento di un'istanza nel DB
-     * @param OrdineProdotto oggetto entity da inserire nel DB
+     * @param opList OrdineProdottoModel oggetto entity da inserire nel DB
      * @return int id dell'entità aggiunta
      */
     @PostMapping("/insert")
@@ -77,7 +77,7 @@ public class OrdineProdottoController {
 
     /**
      * metodo per l'update di una entità presente nel DB
-     * @param OrdineProdotto oggetto entity da modificare nel DB
+     * @param opModel OrdineProdottoModel oggetto entity da modificare nel DB
      * @return int id dell'entity modificata
      */
     @PostMapping("/update")
@@ -96,7 +96,7 @@ public class OrdineProdottoController {
 
     /**
      * metodo di ricerca dato l'id di un ordine
-     * @param id_ordine id dell'ordine
+     * @param id dell'ordine
      * @return lista contenente le entità OrdineProdotto recuperate
      */
     @GetMapping("/findDettagliOrdine/{id}")

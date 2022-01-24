@@ -49,7 +49,7 @@ public class OrdineService {
 
     /**
      * metodo per l'inserimento di un'istanza nel DB
-     * @param Ordine oggetto entity da inserire nel DB
+     * @param ord Ordine oggetto entity da inserire nel DB
      * @return int id dell'entità aggiunta
      */
     public int insert(Ordine ord) {
@@ -58,7 +58,7 @@ public class OrdineService {
 
     /**
      * metodo per l'update di una entità presente nel DB
-     * @param Ordine oggetto entity da modificare nel DB
+     * @param ord Ordine oggetto entity da modificare nel DB
      * @return int id dell'entity modificata
      */
     public int update(Ordine ord) {

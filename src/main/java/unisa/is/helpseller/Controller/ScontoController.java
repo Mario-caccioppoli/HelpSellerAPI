@@ -89,7 +89,7 @@ public class ScontoController {
 
     /**
      * metodo per l'inserimento di un'istanza nel DB
-     * @param Sconto oggetto entity da inserire nel DB
+     * @param sc ScontoModel oggetto entity da inserire nel DB
      * @return int id dell'entità aggiunta
      */
     @PostMapping("/insert")
@@ -110,7 +110,7 @@ public class ScontoController {
 
     /**
      * metodo per l'update di una entità presente nel DB
-     * @param Sconto oggetto entity da modificare nel DB
+     * @param sc ScontoModel oggetto entity da modificare nel DB
      * @return int id dell'entity modificata
      */
     @PostMapping("/update")
@@ -131,7 +131,7 @@ public class ScontoController {
 
     /**
      * metodo di ricerca data l'azienda
-     * @param id_azienda
+     * @param id dell'azienda
      * @return lista degli sconti recuperati
      */
     @GetMapping("/findScontiByAzienda/{id}")
@@ -202,7 +202,7 @@ public class ScontoController {
     /**
      * metodo di ricerca dato il nome e l'azienda
      * @param nome_sconto
-     * @param id_azienda
+     * @param id dell'azienda
      * @return lista degli sconti recuperati
      */
     @GetMapping("findScontiByNomeInAzienda/{nome_sconto}/{id_azienda}")

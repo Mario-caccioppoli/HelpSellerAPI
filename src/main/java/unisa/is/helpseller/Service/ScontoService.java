@@ -49,7 +49,7 @@ public class ScontoService {
 
     /**
      * metodo per l'inserimento di un'istanza nel DB
-     * @param Sconto oggetto entity da inserire nel DB
+     * @param sc Sconto oggetto entity da inserire nel DB
      * @return int id dell'entità aggiunta
      */
     public int insert(Sconto sc) {
@@ -59,7 +59,7 @@ public class ScontoService {
 
     /**
      * metodo per l'update di una entità presente nel DB
-     * @param Sconto oggetto entity da modificare nel DB
+     * @param sc Sconto oggetto entity da modificare nel DB
      * @return int id dell'entity modificata
      */
     public int udpate(Sconto sc) {

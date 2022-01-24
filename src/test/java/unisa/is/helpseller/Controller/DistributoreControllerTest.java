@@ -94,11 +94,11 @@ public class DistributoreControllerTest {
 
     @Test
     public void invalidInsert() throws Exception{
-        ResponseEntity<DistributoreModel> response = controller.findId(9);
-        DistributoreModel d = response.getBody();
-        ResponseEntity<Integer> response2 = controller.insert(d);
+        DistributoreModel distributore = new DistributoreModel("Gaetano", "gaetano@email.it", "123", "Gaetano",
+                "Frizzi", "1", "389", "via della sede", null, null);
+        ResponseEntity<Integer> response2 = controller.insert(distributore);
         assertThat(response2.getStatusCode().compareTo(HttpStatus.INTERNAL_SERVER_ERROR));
-        assertThat(response2.getBody()).isNotNull();
+        assertThat(response2.getBody()).isNull();
     }
 
     @Test
