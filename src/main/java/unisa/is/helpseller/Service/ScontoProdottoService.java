@@ -68,8 +68,8 @@ public class ScontoProdottoService {
      * @param ScontoProdotto oggetto entity da inserire nel DB
      * @return int id dell'entità aggiunta
      */
-    public int insert(ScontoProdotto scontoProd) {
-    	return scontoProdottoRepo.insert(scontoProd.getIdSconto(), scontoProd.getIdProdotto());
+    public int insert(int sconto, int prodotto) {
+    	return scontoProdottoRepo.insert(sconto, prodotto);
     }
 
     /**

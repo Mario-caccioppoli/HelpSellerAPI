@@ -151,8 +151,7 @@ public class ScontoProdottoController {
             @PathVariable("id_sconto") int id_sconto) {
 
         try {
-            ScontoProdotto sp = new ScontoProdotto(id_sconto, id_prodotto);
-            Integer result = scontoProdottoService.insert(sp);
+            Integer result = scontoProdottoService.insert(id_sconto, id_prodotto);
 
             if (result > 0) {
                 return new ResponseEntity<>(result, HttpStatus.OK);
