@@ -59,8 +59,8 @@ public class ScontoProdottoService {
      * @param id    id dell'entità da rimuovere
      * @return int id dell'entità rimossa
      */
-    public int deleteId(int id_prodotto, int id_sconto) {
-    	return scontoProdottoRepo.deleteId(id_prodotto, id_sconto);
+    public int deleteId(int id_sconto) {
+    	return scontoProdottoRepo.deleteId(id_sconto);
     }
 
     /**

@@ -38,7 +38,7 @@ public class Ordine implements Serializable{
         this.data_consegna = o.getDataConsegna();
         this.commento = o.getCommento();
         this.id_distributore = o.getIdDistributore();
-        this.stato = "Generated";
+        this.stato = o.getStato();
     }
 
     public int getId() {

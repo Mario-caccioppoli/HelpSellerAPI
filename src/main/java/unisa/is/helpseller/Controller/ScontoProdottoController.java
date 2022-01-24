@@ -125,13 +125,12 @@ public class ScontoProdottoController {
      * @param id    id dell'entità da rimuovere
      * @return int id dell'entità rimossa
      */
-    @DeleteMapping("/deleteId/{id_prodotto}/{id_sconto}")
+    @DeleteMapping("/deleteId/{id_sconto}")
     public ResponseEntity<Integer> deleteId(
-            @PathVariable("id_prodotto") int id_prodotto,
             @PathVariable("id_sconto") int id_sconto) {
 
         try {
-            int result = scontoProdottoService.deleteId(id_prodotto, id_sconto);
+            int result = scontoProdottoService.deleteId(id_sconto);
             if (result > 0) {
                 return new ResponseEntity<>(result, HttpStatus.OK);
             }
@@ -146,7 +145,7 @@ public class ScontoProdottoController {
      * @param ScontoProdotto oggetto entity da inserire nel DB
      * @return int id dell'entità aggiunta
      */
-    @PostMapping("/insert/{id_prodotto}/{id_sconto}")
+    @PostMapping("/insert/")
     public ResponseEntity<Integer> insert(
             @PathVariable("id_prodotto") int id_prodotto,
             @PathVariable("id_sconto") int id_sconto) {

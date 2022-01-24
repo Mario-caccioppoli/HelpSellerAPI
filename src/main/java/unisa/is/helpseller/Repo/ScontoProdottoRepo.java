@@ -22,8 +22,8 @@ public interface ScontoProdottoRepo extends JpaRepository<ScontoProdotto, Intege
    List<ScontoProdotto> findByProdotto(int id);
    
    @Modifying
-   @Query("DELETE FROM ScontoProdotto sp WHERE sp.id_prodotto = :id_prodotto AND sp.id_sconto = :id_sconto")
-   int deleteId(@Param("id_prodotto") int id_prodotto, @Param("id_sconto") int id_sconto);
+   @Query("DELETE FROM ScontoProdotto sp WHERE sp.id_sconto = :id_sconto")
+   int deleteId(@Param("id_sconto") int id_sconto);
    
    //SQL
    @Modifying

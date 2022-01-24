@@ -73,7 +73,7 @@ public class ScontoProdottoControllerTest {
         assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
         assertThat(response.getBody() > 0);
 
-        ResponseEntity<Integer> response2 = controller.deleteId(5, 4);
+        ResponseEntity<Integer> response2 = controller.deleteId(4);
         assertThat(response2.getStatusCode().compareTo(HttpStatus.OK));
         assertThat(response2.getBody() > 0);
     }
