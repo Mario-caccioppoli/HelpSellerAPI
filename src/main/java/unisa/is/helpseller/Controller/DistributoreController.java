@@ -54,15 +54,12 @@ public class DistributoreController {
     public ResponseEntity<DistributoreModel> findId(@PathVariable("id") int id) {
         try {
             Distributore distributore = distributoreService.findId(id);
-            if(!distributore.equals(null)) {
-                DistributoreModel d = new DistributoreModel(distributore);
-                return new ResponseEntity<>(d, HttpStatus.OK);
-            }
+            DistributoreModel d = new DistributoreModel(distributore);
+            return new ResponseEntity<>(d, HttpStatus.OK);
 
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     /**
@@ -74,38 +71,31 @@ public class DistributoreController {
     public ResponseEntity<Integer> deleteId(@PathVariable("id") int id) {
         try {
             int result = distributoreService.deleteId(id);
-            if(result > 0) {
-                return new ResponseEntity<>(result, HttpStatus.OK);  
-            }
+            return new ResponseEntity<>(result, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
     }
 
     /**
      * metodo per l'inserimento di un'istanza nel DB
-     * @param Distributore oggetto entity da inserire nel DB
+     * @param d Distributore oggetto entity da inserire nel DB
      * @return int id dell'entità aggiunta
      */
     @PostMapping("/insert")
     public ResponseEntity<Integer> insert(@RequestBody DistributoreModel d) {
         try {
             Distributore distributore = new Distributore(d);
-            if(!distributore.equals(null)) {
-                int id = distributoreService.insert(distributore);
-                return new ResponseEntity<>(id, HttpStatus.OK);
-            }
-
+            int id = distributoreService.insert(distributore);
+            return new ResponseEntity<>(id, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
     }
 
     /**
      * metodo per l'update di una entità presente nel DB
-     * @param Distributore oggetto entity da modificare nel DB
+     * @param d Distributore oggetto entity da modificare nel DB
      * @return int id dell'entity modificata
      */
     @PostMapping("/update")
@@ -113,13 +103,9 @@ public class DistributoreController {
         try {
             Distributore distributore = new Distributore(d);
             int id = distributoreService.update(distributore);
-            if(id > 0){
-                return new ResponseEntity<Integer>(id, HttpStatus.OK);
-            }
-
+            return new ResponseEntity<Integer>(id, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 }

@@ -54,15 +54,11 @@ public class AziendaController {
     public ResponseEntity<AziendaModel> findId(@PathVariable("id") int id) {
         try {
             Azienda azienda = aziendaService.findId(id);
-            if(!azienda.equals(null)) {
-                AziendaModel a = new AziendaModel(azienda);
-                return new ResponseEntity<>(a, HttpStatus.OK);
-            }
-            
+            AziendaModel a = new AziendaModel(azienda);
+            return new ResponseEntity<>(a, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     /**
@@ -74,14 +70,10 @@ public class AziendaController {
     public ResponseEntity<Integer> deleteId(@PathVariable("id") int id) {
         try {
             int result = aziendaService.deleteId(id);
-            if(id > 0) {
-                return new ResponseEntity<>(result, HttpStatus.OK);
-            }
-            
+            return new ResponseEntity<>(result, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
     /**
@@ -94,14 +86,10 @@ public class AziendaController {
         try {
             Azienda azienda = new Azienda(a);
             int id = aziendaService.insert(azienda);
-            if(id > 0) {
-                return new ResponseEntity<>(id, HttpStatus.OK);
-            }
-            
+            return new ResponseEntity<>(id, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
     }
 
     /**
@@ -114,14 +102,10 @@ public class AziendaController {
         try {
             Azienda azienda = new Azienda(a);
             int id = aziendaService.update(azienda);
-            if(id > 0) {
-                return new ResponseEntity<>(id, HttpStatus.OK);
-            }
-           
+            return new ResponseEntity<>(id, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
     /**
@@ -154,16 +138,13 @@ public class AziendaController {
      */
     @GetMapping("/findAziendaByProdotto/{id}")
     public ResponseEntity<AziendaModel> findAziendaByProdotto(@PathVariable("id") int id) {
+        AziendaModel aziendaModel;
         try {
             Azienda azienda = aziendaService.findAziendaByProdotto(id);
-            if(!azienda.equals(null)) {
-                AziendaModel aziendaModel = new AziendaModel(azienda);
-                return new ResponseEntity<>(aziendaModel, HttpStatus.OK);
-            }
-
+            aziendaModel = new AziendaModel(azienda);
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(aziendaModel, HttpStatus.OK);
     }
 }

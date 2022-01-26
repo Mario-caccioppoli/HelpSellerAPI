@@ -102,7 +102,6 @@ public class RaccomandazioneService {
         String line;
         int j = 0;
         while ((line = br.readLine()) != null && j<prodSuggeriti) {
-            System.out.println(line);
             array[j] = prodottoM = new ProdottoModel(ps.findId(Integer.valueOf(line)));
             j++;
         }

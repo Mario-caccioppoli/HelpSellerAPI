@@ -84,6 +84,13 @@ public class TrasportoControllerTest {
     }
 
     @Test
+    public void deleteInvalid2() throws Exception {
+        ResponseEntity<Integer> response = controller.deleteId(-1);
+        assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+        assertThat(response.getBody() == null);
+    }
+
+    @Test
     public void update() throws Exception {
         TrasportoModel t = controller.findId(1).getBody();
         t.setIndirizzoConsegna("nuovo indirizzo");

@@ -57,9 +57,7 @@ public class UtenteController {
 
     /**
      * metodo per l'autenticazione dell'admin
-     * @param email email dell'utente
-     * @param password la sua password
-     * @param admin lista degli admin
+     * @param input email email dell'utente password la sua password admin lista degli admin
      * @return oggetto dell'utente
      */
     @PostMapping("/login")
@@ -79,22 +77,11 @@ public class UtenteController {
                 List<Azienda> azienda = aziendaService.findAll();
                 utente = utenteService.authAzienda(json.getString("email"), json.getString("password"), azienda);
             }
-
-            if (utente.getId() > 0) {
-                return new ResponseEntity<UtenteModel>(utente, HttpStatus.OK);
-            } else {
-                return new ResponseEntity<UtenteModel>(HttpStatus.UNAUTHORIZED);
-            }
+            return new ResponseEntity<UtenteModel>(utente, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-    @GetMapping("/")
-    public String index() {
-        return "index";
-    }
-
     /**
      * metodo per il recupero della password data la mail
      * @param email
@@ -104,7 +91,6 @@ public class UtenteController {
         try {
             String result = distService.recuperoPassword(email);
             if(!result.isEmpty()) {
-                
                 senderService.sendEmail(email, "Recupero Password", result);
                 return new ResponseEntity<>(1, HttpStatus.OK);
             }

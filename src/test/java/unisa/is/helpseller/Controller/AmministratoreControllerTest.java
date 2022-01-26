@@ -26,7 +26,6 @@ public class AmministratoreControllerTest {
     	assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
     	assertThat(allAdmins).asList();
    }
-  
     @Test
     public void findIncorrectId() throws Exception {
     	ResponseEntity<AmministratoreModel> response = controller.findId(-1);
@@ -44,7 +43,6 @@ public class AmministratoreControllerTest {
     //int id, String email, String username, String password
     @Test
     public void Update() throws Exception {
-
     	AmministratoreModel admin = controller.findId(2).getBody();
         admin.setEmail("testmail");
         ResponseEntity<Integer> response = controller.update(admin);

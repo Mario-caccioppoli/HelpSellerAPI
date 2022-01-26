@@ -31,13 +31,18 @@ public class OrdineProdottoTest {
         assertThat(q != 0);
 
         OrdineProdottoId op2 = new OrdineProdottoId(1, 1);
+        OrdineProdotto gino = new OrdineProdotto(1, 1, 0, 0, 0);
+        OrdineProdottoId op3 = new OrdineProdottoId(10, 21);
         op2.hashCode();
         op2.getId_ordine();
         op2.getId_prodotto();
         op2.setId_ordine(1);
         op2.setId_prodotto(1);
         op2.equals(op);
-
+        op2.equals(op2);
+        op2.equals(null);
+        op2.equals(op3);
+        op2.equals(gino);
         OrdineProdotto op12 = new OrdineProdotto(1, 1, 1, 1, 1);
     }
 }

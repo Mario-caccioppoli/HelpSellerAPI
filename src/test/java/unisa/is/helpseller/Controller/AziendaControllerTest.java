@@ -70,11 +70,11 @@ public class AziendaControllerTest {
 
     @Test
     public void invalidUpdate() throws Exception{
-        AziendaModel azienda = new AziendaModel("emailAzienssdaTest@email.it", "password",
-                "AziendaTest", "15353513", "via vai", "azienda di prova", "", null, null);
+        AziendaModel azienda = controller.findId(1).getBody();
         ResponseEntity<Integer> response = controller.update(azienda);
-        assertThat(response.getStatusCode().compareTo(HttpStatus.INTERNAL_SERVER_ERROR));
-        assertThat(response.getBody() == null);
+        assertThat(response.getStatusCode().compareTo(HttpStatus.NOT_MODIFIED));
+        assertThat(response.getBody() == 0);
+        System.out.println("DIO CANE SCHIFOSO ID : " + response.getBody());
     }
 
     @Test

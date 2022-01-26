@@ -54,15 +54,11 @@ public class ProdottoController {
     public ResponseEntity<ProdottoModel> findId(@PathVariable("id") int id) {
         try {
             Prodotto prodotto = prodottoService.findId(id);
-            if (!prodotto.equals(null)) {
-                ProdottoModel p = new ProdottoModel(prodotto);
-                return new ResponseEntity<>(p, HttpStatus.OK);
-            }
-
+            ProdottoModel p = new ProdottoModel(prodotto);
+            return new ResponseEntity<>(p, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     /**
@@ -74,14 +70,10 @@ public class ProdottoController {
     public ResponseEntity<Integer> deleteId(@PathVariable("id") int id) {
         try {
             int result = prodottoService.deleteId(id);
-            if(result > 0) {
-                return new ResponseEntity<>(result, HttpStatus.OK);
-            }
-            
+            return new ResponseEntity<>(result, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
     /**
@@ -94,14 +86,10 @@ public class ProdottoController {
         try {
             Prodotto p = new Prodotto(prod);
             int id = prodottoService.insert(p);
-            if(id > 0) {
-               return new ResponseEntity<>(id, HttpStatus.OK);
-            }
-            
+            return new ResponseEntity<>(id, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
     /**
@@ -114,14 +102,10 @@ public class ProdottoController {
         try {
             Prodotto p = new Prodotto(prod);
             int id = prodottoService.udpate(p);
-            if(id > 0) {
-                return new ResponseEntity<>(id, HttpStatus.OK);
-            }
-            
+            return new ResponseEntity<>(id, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
     /**

@@ -29,7 +29,9 @@ public class ScontoProdottoTest {
         sp2.getIdSconto();
         sp2.setIdProdotto(2);
         sp2.setIdSconto(1);
-
+        sp2.equals(sp2);
+        sp2.equals(null);
+        sp2.equals(a);
         ScontoProdottoModel sp3 = new ScontoProdottoModel(null, null);
         sp3.setProdotto(null);sp3.setSconto(null);
         sp3.getProdotto();sp3.getSconto();

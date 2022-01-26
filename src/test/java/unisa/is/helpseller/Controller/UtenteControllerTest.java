@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import unisa.is.helpseller.Model.ScontoProdottoModel;
 import unisa.is.helpseller.Model.UtenteModel;
+import unisa.is.helpseller.Service.UtenteService;
 
 import java.util.List;
 
@@ -19,6 +20,9 @@ public class UtenteControllerTest {
 
     @Autowired
     private UtenteController controller;
+
+    @Autowired
+    private UtenteService service;
 
     public static JSONObject azienda() throws Exception {
         JSONObject sampleObject = new JSONObject();
@@ -85,12 +89,53 @@ public class UtenteControllerTest {
         Integer result = response.getBody();
         assertThat(result.intValue() == 1);
     }
+    @Test
+    public void recuperoPasswordFail() throws Exception {
+        String email = "bevasd@gmail.com";
+        ResponseEntity<Integer> response = controller.recuperoPassword(email);
+
+        Integer result = response.getBody();
+        assertThat(result.intValue() == 1);
+    }
     
     @Test
-    public void wrongLogin() throws Exception {
+    public void wrongLoginDist() throws Exception {
         JSONObject json = new JSONObject();
         json.put("tipo", "Distributore");
         json.put("email", "fabio@email.it");
+        json.put("password", "wrooong");
+        String input = json.toString();
+        ResponseEntity<UtenteModel> response = controller.auth(input);
+        assertThat(response.getStatusCode().is5xxServerError());
+    }
+
+    @Test
+    public void wrongLoginAdmin() throws Exception {
+        JSONObject json = new JSONObject();
+        json.put("tipo", "Amministratore");
+        json.put("email", "aldo@libeo.it");
+        json.put("password", "wrooong");
+        String input = json.toString();
+        ResponseEntity<UtenteModel> response = controller.auth(input);
+        assertThat(response.getStatusCode().is5xxServerError());
+    }
+
+    @Test
+    public void wrongLoginAzienda() throws Exception {
+        JSONObject json = new JSONObject();
+        json.put("tipo", "Azienda");
+        json.put("email", "bevande@gmail.com");
+        json.put("password", "wrooong");
+        String input = json.toString();
+        ResponseEntity<UtenteModel> response = controller.auth(input);
+        assertThat(response.getStatusCode().is5xxServerError());
+    }
+
+    @Test
+    public void wrongLoginAzienda2() throws Exception {
+        JSONObject json = new JSONObject();
+        json.put("tipo", "Azieasdnda");
+        json.put("email", "bevande@gmail.com");
         json.put("password", "wrooong");
         String input = json.toString();
         ResponseEntity<UtenteModel> response = controller.auth(input);

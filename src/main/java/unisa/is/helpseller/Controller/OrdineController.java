@@ -1,11 +1,14 @@
 package unisa.is.helpseller.Controller;
 
 import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import unisa.is.helpseller.Service.OrdineService;
+
 import java.util.List;
 import java.util.stream.Collectors;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import unisa.is.helpseller.Entity.Distributore;
@@ -32,7 +35,7 @@ public class OrdineController {
 
     @Autowired
     private EmailSenderService senderService;
-    
+
     @Autowired
     private OrdineProdottoController ordineProdottoController;
 
@@ -70,14 +73,11 @@ public class OrdineController {
     public ResponseEntity<OrdineModel> findId(@PathVariable("id") int id) {
         try {
             Ordine ordine = ordineService.findId(id);
-            if (!ordine.equals(null)) {
-                OrdineModel o = new OrdineModel(ordine);
-                return new ResponseEntity<>(o, HttpStatus.OK);
-            }
+            OrdineModel o = new OrdineModel(ordine);
+            return new ResponseEntity<>(o, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     /**
@@ -90,52 +90,48 @@ public class OrdineController {
     public ResponseEntity<Integer> deleteId(@PathVariable("id") int id) {
         try {
             int result = ordineService.deleteId(id);
-            if (result > 0) {
-                return new ResponseEntity<>(result, HttpStatus.OK);
-            }
-
+            return new ResponseEntity<>(result, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
     /**
      * metodo per l'inserimento di un'istanza nel DB
+     *
      * @param ord OrdineModel oggetto entity da inserire nel DB
      * @return int id dell'entità aggiunta
      */
     @PostMapping("/insert")
     public ResponseEntity<Integer> insert(@RequestBody OrdineModel model) {
         try {
-            
+
             //Converto in entity e invio al database
             Ordine entity = new Ordine(model);
             int id = ordineService.insert(entity);
 
             //Controllo che l'invio al database sia andato a buon fine
-            if (id > 0) {
-                //Invio ordineprodotto al database 
-                List<OrdineProdottoModel> opmList = model.getOrdineProdotti();
-                for(int i = 0; i < opmList.size(); i++) {
-                    opmList.get(i).setIdOrdine(id);
-                }
-                ordineProdottoController.insert(opmList);
-                
-                //Recupero il distributore e invio mail
-                Distributore d = distributoreService.findId(entity.getIdDistributore());
-                senderService.sendEmail(d.getEmail(), "Ordine confermato", "Il tuo ordine è stato confermato");
-                return new ResponseEntity<>(id, HttpStatus.OK);
+
+            //Invio ordineprodotto al database
+            List<OrdineProdottoModel> opmList = model.getOrdineProdotti();
+
+            for (int i = 0; i < opmList.size(); i++) {
+                opmList.get(i).setIdOrdine(id);
             }
 
+            ordineProdottoController.insert(opmList);
+            //Recupero il distributore e invio mail
+            Distributore d = distributoreService.findId(entity.getIdDistributore());
+            senderService.sendEmail(d.getEmail(), "Ordine confermato", "Il tuo ordine è stato confermato");
+            return new ResponseEntity<>(id, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
     /**
      * metodo per l'update di una entità presente nel DB
+     *
      * @param ord OrdineModel oggetto entity da modificare nel DB
      * @return int id dell'entity modificata
      */
@@ -144,18 +140,15 @@ public class OrdineController {
         try {
             Ordine o = new Ordine(ord);
             int id = ordineService.update(o);
-            if (id > 0) {
-                return new ResponseEntity<>(id, HttpStatus.OK);
-            }
-
+            return new ResponseEntity<>(id, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
     /**
      * metodo per il recupero degli ordini dato un distributore
+     *
      * @param id del distributore
      * @return lista degli ordini recuperati
      */
@@ -179,6 +172,7 @@ public class OrdineController {
 
     /**
      * metodo per il recupero degli ordini data un'azienda
+     *
      * @param id id dell'azienda
      * @return lista degli ordini recuperati
      */

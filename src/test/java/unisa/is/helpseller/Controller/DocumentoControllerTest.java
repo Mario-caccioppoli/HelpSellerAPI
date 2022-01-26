@@ -108,14 +108,14 @@ public class DocumentoControllerTest {
     public void invalidDelete() throws Exception {
         ResponseEntity<Integer> response = controller.deleteId(-1);
         assertThat(response.getStatusCode().compareTo(HttpStatus.NOT_ACCEPTABLE));
-        assertThat(response.getBody()).isNull();
+        assertThat(response.getBody()).isEqualTo(0);
     }
 
     @Test
     public void invalidDelete2() throws Exception {
         ResponseEntity<Integer> response = controller.deleteId(999);
         assertThat(response.getStatusCode().compareTo(HttpStatus.INTERNAL_SERVER_ERROR));
-        assertThat(response.getBody()).isNull();
+        assertThat(response.getBody()).isEqualTo(0);
     }
 
     @Test

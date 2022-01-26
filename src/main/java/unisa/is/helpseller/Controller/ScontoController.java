@@ -43,7 +43,6 @@ public class ScontoController {
             }).collect(Collectors.toList());
             return new ResponseEntity<>(scontiModel, HttpStatus.OK);
         } catch (Exception ex) {
-            System.out.println(ex);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -57,12 +56,8 @@ public class ScontoController {
     public ResponseEntity<ScontoModel> findId(@PathVariable("id") int id) {
         try {
             Sconto sconto = scontoService.findId(id);
-            if (!sconto.equals(null)) {
-                ScontoModel s = new ScontoModel(sconto);
-                return new ResponseEntity<>(s, HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
+            ScontoModel s = new ScontoModel(sconto);
+            return new ResponseEntity<>(s, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -77,14 +72,10 @@ public class ScontoController {
     public ResponseEntity<Integer> deleteId(@PathVariable("id") int id) {
         try {
             int result = scontoService.deleteId(id);
-            if(result > 0) {
-                return new ResponseEntity<>(result, HttpStatus.OK);
-            }
-            
+            return new ResponseEntity<>(result, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
     /**
@@ -97,15 +88,10 @@ public class ScontoController {
         try {
             Sconto s = new Sconto(sc);
             int id = scontoService.insert(s);
-            if (id > 0) {
-                return new ResponseEntity<>(id, HttpStatus.OK);
-            }
-
+            return new ResponseEntity<>(id, HttpStatus.OK);
         } catch (Exception ex) {
-            ex.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
     /**
@@ -118,15 +104,11 @@ public class ScontoController {
         try {
             Sconto s = new Sconto(sc);
             int id = scontoService.udpate(s);
-            if (id > 0) {
-                return new ResponseEntity<>(id, HttpStatus.OK);
-            }
-
+            return new ResponseEntity<>(id, HttpStatus.OK);
         } catch (Exception ex) {
             ex.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
     /**
@@ -182,21 +164,18 @@ public class ScontoController {
      * @return lista degli sconti recuperati
      */
     @GetMapping("findScontiAziendaByTipo/{tipo}/{id_azienda}")
-    public ResponseEntity<List<ScontoModel>> findScontiAziendaByTipo(@PathVariable("tipo") String tipo, 
-            @PathVariable("id_azienda") int id_azienda) {
+    public ResponseEntity<List<ScontoModel>> findScontiAziendaByTipo(@PathVariable("tipo") String tipo,
+                                                                     @PathVariable("id_azienda") int id_azienda) {
+        List<ScontoModel> scontiModel = new ArrayList<ScontoModel>();
         try {
             List<Sconto> sconti = scontoService.findScontiAziendaByTipo(tipo, id_azienda);
-            if(!sconti.equals(null)) {
-                List<ScontoModel> scontiModel = new ArrayList<ScontoModel>();
-                scontiModel = sconti.stream().map(p -> {
-                    return new ScontoModel(p);
-                }).collect(Collectors.toList());
-                return new ResponseEntity<>(scontiModel, HttpStatus.OK);
-            }
+            scontiModel = sconti.stream().map(p -> {
+                return new ScontoModel(p);
+            }).collect(Collectors.toList());
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(scontiModel, HttpStatus.OK);
     }
 
     /**
@@ -206,21 +185,17 @@ public class ScontoController {
      * @return lista degli sconti recuperati
      */
     @GetMapping("findScontiByNomeInAzienda/{nome_sconto}/{id_azienda}")
-    public ResponseEntity<List<ScontoModel>> findScontiByNomeInAzienda(@PathVariable("nome_sconto") String nome_sconto, 
-            @PathVariable("id_azienda") int id) {
+    public ResponseEntity<List<ScontoModel>> findScontiByNomeInAzienda(@PathVariable("nome_sconto") String nome_sconto,
+                                                                       @PathVariable("id_azienda") int id) {
+        List<ScontoModel> scontiModel = new ArrayList<ScontoModel>();
         try {
             List<Sconto> sconti = scontoService.findScontiByNomeInAzienda(nome_sconto, id);
-            if(!sconti.equals(null)) {
-                List<ScontoModel> scontiModel = new ArrayList<ScontoModel>();
-                scontiModel = sconti.stream().map(p -> {
-                    return new ScontoModel(p);
-                }).collect(Collectors.toList());
-                return new ResponseEntity<>(scontiModel, HttpStatus.OK);
-            }
-            
+            scontiModel = sconti.stream().map(p -> {
+                return new ScontoModel(p);
+            }).collect(Collectors.toList());
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(scontiModel, HttpStatus.OK);
     }
 }
