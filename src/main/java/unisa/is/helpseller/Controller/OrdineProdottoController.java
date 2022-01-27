@@ -145,14 +145,17 @@ public class OrdineProdottoController {
      * @return somma complessiva del valore degli ordini dell'anno
      */
     @GetMapping("/findReportAnnuale")
-    public ResponseEntity<Hashtable> findReportAnnuale() {
+    public ResponseEntity<ArrayList<ArrayList<Integer>>> findReportAnnuale() {
         try {
             List<Integer> anni = ordineprodottoService.findAnniOrdini();
-            Hashtable resultTable = new Hashtable();
+            ArrayList<ArrayList<Integer>> resultTable = new ArrayList<ArrayList<Integer>>();
             for(Integer anno : anni) {
                 Integer reportSum = ordineprodottoService.findReportAnnuale(anno);
                 if(reportSum != null) {
-                    resultTable.put(anno, reportSum);
+                    ArrayList<Integer> buf = new ArrayList<Integer>();
+                    buf.add(anno);
+                    buf.add(reportSum);
+                    resultTable.add(buf);
                 }
             }
             return new ResponseEntity<>(resultTable, HttpStatus.OK);
@@ -168,14 +171,17 @@ public class OrdineProdottoController {
      * @return somma complessiva del valore degli ordini dell'anno
      */
     @GetMapping("/findReportAnnualeAzienda/{id_azienda}")
-    public ResponseEntity<Hashtable> findReportAnnualeAzienda(@PathVariable("id_azienda") Integer id) {
+    public ResponseEntity<ArrayList<ArrayList<Integer>>> findReportAnnualeAzienda(@PathVariable("id_azienda") Integer id) {
         try {
             List<Integer> anni = ordineprodottoService.findAnniOrdini();
-            Hashtable resultTable = new Hashtable();
+            ArrayList<ArrayList<Integer>> resultTable = new ArrayList<ArrayList<Integer>>();
             for(Integer anno : anni) {
                 Integer reportSum = ordineprodottoService.findReportAnnualeAzienda(anno, id);
                 if(reportSum != null) {
-                    resultTable.put(anno, reportSum);
+                    ArrayList<Integer> buf = new ArrayList<Integer>();
+                    buf.add(anno);
+                    buf.add(reportSum);
+                    resultTable.add(buf);
                 }
             }
             return new ResponseEntity<>(resultTable, HttpStatus.OK);
