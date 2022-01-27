@@ -88,6 +88,6 @@ public interface OrdineProdottoRepo extends JpaRepository<OrdineProdotto, Intege
     Integer findReportMensileGruppo(@Param("mese") String mese, @Param("anno") Integer anno);
     
     //SQL
-    @Query(value = "SELECT DISTINCT YEAR(data_ordinazione) AS anno FROM ordine", nativeQuery = true)
+    @Query(value = "SELECT DISTINCT YEAR(data_ordinazione) AS anno FROM ordine ORDER BY anno ASC", nativeQuery = true)
     List<Integer> findAnniOrdini();
 }
