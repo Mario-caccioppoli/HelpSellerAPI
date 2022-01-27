@@ -54,11 +54,11 @@ public class AziendaController {
     public ResponseEntity<AziendaModel> findId(@PathVariable("id") int id) {
         try {
             Azienda azienda = aziendaService.findId(id);
-            if(!azienda.equals(null)) {
+            if(azienda != null) {
                 AziendaModel a = new AziendaModel(azienda);
                 return new ResponseEntity<>(a, HttpStatus.OK);
             }
-            
+      
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

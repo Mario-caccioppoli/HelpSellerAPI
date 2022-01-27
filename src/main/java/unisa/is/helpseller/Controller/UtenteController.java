@@ -62,22 +62,22 @@ public class UtenteController {
      * @param admin lista degli admin
      * @return oggetto dell'utente
      */
-    @PostMapping("/login")
-    public ResponseEntity<UtenteModel> auth(@RequestBody String input) {
+    @GetMapping("/login/{tipo}/{email}/{password}")
+    public ResponseEntity<UtenteModel> auth(@PathVariable("tipo") String tipo, 
+            @PathVariable("email") String email, 
+            @PathVariable("password") String password) {
         UtenteModel utente = new UtenteModel();
 
-        JSONObject json = new JSONObject(input);
-
         try {
-            if (json.getString("tipo").equals("Amministratore")) {
+            if (tipo.equals("Amministratore")) {
                 List<Amministratore> admin = adminService.findAll();
-                utente = utenteService.authAdmin(json.getString("email"), json.getString("password"), admin);
-            } else if (json.get("tipo").equals("Distributore")) {
+                utente = utenteService.authAdmin(email, password, admin);
+            } else if (tipo.equals("Distributore")) {
                 List<Distributore> dist = distService.findAll();
-                utente = utenteService.authDist(json.getString("email"), json.getString("password"), dist);
-            } else if (json.get("tipo").equals("Azienda")) {
+                utente = utenteService.authDist(email, password, dist);
+            } else if (tipo.equals("Azienda")) {
                 List<Azienda> azienda = aziendaService.findAll();
-                utente = utenteService.authAzienda(json.getString("email"), json.getString("password"), azienda);
+                utente = utenteService.authAzienda(email, password, azienda);
             }
 
             if (utente.getId() > 0) {
@@ -88,11 +88,6 @@ public class UtenteController {
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-    }
-
-    @GetMapping("/")
-    public String index() {
-        return "index";
     }
 
     /**

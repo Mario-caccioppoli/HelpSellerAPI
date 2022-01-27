@@ -124,7 +124,7 @@ public class OrdineController {
                 
                 //Recupero il distributore e invio mail
                 Distributore d = distributoreService.findId(entity.getIdDistributore());
-                senderService.sendEmail(d.getEmail(), "Ordine confermato", "Il tuo ordine è stato confermato");
+                senderService.sendEmail(d.getEmail(), "Ordine confermato", "Il tuo ordine è stato confermato!");
                 return new ResponseEntity<>(id, HttpStatus.OK);
             }
 
@@ -139,6 +139,7 @@ public class OrdineController {
      * @param ord OrdineModel oggetto entity da modificare nel DB
      * @return int id dell'entity modificata
      */
+    /*
     @PostMapping("/update")
     public ResponseEntity<Integer> update(@RequestBody OrdineModel ord) {
         try {
@@ -153,6 +154,7 @@ public class OrdineController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
+    */
 
     /**
      * metodo per il recupero degli ordini dato un distributore

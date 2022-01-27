@@ -123,5 +123,13 @@ public class OrdineProdottoService {
    public Integer findReportMensileGruppo(String mese, Integer anno) {
        return ordineProdottoRepo.findReportMensileGruppo(mese, anno);
    }
+   
+   /**
+    * metodo per trovare gli anni in cui esistono ordinazioni
+    * @return lista di interi che rappresentano gli anni, dal più recente
+    */
+   public List<Integer> findAnniOrdini() {
+       return ordineProdottoRepo.findAnniOrdini();
+   }
 
 }

@@ -86,4 +86,8 @@ public interface OrdineProdottoRepo extends JpaRepository<OrdineProdotto, Intege
     @Query(value = "SELECT SUM(prezzo_ordine) FROM ordine_prodotto INNER JOIN ordine ON id_ordine=ordine.id  "
             + "WHERE month(ordine.data_ordinazione) = :mese AND year(ordine.data_ordinazione) = :anno", nativeQuery = true)
     Integer findReportMensileGruppo(@Param("mese") String mese, @Param("anno") Integer anno);
+    
+    //SQL
+    @Query(value = "SELECT DISTINCT YEAR(data_ordinazione) AS anno FROM ordine", nativeQuery = true)
+    List<Integer> findAnniOrdini();
 }

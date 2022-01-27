@@ -1,6 +1,7 @@
 package unisa.is.helpseller.Controller;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import unisa.is.helpseller.Service.OrdineProdottoService;
@@ -143,17 +144,22 @@ public class OrdineProdottoController {
      * @param anno intero dell'anno
      * @return somma complessiva del valore degli ordini dell'anno
      */
-    @GetMapping("/findReportAnnuale/{anno}")
-    public ResponseEntity<Integer> findReportAnnuale(@PathVariable("anno") Integer anno) {
+    @GetMapping("/findReportAnnuale")
+    public ResponseEntity<Hashtable> findReportAnnuale() {
         try {
-            Integer report = ordineprodottoService.findReportAnnuale(anno);
-            if (report != null) {
-                return new ResponseEntity<>(report, HttpStatus.OK);
+            List<Integer> anni = ordineprodottoService.findAnniOrdini();
+            Hashtable resultTable = new Hashtable();
+            for(Integer anno : anni) {
+                Integer reportSum = ordineprodottoService.findReportAnnuale(anno);
+                if(reportSum != null) {
+                    resultTable.put(anno, reportSum);
+                }
             }
+            return new ResponseEntity<>(resultTable, HttpStatus.OK);
+          
         } catch (Exception ex) {
-            return new ResponseEntity<>(0, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(0, HttpStatus.NOT_FOUND);
     }
 
     /**
@@ -161,17 +167,21 @@ public class OrdineProdottoController {
      * @param anno intero dell'anno, l'id dell'azienda
      * @return somma complessiva del valore degli ordini dell'anno
      */
-    @GetMapping("/findReportAnnualeAzienda/{anno}/{id_azienda}")
-    public ResponseEntity<Integer> findReportAnnualeAzienda(@PathVariable("anno") Integer anno, @PathVariable("id_azienda") Integer id) {
+    @GetMapping("/findReportAnnualeAzienda/{id_azienda}")
+    public ResponseEntity<Hashtable> findReportAnnualeAzienda(@PathVariable("id_azienda") Integer id) {
         try {
-            Integer report = ordineprodottoService.findReportAnnualeAzienda(anno, id);
-            if (report != null) {
-                return new ResponseEntity<>(report, HttpStatus.OK);
+            List<Integer> anni = ordineprodottoService.findAnniOrdini();
+            Hashtable resultTable = new Hashtable();
+            for(Integer anno : anni) {
+                Integer reportSum = ordineprodottoService.findReportAnnualeAzienda(anno, id);
+                if(reportSum != null) {
+                    resultTable.put(anno, reportSum);
+                }
             }
+            return new ResponseEntity<>(resultTable, HttpStatus.OK);
         } catch (Exception ex) {
-            return new ResponseEntity<>(0, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(0, HttpStatus.NOT_FOUND);
         
     }
 
