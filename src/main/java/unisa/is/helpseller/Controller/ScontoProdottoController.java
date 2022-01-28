@@ -131,13 +131,10 @@ public class ScontoProdottoController {
 
         try {
             int result = scontoProdottoService.deleteId(id_sconto);
-            if (result > 0) {
-                return new ResponseEntity<>(result, HttpStatus.OK);
-            }
+            return new ResponseEntity<>(result, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
     /**
@@ -152,14 +149,10 @@ public class ScontoProdottoController {
 
         try {
             Integer result = scontoProdottoService.insert(id_sconto, id_prodotto);
-
-            if (result > 0) {
-                return new ResponseEntity<>(result, HttpStatus.OK);
-            }
+            return new ResponseEntity<>(result, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
     /*

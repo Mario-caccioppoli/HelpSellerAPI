@@ -98,15 +98,10 @@ public class OrdineProdottoControllerTest {
 
     @Test
     public void findReportAnno() throws Exception {
-        ResponseEntity<Integer> response = controller.findReportAnnuale(2022);
+        ResponseEntity<ArrayList<ArrayList<Integer>>> response = controller.findReportAnnuale();
         assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
     }
 
-    @Test
-    public void findReportAnnoFail() throws Exception {
-        ResponseEntity<Integer> response = controller.findReportAnnuale(202);
-        assertThat(response.getStatusCode().compareTo(HttpStatus.NOT_FOUND));
-    }
 
     @Test
     public void findReportMensile() throws Exception {

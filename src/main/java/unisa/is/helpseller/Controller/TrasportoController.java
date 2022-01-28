@@ -54,15 +54,12 @@ public class TrasportoController {
     public ResponseEntity<TrasportoModel> findId(@PathVariable("id") int id) {
         try {
             Trasporto trasporto = trasportoService.findId(id);
-            if(!trasporto.equals(null)) {
                 TrasportoModel t = new TrasportoModel(trasporto);
                 return new ResponseEntity<>(t, HttpStatus.OK);
-            }
            
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     /**
@@ -74,14 +71,11 @@ public class TrasportoController {
     public ResponseEntity<Integer> deleteId(@PathVariable("id") int id) {
         try {
             int result = trasportoService.deleteId(id);
-            if(result > 0) {
                 return new ResponseEntity<>(result, HttpStatus.OK);
-            }
             
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
     /**
@@ -94,14 +88,11 @@ public class TrasportoController {
         try {
             Trasporto t = new Trasporto(tr);
             int id = trasportoService.insert(t);
-            if(id > 0) {
-                return new ResponseEntity<>(HttpStatus.OK);
-            }
+            return new ResponseEntity<>(id, HttpStatus.OK);
             
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
     /**

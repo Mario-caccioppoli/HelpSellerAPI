@@ -48,13 +48,10 @@ public class OrdineProdottoController {
             ordProd.setIdOrdine(idOrdine);
             ordProd.setIdProdotto(idProdotto);
             int result = ordineprodottoService.deleteId(ordProd);
-            if(result > 0) {
                 return new ResponseEntity<>(result, HttpStatus.OK);
-            } 
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
     /**

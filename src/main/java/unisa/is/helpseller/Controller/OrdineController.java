@@ -70,14 +70,12 @@ public class OrdineController {
     public ResponseEntity<OrdineModel> findId(@PathVariable("id") int id) {
         try {
             Ordine ordine = ordineService.findId(id);
-            if (!ordine.equals(null)) {
                 OrdineModel o = new OrdineModel(ordine);
                 return new ResponseEntity<>(o, HttpStatus.OK);
-            }
+
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     /**
@@ -90,14 +88,11 @@ public class OrdineController {
     public ResponseEntity<Integer> deleteId(@PathVariable("id") int id) {
         try {
             int result = ordineService.deleteId(id);
-            if (result > 0) {
                 return new ResponseEntity<>(result, HttpStatus.OK);
-            }
 
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
     /**
@@ -114,7 +109,6 @@ public class OrdineController {
             int id = ordineService.insert(entity);
 
             //Controllo che l'invio al database sia andato a buon fine
-            if (id > 0) {
                 //Invio ordineprodotto al database 
                 List<OrdineProdottoModel> opmList = model.getOrdineProdotti();
                 for(int i = 0; i < opmList.size(); i++) {
@@ -126,12 +120,11 @@ public class OrdineController {
                 Distributore d = distributoreService.findId(entity.getIdDistributore());
                 senderService.sendEmail(d.getEmail(), "Ordine confermato", "Il tuo ordine è stato confermato!");
                 return new ResponseEntity<>(id, HttpStatus.OK);
-            }
+
 
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
     /**

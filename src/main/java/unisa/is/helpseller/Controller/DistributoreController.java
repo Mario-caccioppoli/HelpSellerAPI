@@ -12,7 +12,8 @@ import unisa.is.helpseller.Entity.Distributore;
 import unisa.is.helpseller.Model.DistributoreModel;
 
 /**
- * classe di mappatura dei servizi relativi a Distributore affinché siano accessibili dal frontend
+ * classe di mappatura dei servizi relativi a Distributore affinché siano
+ * accessibili dal frontend
  */
 @RestController
 @RequestMapping("/distributore")
@@ -29,6 +30,7 @@ public class DistributoreController {
 
     /**
      * metodo per il recupero di tutti le istanze presenti nel DB
+     *
      * @return lista di oggetti delle entity da passare al frontEnd
      */
     @GetMapping("/findAll")
@@ -36,10 +38,10 @@ public class DistributoreController {
         try {
             List<Distributore> distributori = distributoreService.findAll();
             List<DistributoreModel> distributoriModel = new ArrayList<DistributoreModel>();
-                distributoriModel = distributori.stream().map(p -> {
-                    return new DistributoreModel(p);
-                }).collect(Collectors.toList());
-                return new ResponseEntity<>(distributoriModel, HttpStatus.OK);
+            distributoriModel = distributori.stream().map(p -> {
+                return new DistributoreModel(p);
+            }).collect(Collectors.toList());
+            return new ResponseEntity<>(distributoriModel, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -47,26 +49,25 @@ public class DistributoreController {
 
     /**
      * metodo per il recupero di una istanza dal DB dato in input il suo ID
-     * @param id    intero ID dell'entità ricercata
+     *
+     * @param id intero ID dell'entità ricercata
      * @return oggetto prelevato dal DB da restituire al frontend
      */
     @GetMapping("/findId/{id}")
     public ResponseEntity<DistributoreModel> findId(@PathVariable("id") int id) {
         try {
             Distributore distributore = distributoreService.findId(id);
-            if(!distributore.equals(null)) {
-                DistributoreModel d = new DistributoreModel(distributore);
-                return new ResponseEntity<>(d, HttpStatus.OK);
-            }
+            DistributoreModel d = new DistributoreModel(distributore);
+            return new ResponseEntity<>(d, HttpStatus.OK);
 
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     /**
      * metodo per la rimozione di una istanza dato l'id
+     *
      * @param id dell'entità da rimuovere
      * @return int id dell'entità rimossa
      */
@@ -74,17 +75,18 @@ public class DistributoreController {
     public ResponseEntity<Integer> deleteId(@PathVariable("id") int id) {
         try {
             int result = distributoreService.deleteId(id);
-            if(result > 0) {
-                return new ResponseEntity<>(result, HttpStatus.OK);  
-            }
+
+            return new ResponseEntity<>(result, HttpStatus.OK);
+
         } catch (Exception ex) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
+
     }
 
     /**
      * metodo per l'inserimento di un'istanza nel DB
+     *
      * @param Distributore oggetto entity da inserire nel DB
      * @return int id dell'entità aggiunta
      */
@@ -92,19 +94,19 @@ public class DistributoreController {
     public ResponseEntity<Integer> insert(@RequestBody DistributoreModel d) {
         try {
             Distributore distributore = new Distributore(d);
-            if(!distributore.equals(null)) {
-                int id = distributoreService.insert(distributore);
-                return new ResponseEntity<>(id, HttpStatus.OK);
-            }
+
+            int id = distributoreService.insert(distributore);
+            return new ResponseEntity<>(id, HttpStatus.OK);
 
         } catch (Exception ex) {
-            return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
+
     }
 
     /**
      * metodo per l'update di una entità presente nel DB
+     *
      * @param Distributore oggetto entity da modificare nel DB
      * @return int id dell'entity modificata
      */
@@ -113,7 +115,7 @@ public class DistributoreController {
         try {
             Distributore distributore = new Distributore(d);
             int id = distributoreService.update(distributore);
-            if(id > 0){
+            if (id > 0) {
                 return new ResponseEntity<Integer>(id, HttpStatus.OK);
             }
 

@@ -54,15 +54,12 @@ public class DocumentoController {
     public ResponseEntity<DocumentoModel> findId(@PathVariable("id") int id) {
         try {
             Documento documento = documentoService.findId(id);
-            if (!documento.equals(null)) {
                 DocumentoModel d = new DocumentoModel(documento);
                 return new ResponseEntity<>(d, HttpStatus.OK);
-            }
 
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     /**
@@ -74,14 +71,12 @@ public class DocumentoController {
     public ResponseEntity<Integer> deleteId(@PathVariable("id") int id) {
         try {
             int result = documentoService.deleteId(id);
-            if (result > 0) {
                 return new ResponseEntity<>(result, HttpStatus.OK);
-            }
+
 
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
     /**
@@ -94,14 +89,11 @@ public class DocumentoController {
         try {
             Documento d = new Documento(doc);
             int id = documentoService.insert(d);
-            if (id > 0) {
                 return new ResponseEntity<>(id, HttpStatus.OK);
-            }
 
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
     /**

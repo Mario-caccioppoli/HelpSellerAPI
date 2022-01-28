@@ -57,12 +57,8 @@ public class ScontoController {
     public ResponseEntity<ScontoModel> findId(@PathVariable("id") int id) {
         try {
             Sconto sconto = scontoService.findId(id);
-            if (!sconto.equals(null)) {
-                ScontoModel s = new ScontoModel(sconto);
-                return new ResponseEntity<>(s, HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
+            ScontoModel s = new ScontoModel(sconto);
+            return new ResponseEntity<>(s, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -77,14 +73,10 @@ public class ScontoController {
     public ResponseEntity<Integer> deleteId(@PathVariable("id") int id) {
         try {
             int result = scontoService.deleteId(id);
-            if(result > 0) {
-                return new ResponseEntity<>(result, HttpStatus.OK);
-            }
-            
+            return new ResponseEntity<>(result, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
     /**
@@ -97,15 +89,11 @@ public class ScontoController {
         try {
             Sconto s = new Sconto(sc);
             int id = scontoService.insert(s);
-            if (id > 0) {
-                return new ResponseEntity<>(id, HttpStatus.OK);
-            }
+            return new ResponseEntity<>(id, HttpStatus.OK);
 
         } catch (Exception ex) {
-            ex.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
     }
 
     /**
