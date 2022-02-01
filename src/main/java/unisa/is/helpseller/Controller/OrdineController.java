@@ -34,15 +34,14 @@ public class OrdineController {
     private DistributoreService distributoreService;
 
     @Autowired
-    private EmailSenderService senderService;
-
-    @Autowired
     private OrdineProdottoController ordineProdottoController;
 
     @Autowired
     public OrdineController(OrdineService ordineService) {
         this.ordineService = ordineService;
     }
+
+    private EmailSenderService senderService = EmailSenderService.getInstance();
 
     /**
      * metodo per il recupero di tutti le istanze presenti nel DB
@@ -99,7 +98,7 @@ public class OrdineController {
     /**
      * metodo per l'inserimento di un'istanza nel DB
      *
-     * @param ord OrdineModel oggetto entity da inserire nel DB
+     * @param model OrdineModel oggetto entity da inserire nel DB
      * @return int id dell'entità aggiunta
      */
     @PostMapping("/insert")
@@ -125,6 +124,7 @@ public class OrdineController {
             senderService.sendEmail(d.getEmail(), "Ordine confermato", "Il tuo ordine è stato confermato");
             return new ResponseEntity<>(id, HttpStatus.OK);
         } catch (Exception ex) {
+            System.out.println("Eccezione" + ex);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
