@@ -70,9 +70,8 @@ public class RaccomandazioneService {
      * @return model contente i prodotti da suggerire
      * @throws IOException caso in cui non viene trovato il file .exe
      */
-    //ex input: 2, distributoreID 2 ha recensito l'ultima volta idProdotto 3. Modulo FIA riconosce che idProdotto 3 è correlato ai prodotti 1, 2, 11.
+
     public ProdottoModel[] secondLayer(RecensioneService ds, ProdottoService ps, int id) throws IOException {
-        System.out.println("stampa PER RIDERE");
         String eseguibilePath = "secondLayer.exe";
         int prodConsiderati = 10;   // il suggerimento viene basato sugli ultimi 10 articoli interagiti
         int prodSuggeriti = 10;     //n prodotti restituiti al frontend
@@ -81,35 +80,97 @@ public class RaccomandazioneService {
         Recensione r = new Recensione();
         List<String> campioni = new ArrayList<>();
         campioni.add(eseguibilePath);
+        List<Integer> leva = new ArrayList<>();
         
         List<Recensione> l = ds.findAll();
         Iterator<Recensione> it = l.iterator();
         int i = 0;
         while(it.hasNext() && i < prodConsiderati){
             r = it.next();
-            if(id == r.getIdDistributore()){
-                campioni.add(String.valueOf(r.getIdProdotto() -1));  //c'è un problema, affinché i dati siano coerenti su python occorre che vi sia una recensione per ogni prodotto!
-                i++;
+            if(r.getVoto() > 2) {
+                if (id == r.getIdDistributore()) {
+                    //System.out.println("Iterazione numero: " + i + " aggiunto prodotto: " + String.valueOf(r.getIdProdotto() - 1));
+                    campioni.add(String.valueOf(r.getIdProdotto() - 1));  //c'è un problema, affinché i dati siano coerenti su python occorre che vi sia una recensione per ogni prodotto!
+                    leva.add(r.getIdProdotto());
+                    i++;
+                }
             }
         }
+        if(leva.isEmpty()){
+            return firstLayer(ps);
+        }
+
         //Process process = new ProcessBuilder(eseguibilePath, String.valueOf(campione)).start();
         Process process = new ProcessBuilder(campioni).start();
-        
         //lettura parametri passati da secondLayer.exe
         InputStream is = process.getInputStream();
         InputStreamReader isr = new InputStreamReader(is);
         BufferedReader br = new BufferedReader(isr);
         String line;
         int j = 0;
+
+        System.out.println("Campioni: " + campioni);
         while ((line = br.readLine()) != null && j<prodSuggeriti) {
-            array[j] = prodottoM = new ProdottoModel(ps.findId(Integer.valueOf(line)));
-            j++;
+            prodottoM = new ProdottoModel(ps.findId(Integer.valueOf(line)));
+            if(!leva.contains(prodottoM.getId())){
+                System.out.println("prodotto: " + prodottoM.getId());
+                array[j] = prodottoM;
+                j++;
+            }
+        }
+        if(j == 0)
+            return firstLayer(ps);
+        return array;
+    }
+
+    public ProdottoModel[] linux(RecensioneService ds, ProdottoService ps, int id) throws IOException {
+        String eseguibilePath = "modulo.py";
+        int prodConsiderati = 10;   // il suggerimento viene basato sugli ultimi 10 articoli interagiti
+        int prodSuggeriti = 10;     //n prodotti restituiti al frontend
+        ProdottoModel[] array = new ProdottoModel[prodSuggeriti];
+        ProdottoModel prodottoM;
+        Recensione r = new Recensione();
+        List<String> campioni = new ArrayList<>();
+        campioni.add(eseguibilePath);
+        List<Integer> leva = new ArrayList<>();
+
+        List<Recensione> l = ds.findAll();
+        Iterator<Recensione> it = l.iterator();
+        int i = 0;
+        while(it.hasNext() && i < prodConsiderati){
+            r = it.next();
+            if(r.getVoto() > 2) {
+                if (id == r.getIdDistributore()) {
+                    campioni.add(String.valueOf(r.getIdProdotto() - 1));
+                    leva.add(r.getIdProdotto());
+                    i++;
+                }
+            }
+        }
+        if(leva.isEmpty())
+            campioni.set(0, "0");
+        else
+            campioni.set(0, "1");
+
+        Process process = new ProcessBuilder(campioni).start();
+        InputStream is = process.getInputStream();
+        InputStreamReader isr = new InputStreamReader(is);
+        BufferedReader br = new BufferedReader(isr);
+        String line;
+        int j = 0;
+
+        while ((line = br.readLine()) != null && j<prodSuggeriti) {
+            prodottoM = new ProdottoModel(ps.findId(Integer.valueOf(line)));
+            if(!leva.contains(prodottoM.getId())){
+                array[j] = prodottoM;
+                j++;
+            }
         }
         return array;
     }
      
     
-    /* VERSIONE VECCHIA MA STABILE
+    /* VERSIONE VECCHIA
     public ProdottoModel[] firstLayer(ProdottoService ps) throws IOException{
         ProdottoModel[] array = new ProdottoModel[9];   //da modificare la dimensione dell'array
         ProdottoModel prodottoM;

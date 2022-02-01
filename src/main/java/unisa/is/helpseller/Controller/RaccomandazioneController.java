@@ -66,4 +66,11 @@ public class RaccomandazioneController {
         System.out.println(array);
         return array;
     }
+
+    @PostMapping("/linux")
+    public ProdottoModel[] linux(int id) throws IOException{
+        ProdottoModel[] array = suggService.secondLayer(ds, ps, id);
+        System.out.println(array);
+        return array;
+    }
 }
