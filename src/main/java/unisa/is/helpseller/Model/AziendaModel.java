@@ -20,10 +20,13 @@ public class AziendaModel implements Serializable {
     private String logo;
     private List<ProdottoModel> prodotti;
     private List<OrdineModel> ordini;
+    private byte[] logoBlob;
     
     public AziendaModel() {}
 
-    public AziendaModel(String email, String password, String nomeAzienda, String vat, String indirizzo, String descrizione, String logo, List<ProdottoModel> prodotti, List<OrdineModel> ordini) {
+    public AziendaModel(String email, String password, String nomeAzienda, String vat, 
+            String indirizzo, String descrizione, String logo, 
+            List<ProdottoModel> prodotti, List<OrdineModel> ordini) {
         this.email = email;
         this.password = password;
         this.nomeAzienda = nomeAzienda;
@@ -127,9 +130,14 @@ public class AziendaModel implements Serializable {
     public void setOrdini(List<OrdineModel> ordini) {
         this.ordini = ordini;
     }
-    
 
+    public byte[] getLogoBlob() {
+        return logoBlob;
+    }
 
-   
+    public void setLogoBlob(byte[] logoBlob) {
+        this.logoBlob = logoBlob;
+    }
+
     
 }

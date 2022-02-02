@@ -139,8 +139,7 @@ public class ProdottoController {
                         prodottiModel.get(i).setImmagineBlob(imgBuf);
                     } catch (Exception cycle) {
                         System.out.println("ERRORE " + cycle);
-                    }
-                    
+                    } 
                 }
                 
                 return new ResponseEntity<>(prodottiModel, HttpStatus.OK);

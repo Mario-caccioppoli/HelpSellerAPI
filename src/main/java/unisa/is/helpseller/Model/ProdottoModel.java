@@ -28,8 +28,7 @@ public class ProdottoModel implements Serializable {
 
     public ProdottoModel(String nomeProdotto, double prezzo, String descrizione, 
             int quantita, String immagine, int quantitaMinima, int peso, int volume, 
-            int idAzienda, List<RecensioneModel> recensioni, List<ScontoModel> sconti,
-            byte[] immagineBlob) {
+            int idAzienda, List<RecensioneModel> recensioni, List<ScontoModel> sconti) {
         this.nomeProdotto = nomeProdotto;
         this.prezzo = prezzo;
         this.descrizione = descrizione;

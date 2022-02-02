@@ -21,6 +21,9 @@ public class AziendaController {
 
     @Autowired
     private final AziendaService aziendaService;
+    
+    @Autowired
+    private FileController fileController;
 
     @Autowired
     public AziendaController(AziendaService aziendaService) {
@@ -39,7 +42,19 @@ public class AziendaController {
                 aziendeModel = aziende.stream().map(p -> {
                     return new AziendaModel(p);
                 }).collect(Collectors.toList());
-                return new ResponseEntity<>(aziendeModel, HttpStatus.OK);
+            
+             for (int i = 0; i < aziendeModel.size(); i++) {
+                    try {
+                        byte[] imgBuf = fileController.getImageWithMediaType(
+                                aziendeModel.get(i).getLogo());
+                        
+                        aziendeModel.get(i).setLogoBlob(imgBuf);
+                    } catch (Exception cycle) {
+                        System.out.println("ERRORE " + cycle);
+                    } 
+                }
+                    
+            return new ResponseEntity<>(aziendeModel, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
