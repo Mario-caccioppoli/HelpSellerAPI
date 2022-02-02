@@ -12,7 +12,8 @@ import unisa.is.helpseller.Entity.Prodotto;
 import unisa.is.helpseller.Model.ProdottoModel;
 
 /**
- * classe di mappatura dei servizi relativi ad Prodotto affinché siano accessibili dal frontend
+ * classe di mappatura dei servizi relativi ad Prodotto affinché siano
+ * accessibili dal frontend
  */
 @RestController
 @RequestMapping("/prodotto")
@@ -21,7 +22,7 @@ public class ProdottoController {
 
     @Autowired
     private final ProdottoService prodottoService;
-    
+
     @Autowired
     private FileController fileController;
 
@@ -32,6 +33,7 @@ public class ProdottoController {
 
     /**
      * metodo per il recupero di tutti le istanze presenti nel DB
+     *
      * @return List<Amministratore> lista di oggetti entity
      */
     @GetMapping("/findAll")
@@ -42,6 +44,14 @@ public class ProdottoController {
             prodottiModel = prodotti.stream().map(p -> {
                 return new ProdottoModel(p);
             }).collect(Collectors.toList());
+            for (int i = 0; i < prodottiModel.size(); i++) {
+                try {
+                    byte[] imgBuf = fileController.getImageWithMediaType(prodottiModel.get(i).getImmagine());
+                    prodottiModel.get(i).setImmagineBlob(imgBuf);
+                } catch (Exception cycle) {
+                    System.out.println("ERRORE " + cycle);
+                }
+            }
             return new ResponseEntity<>(prodottiModel, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -50,15 +60,23 @@ public class ProdottoController {
 
     /**
      * metodo per il recupero di una istanza dal DB dato in input il suo ID
-     * @param id    intero ID dell'entità ricercata
+     *
+     * @param id intero ID dell'entità ricercata
      * @return oggetto prelevato dal DB, se presente
      */
     @GetMapping("/findId/{id}")
     public ResponseEntity<ProdottoModel> findId(@PathVariable("id") int id) {
         try {
             Prodotto prodotto = prodottoService.findId(id);
-                ProdottoModel p = new ProdottoModel(prodotto);
-                return new ResponseEntity<>(p, HttpStatus.OK);
+            ProdottoModel p = new ProdottoModel(prodotto);
+            try {
+                byte[] imgBuf = fileController.getImageWithMediaType(p.getImmagine());
+                p.setImmagineBlob(imgBuf);
+            } catch (Exception ex) {
+                System.out.println(ex);
+            }
+            
+            return new ResponseEntity<>(p, HttpStatus.OK);
 
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -67,14 +85,15 @@ public class ProdottoController {
 
     /**
      * metodo per la rimozione di una istanza dato l'id
-     * @param id    id dell'entità da rimuovere
+     *
+     * @param id id dell'entità da rimuovere
      * @return int id dell'entità rimossa
      */
     @DeleteMapping("/deleteId/{id}")
     public ResponseEntity<Integer> deleteId(@PathVariable("id") int id) {
         try {
             int result = prodottoService.deleteId(id);
-                return new ResponseEntity<>(result, HttpStatus.OK);
+            return new ResponseEntity<>(result, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -82,6 +101,7 @@ public class ProdottoController {
 
     /**
      * metodo per l'inserimento di un'istanza nel DB
+     *
      * @param prod ProdottoModel oggetto entity da inserire nel DB
      * @return int id dell'entità aggiunta
      */
@@ -91,7 +111,7 @@ public class ProdottoController {
             Prodotto p = new Prodotto(prod);
             int id = prodottoService.insert(p);
             return new ResponseEntity<>(id, HttpStatus.OK);
-            
+
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -99,6 +119,7 @@ public class ProdottoController {
 
     /**
      * metodo per l'update di una entità presente nel DB
+     *
      * @param prod ProdottoModel oggetto entity da modificare nel DB
      * @return int id dell'entity modificata
      */
@@ -107,10 +128,10 @@ public class ProdottoController {
         try {
             Prodotto p = new Prodotto(prod);
             int id = prodottoService.udpate(p);
-            if(id > 0) {
+            if (id > 0) {
                 return new ResponseEntity<>(id, HttpStatus.OK);
             }
-            
+
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -119,6 +140,7 @@ public class ProdottoController {
 
     /**
      * metodo di ricerca dei prodotti dato l'id dell'azienda
+     *
      * @param id dell'azienda
      * @return lista di prodotti recuperati
      */
@@ -127,21 +149,21 @@ public class ProdottoController {
         try {
             List<Prodotto> prodotti = prodottoService.findProdottiByAzienda(id);
             List<ProdottoModel> prodottiModel = new ArrayList<ProdottoModel>();
-            
+
             if (prodotti.size() > 0) {
                 prodottiModel = prodotti.stream().map(p -> {
                     return new ProdottoModel(p);
                 }).collect(Collectors.toList());
-            
+
                 for (int i = 0; i < prodottiModel.size(); i++) {
                     try {
                         byte[] imgBuf = fileController.getImageWithMediaType(prodottiModel.get(i).getImmagine());
                         prodottiModel.get(i).setImmagineBlob(imgBuf);
                     } catch (Exception cycle) {
                         System.out.println("ERRORE " + cycle);
-                    } 
+                    }
                 }
-                
+
                 return new ResponseEntity<>(prodottiModel, HttpStatus.OK);
             } else {
                 return new ResponseEntity<>(prodottiModel, HttpStatus.NOT_FOUND);
@@ -153,6 +175,7 @@ public class ProdottoController {
 
     /**
      * metodo di ricerca dei prodotti dato il nome
+     *
      * @param name stringa contenente il nome dell'azienda
      * @return lista dei prodotti recuperati
      */
@@ -176,6 +199,7 @@ public class ProdottoController {
 
     /**
      * metodo di ricerda di prodotti dato il nome e l'id dellazienda
+     *
      * @param name nome del prodotto
      * @param id id dell'azienda
      * @return lista dei prodotti recuperati
@@ -200,6 +224,7 @@ public class ProdottoController {
 
     /**
      * metodo di ricerca dato l'id di un ordine
+     *
      * @param id dell'ordine
      * @return lista di prodotti recuperati
      */
@@ -223,6 +248,7 @@ public class ProdottoController {
 
     /**
      * metodo di ricerda dato l'id di uno sconto
+     *
      * @param id dello sconto
      * @return lista dei prodotti recuperati
      */
@@ -246,12 +272,13 @@ public class ProdottoController {
 
     /**
      * metodo di ricerca dato l'id del prodotto e dell'azienda
+     *
      * @param id_prodotto id del prodotto
      * @param id_azienda id dell'azienda
      * @return lista contenente i prodotti recuperati
      */
     @GetMapping("/findProdottiByIdInAzienda/{id_prodotto}/{id_azienda}")
-    public ResponseEntity<List<ProdottoModel>> findProdottiByIdInAzienda(@PathVariable("id_prodotto") int id_prodotto, 
+    public ResponseEntity<List<ProdottoModel>> findProdottiByIdInAzienda(@PathVariable("id_prodotto") int id_prodotto,
             @PathVariable("id_azienda") int id_azienda) {
         try {
             List<Prodotto> prodotti = prodottoService.findProdottiByIdInAzienda(id_prodotto, id_azienda);

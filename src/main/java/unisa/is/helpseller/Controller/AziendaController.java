@@ -70,7 +70,15 @@ public class AziendaController {
         try {
             Azienda azienda = aziendaService.findId(id);
             AziendaModel a = new AziendaModel(azienda);
-             return new ResponseEntity<>(a, HttpStatus.OK);
+            try {
+                byte[] imgBuf = fileController.getImageWithMediaType(a.getLogo());
+                a.setLogoBlob(imgBuf);
+            } catch (Exception ex) {
+                System.out.println(ex);
+            }
+            
+
+            return new ResponseEntity<>(a, HttpStatus.OK);
       
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
