@@ -67,6 +67,7 @@ public class TrasportoController {
      * @param id    id dell'entità da rimuovere
      * @return int id dell'entità rimossa
      */
+    /*
     @DeleteMapping("/deleteId/{id}")
     public ResponseEntity<Integer> deleteId(@PathVariable("id") int id) {
         try {
@@ -77,6 +78,7 @@ public class TrasportoController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    */
 
     /**
      * metodo per l'inserimento di un'istanza nel DB

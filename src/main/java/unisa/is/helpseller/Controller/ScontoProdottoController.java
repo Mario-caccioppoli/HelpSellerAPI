@@ -69,6 +69,7 @@ public class ScontoProdottoController {
      * @param id    intero ID dell'entità ricercata
      * @return oggetto prelevato dal DB da restituire al frontend
      */
+    /*
     @GetMapping("/findBySconto/{id}")
     public ResponseEntity<List<ScontoProdottoModel>> findBySconto(@PathVariable("id") int id) {
         try {
@@ -91,12 +92,14 @@ public class ScontoProdottoController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    */
 
     /**
      * metodo per il recupero di una istanza dal DB dato in input il suo ID
      * @param id    intero ID dell'entità ricercata
      * @return oggetto prelevato dal DB da restituire al frontend
      */
+    /*
     @GetMapping("/findByProdotto/{id}")
     public ResponseEntity<List<ScontoProdottoModel>> findByProdotto(@PathVariable("id") int id) {
         try {
@@ -119,6 +122,8 @@ public class ScontoProdottoController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    */
+    
 
     /**
      * metodo per la rimozione di una istanza dato l'id

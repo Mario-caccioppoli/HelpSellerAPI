@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import unisa.is.helpseller.Entity.Distributore;
 import unisa.is.helpseller.Entity.Ordine;
+import unisa.is.helpseller.Model.AziendaModel;
 import unisa.is.helpseller.Model.OrdineModel;
 import unisa.is.helpseller.Model.OrdineProdottoModel;
 import unisa.is.helpseller.Service.DistributoreService;
@@ -35,6 +36,9 @@ public class OrdineController {
 
     @Autowired
     private OrdineProdottoController ordineProdottoController;
+    
+    @Autowired
+    private AziendaController aziendaController;
 
     @Autowired
     public OrdineController(OrdineService ordineService) {
@@ -193,10 +197,19 @@ public class OrdineController {
                         }
                         ordiniModel.get(i).setPrezzoTotale(prezzoTotale);
                     } catch (Exception cycle) {
-                        System.out.println("ERRORACCIO: " + cycle);
+                        System.out.println("ERRORE: " + cycle);
                     }
-
                 } //Fine inserimento di ordine-prodotti e del prezzo totale
+                
+                for (int i = 0; i < ordiniModel.size(); i++) {
+                    try {
+                        AziendaModel aziendaBuf = 
+                                aziendaController.findId(ordiniModel.get(i).getOrdineProdotti().get(0).getIdOrdine()).getBody();
+                        ordiniModel.get(i).setAzienda(aziendaBuf);
+                    } catch (Exception cycle) {
+                        System.out.println("ERRORE: " + cycle);
+                    }
+                }
 
                 return new ResponseEntity<>(ordiniModel, HttpStatus.OK);
             } else {
