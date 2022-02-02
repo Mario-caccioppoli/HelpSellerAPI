@@ -21,11 +21,15 @@ public class ProdottoModel implements Serializable {
     private int idAzienda;
     private List<RecensioneModel> recensioni;
     private List<ScontoModel> sconti;
+    private byte[] immagineBlob;
 
     public ProdottoModel() {
     }
 
-    public ProdottoModel(String nomeProdotto, double prezzo, String descrizione, int quantita, String immagine, int quantitaMinima, int peso, int volume, int idAzienda, List<RecensioneModel> recensioni, List<ScontoModel> sconti) {
+    public ProdottoModel(String nomeProdotto, double prezzo, String descrizione, 
+            int quantita, String immagine, int quantitaMinima, int peso, int volume, 
+            int idAzienda, List<RecensioneModel> recensioni, List<ScontoModel> sconti,
+            byte[] immagineBlob) {
         this.nomeProdotto = nomeProdotto;
         this.prezzo = prezzo;
         this.descrizione = descrizione;
@@ -149,5 +153,14 @@ public class ProdottoModel implements Serializable {
     public void setSconti(List<ScontoModel> sconti) {
         this.sconti = sconti;
     }
+
+    public byte[] getImmagineBlob() {
+        return immagineBlob;
+    }
+
+    public void setImmagineBlob(byte[] immagineBlob) {
+        this.immagineBlob = immagineBlob;
+    }
+    
 
 }
