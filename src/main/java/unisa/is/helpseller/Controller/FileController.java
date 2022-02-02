@@ -5,9 +5,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import static java.nio.file.StandardCopyOption.*;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import static java.nio.file.Paths.*;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.commons.io.IOUtils;
 import org.springframework.core.io.*;
 import org.springframework.http.HttpHeaders;
 import static org.springframework.http.HttpHeaders.CONTENT_DISPOSITION;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -70,5 +73,13 @@ public class FileController {
             httpHeaders.add(CONTENT_DISPOSITION, "attachment;File-Name=" + resource.getFilename());
             return ResponseEntity.ok().contentType(MediaType.parseMediaType
         (Files.probeContentType(filePath))).headers(httpHeaders).body(resource);
+    }
+        
+        @GetMapping(value = "/getImage/{imageName:.+}",
+                    produces = {MediaType.IMAGE_JPEG_VALUE,MediaType.IMAGE_GIF_VALUE,MediaType.IMAGE_PNG_VALUE})
+        
+    public @ResponseBody byte[] getImageWithMediaType(@PathVariable(name = "imageName") String fileName) throws IOException {
+        Path destination = Paths.get(DIRECTORY+"/"+fileName);// retrieve the image by its name
+        return IOUtils.toByteArray(destination.toUri());
     }
 }
