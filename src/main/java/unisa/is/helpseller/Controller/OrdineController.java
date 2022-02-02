@@ -204,7 +204,7 @@ public class OrdineController {
                 for (int i = 0; i < ordiniModel.size(); i++) {
                     try {
                         AziendaModel aziendaBuf = 
-                                aziendaController.findId(ordiniModel.get(i).getOrdineProdotti().get(0).getIdOrdine()).getBody();
+                                aziendaController.findId(ordiniModel.get(i).getOrdineProdotti().get(0).getProdotto().getIdAzienda()).getBody();
                         ordiniModel.get(i).setAzienda(aziendaBuf);
                     } catch (Exception cycle) {
                         System.out.println("ERRORE: " + cycle);
