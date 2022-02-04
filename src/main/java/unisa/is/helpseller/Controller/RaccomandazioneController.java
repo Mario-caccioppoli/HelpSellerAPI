@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import unisa.is.helpseller.Model.ProdottoModel;
@@ -61,7 +62,7 @@ public class RaccomandazioneController {
      * @throws IOException caso in cui non viene trovato il file .exe
      */
     @PostMapping("/l2")
-    public ProdottoModel[] secondLayer(int id) throws IOException{
+    public ProdottoModel[] secondLayer(@RequestBody int id) throws IOException{
         ProdottoModel[] array = suggService.secondLayer(ds, ps, id);
         System.out.println(array);
         return array;

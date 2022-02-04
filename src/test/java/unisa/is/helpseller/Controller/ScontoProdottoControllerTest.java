@@ -34,38 +34,6 @@ public class ScontoProdottoControllerTest {
         assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
         assertThat(allSconti).asList();
     }
-
-    @Test
-    public void findByScontoPositive() throws Exception {
-        ResponseEntity<List<ScontoProdottoModel>> response = controller.findBySconto(4);
-        List<ScontoProdottoModel> allSconti = response.getBody();
-        assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
-        assertThat(allSconti).isNotNull();
-    }
-
-    @Test
-    public void findByScontoNegative() throws Exception {
-        ResponseEntity<List<ScontoProdottoModel>> response = controller.findBySconto(-1);
-        List<ScontoProdottoModel> allSconti = response.getBody();
-        assertThat(response.getStatusCode().compareTo(HttpStatus.INTERNAL_SERVER_ERROR));
-        assertThat(allSconti).isEmpty();
-    }
-
-    @Test
-    public void findByProdottoPositive() throws Exception {
-        ResponseEntity<List<ScontoProdottoModel>> response = controller.findBySconto(7);
-        List<ScontoProdottoModel> allProdotti = response.getBody();
-        assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
-        assertThat(allProdotti).isNotNull();
-    }
-
-    @Test
-    public void findByProdottoNegative() throws Exception {
-        ResponseEntity<List<ScontoProdottoModel>> response = controller.findBySconto(-1);
-        List<ScontoProdottoModel> allProdotti = response.getBody();
-        assertThat(response.getStatusCode().compareTo(HttpStatus.INTERNAL_SERVER_ERROR));
-        assertThat(allProdotti).isEmpty();
-    }
     
     public void CD() throws Exception {
         ResponseEntity<Integer> response = controller.insert(5, 4);

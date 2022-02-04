@@ -64,7 +64,7 @@ public class OrdineControllerTest {
     @Test
     public void createFail() throws Exception {
         OrdineModel ordine = new OrdineModel(Date.valueOf("2022-01-10"), Date.valueOf("2022-01-21"), "commentoTest",
-                "statoTest", 1, null, 120, null);
+                "statoTest", 1, null, 120, null, null);
         ResponseEntity<Integer> response = controller.insert(ordine);
         assertThat(response.getStatusCode().compareTo(HttpStatus.INTERNAL_SERVER_ERROR));
     }
