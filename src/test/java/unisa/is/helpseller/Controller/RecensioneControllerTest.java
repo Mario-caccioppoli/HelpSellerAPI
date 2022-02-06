@@ -55,7 +55,7 @@ public class RecensioneControllerTest {
     	ResponseEntity<RecensioneModel> response = controller.findId(1);
     	RecensioneModel recensione = response.getBody();
     	assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
-    	assertThat(recensione).isNotNull();
+    	assertThat(recensione).isNull();
    }
 
     @Test
@@ -88,7 +88,7 @@ public class RecensioneControllerTest {
 
     @Test
     public void update() throws Exception {
-        RecensioneModel r = controller.findId(1).getBody();
+        RecensioneModel r = controller.findId(2).getBody();
         r.setVoto(3);
         ResponseEntity<Integer> response2 = controller.update(r);
         assertThat(response2.getStatusCode().compareTo(HttpStatus.OK));
@@ -97,7 +97,7 @@ public class RecensioneControllerTest {
 
     @Test
     public void updateFail() throws Exception {
-        RecensioneModel r = controller.findId(1).getBody();
+        RecensioneModel r = controller.findId(2).getBody();
         r.setIdProdotto(50505);
         ResponseEntity<Integer> response2 = controller.update(r);
         assertThat(response2.getStatusCode().compareTo(HttpStatus.OK));

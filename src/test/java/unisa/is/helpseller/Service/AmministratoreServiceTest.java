@@ -59,7 +59,7 @@ public class AmministratoreServiceTest {
         assertThat(a).isNotNull();
 
         assertThat(service.udpate(a)).isNotNull();
-        a.setEmail("nuovaemail");
+        a.setEmail("nuovaemagfdhrhfdhrdhrhrbil");
         int id = service.insert(a);
         assertThat(id).isNotNull();
         assertThat(service.recuperoPassword(a.getEmail())).isNotNull();

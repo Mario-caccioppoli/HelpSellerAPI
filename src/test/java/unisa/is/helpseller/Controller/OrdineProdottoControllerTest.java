@@ -21,8 +21,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import unisa.is.helpseller.Entity.Prodotto;
-import unisa.is.helpseller.Model.DocumentoModel;
 import unisa.is.helpseller.Model.OrdineProdottoModel;
 import unisa.is.helpseller.Model.ProdottoModel;
 
@@ -116,8 +114,32 @@ public class OrdineProdottoControllerTest {
     }
 
     @Test
+    public void findReportMensileFail2() throws Exception {
+        ResponseEntity<Integer[]> response = controller.findReportMensile(-1, 125);
+        assertThat(response.getStatusCode().compareTo(HttpStatus.NOT_FOUND));
+    }
+
+    @Test
     public void findReportMensileGruppo() throws Exception {
         ResponseEntity<Integer[]> response = controller.findReportMensileGruppo(2022);
+        assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+    }
+
+    @Test
+    public void findReportMensileGruppoFail() throws Exception {
+        ResponseEntity<Integer[]> response = controller.findReportMensileGruppo(-1);
+        assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+    }
+
+    @Test
+    public void findReportAnnualeAzienda() throws Exception {
+        ResponseEntity<ArrayList<ArrayList<Integer>>> response = controller.findReportAnnualeAzienda(1);
+        assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+    }
+
+    @Test
+    public void findReportAnnualeAziendaFail() throws Exception {
+        ResponseEntity<ArrayList<ArrayList<Integer>>> response = controller.findReportAnnualeAzienda(999);
         assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
     }
 }

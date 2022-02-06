@@ -23,4 +23,14 @@ public class RaccomandazioneControllerTest {
     public void l2() throws Exception {
         controller.secondLayer(1);
     }
+
+    @Test
+    public void l2fail() throws Exception {
+        controller.secondLayer(999);
+    }
+
+    @Test
+    public void l2fail2() throws Exception {
+        controller.secondLayer(7);
+    }
 }
