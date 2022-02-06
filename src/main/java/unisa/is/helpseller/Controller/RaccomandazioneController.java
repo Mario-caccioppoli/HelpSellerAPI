@@ -4,6 +4,7 @@ import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -61,9 +62,9 @@ public class RaccomandazioneController {
      * @return vettore di model contente i prodotti da suggerire
      * @throws IOException caso in cui non viene trovato il file .exe
      */
-    @PostMapping("/l2")
-    public ProdottoModel[] secondLayer(@RequestBody int id) throws IOException{
-        ProdottoModel[] array = suggService.secondLayer(ds, ps, id);
+    @GetMapping("/l2/{id}")
+    public ProdottoModel[] secondLayer(@PathVariable("id") int idDistributore) throws IOException{
+        ProdottoModel[] array = suggService.secondLayer(ds, ps, idDistributore);
         System.out.println(array);
         return array;
     }
