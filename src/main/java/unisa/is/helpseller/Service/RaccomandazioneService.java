@@ -41,7 +41,6 @@ public class RaccomandazioneService {
 
     public ProdottoModel[] firstLayer(ProdottoService ps) throws IOException {
         ProdottoModel[] array = new ProdottoModel[10];   //da modificare la dimensione dell'array
-        ProdottoModel prodottoM;
 
         Runtime runTime = Runtime.getRuntime();
         String eseguibilePath = "firstLayer.exe";
@@ -54,7 +53,7 @@ public class RaccomandazioneService {
         String line;
         int i = 0;
         while ((line = br.readLine()) != null && i < 10) { //cambiare qua quando rendo la dimensione dell'array dinamico
-            array[i] = prodottoM = new ProdottoModel(ps.findId(Integer.valueOf(line)));
+            array[i] = new ProdottoModel(ps.findId(Integer.valueOf(line)));
             i++;
         }
         return array;

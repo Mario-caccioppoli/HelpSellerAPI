@@ -27,6 +27,9 @@ public class RaccomandazioneController {
     private final RaccomandazioneService suggService;
     
     @Autowired
+    private FileController fileController;
+    
+    @Autowired
     public RaccomandazioneController(RaccomandazioneService suggService) {this.suggService = suggService;}
     
     //dipendenza con ProdottoService perché perché richiesto per inviare i prodotti al frontEnd
@@ -51,9 +54,16 @@ public class RaccomandazioneController {
      */
     @GetMapping("/l1")
     public ProdottoModel[] firstLayer() throws IOException{
-        ProdottoModel[] array = suggService.firstLayer(ps);
-        System.out.println(array);
-        return array;
+        ProdottoModel[] prodottiModel = suggService.firstLayer(ps);
+         for (int i = 0; i < prodottiModel.length; i++) {
+                try {
+                    byte[] imgBuf = fileController.getImageWithMediaType(prodottiModel[i].getImmagine());
+                    prodottiModel[i].setImmagineBlob(imgBuf);
+                } catch (Exception cycle) {
+                    System.out.println("ERRORE " + cycle);
+                }
+            }
+        return prodottiModel;
     }
 
     /**
@@ -64,8 +74,15 @@ public class RaccomandazioneController {
      */
     @GetMapping("/l2/{id}")
     public ProdottoModel[] secondLayer(@PathVariable("id") int idDistributore) throws IOException{
-        ProdottoModel[] array = suggService.secondLayer(ds, ps, idDistributore);
-        System.out.println(array);
-        return array;
+        ProdottoModel[] prodottiModel = suggService.secondLayer(ds, ps, idDistributore);
+        for (int i = 0; i < prodottiModel.length; i++) {
+                try {
+                    byte[] imgBuf = fileController.getImageWithMediaType(prodottiModel[i].getImmagine());
+                    prodottiModel[i].setImmagineBlob(imgBuf);
+                } catch (Exception cycle) {
+                    System.out.println("ERRORE " + cycle);
+                }
+            }
+        return prodottiModel;
     }
 }
