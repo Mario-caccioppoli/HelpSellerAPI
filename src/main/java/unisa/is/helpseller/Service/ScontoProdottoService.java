@@ -24,35 +24,10 @@ public class ScontoProdottoService {
      * metodo per il recupero di tutti le istanze presenti nel DB
      * @return List<ScontoProdotto> lista di oggetti entity
      */
-    public List<ScontoProdotto> findAll() {
-        return scontoProdottoRepo.findAll();
-    }
-
-    /**
-     * metodo per il recupero di tutti le istanze presenti nel DB
-     * @return List<ScontoProdotto> lista di oggetti entity
-     */
     public List<ScontoProdotto> findAllScontoProdotto() {
         return scontoProdottoRepo.findAllScontoProdotto();
     }
 
-    /**
-     * metodo per il recupero di una istanza dal DB dato in input il suo ID
-     * @param id    intero ID dell'entità ricercata
-     * @return oggetto prelevato dal DB, se presente
-     */
-    public List<ScontoProdotto> findBySconto(int id) {
-        return scontoProdottoRepo.findBySconto(id);
-    }
-
-    /**
-     * metodo per il recupero di una istanza dal DB dato in input il suo ID
-     * @param id    intero ID dell'entità ricercata
-     * @return oggetto prelevato dal DB, se presente
-     */
-    public List<ScontoProdotto> findByProdotto(int id) {
-        return scontoProdottoRepo.findByProdotto(id);
-    }
 
     /**
      * metodo per la rimozione di una istanza dato l'id
@@ -72,16 +47,4 @@ public class ScontoProdottoService {
     	return scontoProdottoRepo.insert(sconto, prodotto);
     }
 
-    /**
-     * metodo per l'update di una entità presente nel DB
-     * @param ScontoProdotto oggetto entity da modificare nel DB
-     * @return int id dell'entity modificata
-     */
-    public int udpate(ScontoProdotto updated, ScontoProdotto old) {
-    	return scontoProdottoRepo.update(updated.getIdSconto(), updated.getIdProdotto(), old.getIdSconto(), old.getIdProdotto());
-    }
-    
-    public List<Object[]> findProdottiScontatiAzienda(String nome, int id_azienda) {
-        return scontoProdottoRepo.findProdottiScontatiAzienda(nome, id_azienda);
-    }
 }

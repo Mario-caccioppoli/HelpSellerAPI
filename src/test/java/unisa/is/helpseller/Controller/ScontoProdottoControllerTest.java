@@ -35,6 +35,7 @@ public class ScontoProdottoControllerTest {
         assertThat(allSconti).asList();
     }
     
+    @Test
     public void CD() throws Exception {
         ResponseEntity<Integer> response = controller.insert(5, 4);
         System.out.println("id value : " + response.getBody());

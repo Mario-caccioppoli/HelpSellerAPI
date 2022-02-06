@@ -52,5 +52,5 @@ public interface OrdineRepo extends JpaRepository<Ordine, Integer> {
         "WHERE prodotto.id_azienda = :id_azienda", nativeQuery = true)
    List<Ordine> findOrdiniByAzienda(@Param("id_azienda") int id_azienda);
    
-   
+
 }

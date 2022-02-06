@@ -82,4 +82,5 @@ public class OrdineService {
     public List<Ordine> findOrdiniByAzienda(int id_azienda) {
         return ordineRepo.findOrdiniByAzienda(id_azienda);
     }
+
 }

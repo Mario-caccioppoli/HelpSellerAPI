@@ -20,10 +20,4 @@ public class EmailServiceTest {
         senderService.sendEmail("xlitsl0l@gmail.com", "email", "testo");
     }
     
-    
-    
-
-    public void sendMail(){
-        senderService.sendEmail("xlitsl0l@gmail.com", "email", "testo");
-    }
 }
