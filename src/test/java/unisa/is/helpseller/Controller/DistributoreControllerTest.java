@@ -16,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import unisa.is.helpseller.Model.AziendaModel;
 import unisa.is.helpseller.Model.DistributoreModel;
 
 
@@ -105,13 +104,13 @@ public class DistributoreControllerTest {
     public void invalidDelete() throws Exception {
         ResponseEntity<Integer> response = controller.deleteId(-1);
         assertThat(response.getStatusCode().compareTo(HttpStatus.NOT_ACCEPTABLE));
-        assertThat(response.getBody()).isNull();
+        assertThat(response.getBody() == 0).isTrue();
     }
 
     @Test
     public void invalidDelete2() throws Exception {
         ResponseEntity<Integer> response = controller.deleteId(999);
         assertThat(response.getStatusCode().compareTo(HttpStatus.INTERNAL_SERVER_ERROR));
-        assertThat(response.getBody()).isNull();
+        assertThat(response.getBody() == 0).isTrue();
     }
 }

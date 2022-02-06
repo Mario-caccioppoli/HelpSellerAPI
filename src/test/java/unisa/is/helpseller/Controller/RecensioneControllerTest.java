@@ -10,8 +10,6 @@ package unisa.is.helpseller.Controller;
  * @author UTENTE
  */
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
@@ -20,11 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import unisa.is.helpseller.Entity.Recensione;
-import unisa.is.helpseller.Model.AziendaModel;
-import unisa.is.helpseller.Model.ProdottoModel;
 import unisa.is.helpseller.Model.RecensioneModel;
-import unisa.is.helpseller.Model.ScontoModel;
 
 
 @SpringBootTest

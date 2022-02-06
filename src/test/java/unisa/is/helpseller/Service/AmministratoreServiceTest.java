@@ -55,7 +55,7 @@ public class AmministratoreServiceTest {
     public void Service() throws Exception {
         List<Amministratore> list = service.findAll();
         assertThat(list).asList();
-        Amministratore a = service.findId(3);
+        Amministratore a = service.findId(2);
         assertThat(a).isNotNull();
 
         assertThat(service.udpate(a)).isNotNull();

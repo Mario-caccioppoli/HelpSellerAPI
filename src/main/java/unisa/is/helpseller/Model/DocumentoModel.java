@@ -9,7 +9,11 @@ import unisa.is.helpseller.Entity.Documento;
  */
 public class DocumentoModel implements Serializable{
     
-    private int id;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private int id;
     private String titolo;
     private String autore;
     private Date data;

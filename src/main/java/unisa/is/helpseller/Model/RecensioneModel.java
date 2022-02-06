@@ -9,7 +9,11 @@ import unisa.is.helpseller.Entity.Recensione;
  */
 public class RecensioneModel implements Serializable{
 
-    private int id;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private int id;
     private String testo;
     private int voto;
     private Date data;

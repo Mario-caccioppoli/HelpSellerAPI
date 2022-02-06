@@ -1,6 +1,5 @@
 package unisa.is.helpseller.Entity;
 
-import java.sql.Date;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -8,10 +7,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 public class OrdineProdottoTest {
 
-    @Test
+    @SuppressWarnings("unlikely-arg-type")
+	@Test
     public void costruttore(){
         OrdineProdotto op = new OrdineProdotto();
-        Date data = new Date(2022, 2, 3);
         op.setIdOrdine(1);
         op.setIdProdotto(1);
         op.setPrezzo(100);
@@ -38,6 +37,5 @@ public class OrdineProdottoTest {
         op2.setId_prodotto(1);
         op2.equals(op);
 
-        OrdineProdotto op12 = new OrdineProdotto(1, 1, 1, 1, 1);
     }
 }

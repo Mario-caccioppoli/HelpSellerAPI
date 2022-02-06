@@ -4,7 +4,6 @@ package unisa.is.helpseller.Service;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 import unisa.is.helpseller.Entity.OrdineProdotto;
 import unisa.is.helpseller.Entity.Prodotto;

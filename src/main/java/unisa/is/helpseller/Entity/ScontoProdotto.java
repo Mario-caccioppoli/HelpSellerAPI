@@ -11,7 +11,12 @@ import javax.persistence.*;
 @IdClass(ScontoProdottoId.class)
 @Table(name = "sconto_prodotto")
 public class ScontoProdotto implements Serializable {
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
     private Integer id_sconto;
     
     @Id

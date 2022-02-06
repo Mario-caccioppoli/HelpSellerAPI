@@ -1,6 +1,5 @@
 package unisa.is.helpseller.Entity;
 
-import java.sql.Date;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -47,6 +46,6 @@ public class ProdottoTest {
         x.setId(1);x.setNomeProdotto("");x.setDescrizione("");x.setQuantita(1);x.setImmagine("");
         x.setQuantitaMinima(1);x.setPrezzo(1);x.setPeso(1);x.setVolume(1);x.getRecensioni();x.getSconti();x.setSconti(null);
 
-        Prodotto p = new Prodotto("", 1, "", 1, "", 1, 1, 1, 1);
+        
     }
 }

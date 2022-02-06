@@ -11,7 +11,8 @@ public class DocumentoTest {
     @Test
     public void costruttore(){
         Documento doc = new Documento();
-        Date data = new Date(2022, 2, 3);
+        @SuppressWarnings("deprecation")
+		Date data = new Date(2022, 2, 3);
         doc.setAutore("aut");
         doc.setData(data);
         doc.setIdOrdine(2);
@@ -27,7 +28,6 @@ public class DocumentoTest {
         assertThat(id != 0);
         assertThat(titolo.isEmpty()).isFalse();
 
-        Documento d = new Documento("", "", null, 1);
 
     }
 }

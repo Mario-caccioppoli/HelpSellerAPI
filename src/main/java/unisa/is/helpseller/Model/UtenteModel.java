@@ -10,7 +10,12 @@ import unisa.is.helpseller.Entity.Distributore;
  */
 public class UtenteModel implements Serializable{
 
-    private int id;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private int id;
     
     //attributi in comune per tutte le tipologie di utente, azienda NON ha username
     private String username, email, password, tipo;

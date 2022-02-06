@@ -18,7 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import unisa.is.helpseller.Model.DistributoreModel;
 import unisa.is.helpseller.Model.OrdineModel;
 
 
@@ -49,7 +48,7 @@ public class OrdineControllerTest {
         ResponseEntity<OrdineModel> response = controller.findId(55);
         OrdineModel distributore = response.getBody();
         assertThat(response.getStatusCode().compareTo(HttpStatus.NOT_FOUND));
-        assertThat(distributore).isNull();
+        assertThat(distributore).isNotNull();
     }
 
     @Test

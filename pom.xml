@@ -70,6 +70,13 @@
 			<plugin>
 			    <groupId>org.jacoco</groupId>
 			    <artifactId>jacoco-maven-plugin</artifactId>
+				 <configuration>
+				        <excludes>
+				            <exclude>unisa/is/helpseller/Entity/**/*</exclude>
+                             <exclude>unisa/is/helpseller/Model/**/*</exclude>
+                               <exclude>**/*HelpsellerApplication.*</exclude>
+				        </excludes>
+				     </configuration>
 			    <version>0.8.5</version>
 			    <executions>
 			        <execution>

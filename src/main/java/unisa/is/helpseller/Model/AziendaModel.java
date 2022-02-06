@@ -10,7 +10,11 @@ import unisa.is.helpseller.Entity.Azienda;
  */
 public class AziendaModel implements Serializable {
 
-    private int id;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private int id;
     private String email;
     private String password;
     private String nomeAzienda;
