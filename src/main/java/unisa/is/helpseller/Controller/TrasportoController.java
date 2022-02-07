@@ -116,5 +116,27 @@ public class TrasportoController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
+    
+    
+    /**
+     * metodo per l'inserimento di più istanzenel DB
+     * @param tr TrasportoModel lista di oggetti da inserire nel DB
+     * @return int id dell'entità aggiunta
+     */
+    @PostMapping("/insertTrasporti")
+    public ResponseEntity<List<Integer>> insert(@RequestBody List<TrasportoModel> tr) {
+        try {
+            List<Integer> id = new ArrayList<Integer>();
+            for(TrasportoModel t : tr) {
+                Trasporto entity = new Trasporto(t);
+                id.add(trasportoService.insert(entity));
+            }
+            
+            return new ResponseEntity<>(id, HttpStatus.OK);
+            
+        } catch (Exception ex) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
 }
