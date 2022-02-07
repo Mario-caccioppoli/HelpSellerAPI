@@ -11,6 +11,7 @@ package unisa.is.helpseller.Controller;
  */
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
@@ -81,6 +82,26 @@ public class TrasportoControllerTest {
         TrasportoModel t = controller.findId(1).getBody();
         t.setDataConsegna(null);
         ResponseEntity<Integer> response = controller.update(t);
+        assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+        assertThat(response.getBody() == null);
+    }
+    
+    @Test
+    public void CreaMultiple() throws Exception {
+        List<TrasportoModel> tmList = new ArrayList<TrasportoModel>();
+        TrasportoModel trasporto = new TrasportoModel(0, "indirizzoconsegnaTest", 1, Date.valueOf("2022-01-10"), 1);
+        tmList.add(trasporto);
+        ResponseEntity<List<Integer>> response = controller.insertTrasporti(tmList);
+        assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+        assertThat(response.getBody() == null);
+    }
+
+    @Test
+    public void CreaInvalidMultiple() throws Exception {
+        List<TrasportoModel> tmList = new ArrayList<TrasportoModel>();
+        TrasportoModel trasporto = new TrasportoModel(0, "indirizzoconsegnaTest", 1, null, 1);
+        tmList.add(trasporto);
+        ResponseEntity<List<Integer>> response = controller.insertTrasporti(tmList);
         assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
         assertThat(response.getBody() == null);
     }

@@ -124,7 +124,7 @@ public class TrasportoController {
      * @return int id dell'entità aggiunta
      */
     @PostMapping("/insertTrasporti")
-    public ResponseEntity<List<Integer>> insert(@RequestBody List<TrasportoModel> tr) {
+    public ResponseEntity<List<Integer>> insertTrasporti(@RequestBody List<TrasportoModel> tr) {
         try {
             List<Integer> id = new ArrayList<Integer>();
             for(TrasportoModel t : tr) {
