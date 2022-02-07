@@ -12,7 +12,12 @@ import unisa.is.helpseller.Model.ScontoModel;
 @Entity
 @Table(name = "sconto")
 public class Sconto implements Serializable {
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 

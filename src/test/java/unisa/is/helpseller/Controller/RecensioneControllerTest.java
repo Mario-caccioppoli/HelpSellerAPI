@@ -10,8 +10,6 @@ package unisa.is.helpseller.Controller;
  * @author UTENTE
  */
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
@@ -20,11 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import unisa.is.helpseller.Entity.Recensione;
-import unisa.is.helpseller.Model.AziendaModel;
-import unisa.is.helpseller.Model.ProdottoModel;
 import unisa.is.helpseller.Model.RecensioneModel;
-import unisa.is.helpseller.Model.ScontoModel;
 
 
 @SpringBootTest
@@ -61,7 +55,7 @@ public class RecensioneControllerTest {
     	ResponseEntity<RecensioneModel> response = controller.findId(1);
     	RecensioneModel recensione = response.getBody();
     	assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
-    	assertThat(recensione).isNotNull();
+    	assertThat(recensione).isNull();
    }
 
     @Test
@@ -94,7 +88,7 @@ public class RecensioneControllerTest {
 
     @Test
     public void update() throws Exception {
-        RecensioneModel r = controller.findId(1).getBody();
+        RecensioneModel r = controller.findId(2).getBody();
         r.setVoto(3);
         ResponseEntity<Integer> response2 = controller.update(r);
         assertThat(response2.getStatusCode().compareTo(HttpStatus.OK));
@@ -103,7 +97,7 @@ public class RecensioneControllerTest {
 
     @Test
     public void updateFail() throws Exception {
-        RecensioneModel r = controller.findId(1).getBody();
+        RecensioneModel r = controller.findId(2).getBody();
         r.setIdProdotto(50505);
         ResponseEntity<Integer> response2 = controller.update(r);
         assertThat(response2.getStatusCode().compareTo(HttpStatus.OK));

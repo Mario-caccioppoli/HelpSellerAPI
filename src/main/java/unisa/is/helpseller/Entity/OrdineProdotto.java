@@ -12,7 +12,12 @@ import unisa.is.helpseller.Model.OrdineProdottoModel;
 @IdClass(OrdineProdottoId.class)
 @Table(name = "ordine_prodotto")
 public class OrdineProdotto implements Serializable{
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
     private int id_ordine;
     
     @Id

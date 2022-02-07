@@ -160,6 +160,15 @@ public class ProdottoControllerTest {
         assertThat(allProdotti).asList();
         //assertThat(allProdotti.get(0)).isNotNull(); da aggiungere nel DB!
     }
+
+    @Test
+    public void ricerdaProdottiInOrdineFail() throws Exception {
+        ResponseEntity<List<ProdottoModel>> response = controller.findProdottiInOrdine(999);
+        List<ProdottoModel> allProdotti = response.getBody();
+        assertThat(response.getStatusCode().compareTo(HttpStatus.NOT_FOUND));
+        assertThat(allProdotti).asList();
+        //assertThat(allProdotti.get(0)).isNotNull(); da aggiungere nel DB!
+    }
     
     @Test
     public void invalidRicerdaProdottiInOrdine() throws Exception {
@@ -176,12 +185,12 @@ public class ProdottoControllerTest {
         List<ProdottoModel> allProdotti = response.getBody();
         assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
         assertThat(allProdotti).asList();
-        assertThat(allProdotti.get(0)).isNotNull();
+        assertThat(allProdotti.isEmpty());
     }
     
     @Test
     public void invalidRicerdaProdottiInSconto() throws Exception {
-        ResponseEntity<List<ProdottoModel>> response = controller.findProdottiInSconto(12);
+        ResponseEntity<List<ProdottoModel>> response = controller.findProdottiInSconto(120);
         List<ProdottoModel> allProdotti = response.getBody();
         assertThat(response.getStatusCode().compareTo(HttpStatus.NOT_FOUND));
         assertThat(allProdotti).asList();

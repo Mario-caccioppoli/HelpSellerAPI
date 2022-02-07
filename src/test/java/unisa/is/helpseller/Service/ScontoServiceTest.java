@@ -4,11 +4,8 @@
  * and open the template in the editor.
  */
 package unisa.is.helpseller.Service;
-import java.sql.Date;
-import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 /**
  *
@@ -16,8 +13,6 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @SpringBootTest
 public class ScontoServiceTest {
-    @Autowired
-    private ScontoService service;
 
     @Test
     public void contextLoads() throws Exception {

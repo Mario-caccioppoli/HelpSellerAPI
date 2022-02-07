@@ -12,7 +12,12 @@ import unisa.is.helpseller.Model.TrasportoModel;
 @Entity
 @Table(name = "trasporto")
 public class Trasporto implements Serializable{
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 

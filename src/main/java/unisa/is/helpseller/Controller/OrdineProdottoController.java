@@ -1,7 +1,6 @@
 package unisa.is.helpseller.Controller;
 
 import java.util.ArrayList;
-import java.util.Hashtable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import unisa.is.helpseller.Service.OrdineProdottoService;

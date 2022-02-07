@@ -7,7 +7,11 @@ import java.io.Serializable;
  * Classe model utilizzata per la comunicazione col frontend descrittiva dell'entity ScontoProdotto
  */
 public class ScontoProdottoModel implements Serializable {
-    private ProdottoModel prodotto;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private ProdottoModel prodotto;
     private ScontoModel sconto;
 
     public ScontoProdottoModel() {}

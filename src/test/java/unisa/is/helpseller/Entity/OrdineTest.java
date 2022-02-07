@@ -12,7 +12,8 @@ public class OrdineTest {
     @Test
     public void costruttore(){
         Ordine ord = new Ordine();
-        Date data = new Date(2022, 2, 3);
+        @SuppressWarnings("deprecation")
+		Date data = new Date(2022, 2, 3);
         ord.setCommento("aut");
         ord.setDataConsegna(data);
         ord.setDataOrdinazione(data);
@@ -35,6 +36,5 @@ public class OrdineTest {
         o.setId(1);o.setDataOrdinazione(null);o.setStato("");o.getStato();o.getDocumento();
         o.setDocumento(null);o.getPrezzoTotale();o.setPrezzoTotale(1);o.setOrdineProdotti(null);
 
-        Ordine o1 = new Ordine(null, null, "", 1);
     }
 }

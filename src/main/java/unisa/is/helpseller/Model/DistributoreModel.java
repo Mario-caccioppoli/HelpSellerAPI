@@ -10,7 +10,11 @@ import unisa.is.helpseller.Entity.Distributore;
  */
 public class DistributoreModel implements Serializable{
 
-    private int id;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private int id;
     private String username;    
     private String email;
     private String password;

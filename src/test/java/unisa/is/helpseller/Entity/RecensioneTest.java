@@ -11,7 +11,8 @@ public class RecensioneTest {
     @Test
     public void costruttore(){
         Recensione rec = new Recensione();
-        Date data = new Date(2022, 2, 3);
+        @SuppressWarnings("deprecation")
+		Date data = new Date(2022, 2, 3);
         rec.setData(data);
         rec.setIdDistributore(1);
         rec.setIdProdotto(2);
@@ -30,6 +31,5 @@ public class RecensioneTest {
         assertThat(t.isEmpty()).isFalse();
         assertThat(v != 0);
 
-        Recensione r = new Recensione("", 1, null, 1, 1);
     }
 }

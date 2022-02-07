@@ -12,7 +12,12 @@ import unisa.is.helpseller.Model.DocumentoModel;
 @Entity
 @Table(name = "documento")
 public class Documento implements Serializable{
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 

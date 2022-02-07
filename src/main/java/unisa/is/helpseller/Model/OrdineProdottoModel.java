@@ -7,7 +7,11 @@ import java.io.Serializable;
  */
 public class OrdineProdottoModel implements Serializable {
     
-    private int idOrdine;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private int idOrdine;
     private int quantitaOrdine;
     private double prezzoUnitario;
     private ProdottoModel prodotto;

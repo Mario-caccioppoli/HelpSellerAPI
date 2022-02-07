@@ -11,7 +11,12 @@ import unisa.is.helpseller.Model.ProdottoModel;
 @Entity
 @Table(name = "prodotto")
 public class Prodotto implements Serializable {
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     

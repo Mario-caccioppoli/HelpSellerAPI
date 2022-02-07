@@ -41,6 +41,7 @@ public class RaccomandazioneService {
 
     public ProdottoModel[] firstLayer(ProdottoService ps) throws IOException {
         ProdottoModel[] array = new ProdottoModel[10];   //da modificare la dimensione dell'array
+        
 
         Runtime runTime = Runtime.getRuntime();
         String eseguibilePath = "firstLayer.exe";
@@ -76,7 +77,6 @@ public class RaccomandazioneService {
         int prodConsiderati = 10;   // il suggerimento viene basato sugli ultimi 10 articoli interagiti
         int prodSuggeriti = 10;     //n prodotti restituiti al frontend
         ProdottoModel[] array = new ProdottoModel[prodSuggeriti];
-        ProdottoModel prodottoM;   
         Recensione r = new Recensione();
         List<String> campioni = new ArrayList<>();
         campioni.add(eseguibilePath);
@@ -102,7 +102,7 @@ public class RaccomandazioneService {
         int j = 0;
         while ((line = br.readLine()) != null && j<prodSuggeriti) {
             System.out.println(line);
-            array[j] = prodottoM = new ProdottoModel(ps.findId(Integer.valueOf(line)));
+            array[j] = new ProdottoModel(ps.findId(Integer.valueOf(line)));
             j++;
         }
         return array;

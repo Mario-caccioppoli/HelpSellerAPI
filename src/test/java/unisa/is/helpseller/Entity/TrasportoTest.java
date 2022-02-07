@@ -11,7 +11,8 @@ public class TrasportoTest {
     @Test
     public void costruttore(){
         Trasporto t = new Trasporto();
-        Date data = new Date(2022, 2, 3);
+        @SuppressWarnings("deprecation")
+		Date data = new Date(2022, 2, 3);
         t.setDataConsegna(data);
         t.setIdOrdine(2);
         t.setIndirizzoConsegna("indirizzo");
@@ -27,6 +28,5 @@ public class TrasportoTest {
         assertThat(i.isEmpty()).isFalse();
         assertThat(qm != 0 );
 
-        Trasporto t123 = new Trasporto("", 1, null, 1);
     }
 }

@@ -1,7 +1,6 @@
 package unisa.is.helpseller.Controller;
 
 import java.util.List;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,15 +8,12 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import unisa.is.helpseller.Entity.Amministratore;
 import unisa.is.helpseller.Entity.Azienda;
 import unisa.is.helpseller.Entity.Distributore;
 import unisa.is.helpseller.Model.UtenteModel;
-import unisa.is.helpseller.Model.AziendaModel;
-import unisa.is.helpseller.Model.DistributoreModel;
 import unisa.is.helpseller.Service.AmministratoreService;
 import unisa.is.helpseller.Service.AziendaService;
 import unisa.is.helpseller.Service.DistributoreService;

@@ -55,11 +55,11 @@ public class AmministratoreServiceTest {
     public void Service() throws Exception {
         List<Amministratore> list = service.findAll();
         assertThat(list).asList();
-        Amministratore a = service.findId(3);
+        Amministratore a = service.findId(2);
         assertThat(a).isNotNull();
 
         assertThat(service.udpate(a)).isNotNull();
-        a.setEmail("nuovaemail");
+        a.setEmail("nuovaemagfdhrhfdhrdhrhrbil");
         int id = service.insert(a);
         assertThat(id).isNotNull();
         assertThat(service.recuperoPassword(a.getEmail())).isNotNull();

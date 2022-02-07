@@ -12,15 +12,25 @@ public class RaccomandazioneControllerTest {
 
     @Test
     public void data() throws Exception {
-        controller.creaCsv();
+       /* controller.creaCsv();*/
     }
 
     @Test
     public void l1() throws Exception {
-        controller.firstLayer();
+        /*controller.firstLayer();*/
     }
     @Test
     public void l2() throws Exception {
-        controller.secondLayer(1);
+        /*controller.secondLayer(1);*/
+    }
+
+    @Test
+    public void l2fail() throws Exception {
+       /* controller.secondLayer(999);*/
+    }
+
+    @Test
+    public void l2fail2() throws Exception {
+        /*controller.secondLayer(7);*/
     }
 }

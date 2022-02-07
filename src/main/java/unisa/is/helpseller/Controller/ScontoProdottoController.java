@@ -8,7 +8,6 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import unisa.is.helpseller.Entity.ScontoProdotto;
-import unisa.is.helpseller.Model.ProdottoModel;
 import unisa.is.helpseller.Model.ScontoProdottoModel;
 import unisa.is.helpseller.Service.ProdottoService;
 import unisa.is.helpseller.Service.ScontoService;
@@ -51,7 +50,6 @@ public class ScontoProdottoController {
             List<ScontoProdottoModel> modelList = new ArrayList<ScontoProdottoModel>();
 
             for (ScontoProdotto sp : scontoProdotti) {
-                ProdottoModel prodottoBuf = prodottoController.findId(sp.getIdProdotto()).getBody();
                 ScontoProdottoModel modelBuf = new ScontoProdottoModel(
                         prodottoController.findId(sp.getIdProdotto()).getBody(),
                         scontoController.findId(sp.getIdSconto()).getBody());

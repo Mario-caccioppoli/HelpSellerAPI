@@ -9,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import unisa.is.helpseller.Entity.Azienda;
 import unisa.is.helpseller.Model.AziendaModel;
-import unisa.is.helpseller.Model.DistributoreModel;
 
 @SpringBootTest
 public class AziendaControllerTest {

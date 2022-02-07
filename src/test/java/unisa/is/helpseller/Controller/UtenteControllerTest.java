@@ -64,6 +64,24 @@ public class UtenteControllerTest {
         Integer result = response.getBody();
         assertThat(result.intValue() == 1);
     }
+
+    @Test
+    public void recuperoPasswordFail() throws Exception {
+        String email = "bevanasdsadde@gmail.com";
+        ResponseEntity<Integer> response = controller.recuperoPassword(email);
+
+        Integer result = response.getBody();
+        assertThat(result.intValue() == 1);
+    }
+
+    @Test
+    public void recuperoPasswordFail2() throws Exception {
+        String email = "";
+        ResponseEntity<Integer> response = controller.recuperoPassword(email);
+
+        Integer result = response.getBody();
+        assertThat(result.intValue() == 1);
+    }
     
     @Test
     public void wrongLogin() throws Exception {
@@ -71,6 +89,26 @@ public class UtenteControllerTest {
         String email = "bevande@gmail.com";
         String password = "12332322";
         
+        ResponseEntity<UtenteModel> response = controller.auth(tipo, email, password);
+        assertThat(response.getStatusCode().is5xxServerError());
+    }
+
+    @Test
+    public void wrongLogin2() throws Exception {
+        String tipo = "Amministratore";
+        String email = "bevanddve@gmailasd.com";
+        String password = "12332322";
+
+        ResponseEntity<UtenteModel> response = controller.auth(tipo, email, password);
+        assertThat(response.getStatusCode().is5xxServerError());
+    }
+
+    @Test
+    public void loginDistributoreFail() throws Exception {
+        String tipo = "Distributore";
+        String email = "fabiowsdfswdw@email.it";
+        String password = "12332532";
+
         ResponseEntity<UtenteModel> response = controller.auth(tipo, email, password);
         assertThat(response.getStatusCode().is5xxServerError());
     }
