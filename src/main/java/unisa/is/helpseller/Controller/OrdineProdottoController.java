@@ -28,6 +28,9 @@ public class OrdineProdottoController {
 
     @Autowired
     private final RecensioneService recensioneService;
+    
+    @Autowired
+    private FileController fileController;
 
     @Autowired
     public OrdineProdottoController(OrdineProdottoService ordineprodottoService, RecensioneService recensioneService) {
@@ -116,6 +119,14 @@ public class OrdineProdottoController {
 
                     ProdottoModel pBuf = new ProdottoModel(pList.get(i));
                     pBuf.setRecensioni(rmList);
+                                        
+                    try {
+                        byte[] imgBuf = fileController.getImageWithMediaType(pBuf.getImmagine());
+                        pBuf.setImmagineBlob(imgBuf);
+                    } catch (Exception cycle) {
+                        System.out.println("ERRORE " + cycle);
+                    }
+                    
 
                     OrdineProdottoModel opmBuf = new OrdineProdottoModel(
                             opList.get(i).getIdOrdine(), opList.get(i).getQuantitaOrdine(),
