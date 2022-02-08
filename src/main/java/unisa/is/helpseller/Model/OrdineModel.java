@@ -21,6 +21,7 @@ public class OrdineModel implements Serializable{
     private String commento;
     private String stato;
     private int idDistributore;
+    private String nomeDistributore;
     private DocumentoModel documento;
     private double prezzoTotale;
     private List<OrdineProdottoModel> ordineProdotti;
@@ -29,13 +30,14 @@ public class OrdineModel implements Serializable{
     public OrdineModel() {}
 
     public OrdineModel(Date dataOrdinazione, Date dataConsegna, String commento, 
-            String stato, int idDistributore, DocumentoModel documento, 
+            String stato, int idDistributore, String nomeDistributore, DocumentoModel documento, 
             double prezzoTotale, List<OrdineProdottoModel> ordineProdotti, AziendaModel azienda) {
         this.dataOrdinazione = dataOrdinazione;
         this.dataConsegna = dataConsegna;
         this.commento = commento;
         this.stato = stato;
         this.idDistributore = idDistributore;
+        this.nomeDistributore = nomeDistributore;
         this.documento = documento;
         this.prezzoTotale = prezzoTotale;
         this.ordineProdotti = ordineProdotti;
@@ -49,6 +51,7 @@ public class OrdineModel implements Serializable{
         this.commento = o.getCommento();
         this.stato = o.getStato();
         this.idDistributore = o.getIdDistributore();
+        this.nomeDistributore = null;
         this.documento = null;
         this.ordineProdotti = null;
         this.azienda = null;
@@ -132,6 +135,14 @@ public class OrdineModel implements Serializable{
 
     public void setAzienda(AziendaModel azienda) {
         this.azienda = azienda;
+    }
+
+    public String getNomeDistributore() {
+        return nomeDistributore;
+    }
+
+    public void setNomeDistributore(String nomeDistributore) {
+        this.nomeDistributore = nomeDistributore;
     }
     
 

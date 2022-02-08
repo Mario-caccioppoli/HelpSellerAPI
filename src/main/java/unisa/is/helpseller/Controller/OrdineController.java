@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import unisa.is.helpseller.Entity.Distributore;
 import unisa.is.helpseller.Entity.Ordine;
 import unisa.is.helpseller.Model.AziendaModel;
+import unisa.is.helpseller.Model.DistributoreModel;
 import unisa.is.helpseller.Model.OrdineModel;
 import unisa.is.helpseller.Model.OrdineProdottoModel;
 import unisa.is.helpseller.Service.DistributoreService;
@@ -39,6 +40,9 @@ public class OrdineController {
     
     @Autowired
     private AziendaController aziendaController;
+    
+    @Autowired
+    private DistributoreController distributoreController;
 
     @Autowired
     public OrdineController(OrdineService ordineService) {
@@ -261,6 +265,11 @@ public class OrdineController {
                             prezzoTotale = prezzoTotale + prezzo;
                         }
                         ordiniModel.get(i).setPrezzoTotale(prezzoTotale);
+                        
+                        //Inserisco il nome distributore nell'ordine
+                        DistributoreModel distBuf = distributoreController.findId(ordiniModel.get(i).getIdDistributore()).getBody();
+                        ordiniModel.get(i).setNomeDistributore(distBuf.getNome());
+                        
                     } catch (Exception cycle) {
                         System.out.println("ERRORACCIO: " + cycle);
                     }
