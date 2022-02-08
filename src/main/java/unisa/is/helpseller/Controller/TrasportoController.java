@@ -12,7 +12,8 @@ import unisa.is.helpseller.Entity.Trasporto;
 import unisa.is.helpseller.Model.TrasportoModel;
 
 /**
- * classe di mappatura dei servizi relativi a Trasporto affinché siano accessibili dal frontend
+ * classe di mappatura dei servizi relativi a Trasporto affinché siano
+ * accessibili dal frontend
  */
 @RestController
 @RequestMapping("/trasporto")
@@ -29,6 +30,7 @@ public class TrasportoController {
 
     /**
      * metodo per il recupero di tutti le istanze presenti nel DB
+     *
      * @return lista di oggetti delle entity da passare al frontEnd
      */
     @GetMapping("/findAll")
@@ -36,10 +38,10 @@ public class TrasportoController {
         try {
             List<Trasporto> trasporti = trasportoService.findAll();
             List<TrasportoModel> trasportiModel = new ArrayList<TrasportoModel>();
-                trasportiModel = trasporti.stream().map(p -> {
-                    return new TrasportoModel(p);
-                }).collect(Collectors.toList());
-                return new ResponseEntity<>(trasportiModel, HttpStatus.OK);
+            trasportiModel = trasporti.stream().map(p -> {
+                return new TrasportoModel(p);
+            }).collect(Collectors.toList());
+            return new ResponseEntity<>(trasportiModel, HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -47,16 +49,17 @@ public class TrasportoController {
 
     /**
      * metodo per il recupero di una istanza dal DB dato in input il suo ID
-     * @param id    intero ID dell'entità ricercata
+     *
+     * @param id intero ID dell'entità ricercata
      * @return oggetto prelevato dal DB da restituire al frontend
      */
     @GetMapping("/findId/{id}")
     public ResponseEntity<TrasportoModel> findId(@PathVariable("id") int id) {
         try {
             Trasporto trasporto = trasportoService.findId(id);
-                TrasportoModel t = new TrasportoModel(trasporto);
-                return new ResponseEntity<>(t, HttpStatus.OK);
-           
+            TrasportoModel t = new TrasportoModel(trasporto);
+            return new ResponseEntity<>(t, HttpStatus.OK);
+
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -64,7 +67,8 @@ public class TrasportoController {
 
     /**
      * metodo per la rimozione di una istanza dato l'id
-     * @param id    id dell'entità da rimuovere
+     *
+     * @param id id dell'entità da rimuovere
      * @return int id dell'entità rimossa
      */
     /*
@@ -78,10 +82,10 @@ public class TrasportoController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    */
-
+     */
     /**
      * metodo per l'inserimento di un'istanza nel DB
+     *
      * @param tr TrasportoModel oggetto entity da inserire nel DB
      * @return int id dell'entità aggiunta
      */
@@ -91,7 +95,7 @@ public class TrasportoController {
             Trasporto t = new Trasporto(tr);
             int id = trasportoService.insert(t);
             return new ResponseEntity<>(id, HttpStatus.OK);
-            
+
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -99,6 +103,7 @@ public class TrasportoController {
 
     /**
      * metodo per l'update di una entità presente nel DB
+     *
      * @param tr TrasportoModel oggetto entity da modificare nel DB
      * @return int id dell'entity modificata
      */
@@ -107,19 +112,19 @@ public class TrasportoController {
         try {
             Trasporto t = new Trasporto(tr);
             int id = trasportoService.udpate(t);
-            if(id > 0) {
+            if (id > 0) {
                 return new ResponseEntity<>(id, HttpStatus.OK);
             }
-            
+
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
-    
-    
+
     /**
      * metodo per l'inserimento di più istanzenel DB
+     *
      * @param tr TrasportoModel lista di oggetti da inserire nel DB
      * @return int id dell'entità aggiunta
      */
@@ -127,16 +132,37 @@ public class TrasportoController {
     public ResponseEntity<List<Integer>> insertTrasporti(@RequestBody List<TrasportoModel> tr) {
         try {
             List<Integer> id = new ArrayList<Integer>();
-            for(TrasportoModel t : tr) {
+            for (TrasportoModel t : tr) {
                 Trasporto entity = new Trasporto(t);
                 id.add(trasportoService.insert(entity));
             }
-            
+
             return new ResponseEntity<>(id, HttpStatus.OK);
-            
+
         } catch (Exception ex) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
+    /**
+     * metodo per ricevere i trasporti di un ordine dal DB
+     *
+     * @param tr TrasportoModel lista di oggetti da inserire nel DB
+     * @return int id dell'entità aggiunta
+     */
+    @GetMapping("/findTrasportiInOrdine/{id}")
+    public ResponseEntity<List<TrasportoModel>> findTrasportiInOrdine(@PathVariable("id") int id) {
+        try {
+            List<Trasporto> entityList = trasportoService.findTrasportiInOrdine(id);
+            List<TrasportoModel> modelList = new ArrayList<TrasportoModel>();
+            for(Trasporto entity : entityList) {
+                TrasportoModel model = new TrasportoModel(entity);
+                modelList.add(model);
+            }
+            
+            return new ResponseEntity<>(modelList, HttpStatus.OK);
+        } catch (Exception ex) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

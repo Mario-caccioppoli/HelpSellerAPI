@@ -1,6 +1,7 @@
 package unisa.is.helpseller.Repo;
 
 import java.sql.Date;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -32,4 +33,8 @@ public interface TrasportoRepo extends JpaRepository<Trasporto, Integer> {
            + "quantita_minima = :quantita_minima WHERE t.id = :id")
    int update(@Param("id_ordine") int id_ordine, @Param("data_consegna") Date data_consegna, @Param("indirizzo_consegna") String indirizzo_consegna, 
            @Param("quantita_minima") int quantita_minima, @Param("id") int id);
+   
+    //SQL
+    @Query(value = "SELECT * FROM trasporto WHERE id_ordine = :id_ordine", nativeQuery = true)
+    List<Trasporto> findTrasportiInOrdine(@Param("id_ordine") int id_ordine);
 }

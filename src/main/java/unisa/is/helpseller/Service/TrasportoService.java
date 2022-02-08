@@ -64,4 +64,8 @@ public class TrasportoService {
     public int udpate(Trasporto tr) {
     	return  trasportoRepo.update(tr.getIdOrdine(), tr.getDataConsegna(), tr.getIndirizzoConsegna(), tr.getQuantitaMinima(), tr.getId());
     }
+    
+    public List<Trasporto> findTrasportiInOrdine(int id_ordine) {
+        return trasportoRepo.findTrasportiInOrdine(id_ordine);
+    }
 }

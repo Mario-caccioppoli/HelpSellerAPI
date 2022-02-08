@@ -105,4 +105,13 @@ public class TrasportoControllerTest {
         assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
         assertThat(response.getBody() == null);
     }
+    
+    @Test
+    public void FindMultiple() throws Exception {
+        ResponseEntity<List<TrasportoModel>> response = controller.findTrasportiInOrdine(2);
+        List<TrasportoModel> tmList = response.getBody();
+        assertThat(response.getStatusCode().compareTo(HttpStatus.OK));
+    	assertThat(tmList).isNotNull();
+     
+    }
 }
