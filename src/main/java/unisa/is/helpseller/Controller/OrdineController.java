@@ -129,7 +129,9 @@ public class OrdineController {
 
             //Recupero il distributore e invio mail
             Distributore d = distributoreService.findId(entity.getIdDistributore());
-            senderService.sendEmail(d.getEmail(), "Ordine confermato", "Il tuo ordine è stato confermato!");
+            String mailBody = "\nData ordine: " + model.getDataOrdinazione() + "\nData consegna: " + model.getDataConsegna() +
+            					"\nPrezzo totale: " + model.getPrezzoTotale();
+            senderService.sendEmail(d.getEmail(), "Ordine confermato", "Il tuo ordine è stato confermato!" + mailBody);
             return new ResponseEntity<>(id, HttpStatus.OK);
 
         } catch (Exception ex) {
