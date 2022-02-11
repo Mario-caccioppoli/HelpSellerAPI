@@ -16,22 +16,14 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class EmailSenderService {
-    public static EmailSenderService istance = null;
+    @Autowired
     private JavaMailSender mailSender;
 
-    private EmailSenderService(){}
-
-    public static EmailSenderService getInstance(){
-        if(istance == null)
-            istance = new EmailSenderService();
-        return istance;
-    }
-
     /**
-     * Metodo per l'invio della mail
-     * @param destinatario indirizzo mail del destinatario
-     * @param oggetto oggetto della mail
-     * @param body corpo della mail
+     * metodo per l'invio di una mail
+     * @param destinatario  il destinatario della mail
+     * @param oggetto   l'oggetto della mail
+     * @param body  il corpo della mail
      */
     public void sendEmail(String destinatario, String oggetto, String body){
         SimpleMailMessage emailMsg = new SimpleMailMessage();
@@ -39,7 +31,9 @@ public class EmailSenderService {
         emailMsg.setTo(destinatario);
         emailMsg.setText(body);
         emailMsg.setSubject(oggetto);
+
         mailSender.send(emailMsg);
+
         System.out.println("Mail inviata");
     }
 }
