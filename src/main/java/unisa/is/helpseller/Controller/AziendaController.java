@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import unisa.is.helpseller.Entity.Azienda;
 import unisa.is.helpseller.Model.AziendaModel;
+import unisa.is.helpseller.Model.ProdottoModel;
 
 /**
  * classe di mappatura dei servizi relativi ad Azienda affinché siano accessibili dal frontend
@@ -24,6 +25,9 @@ public class AziendaController {
     
     @Autowired
     private FileController fileController;
+    
+    @Autowired
+    private ProdottoController prodottoController;
 
     @Autowired
     public AziendaController(AziendaService aziendaService) {
@@ -93,6 +97,17 @@ public class AziendaController {
     @DeleteMapping("/deleteId/{id}")
     public ResponseEntity<Integer> deleteId(@PathVariable("id") int id) {
         try {
+        	//Ottengo lista prodotti azienda e li elimino dal database
+        	List<ProdottoModel> listProdotti = prodottoController.findProdottiByAzienda(id).getBody();
+        	for(int i = 0; i < listProdotti.size(); i++) {
+        		try {
+        			prodottoController.deleteId(listProdotti.get(i).getId());
+        		} catch (Exception ex) {
+        			System.out.println(ex);
+        		}
+        	}
+        	
+        	//Elimino azienda dal database
             int result = aziendaService.deleteId(id);
             return new ResponseEntity<>(result, HttpStatus.OK);
        
