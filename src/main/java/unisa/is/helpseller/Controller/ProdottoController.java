@@ -188,6 +188,15 @@ public class ProdottoController {
                 prodottiModel = prodotti.stream().map(p -> {
                     return new ProdottoModel(p);
                 }).collect(Collectors.toList());
+
+                for (int i = 0; i < prodottiModel.size(); i++) {
+                    try {
+                        byte[] imgBuf = fileController.getImageWithMediaType(prodottiModel.get(i).getImmagine());
+                        prodottiModel.get(i).setImmagineBlob(imgBuf);
+                    } catch (Exception cycle) {
+                        System.out.println("ERRORE " + cycle);
+                    }
+                }
                 return new ResponseEntity<>(prodottiModel, HttpStatus.OK);
             } else {
                 return new ResponseEntity<>(prodottiModel, HttpStatus.NOT_FOUND);
@@ -213,6 +222,14 @@ public class ProdottoController {
                 prodottiModel = prodotti.stream().map(p -> {
                     return new ProdottoModel(p);
                 }).collect(Collectors.toList());
+                for (int i = 0; i < prodottiModel.size(); i++) {
+                    try {
+                        byte[] imgBuf = fileController.getImageWithMediaType(prodottiModel.get(i).getImmagine());
+                        prodottiModel.get(i).setImmagineBlob(imgBuf);
+                    } catch (Exception cycle) {
+                        System.out.println("ERRORE " + cycle);
+                    }
+                }
                 return new ResponseEntity<>(prodottiModel, HttpStatus.OK);
             } else {
                 return new ResponseEntity<>(prodottiModel, HttpStatus.NOT_FOUND);
@@ -237,6 +254,14 @@ public class ProdottoController {
                 prodottiModel = prodotti.stream().map(p -> {
                     return new ProdottoModel(p);
                 }).collect(Collectors.toList());
+                for (int i = 0; i < prodottiModel.size(); i++) {
+                    try {
+                        byte[] imgBuf = fileController.getImageWithMediaType(prodottiModel.get(i).getImmagine());
+                        prodottiModel.get(i).setImmagineBlob(imgBuf);
+                    } catch (Exception cycle) {
+                        System.out.println("ERRORE " + cycle);
+                    }
+                }
                 return new ResponseEntity<>(prodottiModel, HttpStatus.OK);
             } else {
                 return new ResponseEntity<>(prodottiModel, HttpStatus.NOT_FOUND);
@@ -261,6 +286,14 @@ public class ProdottoController {
                 prodottiModel = prodotti.stream().map(p -> {
                     return new ProdottoModel(p);
                 }).collect(Collectors.toList());
+                for (int i = 0; i < prodottiModel.size(); i++) {
+                    try {
+                        byte[] imgBuf = fileController.getImageWithMediaType(prodottiModel.get(i).getImmagine());
+                        prodottiModel.get(i).setImmagineBlob(imgBuf);
+                    } catch (Exception cycle) {
+                        System.out.println("ERRORE " + cycle);
+                    }
+                }
                 return new ResponseEntity<>(prodottiModel, HttpStatus.OK);
             } else {
                 return new ResponseEntity<>(prodottiModel, HttpStatus.NOT_FOUND);
@@ -287,6 +320,14 @@ public class ProdottoController {
                 prodottiModel = prodotti.stream().map(p -> {
                     return new ProdottoModel(p);
                 }).collect(Collectors.toList());
+                for (int i = 0; i < prodottiModel.size(); i++) {
+                    try {
+                        byte[] imgBuf = fileController.getImageWithMediaType(prodottiModel.get(i).getImmagine());
+                        prodottiModel.get(i).setImmagineBlob(imgBuf);
+                    } catch (Exception cycle) {
+                        System.out.println("ERRORE " + cycle);
+                    }
+                }
                 return new ResponseEntity<>(prodottiModel, HttpStatus.OK);
             } else {
                 return new ResponseEntity<>(prodottiModel, HttpStatus.NOT_FOUND);

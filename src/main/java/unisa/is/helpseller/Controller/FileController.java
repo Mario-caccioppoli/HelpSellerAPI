@@ -34,7 +34,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/file")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class FileController {
-    private static final String DIRECTORY = "/home/daniele/IDE/Helpseller/HelpSellerAPI/file";
+    private static final String DIRECTORY = System.getProperty("user.home")+"/Desktop/Helpseller/HelpSellerAPI-main/Risorse";
 
     /**
      * metodo per l'upload di un file
