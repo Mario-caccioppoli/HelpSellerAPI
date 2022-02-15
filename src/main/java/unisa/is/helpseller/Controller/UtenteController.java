@@ -92,25 +92,27 @@ public class UtenteController {
      */
     @PostMapping("/recuperoPassword/{email}")
     public ResponseEntity<Integer> recuperoPassword(@PathVariable("email") String email) {
-        try {
+    	String bodyMail = "Utilizza questo codice per effettuare il login!\n\n";
+    	try {
             String result = distService.recuperoPassword(email);
+            
             if(!result.isEmpty()) {
                 
-                senderService.sendEmail(email, "Recupero Password", result);
+                senderService.sendEmail(email, "Recupero Password", bodyMail + result);
                 return new ResponseEntity<>(1, HttpStatus.OK);
             }
         } catch (Exception distNotFound) {
             try {
                 String result = aziendaService.recuperoPassword(email);
                 if(!result.isEmpty()) {
-                    senderService.sendEmail(email, "Recupero Password", result);
+                    senderService.sendEmail(email, "Recupero Password", bodyMail + result);
                     return new ResponseEntity<>(1, HttpStatus.OK);
                 }
             } catch (Exception aziendaNotFound) {
                 try {
                     String result = adminService.recuperoPassword(email);
                     if(!result.isEmpty()) {
-                        senderService.sendEmail(email, "Recupero Password", result);
+                        senderService.sendEmail(email, "Recupero Password", bodyMail + result);
                         return new ResponseEntity<>(1, HttpStatus.OK);
                     }
                 } catch (Exception adminNotFound) {

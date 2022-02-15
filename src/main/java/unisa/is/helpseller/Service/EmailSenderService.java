@@ -31,7 +31,7 @@ public class EmailSenderService {
         emailMsg.setTo(destinatario);
         emailMsg.setText(body);
         emailMsg.setSubject(oggetto);
-
+        
         mailSender.send(emailMsg);
 
         System.out.println("Mail inviata");
